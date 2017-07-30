@@ -30,3 +30,4 @@
 /var/
 /app/AppCache.php
 /app/.htaccess
+/src/VideoGame/Ressources/public/video
