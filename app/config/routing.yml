@@ -3,3 +3,7 @@ videogame:
     defaults: { _controller: VideoGameBundle:VideoGame:index }
     requirements:
        _method:  GET
+    path:  /game/{name}
+    defaults: { _controller: VideoGameBundle:VideoGame:game }
+    requirements:
+       _method:  GET

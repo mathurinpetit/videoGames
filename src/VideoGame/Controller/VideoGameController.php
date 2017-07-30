@@ -16,4 +16,12 @@ class VideoGameController extends Controller
     public function indexAction() {
         return array();
     }
+
+    /**
+     * @Template()
+     */
+    public function gameAction($gameName) {
+        
+        return array();
+    }
 }

@@ -2,35 +2,12 @@
 
 {% block body %}
 
-{% for i in 0..29 %}
-{% set numVideo =  "%02d" | format(i) %}
-{% set pathVideoMp4 = 'bundles/videogame/video/laMelodieDuBonheur/'~numVideo~'.mp4' %}
-{% set pathVideoWebm = 'bundles/videogame/video/laMelodieDuBonheur/'~numVideo~'.webm' %}
-<video id="video_{{numVideo}}" webkit-playsinline style="display:none">
-   <source src="{{ asset(pathVideoMp4) }}" type='video/mp4;'>
-   <source src="{{ asset(pathVideoWebm) }}" type='video/ogg;'>
-</video>
+{% for game in games %}
+<div class="row">
+  <div class="col-xs-12">
+    <a href="{{ path('game', { name : game.shortName }) }}">{{ game.name }}</a>
+  </div>
+</div>
 {% endfor %}
 
-{% endblock %}
-{% block jsgame %}
-   <script src="js/videogame.js"></script>
-
-{% endblock %}
-
-
-{% block stylesheets %}
-<style>
-body {
-background-color: #000;
-color: #fff;
-margin: 0px;
-overflow: hidden;
-font-family:Monospace;
-font-size:13px;
-text-align:center;
-font-weight: bold;
-text-align:center;
-}
-</style>
 {% endblock %}
