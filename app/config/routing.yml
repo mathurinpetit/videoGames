@@ -1,0 +1,5 @@
+videogame:
+    path:  /
+    defaults: { _controller: VideoGameBundle:VideoGame:index }
+    requirements:
+       _method:  GET
