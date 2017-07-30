@@ -14,14 +14,19 @@ class VideoGameController extends Controller
      * @Template()
      */
     public function indexAction() {
-        return array();
+
+      $em = $this->getDoctrine()->getManager();
+
+      $games = $em->getRepository('VideoGameBundle:Game')->findAll();
+
+      return array("games" => $games);
     }
 
     /**
      * @Template()
      */
-    public function gameAction($gameName) {
-        
+    public function gameAction() {
+
         return array();
     }
 }
