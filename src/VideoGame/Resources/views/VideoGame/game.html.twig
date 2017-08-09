@@ -4,8 +4,8 @@
 
 {% for i in 0..29 %}
 {% set numVideo =  "%02d" | format(i) %}
-{% set pathVideoMp4 = 'bundles/videogame/video/laMelodieDuBonheur/'~numVideo~'.mp4' %}
-{% set pathVideoWebm = 'bundles/videogame/video/laMelodieDuBonheur/'~numVideo~'.webm' %}
+{% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
+{% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
 <video id="video_{{numVideo}}" webkit-playsinline style="display:none">
    <source src="{{ asset(pathVideoMp4) }}" type='video/mp4;'>
    <source src="{{ asset(pathVideoWebm) }}" type='video/ogg;'>
@@ -14,8 +14,9 @@
 
 {% endblock %}
 {% block jsgame %}
-   <script src="/js/videogame.js"></script>
-
+   <script>
+   	{{ include('Engine/gameEngine.js.twig', { 'game': game }) }}
+   </script>
 {% endblock %}
 
 

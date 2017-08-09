@@ -10,7 +10,7 @@ videogame:
        _method:  GET
 
 game:
-    path:  /game/{name}
+    path:  /game/{idName}
     defaults: { _controller: VideoGameBundle:VideoGame:game }
     requirements:
        _method:  GET

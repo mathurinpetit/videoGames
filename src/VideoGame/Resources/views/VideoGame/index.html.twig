@@ -5,7 +5,7 @@
 {% for game in games %}
 <div class="row">
   <div class="col-xs-12">
-    <a href="{{ path('game', { name : game.shortName }) }}">{{ game.name }}</a>
+    <a href="{{ path('game', { idName : game.shortName }) }}">{{ game.name }}</a>
   </div>
 </div>
 {% endfor %}
