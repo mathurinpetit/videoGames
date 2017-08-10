@@ -1,0 +1,92 @@
+/** prototype pour les numéros de vidéos */
+
+Number.prototype.zeroPad = Number.prototype.zeroPad ||
+     function(base){
+       var nr = this, len = (String(base).length - String(nr).length)+1;
+       return len > 0? new Array(len).join('0')+nr : nr;
+    };
+
+/** stratégie de resizing de la scène **/
+
+function onWindowResize() {
+
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  composer.reset();
+
+}
+
+/* Changement pour le mapping de la vidéo sur la forme */
+
+function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
+  var faceVertexUvs = geometry.faceVertexUvs[ 0 ];
+  console.log(faceVertexUvs.length);
+  for ( var i = 0; i < faceVertexUvs.length; i ++ ) {
+
+    var uvs = faceVertexUvs[ i ];
+
+    for ( var j = 0; j < uvs.length; j ++ ) {
+
+      var uv = uvs[ j ];
+
+     uv.x = ( uv.x + offsetx ) * unitx;
+     uv.y = ( uv.y + offsety ) * unity;
+
+    }
+
+  }
+}
+
+/* Changement de la vidéo sur la texture de l'objet */
+function changeVideo(numberVideo){
+  videoElt = document.getElementById( 'video_'+numberVideo );
+  videoElt.pause();
+  videoElt.currentTime = 0;
+  videoElt.setAttribute('autoplay',true);
+  videoElt.play();
+
+  texture = new THREE.VideoTexture( videoElt );
+  texture.minFilter = THREE.LinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+  texture.format = THREE.RGBFormat;
+  var parameters = { color: 0xffffff, map: texture };
+  material = new THREE.MeshLambertMaterial( parameters );
+
+  mesh.material.map = texture;
+  mesh.material.needsUpdate = true;
+
+}
+
+/** KeyBoardAzerty **/
+var keyboardAzerty = ["97","122","101","114","116","121","117","105","111","112","113","115","100","102","103","104","106","107","108","109","119","120","99","118",
+"98","110","44","59"];
+
+/** mapping keyBoard **/
+function createMappedKeyboard(firstVideo,lastVideo,random = false){
+  var numberVideo = lastVideo - firstVideo;
+  var mappedKeyboard = [];
+
+  if(random){
+    for (var key in keyboardAzerty) {
+      mappedKeyboard[keyboardAzerty[key]] = Math.floor(Math.random() * (Math.floor(lastVideo) - Math.ceil(firstVideo) +1)) + Math.ceil(firstVideo);
+    }
+    return mappedKeyboard;
+  }
+
+  var currentVid = firstVideo;
+
+  for (var key in keyboardAzerty) {
+    mappedKeyboard[keyboardAzerty[key]] = currentVid;
+    if(!(currentVid %(numberVideo+1))){
+        currentVid=firstVideo;
+    }else{
+      currentVid++;
+    }
+  }
+  return mappedKeyboard;
+}
