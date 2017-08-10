@@ -16,6 +16,13 @@ var windowHalfY = window.innerHeight / 2;
 
 var   material;
 
+
+var keyboardAzerty = ["97","122","101","114","116","121","117","105","111","112","113","115","100","102","103","104","106","107","108","109","119","120","99","118",
+"98","110","44","59"];
+
+var mappedKeyboard = [];
+
+
 init();
 animate();
 
@@ -38,6 +45,7 @@ function init() {
   renderer.setSize( window.innerWidth, window.innerHeight );
   container.appendChild( renderer.domElement );
 
+// getFirstSequence()
   video = document.getElementById( 'video_00' );
   video.setAttribute('autoplay',true);
 
@@ -59,6 +67,8 @@ function init() {
 
   geometry = new THREE.BoxGeometry( xsize, ysize, zsize );
 
+
+// game.getIsMappedVideo
   // change_uvs( geometry, 1, 1, 0.1, 0 );
 
     mesh = new THREE.Mesh( geometry, material );
@@ -89,11 +99,14 @@ function init() {
   composer.addPass( effectBloom );
   composer.addPass( effectCopy );
 
-  //
 
   window.addEventListener( 'resize', onWindowResize, false );
 
+  mappedKeyboard = createMappedKeyboard(1,16);
+  console.log(mappedKeyboard);
 }
+
+/* fct à mettre dans lib */
 
 function onWindowResize() {
 
@@ -107,6 +120,8 @@ function onWindowResize() {
   composer.reset();
 
 }
+
+/* fct à mettre dans lib */
 
 function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
 
@@ -129,10 +144,10 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
 
 }
 
-
+// game.velocityX velocityY
 function onDocumentMouseMove(event) {
 
-  mouseX = ( event.clientX - windowHalfX );
+  mouseX = ( event.clientX - windowHalfX ) * 0.3;
   mouseY = ( event.clientY - windowHalfY ) * 0.3;
 
 }
@@ -162,6 +177,15 @@ function render() {
 
 }
 
+/** fct lib */
+
+Number.prototype.zeroPad = Number.prototype.zeroPad ||
+     function(base){
+       var nr = this, len = (String(base).length - String(nr).length)+1;
+       return len > 0? new Array(len).join('0')+nr : nr;
+    };
+
+
 function changeVideo(i){
   video_01 = document.getElementById( 'video_'+i );
   video_01.pause();
@@ -181,75 +205,31 @@ function changeVideo(i){
 
 }
 
+
+
+function createMappedKeyboard(firstVideo,lastVideo,random = false){
+  var numberVideo = lastVideo - firstVideo;
+  var mappedKeyboard = [];
+  var currentVid = firstVideo;
+
+  for (var key in keyboardAzerty) {
+    mappedKeyboard[keyboardAzerty[key]] = currentVid;
+    currentVid++;
+    if(!(currentVid % numberVideo)){
+        currentVid=firstVideo;
+    }
+  }
+  return mappedKeyboard;
+}
+
+/** fct à isoler dans game transition*/
+
 $(document).keypress(function(e) {
   var code = e.keyCode || e.which;
-  console.log(code);
-  switch (code) {
-      case 97:
-      video.pause();
-      video.currentTime = 0;
-      video.removeAttribute('autoplay');
-      changeVideo("01");
-
-      break;
-      case 122:
-        changeVideo("02");
-      break;
-      case 101:
-        changeVideo("03");
-      break;
-      case 114:
-        changeVideo("04");
-      break;
-      case 116:
-        changeVideo("05");
-      break;
-      case 121:
-        changeVideo("06");
-      break;
-      case 117:
-        changeVideo("07");
-      break;
-      case 105:
-        changeVideo("08");
-      break;
-      case 111:
-        changeVideo("09");
-      break;
-      case 112:
-        changeVideo("10");
-      break;
-      case 113:
-        changeVideo("11");
-      break;
-      case 115:
-        changeVideo("12");
-      break;
-      case 100:
-        changeVideo("13");
-      break;
-      case 102:
-        changeVideo("14");
-      break;
-      case 103:
-        changeVideo("15");
-      break;
-
-      case 104:
-        changeVideo("16");
-      break;
-
-      case 106:
-        changeVideo("17");
-      break;
-
-      case 107:
-        changeVideo("18");
-      break;
-
-      videos = [103,104,106];
-      for(i in videos){
-        changeVideo(videos[code])
-      }
+  if(mappedKeyboard[code] == undefined){
+    console.log("Key not mapped "+e.keyCode+" "+code);
+  }else{
+    changeVideo(mappedKeyboard[code].zeroPad(10));
   }
+  
 });
