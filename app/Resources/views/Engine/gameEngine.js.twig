@@ -13,6 +13,21 @@ var mappedKeyboard = [];
 var h, counter = 1;
 var velocity = 0.15;
 
+var textGeo,textMaterial;
+var text1 = "Maintenant, appuyer sur les touches de votre \n   clavier pour faire chanter Julie Andrews";
+var text2 = "Appuyer sur les touches de votre clavier     \n        pour faire chanter les enfants";
+var textMesh;
+var textHeight = 1;
+var textSize = 12;
+var textHover = 1;
+var textCurveSegments = 4;
+var bevelThickness = 2;
+var bevelSize = 0.5;
+var bevelSegments = 3;
+var bevelEnabled = true;
+var font = undefined;
+var fontName = "optimer"; // helvetiker, optimer, gentilis, droid sans, droid serif
+var fontWeight = "regular"; // regular bold
 
 {{ include('Engine/gamelib.js.twig') }}
 
@@ -65,6 +80,8 @@ function init() {
   geometry = new THREE.BoxGeometry( xsize, ysize, zsize );
 
 
+
+
 // game.getIsMappedVideo
   // change_uvs( geometry, 1, 1, 0.1, 0 );
 
@@ -74,7 +91,7 @@ function init() {
     mesh.position.y = 0;
     mesh.position.z = 0;
 
-    mesh.scale.x = mesh.scale.y = mesh.scale.z = 1;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.8;
 
     scene.add( mesh );
 
@@ -127,7 +144,7 @@ function animate() {
 function render() {
 
   var time = Date.now() * 0.0005;
-  
+
   camera.position.x += ( mouseX - camera.position.x ) * 0.15;
   camera.position.y += ( - mouseY - camera.position.y ) * 0.15;
 
@@ -138,7 +155,7 @@ function render() {
 }
 
 var compteur = 0;
-var maxCpt = 12;
+var maxCpt = 26;
 
 var next = '15';
 
@@ -151,22 +168,62 @@ function keypressActivate(e){
       changeVideo(mappedKeyboard[code].zeroPad(10));
       compteur++;
     }
-    console.log(compteur);
     if(maxCpt && (compteur > maxCpt)){
       changeVideo(next);
       $(document).unbind('keypress');
     }
 }
 
+function loadText(textStr) {
+  var loader = new THREE.FontLoader();
+
+				textMaterial = [
+					new THREE.MeshPhongMaterial( { color: 0xffff00, shading: THREE.SmoothShading } ), // front
+					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ) // side FlatShading
+				];
+  loader.load( '/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
+    font = response;
+    scene.remove( textMesh );
+    if ( !textStr ) return;
+    textGeo = new THREE.TextBufferGeometry( textStr, {
+      font: font,
+      size: textSize,
+      height: textHeight,
+      curveSegments: textCurveSegments,
+      bevelThickness: bevelThickness,
+      bevelSize: bevelSize,
+      bevelEnabled: bevelEnabled,
+      material: 0,
+      extrudeMaterial: 1
+    });
+    textGeo.computeBoundingBox();
+    textGeo.computeVertexNormals();
+    var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+          textMesh = new THREE.Mesh( textGeo, textMaterial );
+          textMesh.position.x = centerOffset;
+          textMesh.position.y = -140;
+          textMesh.position.z = 0;
+          textMesh.rotation.x = 0;
+          textMesh.rotation.y = Math.PI * 2;
+          scene.add( textMesh );
+
+  } );
+}
+
+
+
 
 $(document).ready(function(){
     $('#video_00').on('ended',function(){
+
+      loadText(text1);
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_15').on('ended',function(){
+      loadText(text2);
       compteur = 0;
       maxCpt = false;
-      mappedKeyboard = createMappedKeyboard(16,29,false);
+      mappedKeyboard = createMappedKeyboard(16,30,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
   });
