@@ -25,20 +25,16 @@ function onWindowResize() {
 
 function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
   var faceVertexUvs = geometry.faceVertexUvs[ 0 ];
-  console.log(faceVertexUvs.length);
-  for ( var i = 0; i < faceVertexUvs.length; i ++ ) {
-
-    var uvs = faceVertexUvs[ i ];
+  var uvs = faceVertexUvs[ 8 ];
 
     for ( var j = 0; j < uvs.length; j ++ ) {
 
       var uv = uvs[ j ];
-
-     uv.x = ( uv.x + offsetx ) * unitx;
-     uv.y = ( uv.y + offsety ) * unity;
-
-    }
-
+      // console.log(uv0.x,uv0.y);
+      // uv0.x = ( uv0.x + 1 ) ;
+      // uv0.y = ( uv0.y + 0 ) ;
+      uv.x = ( uv.x + offsetx ) * unitx;
+      uv.y = ( uv.y + offsety ) * unity;
   }
 }
 
@@ -68,7 +64,7 @@ var keyboardAzerty = ["97","122","101","114","116","121","117","105","111","112"
 
 /** mapping keyBoard **/
 function createMappedKeyboard(firstVideo,lastVideo,random = false){
-  var numberVideo = lastVideo - firstVideo;
+  var numberVideo = lastVideo - firstVideo + 2;
   var mappedKeyboard = [];
 
   if(random){
@@ -81,12 +77,48 @@ function createMappedKeyboard(firstVideo,lastVideo,random = false){
   var currentVid = firstVideo;
 
   for (var key in keyboardAzerty) {
-    mappedKeyboard[keyboardAzerty[key]] = currentVid;
-    if(!(currentVid %(numberVideo+1))){
-        currentVid=firstVideo;
-    }else{
-      currentVid++;
+    if(!(currentVid % numberVideo)){
+      currentVid=firstVideo;
     }
+    mappedKeyboard[keyboardAzerty[key]] = currentVid;
+    currentVid++;
   }
+  console.log(numberVideo,mappedKeyboard);
   return mappedKeyboard;
+}
+
+function loadText3D(textStr) {
+  var loader = new THREE.FontLoader();
+
+				textMaterial = [
+					new THREE.MeshPhongMaterial( { color: 0xffff00, shading: THREE.SmoothShading } ), // front
+					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ) // side FlatShading
+				];
+  loader.load( '/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
+    font = response;
+    scene.remove( textMesh );
+    if ( !textStr ) return;
+    textGeo = new THREE.TextBufferGeometry( textStr, {
+      font: font,
+      size: textSize,
+      height: textHeight,
+      curveSegments: textCurveSegments,
+      bevelThickness: bevelThickness,
+      bevelSize: bevelSize,
+      bevelEnabled: bevelEnabled,
+      material: 0,
+      extrudeMaterial: 1
+    });
+    textGeo.computeBoundingBox();
+    textGeo.computeVertexNormals();
+    var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+          textMesh = new THREE.Mesh( textGeo, textMaterial );
+          textMesh.position.x = centerOffset;
+          textMesh.position.y = -140;
+          textMesh.position.z = 0;
+          textMesh.rotation.x = 0;
+          textMesh.rotation.y = Math.PI * 2;
+          scene.add( textMesh );
+
+  } );
 }

@@ -16,6 +16,9 @@ var velocity = 0.15;
 var textGeo,textMaterial;
 var text1 = "Maintenant, appuyer sur les touches de votre \n   clavier pour faire chanter Julie Andrews";
 var text2 = "Appuyer sur les touches de votre clavier     \n        pour faire chanter les enfants";
+var text3 = "Appuies pour chanter tous ensembles";
+var text4 = "Appuies pour chanter des paroles";
+var text5 = "Debout! Lève toi et chantes !";
 var textMesh;
 var textHeight = 1;
 var textSize = 12;
@@ -49,7 +52,7 @@ function init() {
   scene = new THREE.Scene();
   var loader = new THREE.TextureLoader();
   var light = new THREE.DirectionalLight( 0xffffff );
-  light.position.set( 0.5, 2, 1 ).normalize();
+  light.position.set( 0.5, 1, 1 ).normalize();
   scene.add( light );
 
   renderer = new THREE.WebGLRenderer( { antialias: false } );
@@ -58,7 +61,7 @@ function init() {
   container.appendChild( renderer.domElement );
 
 // getFirstSequence()
-  video = document.getElementById( 'video_00' );
+  video = document.getElementById( 'video_000' );
   video.setAttribute('autoplay',true);
 
   texture = new THREE.VideoTexture( video );
@@ -69,7 +72,7 @@ function init() {
 
   var geometry, xsize, ysize;
 
-  xsize = 350 ;
+  xsize = 648 ;
   ysize = 280 ;
   zsize = 50 ;
 
@@ -83,7 +86,7 @@ function init() {
 
 
 // game.getIsMappedVideo
-  // change_uvs( geometry, 1, 1, 0.1, 0 );
+//  change_uvs( geometry, 1, 1, 0.1, 0 );
 
     mesh = new THREE.Mesh( geometry, material );
 
@@ -116,8 +119,6 @@ function init() {
 
   window.addEventListener( 'resize', onWindowResize, false );
 
-  mappedKeyboard = createMappedKeyboard(1,14,false);
-  console.log(mappedKeyboard);
 }
 
 
@@ -129,7 +130,7 @@ function onDocumentMouseMove(event) {
 
 }
 
-//
+
 
 function animate() {
 
@@ -155,9 +156,12 @@ function render() {
 }
 
 var compteur = 0;
-var maxCpt = 26;
+var maxCpt = 30;
 
-var next = '15';
+var next_1 = "015";
+var next_2 = "030";
+var next_3 = "045";
+var next_4 = "060";
 
 /** fct à isoler dans game transition*/
 function keypressActivate(e){
@@ -165,65 +169,53 @@ function keypressActivate(e){
     if(mappedKeyboard[code] == undefined){
       console.log("Key not mapped "+e.keyCode+" "+code);
     }else{
-      changeVideo(mappedKeyboard[code].zeroPad(10));
+      changeVideo(mappedKeyboard[code].zeroPad(100));
       compteur++;
     }
     if(maxCpt && (compteur > maxCpt)){
-      changeVideo(next);
-      $(document).unbind('keypress');
+      if(next_1){ changeVideo(next_1); }
+      else if(next_2){ changeVideo(next_2); }
+      else if(next_3){ changeVideo(next_3); }
+      else if(next_4){ changeVideo(next_4); }
+      if(next_1 || next_2 || next_3 || next_4){
+        $(document).unbind('keypress');
+      }
     }
 }
 
-function loadText(textStr) {
-  var loader = new THREE.FontLoader();
-
-				textMaterial = [
-					new THREE.MeshPhongMaterial( { color: 0xffff00, shading: THREE.SmoothShading } ), // front
-					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ) // side FlatShading
-				];
-  loader.load( '/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
-    font = response;
-    scene.remove( textMesh );
-    if ( !textStr ) return;
-    textGeo = new THREE.TextBufferGeometry( textStr, {
-      font: font,
-      size: textSize,
-      height: textHeight,
-      curveSegments: textCurveSegments,
-      bevelThickness: bevelThickness,
-      bevelSize: bevelSize,
-      bevelEnabled: bevelEnabled,
-      material: 0,
-      extrudeMaterial: 1
-    });
-    textGeo.computeBoundingBox();
-    textGeo.computeVertexNormals();
-    var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-          textMesh = new THREE.Mesh( textGeo, textMaterial );
-          textMesh.position.x = centerOffset;
-          textMesh.position.y = -140;
-          textMesh.position.z = 0;
-          textMesh.rotation.x = 0;
-          textMesh.rotation.y = Math.PI * 2;
-          scene.add( textMesh );
-
-  } );
-}
-
-
-
-
 $(document).ready(function(){
-    $('#video_00').on('ended',function(){
+    $('#video_000').on('ended',function(){
+      loadText3D(text1);
 
-      loadText(text1);
+      mappedKeyboard = createMappedKeyboard(1,14,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
-    $('#video_15').on('ended',function(){
-      loadText(text2);
+    $('#video_015').on('ended',function(){
+      loadText3D(text2);
       compteur = 0;
-      maxCpt = false;
-      mappedKeyboard = createMappedKeyboard(16,30,false);
+      next_1 = false;
+      mappedKeyboard = createMappedKeyboard(16,29,false);
+      $(document).bind('keypress', "e", keypressActivate);
+    });
+    $('#video_030').on('ended',function(){
+      loadText3D(text3);
+      compteur = 0;
+      next_2 = false;
+      mappedKeyboard = createMappedKeyboard(31,44,false);
+      $(document).bind('keypress', "e", keypressActivate);
+    });
+    $('#video_045').on('ended',function(){
+      loadText3D(text4);
+      compteur = 0;
+      next_3 = false;
+      mappedKeyboard = createMappedKeyboard(46,59,false);
+      $(document).bind('keypress', "e", keypressActivate);
+    });
+    $('#video_060').on('ended',function(){
+      loadText3D(text5);
+      compteur = 0;
+      next_4 = false;
+      mappedKeyboard = createMappedKeyboard(61,74,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
   });
