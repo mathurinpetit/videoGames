@@ -226,6 +226,7 @@ class Game
 
     public function getFirstSequenceNumber(){
       if(!count($this->getSequences())){
+        return 0;
         return -1;
       }
       $first = array_shift($this->getSequences());
