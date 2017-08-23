@@ -13,7 +13,7 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('shortName')->add('description')->add('videoPath');
+        $builder->add('name')->add('shortName')->add('description')->add('videoPath')->add('nbVideos');
     }
 
     /**
