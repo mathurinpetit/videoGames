@@ -43,6 +43,17 @@ class Game
     private $videoPath;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+     private $nbVideos;
+
+     /**
+      * @ORM\OneToMany(targetEntity="VideoGame\Entity\Sequence", mappedBy="game", cascade={"remove", "persist"})
+      * @ORM\JoinTable(name="videogame_sequences")
+      */
+     private $sequences;
+
+    /**
      * Get id
      *
      * @return int
@@ -147,4 +158,78 @@ class Game
     {
         return $this->videoPath;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sequences = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set nbVideos
+     *
+     * @param integer $nbVideos
+     *
+     * @return Game
+     */
+    public function setNbVideos($nbVideos)
+    {
+        $this->nbVideos = $nbVideos;
+
+        return $this;
+    }
+
+    /**
+     * Get nbVideos
+     *
+     * @return integer
+     */
+    public function getNbVideos()
+    {
+        return $this->nbVideos;
+    }
+
+    /**
+     * Add sequence
+     *
+     * @param \VideoGame\Entity\Sequence $sequence
+     *
+     * @return Game
+     */
+    public function addSequence(\VideoGame\Entity\Sequence $sequence)
+    {
+        $this->sequences[] = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * Remove sequence
+     *
+     * @param \VideoGame\Entity\Sequence $sequence
+     */
+    public function removeSequence(\VideoGame\Entity\Sequence $sequence)
+    {
+        $this->sequences->removeElement($sequence);
+    }
+
+    /**
+     * Get sequences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSequences()
+    {
+        return $this->sequences;
+    }
+
+    public function getFirstSequenceNumber(){
+      if(!count($this->getSequences())){
+        return -1;
+      }
+      $first = array_shift($this->getSequences());
+      return $first->getVideoNumber();
+    }
+
 }

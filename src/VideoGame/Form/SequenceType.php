@@ -6,23 +6,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GameType extends AbstractType
+class SequenceType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('shortName')->add('description')->add('videoPath');
+        $builder->add('videoNumber')->add('nextVideo')->add('startText')->add('endText')->add('game');
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'VideoGame\Entity\Game'
+            'data_class' => 'VideoGame\Entity\Sequence'
         ));
     }
 
@@ -31,7 +31,7 @@ class GameType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'videogame_game';
+        return 'videogame_sequence';
     }
 
 
