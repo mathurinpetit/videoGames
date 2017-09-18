@@ -1,47 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Games list</h1>
-
-    <table>
+<div class="container" role="main">
+    <h1>Liste des jeux</h1>
+    <div class="row">
+    <div class="col-md-12">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Shortname</th>
+                <th>Nom</th>
+                <th>Nom court</th>
                 <th>Description</th>
-                <th>Videopath</th>
-                <th>Nbvideos</th>
-                <th>Actions</th>
+                <th>Video path</th>
+                <th>Nb Videos</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for game in games %}
             <tr>
-                <td><a href="{{ path('admin_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
+                <td>{{ game.id }}</td>
                 <td>{{ game.name }}</td>
                 <td>{{ game.shortName }}</td>
                 <td>{{ game.description }}</td>
                 <td>{{ game.videoPath }}</td>
-                <td>{{ game.nbVideos }}</td>
+                <td>000..{{ "%03d" | format(game.nbVideos) }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_show', { 'id': game.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_edit', { 'id': game.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                      <div class="btn-group btn-group-xs" >
+                            <a href="{{ path('admin_show', { 'id': game.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a href="{{ path('admin_edit', { 'id': game.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                      </div>
+
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
+  </div>
+  <div class="col-md-12">
+    <ul class="list-unstyled">
         <li>
-            <a href="{{ path('admin_new') }}">Create a new game</a>
+            <a href="{{ path('admin_new') }}" class="btn btn-warning">Créer nouveau jeu</a>
         </li>
     </ul>
+  </div>
+</div>
+</div>
 {% endblock %}

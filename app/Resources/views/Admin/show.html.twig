@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container theme-showcase" role="main">
     <h1>Game</h1>
+    <div class="row">
 
-    <table>
+      <div class="col-md-12">
+    <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -41,4 +44,7 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    </div>
+  </div>
+  </div>
 {% endblock %}

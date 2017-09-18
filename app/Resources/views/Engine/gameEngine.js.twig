@@ -2,13 +2,13 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 var container;
 var camera, scene, renderer;
-var video, texture, material, mesh;
+var video, texture_0, texture_1, material_0, material_1, mesh_0, mesh_1;
+var active = 0;
 var composer;
 var mouseX = 0;
 var mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
-var material;
 var mappedKeyboard = [];
 var h, counter = 1;
 var velocity = 0.15;
@@ -46,57 +46,64 @@ function init() {
   container = document.createElement( 'div' );
   document.body.appendChild( container );
 
-  camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+  camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.5, 10000 );
   camera.position.z = 500;
 
   scene = new THREE.Scene();
   var loader = new THREE.TextureLoader();
-  var light = new THREE.DirectionalLight( 0xffffff );
-  light.position.set( 0.5, 1, 1 ).normalize();
+  var light = new THREE.DirectionalLight( 0xcccccc );
+  light.position.set( 400, 200, 200 ).normalize();
   scene.add( light );
+
+  var light2 = new THREE.DirectionalLight( 0xcccccc );
+  light2.position.set( -400, -200, 200 ).normalize();
+  scene.add( light2 );
 
   renderer = new THREE.WebGLRenderer( { antialias: false } );
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
   container.appendChild( renderer.domElement );
-  
+
   var firstVideoNumber = {{ game.getFirstSequenceNumber() }} ;
   video = document.getElementById( 'video_'+ firstVideoNumber.zeroPad(100) );
   video.setAttribute('autoplay',true);
 
-  texture = new THREE.VideoTexture( video );
-  texture.minFilter = THREE.LinearFilter;
-  texture.magFilter = THREE.LinearFilter;
-  texture.format = THREE.RGBFormat;
-  texture.needsUpdate = true;
+  texture_0 = new THREE.VideoTexture( video );
+  texture_0.minFilter = THREE.LinearFilter;
+  texture_0.magFilter = THREE.LinearFilter;
+  texture_0.format = THREE.RGBFormat;
+  texture_0.needsUpdate = true;
 
   var geometry, xsize, ysize;
 
   xsize = 648 ;
   ysize = 280 ;
-  zsize = 50 ;
+  zsize = 648 ;
 
-  var parameters = { color: 0xffffff, map: texture };
+  material_0 = new THREE.MeshLambertMaterial( { color: 0xffffff, map: texture_0 } );
+  material_0.transparent = true;
+  material_1 = new THREE.MeshLambertMaterial( { color: 0xffffff } );
+  material_1.transparent = true;
+  material_1.opacity = 0;
+  geometry = new THREE.BoxGeometry( xsize, ysize, zsize);
 
-  material = new THREE.MeshLambertMaterial( parameters );
+  mesh_0 = new THREE.Mesh( geometry, material_0 );
+  mesh_0.position.x = 0;
+  mesh_0.position.y = 0;
+  mesh_0.position.z = 0;
 
-  geometry = new THREE.BoxGeometry( xsize, ysize, zsize );
+  mesh_0.scale.x = mesh_0.scale.y = mesh_0.scale.z = 0.5;
 
+  scene.add( mesh_0 );
 
+  mesh_1 = new THREE.Mesh( geometry, material_1 );
+  mesh_1.position.x = 0;
+  mesh_1.position.y = 0;
+  mesh_1.position.z = 0;
 
+  mesh_1.scale.x = mesh_1.scale.y = mesh_1.scale.z = 0.5;
 
-// game.getIsMappedVideo
-//  change_uvs( geometry, 1, 1, 0.1, 0 );
-
-    mesh = new THREE.Mesh( geometry, material );
-
-    mesh.position.x = 0;
-    mesh.position.y = 0;
-    mesh.position.z = 0;
-
-    mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.8;
-
-    scene.add( mesh );
+  scene.add( mesh_1 );
 
   renderer.autoClear = false;
 
@@ -124,8 +131,8 @@ function init() {
 // game.velocityX velocityY
 function onDocumentMouseMove(event) {
 
-  mouseX = ( event.clientX - windowHalfX ) * 0.5;
-  mouseY = ( event.clientY - windowHalfY ) * 0.4;
+  mouseX = ( event.clientX - windowHalfX ) * 0.8;
+  mouseY = ( event.clientY - windowHalfY ) * 0.8;
 
 }
 
@@ -143,8 +150,8 @@ function render() {
 
   var time = Date.now() * 0.0005;
 
-  camera.position.x += ( mouseX - camera.position.x ) * 0.15;
-  camera.position.y += ( - mouseY - camera.position.y ) * 0.15;
+  camera.position.x += ( mouseX - camera.position.x ) * 0.25;
+  camera.position.y += ( - mouseY - camera.position.y ) * 0.25;
 
   camera.lookAt( scene.position );
   renderer.clear();
@@ -162,6 +169,16 @@ var next_4 = "060";
 
 /** fct à isoler dans game transition*/
 function keypressActivate(e){
+    if(maxCpt && (compteur > maxCpt)){
+      if(next_1){ console.log(next_1); changeVideo(next_1); }
+      else if(next_2){ changeVideo(next_2); }
+      else if(next_3){ changeVideo(next_3); }
+      else if(next_4){ changeVideo(next_4); }
+      if(next_1 || next_2 || next_3 || next_4){
+        $(document).unbind('keypress');
+        return;
+      }
+    }
     var code = e.keyCode || e.which;
     if(mappedKeyboard[code] == undefined){
       console.log("Key not mapped "+e.keyCode+" "+code);
@@ -169,47 +186,39 @@ function keypressActivate(e){
       changeVideo(mappedKeyboard[code].zeroPad(100));
       compteur++;
     }
-    if(maxCpt && (compteur > maxCpt)){
-      if(next_1){ changeVideo(next_1); }
-      else if(next_2){ changeVideo(next_2); }
-      else if(next_3){ changeVideo(next_3); }
-      else if(next_4){ changeVideo(next_4); }
-      if(next_1 || next_2 || next_3 || next_4){
-        $(document).unbind('keypress');
-      }
-    }
 }
 
 $(document).ready(function(){
     $('#video_000').on('ended',function(){
-      loadText3D(text1);
-
+      loadText(text1,false);
       mappedKeyboard = createMappedKeyboard(1,14,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
+
+
     $('#video_015').on('ended',function(){
-      loadText3D(text2);
+      loadText(text2,false);
       compteur = 0;
       next_1 = false;
       mappedKeyboard = createMappedKeyboard(16,29,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_030').on('ended',function(){
-      loadText3D(text3);
+      loadText(text3,false);
       compteur = 0;
       next_2 = false;
       mappedKeyboard = createMappedKeyboard(31,44,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_045').on('ended',function(){
-      loadText3D(text4);
+      loadText(text4,true);
       compteur = 0;
       next_3 = false;
       mappedKeyboard = createMappedKeyboard(46,59,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_060').on('ended',function(){
-      loadText3D(text5);
+      loadText(text5,true);
       compteur = 0;
       next_4 = false;
       mappedKeyboard = createMappedKeyboard(61,74,false);

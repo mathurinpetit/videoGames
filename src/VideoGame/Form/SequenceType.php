@@ -13,9 +13,9 @@ class SequenceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('videoNumber')->add('nextVideo')->add('startText')->add('endText')->add('game');
+        $builder->add('videoNumber')->add('nextVideo')->add('startText')->add('endText');
     }
-    
+
     /**
      * {@inheritdoc}
      */

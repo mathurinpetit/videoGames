@@ -30,10 +30,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_sequences_index') }}">Back to the list</a>
+            <a href="{{ path('admin_sequences_index', {'idGame' : sequence.game.id} ) }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('admin_sequences_edit', { 'id': sequence.id }) }}">Edit</a>
+            <a href="{{ path('admin_sequences_edit', { 'idGame' : sequence.game.id, 'id': sequence.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

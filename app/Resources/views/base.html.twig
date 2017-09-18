@@ -4,6 +4,8 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
+        <link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/bootstrap-theme.min.css') }}" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block javascripts %}
@@ -17,6 +19,8 @@
         <script src="/js/lib/postprocessing/BloomPass.js"></script>
         <script src="/js/lib/postprocessing/ShaderPass.js"></script>
         <script src="/js/lib/Detector.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/TweenLite.min.js"></script>
         {% endblock %}
     </head>
     <body>

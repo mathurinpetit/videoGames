@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Game creation</h1>
+<div class="container theme-showcase" role="main">
+    <h1>Jeu {{ game.name }} - Création</h1>
+    <div class="row">
+      <div class="col-md-12">
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
+    <ul class="list-unstyled">
         <li>
-            <a href="{{ path('admin_index') }}">Back to the list</a>
+            <a href="{{ path('admin_index') }}" class="btn btn-default">Revenir à la liste</a>
         </li>
     </ul>
+
+  </div>
+</div>
+</div>
 {% endblock %}

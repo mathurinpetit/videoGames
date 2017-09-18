@@ -17,7 +17,7 @@
         <tbody>
         {% for sequence in sequences %}
             <tr>
-                <td><a href="{{ path('admin_sequences_show', { 'id': sequence.id }) }}">{{ sequence.id }}</a></td>
+                <td><a href="{{ path('admin_sequences_show', { 'idGame' : game.id, 'id': sequence.id }) }}">{{ sequence.id }}</a></td>
                 <td>{{ sequence.videoNumber }}</td>
                 <td>{{ sequence.nextVideo }}</td>
                 <td>{{ sequence.startText }}</td>
@@ -25,10 +25,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_sequences_show', { 'id': sequence.id }) }}">show</a>
+                            <a href="{{ path('admin_sequences_show', { 'idGame' : game.id, 'id': sequence.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('admin_sequences_edit', { 'id': sequence.id }) }}">edit</a>
+                            <a href="{{ path('admin_sequences_edit', { 'idGame' : game.id, 'id': sequence.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +39,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('admin_sequences_new') }}">Create a new sequence</a>
+            <a href="{{ path('admin_sequences_new', { 'idGame' : game.id }) }}">Create a new sequence</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_show', { 'id' : game.id }) }}">Retourner au Jeu</a>
         </li>
     </ul>
 {% endblock %}

@@ -2,28 +2,20 @@
 
 {% block body %}
 
-{% for i in 0..74 %}
+{% for i in 0..game.nbVideos %}
 {% set numVideo =  "%03d" | format(i) %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
-<video id="video_{{numVideo}}" webkit-playsinline style="display:none">
+<video id="video_{{numVideo}}" webkit-playsinline style="display:none" >
    <source src="{{ asset(pathVideoMp4) }}" type='video/mp4;'>
    <source src="{{ asset(pathVideoWebm) }}" type='video/ogg;'>
 </video>
 {% endfor %}
-<div id="wrap">
-
-    <div id="main" class="clearfix">
-
-    </div>
-
-</div>
-
-<div id="footer">
-lalalalall
-</div>
+   <div id="footer" style="display:none;">
+   </div>
 
 {% endblock %}
+
 {% block jsgame %}
    <script>
    	{{ include('Engine/gameEngine.js.twig', { 'game': game }) }}
@@ -48,17 +40,13 @@ body {
 * {
     margin: 0;
 }
-body {
-    height: 100%;
-}
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
-}
-.footer, .push {
-    height: 142px; /* .push must be the same height as .footer */
+#footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:40px;
+  background:#333;
 }
 </style>
 {% endblock %}

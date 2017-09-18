@@ -5,6 +5,7 @@ namespace VideoGame\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class GameType extends AbstractType
 {
@@ -13,7 +14,9 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('shortName')->add('description')->add('videoPath')->add('nbVideos');
+        $builder->add('name')->add('shortName')->add('description')->add('videoPath')->add('nbVideos')->add('sequences', CollectionType::class, array(
+            'entry_type' => SequenceType::class
+        ));
     }
 
     /**

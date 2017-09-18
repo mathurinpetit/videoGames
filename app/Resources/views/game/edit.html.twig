@@ -1,21 +1,72 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Game edit</h1>
+<div class="container theme-showcase" role="main">
+    <h1>Jeu {{ game.name }} - Modification</h1>
 
+    <div class="row">
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="col-md-12">
+      <div class="form-group">
+          {{ form_errors(edit_form.name) }}
+          {{ form_label(edit_form.name, "Nom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+              {{ form_widget(edit_form.name, {'attr': {'autofocus': 'autofocus'}}) }}
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+          {{ form_errors(edit_form.shortName) }}
+          {{ form_label(edit_form.shortName, "Nom court", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+              {{ form_widget(edit_form.shortName, {'attr': {'autofocus': 'autofocus'}}) }}
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+          {{ form_errors(edit_form.description) }}
+          {{ form_label(edit_form.description, "description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+              {{ form_widget(edit_form.description, {'attr': {'autofocus': 'autofocus'}}) }}
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+          <div class="form-group">
+          {{ form_errors(edit_form.videoPath) }}
+          {{ form_label(edit_form.videoPath, "videoPath", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+              {{ form_widget(edit_form.videoPath, {'attr': {'autofocus': 'autofocus'}}) }}
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+          {{ form_errors(edit_form.nbVideos) }}
+          {{ form_label(edit_form.nbVideos, "nbVideos", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+              {{ form_widget(edit_form.nbVideos, {'attr': {'autofocus': 'autofocus'}}) }}
+          </div>
+      </div>
 
-    <ul>
+    </div>
+        <input type="submit" value="Modifier" class="btn btn-success" />
+    {{ form_end(edit_form) }}
+      <a href="{{ path('admin_sequences_index', {idGame : game.id} ) }}">Modifier les séquences</a>
+      </div>
+      <div class="col-md-12">
+        <ul class="list-unstyled">
         <li>
-            <a href="{{ path('admin_index') }}">Back to the list</a>
+            <a href="{{ path('admin_index') }}" class="btn btn-default">Revenir à la liste</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="X" class="btn btn-danger">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+        </ul>
+      </div>
+</div>
 {% endblock %}

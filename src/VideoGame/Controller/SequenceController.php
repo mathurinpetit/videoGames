@@ -3,6 +3,7 @@
 namespace VideoGame\Controller;
 
 use VideoGame\Entity\Sequence;
+use VideoGame\Entity\Game;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Sequence controller.
  *
- * @Route("admin/sequences")
+ * @Route("admin/sequences/{idGame}")
  */
 class SequenceController extends Controller
 {
@@ -20,14 +21,14 @@ class SequenceController extends Controller
      * @Route("/", name="admin_sequences_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($idGame)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $sequences = $em->getRepository('VideoGameBundle:Sequence')->findAll();
+        $game = $em->getRepository('VideoGameBundle:Game')->findOneById($idGame);
+        $sequences = $em->getRepository('VideoGameBundle:Sequence')->findByGame($game);
 
         return $this->render('sequence/index.html.twig', array(
-            'sequences' => $sequences,
+            'sequences' => $sequences,'game' => $game
         ));
     }
 
@@ -37,9 +38,13 @@ class SequenceController extends Controller
      * @Route("/new", name="admin_sequences_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,$idGame)
     {
+      $em = $this->getDoctrine()->getManager();
+      $game = $em->getRepository('VideoGameBundle:Game')->findOneById($idGame);
+
         $sequence = new Sequence();
+        $sequence->setGame($game);
         $form = $this->createForm('VideoGame\Form\SequenceType', $sequence);
         $form->handleRequest($request);
 
@@ -48,11 +53,11 @@ class SequenceController extends Controller
             $em->persist($sequence);
             $em->flush();
 
-            return $this->redirectToRoute('admin_sequences_show', array('id' => $sequence->getId()));
+            return $this->redirectToRoute('admin_sequences_show', array('idGame' => $game->getId(), 'id' => $sequence->getId()));
         }
 
         return $this->render('sequence/new.html.twig', array(
-            'sequence' => $sequence,
+            'sequence' => $sequence,'game' => $game,
             'form' => $form->createView(),
         ));
     }
@@ -88,7 +93,7 @@ class SequenceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_sequences_edit', array('id' => $sequence->getId()));
+            return $this->redirectToRoute('admin_sequences_edit', array('idGame' => $sequence->getGame()->getId(), 'id' => $sequence->getId()));
         }
 
         return $this->render('sequence/edit.html.twig', array(
@@ -108,14 +113,14 @@ class SequenceController extends Controller
     {
         $form = $this->createDeleteForm($sequence);
         $form->handleRequest($request);
-
+        $idGame = $sequence->getGame()->getId();
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($sequence);
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_sequences_index');
+        return $this->redirectToRoute('admin_sequences_index', array('idGame' => $idGame));
     }
 
     /**
@@ -128,7 +133,7 @@ class SequenceController extends Controller
     private function createDeleteForm(Sequence $sequence)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_sequences_delete', array('id' => $sequence->getId())))
+            ->setAction($this->generateUrl('admin_sequences_delete', array('idGame' => $sequence->getGame()->getId(), 'id' => $sequence->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

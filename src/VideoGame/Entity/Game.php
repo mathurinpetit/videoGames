@@ -226,11 +226,12 @@ class Game
 
     public function getFirstSequenceNumber(){
       if(!count($this->getSequences())){
-        return 0;
         return -1;
       }
-      $first = array_shift($this->getSequences());
-      return $first->getVideoNumber();
+      foreach ($this->getSequences() as $seq) {
+        return $seq->getVideoNumber();
+      }
+      return  -1;
     }
 
 }
