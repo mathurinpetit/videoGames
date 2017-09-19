@@ -39,13 +39,13 @@ class Sequence
      private $nextVideo;
 
      /**
-      * @ORM\Column(type="string", nullable="true")
+      * @ORM\Column(type="string", nullable=true)
       */
       private $startText;
 
 
     /**
-     * @ORM\Column(type="string", nullable="true")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $endText;
 
@@ -56,7 +56,7 @@ class Sequence
 
 
     /**
-      * @ORM\Column(type="string", nullable="true")
+      * @ORM\Column(type="string", nullable=true)
       */
     private $typeTransition;
 
