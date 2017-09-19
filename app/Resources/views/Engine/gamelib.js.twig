@@ -47,36 +47,37 @@ function changeVideo(numberVideo){
   videoElt.play();
 
   if(!active){
+    TweenLite.to(mesh_0.material, 0.17, {opacity: 0});
+    mesh_0.material.needsUpdate = true;
+    mesh_0.updateMatrix();
+
     texture_1 = new THREE.VideoTexture( videoElt );
     texture_1.minFilter = THREE.LinearFilter;
     texture_1.magFilter = THREE.LinearFilter;
     texture_1.format = THREE.RGBFormat;
 
-    mesh_1.material.opacity = 1;
     mesh_1.material.map = texture_1;
     mesh_1.material.needsUpdate = true;
-    mesh_1.updateMatrix();
+    TweenLite.to(mesh_1.material, 0.08, {opacity: 1});
+    //mesh_1.material.opacity = 1;
 
-    // TweenLite.to(mesh_0.material, 0.1, {opacity: 0});
 
-    mesh_0.material.opacity = 1;
-    mesh_0.material.needsUpdate = true;
-    mesh_0.updateMatrix();
   }else{
+      TweenLite.to(mesh_1.material, 0.17, {opacity: 0});
+      mesh_1.material.needsUpdate = true;
+      mesh_1.updateMatrix();
+
       texture_0 = new THREE.VideoTexture( videoElt );
       texture_0.minFilter = THREE.LinearFilter;
       texture_0.magFilter = THREE.LinearFilter;
       texture_0.format = THREE.RGBFormat;
 
-      mesh_0.material.opacity = 1;
       mesh_0.material.map = texture_0;
       mesh_0.material.needsUpdate = true;
-      mesh_0.updateMatrix();
+      TweenLite.to(mesh_0.material, 0.08, {opacity: 1});
+      //mesh_0.material.opacity = 1;
+      //mesh_0.updateMatrix();
 
-      //TweenLite.to(mesh_1.material, 0.1, {opacity: 0});
-      mesh_1.material.opacity = 0;
-      mesh_1.material.needsUpdate = true;
-      mesh_1.updateMatrix();
   }
   active = !active;
 }

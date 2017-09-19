@@ -211,14 +211,14 @@ $(document).ready(function(){
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_045').on('ended',function(){
-      loadText(text4,true);
+      loadText(text4,false);
       compteur = 0;
       next_3 = false;
       mappedKeyboard = createMappedKeyboard(46,59,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_060').on('ended',function(){
-      loadText(text5,true);
+      loadText(text5,false);
       compteur = 0;
       next_4 = false;
       mappedKeyboard = createMappedKeyboard(61,74,false);
