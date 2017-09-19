@@ -24,29 +24,5 @@
 
 
 {% block stylesheets %}
-<style>
-body {
-  background-color: #000;
-  color: #fff;
-  margin: 0px;
-  overflow: hidden;
-  font-family:Monospace;
-  font-size:13px;
-  text-align:center;
-  font-weight: bold;
-  text-align:center;
-  height: 100%;
-}
-* {
-    margin: 0;
-}
-#footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height:40px;
-  background:#333;
-}
-</style>
+<link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/mainGame.css') }}" />
 {% endblock %}
