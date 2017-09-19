@@ -36,7 +36,6 @@ var fontWeight = "regular"; // regular bold
 
 
 
-
 init();
 animate();
 
@@ -83,6 +82,9 @@ function init() {
 
   material_0 = new THREE.MeshLambertMaterial( { color: 0xffffff, map: texture_0 } );
   material_0.transparent = true;
+  material_0.opacity = 1;
+
+
   material_1 = new THREE.MeshLambertMaterial( { color: 0xffffff } );
   material_1.transparent = true;
   material_1.opacity = 0;
@@ -156,6 +158,7 @@ function render() {
 
 }
 
+
 var compteur = 0;
 var maxCpt = 16;
 
@@ -167,7 +170,7 @@ var next_4 = "060";
 /** fct à isoler dans game transition*/
 function keypressActivate(e){
     if(maxCpt && (compteur > maxCpt)){
-      if(next_1){ console.log(next_1); changeVideo(next_1); }
+      if(next_1){ changeVideo(next_1); }
       else if(next_2){ changeVideo(next_2); }
       else if(next_3){ changeVideo(next_3); }
       else if(next_4){ changeVideo(next_4); }
