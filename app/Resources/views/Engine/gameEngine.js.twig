@@ -76,9 +76,10 @@ function init() {
 
   var geometry, xsize, ysize;
 
-  xsize = 648 ;
-  ysize = 280 ;
-  zsize = 648 ;
+
+  xsize = {{ game.width }} ;
+  ysize = {{ game.height }} ;
+  zsize = {{ game.width }} ;
 
   material_0 = new THREE.MeshLambertMaterial( { color: 0xffffff, map: texture_0 } );
   material_0.transparent = true;
@@ -139,17 +140,13 @@ function onDocumentMouseMove(event) {
 function animate() {
 
   requestAnimationFrame( animate );
-
   render();
 
 }
 
-
-
 function render() {
 
   var time = Date.now() * 0.0005;
-
   camera.position.x += ( mouseX - camera.position.x ) * 0.25;
   camera.position.y += ( - mouseY - camera.position.y ) * 0.25;
 
@@ -188,14 +185,13 @@ function keypressActivate(e){
     }
 }
 
+
 $(document).ready(function(){
     $('#video_000').on('ended',function(){
       loadText(text1,false);
       mappedKeyboard = createMappedKeyboard(1,14,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
-
-
     $('#video_015').on('ended',function(){
       loadText(text2,false);
       compteur = 0;

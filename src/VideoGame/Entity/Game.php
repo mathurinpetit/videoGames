@@ -48,6 +48,17 @@ class Game
      private $nbVideos;
 
      /**
+      * @ORM\Column(type="integer")
+      */
+      private $width;
+
+     /**
+      * @ORM\Column(type="integer")
+      */
+      private $height;
+
+
+     /**
       * @ORM\OneToMany(targetEntity="VideoGame\Entity\Sequence", mappedBy="game", cascade={"remove", "persist"})
       * @ORM\JoinTable(name="videogame_sequences")
       */
@@ -234,4 +245,52 @@ class Game
       return  -1;
     }
 
+
+    /**
+     * Set width
+     *
+     * @param integer $width
+     *
+     * @return Game
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Get width
+     *
+     * @return integer
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Set height
+     *
+     * @param integer $height
+     *
+     * @return Game
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Get height
+     *
+     * @return integer
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
 }

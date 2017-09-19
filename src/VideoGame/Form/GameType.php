@@ -14,7 +14,7 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('shortName')->add('description')->add('videoPath')->add('nbVideos')->add('sequences', CollectionType::class, array(
+        $builder->add('name')->add('shortName')->add('description')->add('videoPath')->add('nbVideos')->add('width')->add('height')->add('sequences', CollectionType::class, array(
             'entry_type' => SequenceType::class
         ));
     }
