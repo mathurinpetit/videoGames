@@ -33,32 +33,72 @@ class Sequence
      */
      private $videoNumber;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-     private $nextVideo;
-
-     /**
-      * @ORM\Column(type="string", nullable=true)
-      */
-      private $startText;
-
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+   /**
+    * @ORM\Column(type="string", nullable=true)
+    */
     private $endText;
 
+
+   /**
+    * @ORM\Column(type="string", nullable=true)
+    */
+    private $durationEndText;
+
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $text3D;
 
-
     /**
-      * @ORM\Column(type="string", nullable=true)
+      * @ORM\Column(type="string")
       */
     private $typeTransition;
+
+    /** KEYBOARDMULTI ou KEYBOARDONE */
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+     private $nextVideo;
+
+
+    /** KEYBOARDMULTI */
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+     private $multiNumMin;
+
+     /**
+      * @ORM\Column(type="integer", nullable=true)
+      */
+      private $multiNumMax;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+     private $nbRepeat;
+
+     /** KEYBOARDONE */
+
+     /** format ( keyCode : numVideo )*/
+     /**
+      * @ORM\Column(type="integer", nullable=true)
+      */
+      private $nextSeq;
+
+      /** KEYBOARDONE ou CHOICENEXT */
+
+      /**
+       * @ORM\Column(type="integer", nullable=true)
+       */
+       private $gameOverVideo;
+
+       /** CHOICENEXT */
+       /** format ( keyCode1 : numVideo1 | keyCode2 : numVideo2 )*/
+       /**
+        * @ORM\Column(type="string", nullable=true)
+        */
+       private $nextSeqArray;
 
     /**
      * Get id
@@ -92,30 +132,6 @@ class Sequence
     public function getNextVideo()
     {
         return $this->nextVideo;
-    }
-
-    /**
-     * Set startText
-     *
-     * @param string $startText
-     *
-     * @return Sequence
-     */
-    public function setStartText($startText)
-    {
-        $this->startText = $startText;
-
-        return $this;
-    }
-
-    /**
-     * Get startText
-     *
-     * @return string
-     */
-    public function getStartText()
-    {
-        return $this->startText;
     }
 
     /**
@@ -236,5 +252,173 @@ class Sequence
     public function getTypeTransition()
     {
         return $this->typeTransition;
+    }
+
+    /**
+     * Set durationEndText
+     *
+     * @param string $durationEndText
+     *
+     * @return Sequence
+     */
+    public function setDurationEndText($durationEndText)
+    {
+        $this->durationEndText = $durationEndText;
+
+        return $this;
+    }
+
+    /**
+     * Get durationEndText
+     *
+     * @return string
+     */
+    public function getDurationEndText()
+    {
+        return $this->durationEndText;
+    }
+
+    /**
+     * Set multiNumMin
+     *
+     * @param integer $multiNumMin
+     *
+     * @return Sequence
+     */
+    public function setMultiNumMin($multiNumMin)
+    {
+        $this->multiNumMin = $multiNumMin;
+
+        return $this;
+    }
+
+    /**
+     * Get multiNumMin
+     *
+     * @return integer
+     */
+    public function getMultiNumMin()
+    {
+        return $this->multiNumMin;
+    }
+
+    /**
+     * Set multiNumMax
+     *
+     * @param integer $multiNumMax
+     *
+     * @return Sequence
+     */
+    public function setMultiNumMax($multiNumMax)
+    {
+        $this->multiNumMax = $multiNumMax;
+
+        return $this;
+    }
+
+    /**
+     * Get multiNumMax
+     *
+     * @return integer
+     */
+    public function getMultiNumMax()
+    {
+        return $this->multiNumMax;
+    }
+
+    /**
+     * Set nbRepeat
+     *
+     * @param integer $nbRepeat
+     *
+     * @return Sequence
+     */
+    public function setNbRepeat($nbRepeat)
+    {
+        $this->nbRepeat = $nbRepeat;
+
+        return $this;
+    }
+
+    /**
+     * Get nbRepeat
+     *
+     * @return integer
+     */
+    public function getNbRepeat()
+    {
+        return $this->nbRepeat;
+    }
+
+    /**
+     * Set nextSeq
+     *
+     * @param string $nextSeq
+     *
+     * @return Sequence
+     */
+    public function setNextSeq($nextSeq)
+    {
+        $this->nextSeq = $nextSeq;
+
+        return $this;
+    }
+
+    /**
+     * Get nextSeq
+     *
+     * @return string
+     */
+    public function getNextSeq()
+    {
+        return $this->nextSeq;
+    }
+
+    /**
+     * Set gameOverVideo
+     *
+     * @param integer $gameOverVideo
+     *
+     * @return Sequence
+     */
+    public function setGameOverVideo($gameOverVideo)
+    {
+        $this->gameOverVideo = $gameOverVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get gameOverVideo
+     *
+     * @return integer
+     */
+    public function getGameOverVideo()
+    {
+        return $this->gameOverVideo;
+    }
+
+    /**
+     * Set nextSeqArray
+     *
+     * @param string $nextSeqArray
+     *
+     * @return Sequence
+     */
+    public function setNextSeqArray($nextSeqArray)
+    {
+        $this->nextSeqArray = $nextSeqArray;
+
+        return $this;
+    }
+
+    /**
+     * Get nextSeqArray
+     *
+     * @return string
+     */
+    public function getNextSeqArray()
+    {
+        return $this->nextSeqArray;
     }
 }

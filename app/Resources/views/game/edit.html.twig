@@ -69,21 +69,133 @@
               </div>
           </div>
       </div>
-        <input type="submit" value="Modifier" class="btn btn-success" />
-    {{ form_end(edit_form) }}
-      <a href="{{ path('admin_sequences_index', {idGame : game.id} ) }}">Modifier les séquences</a>
-      </div>
       <div class="col-md-12">
-        <ul class="list-unstyled">
-        <li>
-            <a href="{{ path('admin_index') }}" class="btn btn-default">Revenir à la liste</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="X" class="btn btn-danger">
-            {{ form_end(delete_form) }}
-        </li>
-        </ul>
+        <h4>Sequences</h4>
+      </div>
+        {% for sequence in edit_form.sequences %}
+          <div class="col-md-12">
+            <div class="well">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.videoNumber) }}
+                        {{ form_label(sequence.videoNumber, "Numéro de la vidéo", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.videoNumber) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.nextVideo) }}
+                        {{ form_label(sequence.nextVideo, "Vidéo suivante", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.nextVideo) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.endText) }}
+                        {{ form_label(sequence.endText, "Texte de fin", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.endText) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.text3d) }}
+                        {{ form_label(sequence.text3d, "Texte en 3d : 0 ou 1", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.text3d) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.typeTransition) }}
+                        {{ form_label(sequence.typeTransition, "Type de Transition", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.typeTransition) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.multiNumMin) }}
+                        {{ form_label(sequence.multiNumMin, "Numéro de la première vidéo", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.multiNumMin) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.multiNumMax) }}
+                        {{ form_label(sequence.multiNumMax, "Numéro de la dernière vidéo", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.multiNumMax) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.nbRepeat) }}
+                        {{ form_label(sequence.nbRepeat, "Nombre de répétitions", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.nbRepeat) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.nextSeq) }}
+                        {{ form_label(sequence.nextSeq, "Prochaine séquence", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.nextSeq) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.nextSeq) }}
+                        {{ form_label(sequence.nextSeq, "Prochaine séquence", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.nextSeq) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_errors(sequence.gameOverVideo) }}
+                        {{ form_label(sequence.gameOverVideo, "Vidéo de Game Over", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                        <div class="col-xs-10">
+                            {{ form_widget(sequence.gameOverVideo) }}
+                        </div>
+                    </div>
+                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ form_errors(sequence.nextSeqArray) }}
+                                        {{ form_label(sequence.nextSeqArray, "Prochaines Séquences sous format ", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                                        <div class="col-xs-10">
+                                            {{ form_widget(sequence.nextSeqArray) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        <input type="submit" value="Modifier" class="btn btn-success pull-right" />
+        {{ form_end(edit_form) }}
+        <a href="{{ path('admin_index') }}" class="btn btn-default  pull-left" style="margin-right:10px;">Revenir à la liste</a>
+        <a href="{{ path('admin_sequences_index', {idGame : game.id} ) }}" class="btn btn-warning pull-left">Ajouter une séquence</a>
       </div>
 </div>
 {% endblock %}

@@ -13,7 +13,7 @@ class SequenceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('videoNumber')->add('nextVideo')->add('startText')->add('endText')->add('text3d')->add('typeTransition');
+        $builder->add('videoNumber')->add('nextVideo')->add('endText')->add('text3d')->add('typeTransition')->add('nextVideo')->add('multiNumMin')->add('multiNumMax')->add('nbRepeat')->add('nextSeq')->add('gameOverVideo')->add('nextSeqArray');
     }
 
     /**
