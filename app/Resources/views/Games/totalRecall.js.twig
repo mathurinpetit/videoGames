@@ -2,16 +2,16 @@
 //Definition des textes
 var text1 = "\nSi vous voulez en savoir plus appuyez sur 'Espace'\nSinon appuyez sur 'Entrée'";
 var text2 = "\n'Espace' : Cela ne m'interresse pas\n'Entrée': Je veux en savoir plus";
-var text3 = "\n'Espace' : Qu'est ce que je dois faire?\n'Entrée': Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas";
+var text3 = "\n'Espace' : Qu'est ce que je dois faire ?\n'Entrée': Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas";
 var text4 = "\n'Espace' : Je suis prêt\n'Entrée': Non ça fait peur ce truc!";
-var text5 = "\n'Espace' : J'arrête tout de suite ça fait mal!\n'Entrée': Sortir le truc...";
+var text5 = "\n'Espace' : J'arrête tout de suite ça fait mal !\n'Entrée': Sortir le truc...";
 var text6 = "\n'Entrée' : Appuyez rapidement sur 'Entrée' pour sortir l'emmetteur de votre nez";
 var text7 = "";
-var text8 = "\n'Espace' : Je dois faire quoi Maintenant?\n'Entrée': C'est quoi ce truc? Je ne veux pas le savoir je m'en vais.";
-var text9 = "\n'Espace' : Accepter la mission et aller sur Mars\n'Entrée': Ca va pas la tête je refuse!";
+var text8 = "\n'Espace' : Je dois faire quoi Maintenant ?\n'Entrée': C'est quoi ce truc? Je ne veux pas le savoir je m'en vais.";
+var text9 = "\n'Espace' : Accepter la mission et aller sur Mars\n'Entrée': Ca va pas la tête je refuse !";
 
 
-var textGameOver = "\nVous avez perdu!"
+var textGameOver = "\nVous avez perdu ! Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='gameOverClicked(); return false;'>Rejouer</a>"
 //Définition des transitions flags
 
 var next_0 = "000";
@@ -114,6 +114,11 @@ function unbindAllKeypress(){
   }
 }
 
+function gameOverClicked(){
+  console.log("le game over relance la video "+lastVideoPlayed["val"]);
+  changeVideo(lastVideoPlayed["val"],delayMsg);
+}
+
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
     $('#video_000').on('ended',function(){
@@ -156,8 +161,6 @@ $(document).ready(function(){
     //Gestion du GameOver
     $('#video_008').on('ended',function(){
       loadText(textGameOver,delayMsg);
-      console.log("le game over relance la video "+lastVideoPlayed["val"]);
-      changeVideo(lastVideoPlayed["val"],delayMsg);
       unbindAllKeypress();
     });
   });

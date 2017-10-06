@@ -100,7 +100,8 @@ function changeVideo(numberVideo, footerDelay = 0, pause = false){
 
   }
   active = !active;
-  console.log(footerDelay);
+  
+  if(footerDelay == 'infini'){ return; }
   $( "#footer" ).animate({
     bottom: "-80px"
   }, footerDelay, function() {
@@ -149,6 +150,7 @@ function loadTextFooter(textStr,footerDelay){
   var text = textStr.replaceAll("\n", "<br/>");
   $("#footer").show();
   $("#footer span.text").html(text);
+  if(footerDelay == 'infini'){ return; }
   $( "#footer" ).animate({
     bottom: "0px"
     }, footerDelay, function() {

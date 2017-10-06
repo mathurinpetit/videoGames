@@ -1,10 +1,10 @@
 
 //Definition des textes
-var text1 = "Maintenant, appuyer sur les touches de votre \n   clavier pour faire chanter Julie Andrews";
-var text2 = "Appuyer sur les touches de votre clavier     \n        pour faire chanter les enfants";
-var text3 = "Appuies pour chanter tous ensembles";
-var text4 = "Appuies pour chanter des paroles";
-var text5 = "Debout! Lève toi et chantes !";
+var text1 = "\nMaintenant, appuyer sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>18</span> notes à chanter.";
+var text2 = "\nAppuyer sur les touches de votre clavier pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>18</span> notes à chanter.";
+var text3 = "\nAppuies sur les touches pour chanter tous ensembles.\nOn va chanter encore <span class='reste'>18</span> fois.";
+var text4 = "\nTapes encore pour chanter des paroles.\nPlus que <span class='reste'>18</span> paroles à chanter.";
+var text5 = "\nDebout! Lève toi et chantes !\nYoupi! chantons autant que l'on veut.";
 
 //Définition des transitions flags
 
@@ -16,14 +16,15 @@ var next_4 = "060";
 var compteur = 0;
 var maxCpt = 16;
 var minVideo,maxVideo;
+var delayMsg = 'infini';
 
 //Transitions - changement de vidéo par touches
 function keypressActivate(e){
     if(maxCpt && (compteur > maxCpt)){
-      if(next_1){ changeVideo(next_1); }
-      else if(next_2){ changeVideo(next_2); }
-      else if(next_3){ changeVideo(next_3); }
-      else if(next_4){ changeVideo(next_4); }
+      if(next_1){ loadText("",0); changeVideo(next_1,delayMsg); }
+      else if(next_2){ loadText("",0); changeVideo(next_2,delayMsg); }
+      else if(next_3){ loadText("",0); changeVideo(next_3,delayMsg); }
+      else if(next_4){ loadText("",0); changeVideo(next_4,delayMsg); }
       if(next_1 || next_2 || next_3 || next_4){
         $(document).unbind('keypress');
         return;
@@ -32,26 +33,26 @@ function keypressActivate(e){
     var code = e.keyCode || e.which;
     if(mappedKeyboard[code] == undefined){
       var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-      console.log(randkey.zeroPad(100));
-      changeVideo(randkey.zeroPad(100));
+      changeVideo(randkey.zeroPad(100),delayMsg);
       compteur++;
     }else{
-      changeVideo(mappedKeyboard[code].zeroPad(100));
+      changeVideo(mappedKeyboard[code].zeroPad(100),delayMsg);
       compteur++;
     }
+    $('.reste').text(maxCpt-(compteur)+2);
 }
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
     $('#video_000').on('ended',function(){
-      loadText(text1,false);
+      loadText(text1,delayMsg);
       minVideo=1;
       maxVideo=14;
       mappedKeyboard = createMappedKeyboard(minVideo,maxVideo,false);
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_015').on('ended',function(){
-      loadText(text2,false);
+      loadText(text2,delayMsg);
       compteur = 0;
       next_1 = false;
       minVideo=16;
@@ -60,7 +61,7 @@ $(document).ready(function(){
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_030').on('ended',function(){
-      loadText(text3,false);
+      loadText(text3,delayMsg);
       compteur = 0;
       next_2 = false;
       minVideo=31;
@@ -69,7 +70,7 @@ $(document).ready(function(){
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_045').on('ended',function(){
-      loadText(text4,false);
+      loadText(text4,delayMsg);
       compteur = 0;
       next_3 = false;
       minVideo=46;
@@ -78,7 +79,7 @@ $(document).ready(function(){
       $(document).bind('keypress', "e", keypressActivate);
     });
     $('#video_060').on('ended',function(){
-      loadText(text5,false);
+      loadText(text5,delayMsg);
       compteur = 0;
       next_4 = false;
       minVideo=61;
