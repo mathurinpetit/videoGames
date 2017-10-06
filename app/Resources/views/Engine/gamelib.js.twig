@@ -44,21 +44,21 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
   }
 }
 
-function changeVideoChoiceWithKeypressed(nextLock,keycode,keyTrue,videoGameOver){
+function changeVideoChoiceWithKeypressed(nextLock,keycode,keyTrue,videoGameOver,footerDelay = 0){
   if(nextLock){
     if(keycode == keyTrue){
-      changeVideo(nextLock);
+      changeVideo(nextLock,footerDelay);
       lastVideoPlayed["val"] = nextLock;
       return nextLock;
     }else{
-      changeVideo(videoGameOver);
+      changeVideo(videoGameOver,footerDelay);
       return false;
     }
   }
 }
 
 /* Changement de la vidéo sur la texture de l'objet */
-function changeVideo(numberVideo, pause = false){
+function changeVideo(numberVideo, footerDelay = 0, pause = false){
   //console.log(numberVideo);
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
@@ -100,7 +100,12 @@ function changeVideo(numberVideo, pause = false){
 
   }
   active = !active;
-  $("#footer").hide();
+  console.log(footerDelay);
+  $( "#footer" ).animate({
+    bottom: "-80px"
+  }, footerDelay, function() {
+    //$("#footer").hide();
+  });
 }
 
 /** KeyBoardAzerty **/
@@ -132,20 +137,25 @@ function createMappedKeyboard(firstVideo,lastVideo,random = false){
 }
 
 
-function loadText(textStr,is3D){
+function loadText(textStr,footerDelay, is3D = false){
   if(is3D){
     loadText3D(textStr);
   }else{
-    loadTextFooter(textStr);
+    loadTextFooter(textStr,footerDelay);
   }
 }
 
-function loadTextFooter(textStr){
+function loadTextFooter(textStr,footerDelay){
   var text = textStr.replaceAll("\n", "<br/>");
-  $("#footer span.text").html(text);
   $("#footer").show();
+  $("#footer span.text").html(text);
+  $( "#footer" ).animate({
+    bottom: "0px"
+    }, footerDelay, function() {
+  });
   if(!text){
     $("#footer").hide();
+    bottom: "-80px"
   }
 }
 
