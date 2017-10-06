@@ -30,6 +30,7 @@
                       <div class="btn-group btn-group-xs" >
                             <a href="{{ path('admin_show', { 'id': game.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></a>
                             <a href="{{ path('admin_edit', { 'id': game.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="{{ path('game', { 'idName': game.shortName }) }}" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-play"></span></a>
                       </div>
 
                 </td>

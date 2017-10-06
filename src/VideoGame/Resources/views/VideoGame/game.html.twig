@@ -12,11 +12,15 @@
 </video>
 {% endfor %}
    <div id="footer" style="display:none;">
+       <div style="position: relative; left: -50%;">
+         <span class="text"></span>
+     </div>
    </div>
 
 {% endblock %}
 
 {% block jsgame %}
+  </script type="text/javascript">
    <script>
    	{{ include('Engine/gameEngine.js.twig', { 'game': game }) }}
    </script>

@@ -58,12 +58,6 @@ class Game
       private $height;
 
 
-     /**
-      * @ORM\OneToMany(targetEntity="VideoGame\Entity\Sequence", mappedBy="game", cascade={"remove", "persist"})
-      * @ORM\JoinTable(name="videogame_sequences")
-      */
-     private $sequences;
-
     /**
      * Get id
      *
@@ -174,7 +168,7 @@ class Game
      */
     public function __construct()
     {
-        $this->sequences = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
@@ -201,48 +195,10 @@ class Game
         return $this->nbVideos;
     }
 
-    /**
-     * Add sequence
-     *
-     * @param \VideoGame\Entity\Sequence $sequence
-     *
-     * @return Game
-     */
-    public function addSequence(\VideoGame\Entity\Sequence $sequence)
-    {
-        $this->sequences[] = $sequence;
 
-        return $this;
-    }
-
-    /**
-     * Remove sequence
-     *
-     * @param \VideoGame\Entity\Sequence $sequence
-     */
-    public function removeSequence(\VideoGame\Entity\Sequence $sequence)
-    {
-        $this->sequences->removeElement($sequence);
-    }
-
-    /**
-     * Get sequences
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSequences()
-    {
-        return $this->sequences;
-    }
 
     public function getFirstSequenceNumber(){
-      if(!count($this->getSequences())){
-        return -1;
-      }
-      foreach ($this->getSequences() as $seq) {
-        return $seq->getVideoNumber();
-      }
-      return  -1;
+        return 0;      
     }
 
 

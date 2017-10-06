@@ -26,7 +26,7 @@ class GameController extends Controller
 
         $games = $em->getRepository('VideoGameBundle:Game')->findAll();
 
-        return $this->render('game/index.html.twig', array(
+        return $this->render('admin/index.html.twig', array(
             'games' => $games,
         ));
     }
@@ -51,7 +51,7 @@ class GameController extends Controller
             return $this->redirectToRoute('admin_show', array('id' => $game->getId()));
         }
 
-        return $this->render('game/new.html.twig', array(
+        return $this->render('admin/new.html.twig', array(
             'game' => $game,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class GameController extends Controller
     {
         $deleteForm = $this->createDeleteForm($game);
 
-        return $this->render('game/show.html.twig', array(
+        return $this->render('admin/show.html.twig', array(
             'game' => $game,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class GameController extends Controller
             return $this->redirectToRoute('admin_edit', array('id' => $game->getId()));
         }
 
-        return $this->render('game/edit.html.twig', array(
+        return $this->render('admin/edit.html.twig', array(
             'game' => $game,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

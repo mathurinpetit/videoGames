@@ -1,7 +1,3 @@
-video_game_sequence:
-    resource: "@VideoGameBundle/Controller/SequenceController.php"
-    type:     annotation
-
 video_game_game:
     resource: "@VideoGameBundle/Controller/GameController.php"
     type:     annotation

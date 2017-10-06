@@ -14,11 +14,7 @@ var h, counter = 1;
 var velocity = 0.15;
 
 var textGeo,textMaterial;
-var text1 = "Maintenant, appuyer sur les touches de votre \n   clavier pour faire chanter Julie Andrews";
-var text2 = "Appuyer sur les touches de votre clavier     \n        pour faire chanter les enfants";
-var text3 = "Appuies pour chanter tous ensembles";
-var text4 = "Appuies pour chanter des paroles";
-var text5 = "Debout! Lève toi et chantes !";
+
 var textMesh;
 var textHeight = 1;
 var textSize = 12;
@@ -158,69 +154,4 @@ function render() {
 
 }
 
-
-var compteur = 0;
-var maxCpt = 16;
-
-var next_1 = "015";
-var next_2 = "030";
-var next_3 = "045";
-var next_4 = "060";
-
-/** fct à isoler dans game transition*/
-function keypressActivate(e){
-    if(maxCpt && (compteur > maxCpt)){
-      if(next_1){ changeVideo(next_1); }
-      else if(next_2){ changeVideo(next_2); }
-      else if(next_3){ changeVideo(next_3); }
-      else if(next_4){ changeVideo(next_4); }
-      if(next_1 || next_2 || next_3 || next_4){
-        $(document).unbind('keypress');
-        return;
-      }
-    }
-    var code = e.keyCode || e.which;
-    if(mappedKeyboard[code] == undefined){
-      console.log("Key not mapped "+e.keyCode+" "+code);
-    }else{
-      changeVideo(mappedKeyboard[code].zeroPad(100));
-      compteur++;
-    }
-}
-
-
-$(document).ready(function(){
-    $('#video_000').on('ended',function(){
-      loadText(text1,false);
-      mappedKeyboard = createMappedKeyboard(1,14,false);
-      $(document).bind('keypress', "e", keypressActivate);
-    });
-    $('#video_015').on('ended',function(){
-      loadText(text2,false);
-      compteur = 0;
-      next_1 = false;
-      mappedKeyboard = createMappedKeyboard(16,29,false);
-      $(document).bind('keypress', "e", keypressActivate);
-    });
-    $('#video_030').on('ended',function(){
-      loadText(text3,false);
-      compteur = 0;
-      next_2 = false;
-      mappedKeyboard = createMappedKeyboard(31,44,false);
-      $(document).bind('keypress', "e", keypressActivate);
-    });
-    $('#video_045').on('ended',function(){
-      loadText(text4,false);
-      compteur = 0;
-      next_3 = false;
-      mappedKeyboard = createMappedKeyboard(46,59,false);
-      $(document).bind('keypress', "e", keypressActivate);
-    });
-    $('#video_060').on('ended',function(){
-      loadText(text5,false);
-      compteur = 0;
-      next_4 = false;
-      mappedKeyboard = createMappedKeyboard(61,74,false);
-      $(document).bind('keypress', "e", keypressActivate);
-    });
-  });
+ {{ include('Games/'~game.shortName~'.js.twig', { 'game': game }) }}
