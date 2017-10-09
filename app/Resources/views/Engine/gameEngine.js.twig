@@ -157,8 +157,7 @@ function render() {
 
  {{ include('Games/'~game.shortName~'.js.twig', { 'game': game }) }}
 
- $(window).on('load', function () {
-
-   video.play();
-
- });
+ video.onloadeddata = function() {
+   console.log("loaded");
+    video.play();
+ };
