@@ -44,9 +44,10 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
   }
 }
 
-function changeVideoChoiceWithKeypressed(nextLock,keycode,keyTrue,videoGameOver,footerDelay = 0){
+function changeVideoChoiceWithKeypressed(e,nextLock,keycodeArr,videoGameOver,footerDelay = 0){
+  var codepressed = e.keyCode || e.which;
   if(nextLock){
-    if(keycode == keyTrue){
+    if(keycodeArr.indexOf(codepressed) !== -1){
       changeVideo(nextLock,footerDelay);
       lastVideoPlayed["val"] = nextLock;
       return nextLock;
@@ -100,7 +101,7 @@ function changeVideo(numberVideo, footerDelay = 0, pause = false){
 
   }
   active = !active;
-  
+
   if(footerDelay == 'infini'){ return; }
   $( "#footer" ).animate({
     bottom: "-80px"
@@ -160,6 +161,17 @@ function loadTextFooter(textStr,footerDelay){
     bottom: "-80px"
   }
 }
+
+function renderLink(str,code){
+  return "\"<a href='#' onClick='triggerKeypress("+code+"); return false;' style='color:#fff;' >"+str+"</a>\"";
+}
+
+function triggerKeypress(code){
+  var e = jQuery.Event("keypress");
+  e.which = code;
+  e.keyCode = code;
+  $(document).trigger(e);
+};
 
 function loadText3D(textStr) {
   var loader = new THREE.FontLoader();

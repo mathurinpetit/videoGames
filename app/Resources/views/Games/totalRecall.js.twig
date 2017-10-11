@@ -1,14 +1,16 @@
 
+var gamekeys = { "a" : [65,97] , "b" : [66,98], "c" : [67,99], "d" : [68,100]};
+
 //Definition des textes
-var text1 = "\nSi vous voulez en savoir plus appuyez sur 'Espace'\nSinon appuyez sur 'Entrée'";
-var text2 = "\n'Espace' : Cela ne m'interresse pas\n'Entrée': Je veux en savoir plus";
-var text3 = "\n'Espace' : Qu'est ce que je dois faire ?\n'Entrée': Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas";
-var text4 = "\n'Espace' : Je suis prêt\n'Entrée': Non ça fait peur ce truc!";
-var text5 = "\n'Espace' : J'arrête tout de suite ça fait mal !\n'Entrée': Sortir le truc...";
-var text6 = "\n'Entrée' : Appuyez rapidement sur 'Entrée' pour sortir l'emmetteur de votre nez";
-var text7 = "";
-var text8 = "\n'Espace' : Je dois faire quoi Maintenant ?\n'Entrée': C'est quoi ce truc? Je ne veux pas le savoir je m'en vais.";
-var text9 = "\n'Espace' : Accepter la mission et aller sur Mars\n'Entrée': Ca va pas la tête je refuse !";
+var text1 = "\nSi vous voulez en savoir plus appuyez sur "+renderLink('A',65)+"\nSinon appuyez sur "+renderLink('B',66);
+var text2 = "\n"+renderLink('A',65)+" : Cela ne m'interresse pas\n"+renderLink('B',66)+" : Je veux en savoir plus";
+var text3 = "\n"+renderLink('A',65)+" : Qu'est ce que je dois faire ?\n"+renderLink('B',66)+" : Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas";
+var text4 = "\n"+renderLink('A',65)+" : Je suis prêt\n"+renderLink('B',66)+" : Non ça fait peur ce truc!";
+var text5 = "\n"+renderLink('A',65)+" : J'arrête tout de suite ça fait mal !\n"+renderLink('B',66)+" : Sortir le truc...";
+var text6 = "\n"+renderLink('B',66)+" : Appuyez rapidement sur "+renderLink('B',66)+" pour sortir l'emmetteur de votre nez";
+var text7 = "\n"+renderLink('B',66)+" : Appuyez rapidement sur "+renderLink('B',66)+" pour sortir l'emmetteur de votre nez";
+var text8 = ""+renderLink('A',65)+" : Je vais me remettre l'emmetteur dans le nez!\n"+renderLink('B',66)+" : C'est quoi ce truc? Je ne veux pas le savoir je m'en vais.\n"+renderLink('C',66)+" : Je dois faire quoi Maintenant ?";
+var text9 = "\n"+renderLink('A',65)+" : Accepter la mission et aller sur Mars\n"+renderLink('B',66)+": Ca va pas la tête je refuse !";
 
 
 var textGameOver = "\nVous avez perdu ! Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='gameOverClicked(); return false;'>Rejouer</a>"
@@ -22,7 +24,8 @@ var next_4 = "004";
 var next_5 = "005";
 var next_6 = "006";
 var next_7 = "007";
-var gameOver = "008";
+var next_8 = "008";
+var gameOver_1 = "009";
 
 var compteur = 0;
 var maxCpt = 16;
@@ -34,30 +37,30 @@ var delayMsg = 600;
 
 function keyupForPlaying(e){
   var code = e.keyCode || e.which;
-  if(code == e.data.code){
+  if(e.data.codes.indexOf(code)!== -1){
     videoElt = document.getElementById( 'video_'+e.data.next );
     videoElt.play();
     setTimeout(function(){ videoElt.pause(); }, 70);
   }else{
-    changeVideo(gameOver,delayMsg);
+    changeVideo(gameOver_1,delayMsg);
   }
 }
 
 //Transitions - changement de vidéo par touches
 function keypressChoice(e){
   var code = e.keyCode || e.which;
-  console.log(code,next_1,next_2,next_3,next_4,next_5,next_6,next_7,lastVideoPlayed);
 
+  console.log(code,next_1,next_2,next_3,next_4,next_5,next_6,next_7,lastVideoPlayed);
   // changeVideoChoiceWithKeypressed(nextLock,keycode,keyTrue,videoElse);
 
-  if(changeVideoChoiceWithKeypressed(next_1,code,32,gameOver,delayMsg)){
+  if(changeVideoChoiceWithKeypressed(e,next_1,gamekeys['a'],gameOver_1,delayMsg)){
     next_1 = false;
     unbindAllKeypress();
     return;
   }
 
   if(!next_1) {
-        if(changeVideoChoiceWithKeypressed(next_2,code,13,gameOver,delayMsg)){
+        if(changeVideoChoiceWithKeypressed(e,next_2,gamekeys['b'],gameOver_1,delayMsg)){
           next_2 = false;
           unbindAllKeypress();
           return;
@@ -65,42 +68,57 @@ function keypressChoice(e){
   }
 
   if(!next_1 && !next_2) {
-    if(changeVideoChoiceWithKeypressed(next_3,code,32,gameOver,delayMsg)){
+    if(changeVideoChoiceWithKeypressed(e,next_3,gamekeys['a'],gameOver_1,delayMsg)){
       next_3 = false;
       unbindAllKeypress();
       return;
     }
   }
   if(!next_1 && !next_2 && !next_3) {
-    if(changeVideoChoiceWithKeypressed(next_4,code,32,gameOver,delayMsg)){
+    if(changeVideoChoiceWithKeypressed(e,next_4,gamekeys['a'],gameOver_1,delayMsg)){
       next_4 = false;
       unbindAllKeypress();
       return;
     }
   }
-  if(!next_1 && !next_2 && !next_3 && !next_4) {
-    if(next_5){
-      if(code == 13){
-        changeVideo(next_5,delayMsg,true);
-        loadText(text6,delayMsg);
-        $(document).bind('keyup', {"next" : next_5, 'code' : 13}, keyupForPlaying);
+  if(!next_1 && !next_2 && !next_3 && !next_4 && next_5) {
+      if(gamekeys['b'].indexOf(code) !== -1){
+        changeVideo(next_5,'infini',true);
+        loadText(text6,'infini');
+        $(document).bind('keyup', {"next" : next_5, 'codes' : gamekeys['b']}, keyupForPlaying);
         unbindAllKeypress();
       }else{
-        changeVideo(gameOver,delayMsg);
+        changeVideo(gameOver_1,delayMsg);
       }
       return;
-    }
   }
-  if(!next_1 && !next_2 && !next_3 && !next_4 && !next_5) {
-    if(changeVideoChoiceWithKeypressed(next_6,code,13,gameOver,delayMsg)){
+  if(!next_1 && !next_2 && !next_3 && !next_4 && !next_5 && next_6) {
+    if(changeVideoChoiceWithKeypressed(e,next_6,gamekeys['b'],gameOver_1,delayMsg)){
       next_6 = false;
       unbindAllKeypress();
       return;
     }
   }
-  if(!next_1 && !next_2 && !next_3 && !next_4 && !next_5 && !next_6) {
-    if(changeVideoChoiceWithKeypressed(next_7,code,32,gameOver,delayMsg)){
-      next_7 = false;
+
+  if(!next_1 && !next_2 && !next_3 && !next_4 && !next_5 && !next_6 && next_7) {
+      if(gamekeys['a'].indexOf(code) !== -1){
+        changeVideo(next_7,delayMsg);
+        unbindAllKeypress();
+        return;
+      }else if(gamekeys['c'].indexOf(code) !== -1){
+        changeVideo(next_8,delayMsg);
+        lastVideoPlayed["val"] = next_8;
+        next_8 = false;
+        unbindAllKeypress();
+        return;
+      }else{
+        changeVideo(gameOver_1,delayMsg);
+        return false;
+      }
+    }
+  if(!next_1 && !next_2 && !next_3 && !next_4 && !next_5 && !next_6 && !next_7) {
+    if(changeVideoChoiceWithKeypressed(e,next_8,gamekeys['a'],gameOver_1,delayMsg)){
+      next_8 = false;
       unbindAllKeypress();
       return;
     }
@@ -153,13 +171,20 @@ $(document).ready(function(){
       $(document).bind('keypress', "e", keypressChoice);
     });
     $('#video_007').on('ended',function(){
+      loadText(text5,delayMsg);
+      next_5 = "005";
+      next_6 = "006";
+      changeVideo(next_5,'infini',true);
+      $(document).bind('keypress', "e", keypressChoice);
+    });
+    $('#video_008').on('ended',function(){
       loadText(text9,delayMsg);
       // Pour la suite scene 2
       // $(document).bind('keypress', "e", keypressChoice);
     });
 
     //Gestion du GameOver
-    $('#video_008').on('ended',function(){
+    $('#video_009').on('ended',function(){
       loadText(textGameOver,delayMsg);
       unbindAllKeypress();
     });
