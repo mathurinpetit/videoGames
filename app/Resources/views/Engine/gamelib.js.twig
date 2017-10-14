@@ -9,7 +9,7 @@ Number.prototype.zeroPad = Number.prototype.zeroPad ||
 /** prototype pour les string tout remplacer */
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
+    return target.replace(new RegExp(search, 'ig'), replacement);
 };
 
 /** stratégie de resizing de la scène **/
@@ -43,7 +43,7 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
       uv.y = ( uv.y + offsety ) * unity;
   }
 }
-
+/*
 function changeVideoChoiceWithKeypressed(e,nextLock,keycodeArr,videoGameOver,footerDelay = 0){
   var codepressed = e.keyCode || e.which;
   if(nextLock){
@@ -56,18 +56,24 @@ function changeVideoChoiceWithKeypressed(e,nextLock,keycodeArr,videoGameOver,foo
       return false;
     }
   }
+}*/
+
+function stopVideo(numberVideo){
+  videoElt = document.getElementById( 'video_'+numberVideo );
+  videoElt.pause();
+  videoElt.currentTime = 0;
+  videoElt.pause();
 }
 
 /* Changement de la vidéo sur la texture de l'objet */
-function changeVideo(numberVideo, footerDelay = 0, pause = false){
-  //console.log(numberVideo);
+function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
   videoElt.currentTime = 0;
   videoElt.setAttribute('autoplay',true);
   videoElt.play();
   if(pause){
-    videoElt.pause();
+    setTimeout(function(){ videoElt.pause(); },pauseafter);
   }
 
   if(!active){
@@ -149,6 +155,17 @@ function loadText(textStr,footerDelay, is3D = false){
 
 function loadTextFooter(textStr,footerDelay){
   var text = textStr.replaceAll("\n", "<br/>");
+  var pattern = /link ('[A-Z]+') ([0-9]+)?/ig;
+  var matches = text.match(pattern);
+  if(matches){
+    for (var i = 0; i < matches.length; i++) {
+      var match = matches[i];
+      var fct = match.replace(/link ('[A-Z]+') ([0-9]+)?/ig,"renderLink($1,$2)");
+      var link = eval(fct);
+      text = text.replaceAll(match,link);
+      }
+  }
+
   $("#footer").show();
   $("#footer span.text").html(text);
   if(footerDelay == 'infini'){ return; }
@@ -167,10 +184,18 @@ function renderLink(str,code){
 }
 
 function triggerKeypress(code){
-  var e = jQuery.Event("keypress");
-  e.which = code;
-  e.keyCode = code;
-  $(document).trigger(e);
+  var kp = jQuery.Event("keypress");
+  kp.which = code;
+  kp.keyCode = code;
+
+  $(document).trigger(kp);
+
+  var ku = jQuery.Event("keyup");
+
+  ku.which = code;
+  ku.keyCode = code;
+
+  $(document).trigger(ku);
 };
 
 function loadText3D(textStr) {

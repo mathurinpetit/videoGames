@@ -1,0 +1,202 @@
+var debug = false;
+var compteur = 0;
+var maxCpt = 16;
+var minVideo,maxVideo;
+
+var lastVideoPlayed = { "val" : "000"};
+
+
+function unbindAllKeypress(){
+    $(document).unbind('keypress');
+}
+
+function unbindAllEvents(){
+    $(document).unbind('keydown');
+    $(document).unbind('keyup');
+    $(document).unbind('keypress');
+}
+
+function restartOnLastCheckpoint(){
+  changeVideo(lastVideoPlayed["val"]);
+}
+
+// Gestion de l'assigmenent des vidéo clefs par evennement
+$(document).ready(function(){
+
+    for (var i = 0; i < game_json.scenario.length; i++) {
+      var videoObj = game_json.scenario[i];
+      if(videoObj.hasOwnProperty("onstart")){
+        $('#video_'+videoObj.id).on('play',videoObj,function(event){
+          stopVideo(event.data.onstart.stopvideo);
+        });
+      }
+      if(videoObj.hasOwnProperty("onend")){
+        $('#video_'+videoObj.id).on('ended',videoObj,function(event){
+          unbindAllEvents();
+          var text = "";
+          if(event.data.onend.hasOwnProperty("text")){
+            text = event.data.onend.text;
+          }
+
+          var delay = "";
+          if(game_json.hasOwnProperty("globaldelay")){
+            delay = game_json.globaldelay;
+          }
+          if(event.data.onend.hasOwnProperty("delay")){
+            delay = event.data.onend.delay;
+          }
+          loadText(text,delay);
+          if(debug){ console.log(event); }
+          // Lorsque l'on a un choix multiple
+        if(event.data.onend.type == "multichoicebykeypressed"){
+            $(document).bind('keypress', function(e){
+              var code = e.keyCode || e.which;
+              var nextVideos = event.data.onend.nextvideos;
+              var goodKeys = {};
+              var gameOver = "";
+              var found = false;
+              if(debug){ console.log("keypressed "+code); }
+              $.each(nextVideos, function(char, nextvideo) {
+                if(char!=='_'){
+                  $.each(gamekeys, function(gamechar,obj){
+                    if((gamechar === char) && (obj.keys.indexOf(code)!= -1)){
+                      if(debug){ console.log("changeVideo "+nextVideos[char]); }
+                        changeVideo(""+nextVideos[char],delay);
+                        lastVideoPlayed["val"] = ""+nextVideos[char];
+                        unbindAllEvents();
+                        found = true;
+                    }
+                  });
+                }else{
+                  if(!found){
+                    if(debug){ console.log("changeVideo "+nextVideos[char]); }
+                    changeVideo(""+nextVideos[char],delay);
+                    unbindAllEvents();
+                  }
+                }
+              });
+            });
+        }
+
+          // Lorsque l'on appuie pour faire avancer la video
+          if(event.data.onend.type == "playbykeyup"){
+            $(document).bind('keypress', function(e){
+              var code = e.keyCode || e.which;
+              var nextVideos = event.data.onend.nextvideos;
+              var goodKeys = [];
+              var goodChar = "";
+              var gameOver = "";
+              $.each(nextVideos, function(char, nextvideo) {
+                if(char!=='_'){
+                  $.each(gamekeys, function(gamechar,obj){
+                    if(gamechar === char){
+                      goodKeys = obj.keys;
+                      goodChar = ""+char;
+                    }
+                  });
+                }else{
+                  gameOver = nextvideo;
+                }
+              });
+              if(goodKeys.indexOf(code) !== -1){
+                  if(event.data.onend.hasOwnProperty("textduring")){
+                    text = event.data.onend.textduring;
+                  }
+                  loadText(text,'infini');
+                  changeVideo(""+nextVideos[goodChar],'infini',true);
+                  unbindAllKeypress();
+                  $(document).bind('keyup', function(e){
+                     var code = e.keyCode || e.which;
+                      if(goodKeys.indexOf(code)!== -1){
+                        videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
+                        videoElt.play();
+                        setTimeout(function(){ videoElt.pause(); }, delay);
+                      }else{
+                        changeVideo(""+gameOver,delay);
+                        unbindAllEvents();
+                      }
+                  });
+                }else{
+                  changeVideo(""+gameOver,delay);
+                  unbindAllEvents();
+              }
+            });
+          }
+
+
+                    // Lorsque l'on appuie pour faire avancer la video en continue
+                    if(event.data.onend.type == "playbykey"){
+                      $(document).bind('keypress', function(e){
+                        var code = e.keyCode || e.which;
+                        var nextVideos = event.data.onend.nextvideos;
+                        var goodKeys = [];
+                        var goodChar = "";
+                        var gameOver = "";
+                        $.each(nextVideos, function(char, nextvideo) {
+                          if(char!=='_'){
+                            $.each(gamekeys, function(gamechar,obj){
+                              if(gamechar === char){
+                                goodKeys = obj.keys;
+                                goodChar = ""+char;
+                              }
+                            });
+                          }else{
+                            gameOver = nextvideo;
+                          }
+                        });
+                        if(goodKeys.indexOf(code) !== -1){
+                            if(event.data.onend.hasOwnProperty("textduring")){
+                              text = event.data.onend.textduring;
+                            }
+                            loadText(text,'infini');
+                            changeVideo(""+nextVideos[goodChar],'infini',true,100);
+                            unbindAllKeypress();
+                            $(document).bind('keydown', function(e){
+                               var code = e.keyCode || e.which;
+                                if(goodKeys.indexOf(code)!== -1){
+                                  videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
+                                  videoElt.play();
+                                }else{
+                                  changeVideo(""+gameOver,delay);
+                                  unbindAllEvents();
+                                }
+                            });
+                            $(document).bind('keyup', function(e){
+                               var code = e.keyCode || e.which;
+                                if(goodKeys.indexOf(code)!== -1){
+                                  videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
+                                  videoElt.pause();
+                                }else{
+                                  changeVideo(""+gameOver,delay);
+                                  unbindAllEvents();
+                                }
+                            });
+                          }else{
+                            changeVideo(""+gameOver,delay);
+                            unbindAllEvents();
+                        }
+                      });
+                    }
+
+                    // playbymouse
+                    if(event.data.onend.type == "playbymouse"){
+                      var mouseMoved = false;
+                      $(document).bind('mousemove', function(e){
+                        console.log(event.data);
+                      if(!mouseMoved){
+                        var nextVideos = event.data.onend.nextvideos;
+                        changeVideo(""+nextVideos.move,'infini',true,1000);
+                        }else{
+                          videoElt = document.getElementById( 'video_'+nextVideos.move );
+                          videoElt.play();
+                        }
+                      },function(e){
+                        videoElt = document.getElementById( 'video_'+nextVideos.move );
+                        videoElt.pause  ();
+                      });
+                    }
+
+        });
+      }
+    }
+  });
