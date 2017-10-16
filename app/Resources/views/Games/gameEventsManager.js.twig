@@ -47,8 +47,9 @@ $(document).ready(function(){
           }
           loadText(text,delay);
           if(debug){ console.log(event); }
+
           // Lorsque l'on a un choix multiple
-        if(event.data.onend.type == "multichoicebykeypressed"){
+          if(event.data.onend.type == "multichoicebykeypressed"){
             $(document).bind('keypress', function(e){
               var code = e.keyCode || e.which;
               var nextVideos = event.data.onend.nextvideos;
@@ -124,8 +125,8 @@ $(document).ready(function(){
           }
 
 
-                    // Lorsque l'on appuie pour faire avancer la video en continue
-                    if(event.data.onend.type == "playbykey"){
+          // Lorsque l'on appuie pour faire avancer la video en continue
+          if(event.data.onend.type == "playbykey"){
                       $(document).bind('keypress', function(e){
                         var code = e.keyCode || e.which;
                         var nextVideos = event.data.onend.nextvideos;
@@ -151,10 +152,11 @@ $(document).ready(function(){
                             loadText(text,'infini');
                             changeVideo(""+nextVideos[goodChar],'infini',true,100);
                             unbindAllKeypress();
+                            videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
+
                             $(document).bind('keydown', function(e){
                                var code = e.keyCode || e.which;
                                 if(goodKeys.indexOf(code)!== -1){
-                                  videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
                                   videoElt.play();
                                 }else{
                                   changeVideo(""+gameOver,delay);
@@ -164,7 +166,6 @@ $(document).ready(function(){
                             $(document).bind('keyup', function(e){
                                var code = e.keyCode || e.which;
                                 if(goodKeys.indexOf(code)!== -1){
-                                  videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
                                   videoElt.pause();
                                 }else{
                                   changeVideo(""+gameOver,delay);
@@ -180,19 +181,62 @@ $(document).ready(function(){
 
                     // playbymouse
                     if(event.data.onend.type == "playbymouse"){
+                      var nextVideos = event.data.onend.nextvideos;
                       var mouseMoved = false;
-                      $(document).bind('mousemove', function(e){
-                        console.log(event.data);
-                      if(!mouseMoved){
-                        var nextVideos = event.data.onend.nextvideos;
-                        changeVideo(""+nextVideos.move,'infini',true,1000);
-                        }else{
-                          videoElt = document.getElementById( 'video_'+nextVideos.move );
-                          videoElt.play();
+                      var mouseFirstMoved = false;
+                      videoElt = document.getElementById( 'video_'+nextVideos.move );
+                      var lastTimeMouseMoved = new Date().getTime();
+                      var timeout;
+                      var isFinished = false;
+                      $(document).bind('mousemove', function(){
+                        clearTimeout(timeout);
+                        if(!mouseFirstMoved){
+                            changeVideo(""+nextVideos.move,'infini',true,1000);
+                            mouseFirstMoved = true;
+                          }else{
+                            if(videoElt.paused){
+                              if(debug){ console.log('play Video : '+'video_'+nextVideos.move); }
+                              videoElt.play();
+                            }else{
+                              timeout = setTimeout(function(){
+                                if(!isFinished){
+                                  if(debug){ console.log('paused Video : '+'video_'+nextVideos.move); }
+                                  videoElt.pause();
+                                }
+                              }, 100);
+                            }
+                          }
+                        });
+                        $(videoElt).on('ended', function(){
+                          $(document).unbind("mousemove");
+                          if(!isFinished){
+                            if(debug){ console.log('unbind et lancement : '+nextVideos.aftermove); }
+                            lastVideoPlayed["val"] = ""+nextVideos.aftermove;
+                            changeVideo(""+nextVideos.aftermove,delay);
+                          }
+                          isFinished = true;
+                        });
+                    }
+
+                    // playbymouse
+                    if(event.data.onend.type == "multibykeypressed"){
+                      compteur = 0;
+                      var minVideo=event.data.onend.minVideo;
+                      var maxVideo=event.data.onend.maxVideo;
+                      mappedKeyboard = createMappedKeyboard(minVideo,maxVideo,false);
+                      $(document).bind('keypress', function(e){
+                        var code = e.keyCode || e.which;
+                        var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+                        changeVideo(randkey.zeroPad(100),'infini');
+                        compteur++;
+                        if(maxCpt && (compteur > maxCpt)){
+                          lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;
+                          changeVideo(""+event.data.onend.nextvideo,'infini');
+                          unbindAllKeypress();
+                          loadText(event.data.onend.textafter,delay);
+
                         }
-                      },function(e){
-                        videoElt = document.getElementById( 'video_'+nextVideos.move );
-                        videoElt.pause  ();
+                        $('.reste').text(maxCpt-(compteur)+1);
                       });
                     }
 

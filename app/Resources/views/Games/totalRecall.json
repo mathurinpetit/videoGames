@@ -1,6 +1,6 @@
 {
  "globaldelay": "600",
- "debugstart" : "011",
+ "debugstart" : "000",
  "gamekeys" : {
                 "A" : { "keys" : [65,97] } ,
                 "B" : { "keys" : [66,98] },
@@ -79,7 +79,7 @@
               "id":"008",
              "onend": {
                "text" : "link 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
-               "nextvideos" : { "A" : "038", "C" : "009", "_" : "038"} ,
+               "nextvideos" : { "A" : "037", "C" : "009", "_" : "038"} ,
                "type" : "multichoicebykeypressed"
                 }
              },
@@ -96,7 +96,7 @@
               {
                 "id":"010",
                "onend": {
-                 "text" : "\nlink 'C' 67 : plusieurs fois pour faire atterrir le vaisseau sur Mars...",
+                 "text" : "\nlink 'C' 67 : Pour faire atterrir le vaisseau sur Mars...",
                  "nextvideos" : { "C" : "011", "_" : "039"} ,
                  "type" : "multichoicebykeypressed"
                   }
@@ -113,19 +113,137 @@
                 {
                   "id":"012",
                   "onend": {
-                   "text" : "\nlink 'A' 65 : Je fais mon plus beau sourir.\nlink 'B' 66 : Je crache sur le douanier.",
-                   "nextvideos" : { "move" : "013"} ,
+                   "text" : "\nFaites des mouvements de gauche à droite avec la souris pour montrer votre plus beau sourir.",
+                   "nextvideos" : { "move" : "013", "aftermove" : "014"} ,
                    "type" : "playbymouse"
                     }
                  },
                  {
-                   "id":"013",
+                   "id":"014",
                    "onend": {
-                    "text" : "\nlink 'A' 65 : Je fais mon plus beau sourir.\nlink 'B' 66 : Je crache sur le douanier.",
-                    "nextvideos" : { "A" : "013", "_" : "039"} ,
+                    "text" : "\nlink 'A' 65 : Je crache sur le douanier.\nlink 'B' 66 : Faire les yeux doux au douanier.",
+                    "nextvideos" : { "B" : "015", "_" : "039"} ,
                     "type" : "multichoicebykeypressed"
                      }
                   },
+                  {
+                    "id":"015",
+                    "onend": {
+                     "text" : "\nlink 'A' 65 : Continuer d'avoir l'air normal devant le douanier.\nlink 'B' 66 : Faire une connerie.",
+                     "nextvideos" : { "A" : "016", "_" : "039"} ,
+                     "type" : "multichoicebykeypressed"
+                      }
+                   },
+                   {
+                     "id":"016",
+                     "onend": {
+                      "text" : "\nlink 'A' 65 : Répondre 'Non' (on dis toujours 'non' à un douanier).\nlink 'B' 66 : Répondre 'Deux semaines!' même si ça n'a aucun sens.",
+                      "nextvideos" : { "B" : "017", "_" : "039"} ,
+                      "type" : "multichoicebykeypressed"
+                       }
+                    },
+                    {
+                      "id":"017",
+                      "onend": {
+                       "text" : "\nAppuyez sur différentes touches du clavier pour repéter 'Deux semaines'...\nAvoir l'air bizarre encore <span class='reste'>17</span> fois.",
+                       "minVideo" : 18,
+                       "maxVideo" : 25,
+                       "nextvideo" :  "026" ,
+                       "textafter" : "",
+                       "type" : "multibykeypressed"
+                        }
+                     },
+                     {
+                       "id":"026",
+                       "onend": {
+                        "text" : "\nFaites des mouvements de gauche à droite pour secouer la tête rapidement.",
+                        "nextvideos" : { "move" : "027", "aftermove" : "028"} ,
+                        "type" : "playbymouse"
+                         }
+                      },
+                      {
+                        "id":"028",
+                        "onend": {
+                         "text" : "Vous êtes grillé!\nlink 'A' 65 : Re-répeter 'Deux semaines'.\nlink 'B' 66 : Tan pis, je dévérouille mon masque.\nlink 'C' 67 : S'enfuir...",
+                         "nextvideos" : { "A" : "017", "B" : "029", "_" : "039"} ,
+                         "type" : "multichoicebykeypressed"
+                          }
+                       },
+                       {
+                        "id":"029",
+                        "onend": {
+                          "text" : "\nlink 'A' 65 : Enlever votre masque lentement\nlink 'B' 67 : Ne pas dévoiler son identité",
+                          "nextvideos" : { "A" : "030", "_" : "039"} ,
+                          "delay" : 500,
+                          "type" : "playbykey",
+                          "textduring" : "\nlink 'A' 65 : Pour enlever votre masque.",
+                           }
+                        },
+                        {
+                          "id":"030",
+                         "onend": {
+                           "text" : "\nlink 'A' 65 : Jeter le masque sur les soldats.",
+                           "nextvideos" : { "A" : "031", "_" : "039"} ,
+                           "type" : "multichoicebykeypressed"
+                            }
+                         },
+                       {
+                         "id":"031",
+                         "onstart": { "stopvideo" : "030" },
+                         "onend": {
+                          "text" : "\nlink 'A' 65 : J'en ai marre, je préfére aller me la raconter au concours de Mister Univers!'.\nlink 'B' 66 : S'enfuir rapidement.",
+                          "nextvideos" : { "A" : "033", "B" : "032", "_" : "039"} ,
+                          "type" : "multichoicebykeypressed"
+                           }
+                        },
+                      {
+                        "id":"032",
+                        "onend": {
+                         "text" : "\nlink 'A' 65 : Aller se la raconter au concours de Mister Univers.\nlink 'B' 66 : Faire exploser mon masque même si c'est dangeureux.",
+                         "nextvideos" : { "A" : "033", "B" : "034", "_" : "039"} ,
+                         "type" : "multichoicebykeypressed"
+                          }
+                       },
+                     {
+                       "id":"033",
+                       "onend": {
+                        "text" : "\nlink 'A' 65 : Revenir sur Mars",
+                        "nextvideos" : { "A" : "031", "_" : "030"} ,
+                        "type" : "multichoicebykeypressed"
+                         }
+                      },
+                     {
+                       "id":"034",
+                       "onend": {
+                        "text" : "\nlink 'A' 65 : Ne rien faire \nlink 'B' 66 Appuyer sur le bouton pour fermer les SAS.",
+                        "nextvideos" : { "B" : "035", "_" : "039"} ,
+                        "type" : "multichoicebykeypressed"
+                         }
+                      },
+                      {
+                       "id":"035",
+                       "onend": {
+                        "text" : "\nlink 'A' 65 : S'enfuir en roulant sous la porte.",
+                        "nextvideos" : { "A" : "036", "_" : "039"} ,
+                        "type" : "multichoicebykeypressed"
+                         }
+                      },
+                    {
+                      "id":"036",
+                      "onend": {
+                       "text" : "\nlink 'A' 65 : SEQUENCE 3",
+                       "nextvideos" : { "A" : "XXX", "_" : "037"} ,
+                       "type" : "multichoicebykeypressed"
+                        }
+                     },
+                      {
+                        "id":"037",
+                        "onend": {
+                         "text" : "\nlink 'A' 65 : Réexplique moi encore...\nlink 'B' 66 : Se casser sur Mars.",
+                         "nextvideos" : { "A" : "037", "B" : "009", "_" : "039"} ,
+                         "type" : "multichoicebykeypressed"
+                          }
+                       },
              {
                "id":"038",
               "onend": {
