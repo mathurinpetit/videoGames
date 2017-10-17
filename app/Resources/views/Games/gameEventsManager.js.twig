@@ -111,7 +111,10 @@ $(document).ready(function(){
                       if(goodKeys.indexOf(code)!== -1){
                         videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
                         videoElt.play();
-                        setTimeout(function(){ videoElt.pause(); }, delay);
+                        setTimeout(function(){
+                          console.log(videoElt.id);
+                          videoElt.pause();
+                         }, delay);
                       }else{
                         changeVideo(""+gameOver,delay);
                         unbindAllEvents();
