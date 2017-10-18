@@ -18,3 +18,9 @@ game:
     defaults: { _controller: VideoGameBundle:VideoGame:game }
     requirements:
        _method:  GET
+
+mobile_game:
+    path:  /game/m/{idName}
+    defaults: { _controller: VideoGameBundle:VideoGame:mobileGame }
+    requirements:
+       _method:  GET

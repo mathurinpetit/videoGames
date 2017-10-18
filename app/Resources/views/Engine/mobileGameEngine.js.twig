@@ -1,0 +1,26 @@
+
+{{ include('Engine/gamelib.js.twig') }}
+
+
+var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
+var gamekeys = game_json.gamekeys;
+
+
+var firstVideoNumber = {{ game.getFirstSequenceNumber() }} ;
+video = document.getElementById( 'video_'+ firstVideoNumber.zeroPad(100) );
+
+if(game_json.hasOwnProperty("debugstart")){
+  video = document.getElementById( 'video_'+ game_json.debugstart );
+}
+
+video.setAttribute('autoplay',true);
+video.pause();
+
+window.addEventListener( 'resize', onWindowResize, false );
+
+
+ {{ include('Games/gameEventsManager.js.twig', { 'game': game }) }}
+
+ video.onloadeddata = function() {
+    video.play();
+ };

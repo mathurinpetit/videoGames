@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<div class="container theme-showcase" role="main">
+  <div class="row">
+    <div class="col-md-12 visible-md visible-lg">
+      <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Etant encore expérimental l'ensemble des jeux est prévu pour être jouer sur un ordinateur possèdant un clavier et une souris.<br/>Blabla</p>
+    </div>
+    <div class="col-xs-12 visible-sm visible-xs">
+      <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Les différents jeux présents ici sont optimisé pour fonctionner sur des ordinateurs de bureau ou des ordinateurs portable.<br/>Il est grandement conseiller de pratiquer ce site sur un appareil de ce type pour profiter au maximum de votre expérience.</p>
+    </div>
+  </div>
 {% for game in games %}
 <div class="row">
   <div class="col-xs-12">
-    <a href="{{ path('game', { idName : game.shortName }) }}">{{ game.name }}</a>
+    <img src="{{ asset('bundles/videogame/'~game.shortName~'_background.png') }}">
+    <a href="{{ path('game', { idName : game.shortName }) }}">
+      {{ game.name }}
+    </a>
   </div>
 </div>
 {% endfor %}
-
+</div>
 {% endblock %}

@@ -30,4 +30,13 @@ class VideoGameController extends Controller
       $game = $em->getRepository('VideoGameBundle:Game')->findOneByShortName($idName);
       return array('game' => $game);
     }
+
+    /**
+     * @Template()
+     */
+    public function mobileGameAction($idName) {
+      $em = $this->getDoctrine()->getManager();
+      $game = $em->getRepository('VideoGameBundle:Game')->findOneByShortName($idName);
+      return array('game' => $game);
+    }
 }
