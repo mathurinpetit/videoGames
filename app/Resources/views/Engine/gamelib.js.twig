@@ -67,6 +67,15 @@ function stopVideo(numberVideo){
 
 /* Changement de la vidéo sur la texture de l'objet */
 function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
+  if(!mobile){
+    changeVideoDesktop(numberVideo, footerDelay, pause, pauseafter);
+  }else{
+    changeVideoMobile(numberVideo, footerDelay, pause, pauseafter);
+  }
+}
+
+function changeVideoDesktop(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
+
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
   videoElt.currentTime = 0;
@@ -115,6 +124,29 @@ function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0
     //$("#footer").hide();
   });
 }
+
+
+function changeVideoMobile(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
+
+  videoElt = document.getElementById( 'video_'+numberVideo );
+  videoElt.pause();
+  videoElt.currentTime = 0;
+  videoElt.setAttribute('autoplay',true);
+  videoElt.play();
+  if(pause){
+    setTimeout(function(){ videoElt.pause(); },pauseafter);
+  }
+  $('video').each(function(){ $(this).hide(); })
+  $('#video_'+numberVideo).show();
+
+  if(footerDelay == 'infini'){ return; }
+  $( "#footer" ).animate({
+    bottom: "-80px"
+  }, footerDelay, function() {
+    //$("#footer").hide();
+  });
+}
+
 
 /** KeyBoardAzerty **/
 var keyboardAzerty = ["97","122","101","114","116","121","117","105","111","112","113","115","100","102","103","104","106","107","108","109","119","120","99","118",

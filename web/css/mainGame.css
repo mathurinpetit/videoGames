@@ -24,6 +24,10 @@ body {
   background:#333;
 }
 
+video {
+  width:100%;
+}
+
 
 /***** Button like boostrtap *****/
 
