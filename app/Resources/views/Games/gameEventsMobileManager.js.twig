@@ -20,18 +20,14 @@ function restartOnLastCheckpoint(){
   changeVideo(lastVideoPlayed["val"]);
 }
 
+webview.setWebChromeClient(new WebChromeClient());
+webview.getSettings().setMediaPlaybackRequiresUserGesture(false);
 
+video.play();
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
-  window.addEventListener('touchstart', function videoStart() {
-    video.play();
-    console.log('first touch');
-    // remove from the window and call the function we are removing
-    this.removeEventListener('touchstart', videoStart);
-  });
-  
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
       if(videoObj.hasOwnProperty("onstart")){
