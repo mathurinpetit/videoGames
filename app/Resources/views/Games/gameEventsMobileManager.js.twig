@@ -20,32 +20,18 @@ function restartOnLastCheckpoint(){
   changeVideo(lastVideoPlayed["val"]);
 }
 
-var ONLYONETIME_EXECUTE = null;
 
-window.addEventListener('load', function(){ // on page load
-
-    document.body.addEventListener('touchstart', function(e){
-
-  if (ONLYONETIME_EXECUTE == null) {
-
-        video.play();
-
-        //if you want to prepare more than one video/audios use this trick :
-          // video2.play();
-          // video2.pause();
-          // now video2 is buffering and you can play it programmability later
-
-        ONLYONETIME_EXECUTE = 0;
-        }
-
-    }, false)
-
-}, false)
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
-
+  window.addEventListener('touchstart', function videoStart() {
+    video.play();
+    console.log('first touch');
+    // remove from the window and call the function we are removing
+    this.removeEventListener('touchstart', videoStart);
+  });
+  
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
       if(videoObj.hasOwnProperty("onstart")){
