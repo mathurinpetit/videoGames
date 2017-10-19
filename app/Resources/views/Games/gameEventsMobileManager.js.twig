@@ -27,6 +27,11 @@ console.log('first touch');
 this.removeEventListener('touchstart', videoStart);
 });
 
+window.onerror = function (message, url, lineNo){
+    console.log('Error: ' + message + '\n' + 'Line Number: ' + lineNo);
+    return true;
+}
+
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
