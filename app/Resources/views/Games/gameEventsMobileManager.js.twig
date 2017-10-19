@@ -24,9 +24,10 @@ function restartOnLastCheckpoint(){
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
   if(!start){
-    $(document).on('click',function(){
-      video.play();
-      start = false;
+    $("#video_000").bind("click", function() {
+    var vid = $(this).get(0);
+    if (vid.paused) { vid.play(); }
+    else { vid.pause(); }
     });
   }
 
