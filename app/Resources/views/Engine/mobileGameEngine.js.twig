@@ -6,7 +6,6 @@ var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }}
 var gamekeys = game_json.gamekeys;
 
 var video = document.getElementById('video_000');
-video.pause();
 
 var firstVideoNumber = {{ game.getFirstSequenceNumber() }} ;
 video = document.getElementById( 'video_'+ firstVideoNumber.zeroPad(100) );
