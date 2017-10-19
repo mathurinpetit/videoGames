@@ -5,7 +5,6 @@ var maxCpt = 16;
 var minVideo,maxVideo;
 var mobile = true;
 var lastVideoPlayed = { "val" : "000"};
-var start =false;
 
 function unbindAllKeypress(){
     $(document).unbind('keypress');
@@ -23,13 +22,10 @@ function restartOnLastCheckpoint(){
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
-  if(!start){
-    $("#video_000").bind("click", function() {
-    var vid = $(this).get(0);
-    if (vid.paused) { vid.play(); }
-    else { vid.pause(); }
-    });
-  }
+  var video = document.getElementById('video_000');
+    video.addEventListener('click',function(){
+    video.play();
+    },false);
 
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
