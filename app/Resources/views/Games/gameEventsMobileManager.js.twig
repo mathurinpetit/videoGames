@@ -5,7 +5,7 @@ var maxCpt = 16;
 var minVideo,maxVideo;
 var mobile = true;
 var lastVideoPlayed = { "val" : "000"};
-
+var start =false;
 
 function unbindAllKeypress(){
     $(document).unbind('keypress');
@@ -23,6 +23,12 @@ function restartOnLastCheckpoint(){
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
+  if(!start){
+    $(document).on('click',function(){
+      video.play();
+      start = false;
+    });
+  }
 
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
