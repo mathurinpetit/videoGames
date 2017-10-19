@@ -7,8 +7,8 @@
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
 <video id="video_{{numVideo}}" >
-   <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
-   <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
+   <source src="{{ asset(pathVideoMp4) }}">
+   <source src="{{ asset(pathVideoWebm) }}">
 </video>
 {% endfor %}
    <div id="footer" style="display:none;">
