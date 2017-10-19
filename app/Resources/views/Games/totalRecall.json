@@ -39,14 +39,15 @@
           "type" : "multichoicebykeypressed"
            }
         },
+
         {
-          "id":"004",
+         "id":"004",
          "onend": {
            "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
-           "nextvideos" : { "B" : "005", "_" : "038"} ,
-           "delay" : 80,
-           "textduring" : "\nlink 'B' 66 : Appuyez rapidement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-           "type" : "playbykeyup"
+           "nextvideos" : { "B" : "005", "_" : "039"} ,
+           "delay" : 500,
+           "type" : "playbykey",
+           "textduring" : "\nlink 'B' 66 pour sortir l'emmetteur de votre nez"
             }
          },
          {

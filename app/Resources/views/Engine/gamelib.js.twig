@@ -127,11 +127,9 @@ function changeVideoDesktop(numberVideo, footerDelay = 0, pause = false, pauseaf
 
 
 function changeVideoMobile(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
-
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
   videoElt.currentTime = 0;
-  videoElt.setAttribute('autoplay',true);
   videoElt.play();
   if(pause){
     setTimeout(function(){ videoElt.pause(); },pauseafter);
