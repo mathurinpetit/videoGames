@@ -15,13 +15,9 @@ if(game_json.hasOwnProperty("debugstart")){
   video = document.getElementById( 'video_'+ game_json.debugstart );
 }
 
-video.pause();
+video.play();
 
 window.addEventListener( 'resize', onWindowResize, false );
 
 
  {{ include('Games/gameEventsMobileManager.js.twig', { 'game': game }) }}
-
- video.onloadeddata = function() {
-    video.play();
- };
