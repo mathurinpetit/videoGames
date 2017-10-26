@@ -81,6 +81,13 @@ function changeVideoDesktop(numberVideo, footerDelay = 0, pause = false, pauseaf
   videoElt.currentTime = 0;
   videoElt.setAttribute('autoplay',true);
   videoElt.play();
+  if(debug){
+    var hash = window.location.hash.replace('#','');
+    if(hash != ''){
+        location.hash = '';
+    }
+    window.history.pushState('page2', 'Title', window.location+numberVideo);
+  }
   if(pause){
     setTimeout(function(){ videoElt.pause(); },pauseafter);
   }

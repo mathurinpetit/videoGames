@@ -28,7 +28,16 @@ class VideoGameController extends Controller
     public function gameAction($idName) {
       $em = $this->getDoctrine()->getManager();
       $game = $em->getRepository('VideoGameBundle:Game')->findOneByShortName($idName);
-      return array('game' => $game);
+      $game_json = json_decode(file_get_contents($this->get('kernel')->getRootDir() . '/Resources/views/Games/'.$game->getShortName().'.json'));
+      $idsVideos = array();
+      foreach ($game_json->scenario as $sequence) {
+        $idsVideos[$sequence->id] = $sequence->id;
+      }
+      for ($i = $game_json->gameovers->idmin; $i <= $game_json->gameovers->idmax; $i++) {
+        $idsVideos[sprintf("%03d",$i)] = sprintf("%03d",$i);
+      }
+      ksort($idsVideos);
+      return array('game' => $game, "idsVideos" => $idsVideos);
     }
 
     /**

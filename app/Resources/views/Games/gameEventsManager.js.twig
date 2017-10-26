@@ -1,5 +1,3 @@
-var debug = false;
-
 var compteur = 0;
 var maxCpt = 16;
 var minVideo,maxVideo;
@@ -149,6 +147,8 @@ $(document).ready(function(){
                             gameOver = nextvideo;
                           }
                         });
+                        console.log(goodKeys,code);
+
                         if(goodKeys.indexOf(code) !== -1){
                             if(event.data.onend.hasOwnProperty("textduring")){
                               text = event.data.onend.textduring;
