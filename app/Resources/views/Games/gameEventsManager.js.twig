@@ -19,21 +19,24 @@ function unbindAllEvents(){
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
-    var gameOverMin = game_json.gameovers.idmin;
-    var gameOverMax = game_json.gameovers.idmax;
-    var gameOverText = game_json.gameovers.text;
-    var delay = game_json.globaldelay;
-    for (var i = gameOverMin; i <= gameOverMax; i++) {
-      var videoGameOverId =  i.zeroPad(100);
-      $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
-        unbindAllEvents();
-        loadText(gameOverText,delay);
-        $(document).bind('keypress', function(e){
-          changeVideo(lastVideoPlayed["val"],delay);
+    if(game_json.hasOwnProperty("gameovers")){
+      var gameOverMin = game_json.gameovers.idmin;
+      var gameOverMax = game_json.gameovers.idmax;
+      var gameOverText = game_json.gameovers.text;
+      for (var i = gameOverMin; i <= gameOverMax; i++) {
+        var videoGameOverId =  i.zeroPad(100);
+        $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
           unbindAllEvents();
+          loadText(gameOverText,delay);
+          $(document).bind('keypress', function(e){
+            changeVideo(lastVideoPlayed["val"],delay);
+            unbindAllEvents();
+          });
         });
-      });
+      }
     }
+
+    var delay = game_json.globaldelay;
 
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
@@ -235,7 +238,7 @@ $(document).ready(function(){
                         });
                     }
 
-                    // playbymouse
+                    // multibykeypressed
                     if(event.data.onend.type == "multibykeypressed"){
                       compteur = 0;
                       if(event.data.onend.hasOwnProperty("nbRepeat")){
@@ -246,8 +249,15 @@ $(document).ready(function(){
                       mappedKeyboard = createMappedKeyboard(minVideo,maxVideo,false);
                       $(document).bind('keypress', function(e){
                         var code = e.keyCode || e.which;
-                        var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-                        changeVideo(randkey.zeroPad(100),'infini');
+                        var videoId = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+                        
+                        if(event.data.onend.hasOwnProperty("ordermulti") && event.data.onend.ordermulti){
+                          if(mappedKeyboard[code] !== undefined){
+                            videoId = mappedKeyboard[code];
+                          }
+                        }
+                        changeVideo(videoId.zeroPad(100),'infini');
+
                         compteur++;
                         if(maxCpt && (compteur > maxCpt)){
                           lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;

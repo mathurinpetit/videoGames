@@ -33,8 +33,11 @@ class VideoGameController extends Controller
       foreach ($game_json->scenario as $sequence) {
         $idsVideos[$sequence->id] = $sequence->id;
       }
-      for ($i = $game_json->gameovers->idmin; $i <= $game_json->gameovers->idmax; $i++) {
-        $idsVideos[sprintf("%03d",$i)] = sprintf("%03d",$i);
+      if(isset($game_json->gameovers))
+      {
+        for ($i = $game_json->gameovers->idmin; $i <= $game_json->gameovers->idmax; $i++) {
+          $idsVideos[sprintf("%03d",$i)] = sprintf("%03d",$i);
+        }
       }
       ksort($idsVideos);
       return array('game' => $game, "idsVideos" => $idsVideos);
