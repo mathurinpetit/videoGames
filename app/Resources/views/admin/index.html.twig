@@ -13,7 +13,9 @@
                 <th>Nom court</th>
                 <th>Description</th>
                 <th>Video path</th>
-                <th>Nb Videos</th>
+                <th>Format</th>
+                <th>visible/active</th>
+                <th>date</th>
                 <th></th>
             </tr>
         </thead>
@@ -25,7 +27,9 @@
                 <td>{{ game.shortName }}</td>
                 <td>{{ game.description }}</td>
                 <td>{{ game.videoPath }}</td>
-                <td>000..{{ "%03d" | format(game.nbVideos) }}</td>
+                <td>{{ game.width }}x{{ game.height }}</td>
+                <td>{{ "%01d" | format(game.visible) }}/{{ "%01d" | format(game.active) }}</td>
+                <td>{{ game.date | date("d/m/Y") }}</td>
                 <td>
                       <div class="btn-group btn-group-xs" >
                             <a href="{{ path('admin_show', { 'id': game.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></a>

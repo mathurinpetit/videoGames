@@ -29,8 +29,20 @@
                 <td>{{ game.videoPath }}</td>
             </tr>
             <tr>
-                <th>Videos</th>
-                <td>000..{{ "%03d" | format(game.nbVideos) }} ({{ game.width }}x{{ game.height }})</td>
+                <th>Format</th>
+                <td>{{ game.width }}x{{ game.height }}</td>
+            </tr>
+            <tr>
+                <th>Visible</th>
+                <td>{{ "%01d" | format(game.visible) }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ "%01d" | format(game.active) }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ game.date | date("d/m/Y") }}</td>
             </tr>
         </tbody>
     </table>

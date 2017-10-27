@@ -42,11 +42,6 @@ class Game
     */
     private $videoPath;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-     private $nbVideos;
-
      /**
       * @ORM\Column(type="integer")
       */
@@ -56,6 +51,24 @@ class Game
       * @ORM\Column(type="integer")
       */
       private $height;
+
+
+     /**
+      * @ORM\Column(type="datetime")
+      */
+      private $date;
+
+
+      /**
+       * @ORM\Column(type="boolean")
+       */
+      private $active;
+
+      /**
+       * @ORM\Column(type="boolean")
+       */
+      private $visible;
+
 
 
     /**
@@ -171,36 +184,6 @@ class Game
 
     }
 
-    /**
-     * Set nbVideos
-     *
-     * @param integer $nbVideos
-     *
-     * @return Game
-     */
-    public function setNbVideos($nbVideos)
-    {
-        $this->nbVideos = $nbVideos;
-
-        return $this;
-    }
-
-    /**
-     * Get nbVideos
-     *
-     * @return integer
-     */
-    public function getNbVideos()
-    {
-        return $this->nbVideos;
-    }
-
-
-
-    public function getFirstSequenceNumber(){
-        return 0;      
-    }
-
 
     /**
      * Set width
@@ -248,5 +231,77 @@ class Game
     public function getHeight()
     {
         return $this->height;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Game
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Game
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     *
+     * @return Game
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function getVisible()
+    {
+        return $this->visible;
     }
 }
