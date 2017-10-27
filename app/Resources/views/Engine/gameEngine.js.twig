@@ -1,5 +1,6 @@
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 var debug = false;
+var debug_script   = false;
 
 var container;
 var camera, scene, renderer;
@@ -37,6 +38,8 @@ var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }}
 var gamekeys = game_json.gamekeys;
 
 
+var lastVideoPlayed = { "val" : game_json.debugstart };
+
 init();
 animate();
 
@@ -65,18 +68,19 @@ function init() {
   container.appendChild( renderer.domElement );
   var anchor = window.location.hash;
   var anchorValue = anchor.substring(anchor.indexOf("#")+1);
-  var firstVideoNumber = {{ game.getFirstSequenceNumber() }} ;
-  video = document.getElementById( 'video_'+ firstVideoNumber.zeroPad(100) );
+  var firstVideoNumber = game_json.debugstart ;
 
-  if(game_json.hasOwnProperty("debugstart")){
-    video = document.getElementById( 'video_'+ game_json.debugstart );
-  }
   if(anchorValue){
     debug = true;
+    firstVideoNumber = anchorValue;
+  }
+
+  video = document.getElementById( 'video_'+ firstVideoNumber );
+
+  if(debug){
     video.onloadedmetadata = function() {
       video.currentTime = ""+video.duration - 0.1;
     };
-    video = document.getElementById( 'video_'+ anchorValue );
   }
 
   video.setAttribute('autoplay',true);

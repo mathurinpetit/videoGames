@@ -1,0 +1,142 @@
+{
+ "globaldelay": "600",
+ "debugstart" : "042",
+ "gamekeys" : {
+                "A" : {"keys" : [65,97] },
+                "B" : { "keys" : [66,98] },
+                "C" : { "keys" : [67,99] },
+                "D" : { "keys" : [68,100]}
+              },
+"scenario":[
+    {
+     "id":"042",
+     "onend": {
+         "text" : "\nlink 'A' 65 : Taper du poing sur la table.\nlink 'B' 66 : Partir de ce rade miteux.",
+       "nextvideos" : { "A" : "043", "_" : "055"} ,
+       "type" : "multichoicebykeypressed"
+        }
+     },
+     {
+       "id":"043",
+      "onend": {
+        "text" : "\nlink 'A' 65 : Je ne veux rien de special.\nlink 'B' 66 : Je cherche une belle gosse qui s'appelle Melina.",
+        "nextvideos" : { "B" : "044", "_" : "056"} ,
+        "type" : "multichoicebykeypressed"
+         }
+      },
+      {
+        "id":"044",
+       "onend": {
+         "text" : "\nlink 'A' 65 : Bon aller, tan pis pour Melina, Marie ça me va bien aussi.\nlink 'B' 66 : Bon je me casse c'est nul ici.",
+         "nextvideos" : { "A" : "045", "_" : "057"} ,
+         "type" : "multichoicebykeypressed"
+          }
+       },
+       {
+         "id":"045",
+        "onend": {
+          "text" : "link 'A' 65 : Oula, ça m'interresse pas trop bizarre ça!\nlink 'B' 66 : Wahou pas mal ça! Redis moi ça encore !\nlink 'C' 67 : Aller je touche!\nlink 'D' 68 : Je fais une balgue à Marie!",
+          "nextvideos" : { "A" : "046", "B" : "045", "C" : "058","D" : "047", "_" : "056"} ,
+          "type" : "multichoicebykeypressed"
+           }
+        },
+        {
+         "id":"046",
+         "onend": {
+           "text" : "\nlink 'A' 65 : Ouai bon... Si elle est maniaque je prefère toucher Marie !\nlink 'B' 66 : Faire rire Marie!",
+           "nextvideos" : { "A" : "058", "B" : "047", "_" : "055"} ,
+           "type" : "multichoicebykeypressed"
+            }
+         },
+         {
+          "id":"047",
+          "onend": {
+            "text" : "\nlink 'A' 65 : Hey j'ai plein d'argent laisse moi voir Melina.\n link 'B' 66 : Continuer à toucher Marie.",
+            "nextvideos" : { "A" : "048", "B" : "058", "_" : "057"} ,
+            "type" : "multichoicebykeypressed"
+             }
+          },
+          {
+            "id":"048",
+            "onend": {
+             "text" : "\nlink 'A' 65 : Non mais vraiment laisse moi avec Marie. \nlink 'B' 66 : Wahou elle a l'air belle Melina!",
+             "nextvideos" : { "A" : "047", "B" : "049", "_" : "056"} ,
+             "type" : "multichoicebykeypressed"
+              }
+           },
+           {
+             "id":"049",
+            "onend": {
+              "text" : "\nlink 'A' 65 : Bon je suis pas trop motivé je m'en vais !\nlink 'B' 66 : Aller, je m'avance comme un beau gosse vers Melina.",
+              "nextvideos" : { "B" : "050", "_" : "057"} ,
+              "type" : "multichoicebykeypressed"
+               }
+            },
+            {
+              "id":"050",
+             "onend": {
+               "text" : "\nMaintenez link 'A' 65  : pour s'avancer vers Melina.",
+               "nextvideos" : { "A" : "051", "_" : "055"} ,
+               "delay" : 500,
+                 "text" : "\nMaintenez link 'A' 65 pour s'avancer vers Melina.",
+               "type" : "playbykey"
+                }
+             },
+             {
+               "id":"051",
+               "onend": {
+                 "text" : "\nMaintenez link 'A' 65 pour s'avancer vers Melina.",
+                "nextvideos" : { "A" : "052", "_" : "056"} ,
+                "type" : "multichoicebykeypressed"
+                 }
+              },
+              {
+                "id":"052",
+                "onstart": { "stopvideo" : "051" },
+                "onend": {
+                  "text" : "Hey ho!\nlink 'A' 65 : Répondre 'A toi bébé!'\nlink 'B' 66 : Répondre 'Aux blondes!'\nlink 'C' 67 : Retourner voir la fille aux 3 seins, elle était plus sympa.",
+                 "nextvideos" : { "B" : "053", "C" : "059", "_" : "057"} ,
+                 "type" : "multichoicebykeypressed"
+                  }
+               },
+               {
+                 "id":"053",
+                 "onend": {
+                   "text" : "\nlink 'A' 65 : Casser la gueulle du mutant pas beau!.\nlink 'B' 66 : Mépriser le mutant pas beau et partir avec Melina.",
+                  "nextvideos" : { "B" : "054", "_" : "056"} ,
+                  "type" : "multichoicebykeypressed"
+                   }
+                },
+                {
+                  "id":"054",
+                  "onend": {
+                    "text" : "\nlink 'A' 65 Aller discuter dans une grotte avec Melina.\nlink 'B' 66 Je veux encore toucher un peu les seins de Marie...",
+                   "nextvideos" : { "A" : "redirect totalRecall_part4", "B" : "059", "_" : "056"} ,
+                   "type" : "multichoicebykeypressed"
+                    }
+                 },
+
+             {
+              "id":"058",
+              "onend": {
+                "text" : "\nlink 'A' 65 : Toucher plus longtemps\nlink 'B' 66 : Bon ça suffit je veux voir Melina.",
+                "nextvideos" : { "A" : "058", "B" : "046", "_" : "056"},
+                "type" : "multichoicebykeypressed"
+                 }
+              },
+              {
+                "id":"059",
+                "onend": {
+                  "text" : "\nlink 'A' 65 : Toucher plus longtemps\nlink 'B' 66 : Bon ça suffit, retourner voir Melina, elle avait quand même l'air sympa",
+                  "nextvideos" : { "A" : "059", "B" : "052", "_" : "057"},
+                  "type" : "multichoicebykeypressed"
+                   }
+                }
+  ],
+  "gameovers":{
+    "idmin" : 55,
+    "idmax" : 57,
+    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'."
+     }
+
+}

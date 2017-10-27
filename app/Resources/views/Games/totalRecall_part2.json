@@ -1,118 +1,28 @@
 {
  "globaldelay": "600",
- "debugstart" : "033",
+ "debugstart" : "010",
  "gamekeys" : {
                 "A" : {"keys" : [65,97] },
                 "B" : { "keys" : [66,98] },
                 "C" : { "keys" : [67,99] },
                 "D" : { "keys" : [68,100]}
               },
-"scenario":[
-    {"id":"000",
-     "onend": {
-       "text" : "\nSi vous voulez en savoir plus appuyez sur link 'A' 65\nSinon appuyez sur link 'B' 66",
-       "nextvideos" : { "A" : "001", "_" : "056"} ,
-       "type" : "multichoicebykeypressed"
-        }
-     },
-     {
-       "id":"001",
-      "onend": {
-        "text" : "\nlink 'A' 65 : Cela ne m'interresse pas\nlink 'B' 66 : Je veux en savoir plus",
-        "nextvideos" : { "B" : "002", "_" : "057"} ,
-        "type" : "multichoicebykeypressed"
-         }
-      },
-      {
-        "id":"002",
-       "onend": {
-         "text" : "\nlink 'A' 65 : Qu'est ce que je dois faire ?\nlink 'B' 66 : Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas",
-         "nextvideos" : { "A" : "003", "_" : "058"} ,
-         "type" : "multichoicebykeypressed"
-          }
-       },
-       {
-         "id":"003",
-        "onend": {
-          "text" : "\nlink 'A' 65 : Je suis prêt\nlink 'B' 66 : Non ça fait peur ce truc!",
-          "nextvideos" : { "A" : "004", "_" : "056"} ,
-          "type" : "multichoicebykeypressed"
-           }
-        },
-
-        {
-         "id":"004",
-         "onend": {
-           "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc de son nez...",
-           "nextvideos" : { "B" : "005", "_" : "058"} ,
-           "delay" : 500,
-           "type" : "playbykey",
-           "textduring" : "\nAppuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez"
-            }
-         },
-         {
-          "id":"005",
-          "onend": {
-            "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-            "nextvideos" : { "B" : "006", "_" : "057"} ,
-            "type" : "multichoicebykeypressed"
-             }
-          },
-          {
-            "id":"006",
-            "onstart": { "stopvideo" : "005" },
-            "onend": {
-             "text" : "link 'A' 65 : Je vais me remettre l'emmetteur dans le nez!\nlink 'B' 66 : C'est quoi ce truc? Je ne veux pas le savoir je m'en vais.\nlink 'C' 67 : Je dois faire quoi Maintenant ?",
-             "nextvideos" : { "A" : "007", "C" : "008", "_" : "056"} ,
-             "type" : "multichoicebykeypressed"
-              }
-           },
-           {
-             "id":"007",
-            "onend": {
-              "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
-              "nextvideos" : { "B" : "005", "_" : "058"} ,
-              "delay" : 500,
-              "textduring" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-              "type" : "playbykey"
-               }
-            },
-            {
-              "id":"008",
-             "onend": {
-               "text" : "link 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
-               "nextvideos" : { "A" : "009", "C" : "010", "_" : "058"} ,
-               "type" : "multichoicebykeypressed"
-                }
-             },
-             {
-              "id":"009",
-              "onend": {
-                "text" : "\nlink 'A' 65 : Réexplique moi encore...\nlink 'B' 66 : Se casser sur Mars.",
-                "nextvideos" : { "A" : "009", "B" : "010", "_" : "056"},
-                "type" : "multichoicebykeypressed"
-                 }
-              },
-
-
-
-
+              "scenario":[
               {
                 "id":"010",
                 "onend": {
                   "text" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars...",
-                  "nextvideos" : { "A" : "011", "_" : "058"} ,
+                  "nextvideos" : { "A" : "011", "_" : "059"} ,
                   "delay" : 500,
                   "type" : "playbykey",
                   "textduring" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars..."
                    }
                },
-
                {
                  "id":"011",
                  "onend": {
                   "text" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars...",
-                  "nextvideos" : { "A" : "012", "_" : "093"} ,
+                  "nextvideos" : { "A" : "012", "_" : "059"} ,
                   "type" : "multichoicebykeypressed"
                    }
                 },
@@ -121,7 +31,7 @@
                  "onstart": { "stopvideo" : "011" },
                  "onend": {
                   "text" : "Vous êtes arrivé sur Mars, vous allez passer la douane.\nlink 'A' 65 : Je m'en fou je coupe la file pour aller au concours de Mister Univers.\nlink 'B' 66 : Je suis raisonnable et j'attend mon tour pour montrer mon passeport.\nlink 'C' 67 : Je crois que finalement Mars c'est pas mon truc...",
-                  "nextvideos" : { "A" : "013", "B" : "014", "_" : "093"} ,
+                  "nextvideos" : { "A" : "013", "B" : "014", "_" : "059"} ,
                   "type" : "multichoicebykeypressed"
                    }
                 },
@@ -129,7 +39,7 @@
                   "id":"013",
                   "onend": {
                    "text" : "\nlink 'A' 65 : Revenir sur Mars",
-                   "nextvideos" : { "A" : "012", "_" : "030"} ,
+                   "nextvideos" : { "A" : "012", "_" : "060"} ,
                    "type" : "multichoicebykeypressed"
                     }
                  },
@@ -149,7 +59,7 @@
                    "onstart": { "stopvideo" : "015" },
                    "onend": {
                      "text" : "\nlink 'A' 65 : Je crache sur le douanier.\nlink 'B' 66 : Faire les yeux doux au douanier.",
-                     "nextvideos" : { "B" : "017", "_" : "093"} ,
+                     "nextvideos" : { "B" : "017", "_" : "061"} ,
                      "type" : "multichoicebykeypressed"
                    }
                  },
@@ -157,7 +67,7 @@
                     "id":"017",
                     "onend": {
                      "text" : "\nlink 'A' 65 : Continuer d'avoir l'air normal devant le douanier.\nlink 'B' 66 : Faire une connerie.",
-                     "nextvideos" : { "A" : "018", "_" : "093"} ,
+                     "nextvideos" : { "A" : "018", "_" : "062"} ,
                      "type" : "multichoicebykeypressed"
                       }
                    },
@@ -165,7 +75,7 @@
                      "id":"018",
                      "onend": {
                       "text" : "\nlink 'A' 65 : Répondre 'Non' (on dis toujours 'non' à un douanier).\nlink 'B' 66 : Répondre 'Deux semaines!' même si ça n'a aucun sens.",
-                      "nextvideos" : { "B" : "019", "_" : "093"} ,
+                      "nextvideos" : { "B" : "019", "_" : "059"} ,
                       "type" : "multichoicebykeypressed"
                        }
                     },
@@ -238,7 +148,7 @@
                         {
                           "id":"035",
                           "onend": {
-                            "text" : "\nlink 'A' 65 : Ne rien faire \nlink 'B' 66 : Re-renvoyer le masque pour jouer.\nlink 'C' 67 : Aller se la raconter au concours de Mister Univers.\nlink 'D' 68 : Se débarrasser pour de bon de ce masque.\n",
+                            "text" : "link 'A' 65 : Ne rien faire \nlink 'B' 66 : Re-renvoyer le masque pour jouer.\nlink 'C' 67 : Aller se la raconter au concours de Mister Univers.\nlink 'D' 68 : Se débarrasser pour de bon de ce masque.\n",
                             "nextvideos" : { "B" : "033","C" : "034","D" : "036", "_" : "093"} ,
                             "type" : "multichoicebykeypressed"
                           }
@@ -247,49 +157,47 @@
                           "id":"036",
                           "onend": {
                            "text" : "\nlink 'A' 65 : Suffit de jouer! Le masque va exploser, il faut fuir.\nlink 'B' 66 : J'en ai marre, je préfére aller me la raconter au concours de Mister Univers!'.",
-                           "nextvideos" : { "A" : "037","B" : "034", "_" : "093"} ,
+                           "nextvideos" : { "A" : "038","B" : "034", "_" : "093"} ,
                            "type" : "multichoicebykeypressed"
                             }
                          },
                          {
-                           "id":"037",
+                           "id":"038",
                            "onend": {
                             "text" : "\nlink 'A' 65 : Bon je vais quand même au concours de Mister Univers.\nlink 'B' 66 : Faire exploser mon masque même si c'est dangeureux.\nlink 'C' 67 : Fuir mais ne pas faire exploser le masque.",
-                            "nextvideos" : { "A" : "034", "B" : "038", "_" : "039"} ,
+                            "nextvideos" : { "A" : "034", "B" : "039", "_" : "039"} ,
                             "type" : "multichoicebykeypressed"
                              }
                           },
                         {
-                          "id":"038",
+                          "id":"039",
                           "onend": {
-                           "text" : "\nlink 'A' 65 : Bon je vais au concours de Mister Univers.\nlink 'B' 66 : Faire exploser mon masque même si c'est dangeureux.",
-                           "nextvideos" : { "A" : "034", "B" : "039", "_" : "039"} ,
+                           "text" : "\nlink 'A' 65 : Ne rien faire \nlink 'B' 66 : Appuyer sur le bouton pour fermer les SAS.",
+                           "nextvideos" : { "B" : "040", "_" : "039"} ,
                            "type" : "multichoicebykeypressed"
                             }
                          },
                       {
                        "id":"040",
                        "onend": {
-                        "text" : "\nlink 'A' 65 : S'enfuir en roulant sous la porte.",
-                        "nextvideos" : { "A" : "036", "_" : "093"} ,
+                        "text" : "\nlink 'A' 65 : S'enfuir en roulant sous la porte.\nlink 'B' 66 : Abandonner la mission.\n",
+                        "nextvideos" : { "A" : "041", "_" : "093"} ,
                         "type" : "multichoicebykeypressed"
                          }
                       },
                     {
-                      "id":"042",
+                      "id":"041",
                       "onend": {
-                       "text" : "\nlink 'A' 65 : SEQUENCE 3",
-                       "nextvideos" : { "A" : "XXX", "_" : "037"} ,
+                       "text" : "\nlink 'A' 65 : Bon je suis peinard, je vais au bar de Mars.\nlink 'B' 66 : Abandonner la mission.",
+                       "nextvideos" : { "A" : "redirect totalRecall_part3", "_" : "059"} ,
                        "type" : "multichoicebykeypressed"
                         }
                      }
   ],
   "gameovers":{
-    "idmin" : "056",
-    "idmax" : "064",
-    "onend": {
-       "text" : "\nVous avez perdu ! Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>"
-        }
+    "idmin" : 59,
+    "idmax" : 62,
+    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'."
      }
 
 }

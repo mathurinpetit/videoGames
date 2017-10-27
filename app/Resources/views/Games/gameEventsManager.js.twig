@@ -2,7 +2,6 @@ var compteur = 0;
 var maxCpt = 16;
 var minVideo,maxVideo;
 
-var lastVideoPlayed = { "val" : "000"};
 var mobile = false;
 
 function unbindAllKeypress(){
@@ -15,12 +14,26 @@ function unbindAllEvents(){
     $(document).unbind('keypress');
 }
 
-function restartOnLastCheckpoint(){
-  changeVideo(lastVideoPlayed["val"]);
-}
+
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
+
+    var gameOverMin = game_json.gameovers.idmin;
+    var gameOverMax = game_json.gameovers.idmax;
+    var gameOverText = game_json.gameovers.text;
+    var delay = game_json.globaldelay;
+    for (var i = gameOverMin; i <= gameOverMax; i++) {
+      var videoGameOverId =  i.zeroPad(100);
+      $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
+        unbindAllEvents();
+        loadText(gameOverText,delay);
+        $(document).bind('keypress', function(e){
+          changeVideo(lastVideoPlayed["val"],delay);
+          unbindAllEvents();
+        });
+      });
+    }
 
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
@@ -29,6 +42,7 @@ $(document).ready(function(){
           stopVideo(event.data.onstart.stopvideo);
         });
       }
+
       if(videoObj.hasOwnProperty("onend")){
         $('#video_'+videoObj.id).on('ended',videoObj,function(event){
           unbindAllEvents();
@@ -36,16 +50,11 @@ $(document).ready(function(){
           if(event.data.onend.hasOwnProperty("text")){
             text = event.data.onend.text;
           }
-
-          var delay = "";
-          if(game_json.hasOwnProperty("globaldelay")){
-            delay = game_json.globaldelay;
-          }
           if(event.data.onend.hasOwnProperty("delay")){
             delay = event.data.onend.delay;
           }
           loadText(text,delay);
-          if(debug){ console.log(event); }
+          if(debug_script){ console.log(event); }
 
           // Lorsque l'on a un choix multiple
           if(event.data.onend.type == "multichoicebykeypressed"){
@@ -55,21 +64,27 @@ $(document).ready(function(){
               var goodKeys = {};
               var gameOver = "";
               var found = false;
-              if(debug){ console.log("keypressed "+code); }
+              if(debug_script){ console.log("keypressed "+code); }
               $.each(nextVideos, function(char, nextvideo) {
                 if(char!=='_'){
                   $.each(gamekeys, function(gamechar,obj){
                     if((gamechar === char) && (obj.keys.indexOf(code)!= -1)){
-                      if(debug){ console.log("changeVideo "+nextVideos[char]); }
-                        changeVideo(""+nextVideos[char],delay);
-                        lastVideoPlayed["val"] = ""+nextVideos[char];
-                        unbindAllEvents();
+                      if(debug_script){ console.log("changeVideo "+nextVideos[char]); }
+                        var nextId = ""+nextVideos[char];
                         found = true;
+                        if(nextId.startsWith("redirect")){
+                          window.location = window.location.origin +'/game/'+ nextId.replace("redirect ","");
+                          return false;
+                        }else {
+                          changeVideo(nextId,delay);
+                          lastVideoPlayed["val"] = ""+nextVideos[char];
+                          unbindAllEvents();
+                        }
                     }
                   });
                 }else{
                   if(!found){
-                    if(debug){ console.log("changeVideo "+nextVideos[char]); }
+                    if(debug_script){ console.log("changeVideo "+nextVideos[char]); }
                     changeVideo(""+nextVideos[char],delay);
                     unbindAllEvents();
                   }
@@ -111,7 +126,6 @@ $(document).ready(function(){
                         videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
                         videoElt.play();
                         setTimeout(function(){
-                          console.log(videoElt.id);
                           videoElt.pause();
                          }, delay);
                       }else{
@@ -147,7 +161,6 @@ $(document).ready(function(){
                             gameOver = nextvideo;
                           }
                         });
-                        console.log(goodKeys,code);
 
                         if(goodKeys.indexOf(code) !== -1){
                             if(event.data.onend.hasOwnProperty("textduring")){
@@ -199,12 +212,12 @@ $(document).ready(function(){
                             mouseFirstMoved = true;
                           }else{
                             if(videoElt.paused){
-                              if(debug){ console.log('play Video : '+'video_'+nextVideos.move); }
+                              if(debug_script){ console.log('play Video : '+'video_'+nextVideos.move); }
                               videoElt.play();
                             }else{
                               timeout = setTimeout(function(){
                                 if(!isFinished){
-                                  if(debug){ console.log('paused Video : '+'video_'+nextVideos.move); }
+                                  if(debug_script){ console.log('paused Video : '+'video_'+nextVideos.move); }
                                   videoElt.pause();
                                 }
                               }, 100);
@@ -214,7 +227,7 @@ $(document).ready(function(){
                         $(videoElt).on('ended', function(){
                           $(document).unbind("mousemove");
                           if(!isFinished){
-                            if(debug){ console.log('unbind et lancement : '+nextVideos.aftermove); }
+                            if(debug_script){ console.log('unbind et lancement : '+nextVideos.aftermove); }
                             lastVideoPlayed["val"] = ""+nextVideos.aftermove;
                             changeVideo(""+nextVideos.aftermove,delay);
                           }
@@ -225,6 +238,9 @@ $(document).ready(function(){
                     // playbymouse
                     if(event.data.onend.type == "multibykeypressed"){
                       compteur = 0;
+                      if(event.data.onend.hasOwnProperty("nbRepeat")){
+                        maxCpt = event.data.onend.nbRepeat;
+                      }
                       var minVideo=event.data.onend.minVideo;
                       var maxVideo=event.data.onend.maxVideo;
                       mappedKeyboard = createMappedKeyboard(minVideo,maxVideo,false);
