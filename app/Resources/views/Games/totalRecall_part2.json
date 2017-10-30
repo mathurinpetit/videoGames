@@ -1,6 +1,6 @@
 {
  "globaldelay": "600",
- "debugstart" : "010",
+ "debugstart" : "037",
  "gamekeys" : {
                 "A" : {"keys" : [65,97] },
                 "B" : { "keys" : [66,98] },
@@ -106,7 +106,7 @@
                         "id":"030",
                         "onend": {
                          "text" : "Vous êtes grillé!\nlink 'A' 65 : Re-répeter 'Deux semaines'.\nlink 'B' 66 : Tan pis, je dévoile mon identité et je dévérouille mon masque.\nlink 'C' 67 : S'enfuir...",
-                         "nextvideos" : { "A" : "018", "B" : "031", "_" : "093"} ,
+                         "nextvideos" : { "A" : "018", "B" : "031", "_" : "061"} ,
                          "type" : "multichoicebykeypressed"
                           }
                        },
@@ -114,17 +114,17 @@
                         "id":"031",
                         "onend": {
                           "text" : "\nlink 'A' 65 : Appuyez longement pour enlever votre masque.\nlink 'B' 67 : Ne pas dévoiler son identité.",
-                          "nextvideos" : { "A" : "032", "_" : "093"} ,
+                          "nextvideos" : { "A" : "032", "_" : "062"} ,
                           "delay" : 500,
                           "type" : "playbykey",
-                          "textduring" : "\nlink 'A' 65 : Pour enlever votre masque."
+                          "textduring" : "\nlink 'A' 65 : Appuyez longement pour enlever votre masque."
                            }
                         },
                         {
                           "id":"032",
                          "onend": {
                            "text" : "\nlink 'A' 65 : Se débarrasser de son masque et le jeter sur les soldats.",
-                           "nextvideos" : { "A" : "033", "_" : "093"} ,
+                           "nextvideos" : { "A" : "033", "_" : "061"} ,
                            "type" : "multichoicebykeypressed"
                             }
                          },
@@ -133,7 +133,7 @@
                            "onstart": { "stopvideo" : "032" },
                            "onend": {
                             "text" : "ATTENTION! Les soldats vont vous renvoyer le masque!\nlink 'A' 65 : J'en ai marre, je préfére aller me la raconter au concours de Mister Univers!'.\nlink 'B' 66 : Se tenir prêt à se faire renvoyer le masque. \nlink 'C' 67 : Se laisser arrêter par les soldats. ",
-                            "nextvideos" : { "A" : "034", "B" : "035", "_" : "093"} ,
+                            "nextvideos" : { "A" : "034", "B" : "035", "_" : "059"} ,
                             "type" : "multichoicebykeypressed"
                              }
                           },
@@ -141,7 +141,7 @@
                          "id":"034",
                          "onend": {
                             "text" : "\nlink 'A' 65 : Revenir sur Mars",
-                            "nextvideos" : { "A" : "033", "_" : "030"} ,
+                            "nextvideos" : { "A" : "033", "_" : "033"} ,
                             "type" : "multichoicebykeypressed"
                            }
                         },
@@ -149,7 +149,7 @@
                           "id":"035",
                           "onend": {
                             "text" : "link 'A' 65 : Ne rien faire \nlink 'B' 66 : Re-renvoyer le masque pour jouer.\nlink 'C' 67 : Aller se la raconter au concours de Mister Univers.\nlink 'D' 68 : Se débarrasser pour de bon de ce masque.\n",
-                            "nextvideos" : { "B" : "033","C" : "034","D" : "036", "_" : "093"} ,
+                            "nextvideos" : { "B" : "033","C" : "034","D" : "036", "_" : "061"} ,
                             "type" : "multichoicebykeypressed"
                           }
                         },
@@ -157,36 +157,36 @@
                           "id":"036",
                           "onend": {
                            "text" : "\nlink 'A' 65 : Suffit de jouer! Le masque va exploser, il faut fuir.\nlink 'B' 66 : J'en ai marre, je préfére aller me la raconter au concours de Mister Univers!'.",
-                           "nextvideos" : { "A" : "038","B" : "034", "_" : "093"} ,
+                           "nextvideos" : { "A" : "038","B" : "034", "_" : "060"} ,
                            "type" : "multichoicebykeypressed"
                             }
                          },
                          {
-                           "id":"038",
+                           "id":"037",
                            "onend": {
-                            "text" : "\nlink 'A' 65 : Bon je vais quand même au concours de Mister Univers.\nlink 'B' 66 : Faire exploser mon masque même si c'est dangeureux.\nlink 'C' 67 : Fuir mais ne pas faire exploser le masque.",
-                            "nextvideos" : { "A" : "034", "B" : "039", "_" : "039"} ,
+                            "text" : "Attention...\nlink 'A' 65 : Bon je vais quand même au concours de Mister Univers.\nlink 'B' 66 : Faire exploser mon masque même si c'est dangeureux.\nlink 'C' 67 : Fuir mais ne pas faire exploser le masque.",
+                            "nextvideos" : { "A" : "034", "B" : "038", "_" : "062"} ,
                             "type" : "multichoicebykeypressed"
                              }
                           },
                         {
-                          "id":"039",
+                          "id":"038",
                           "onend": {
                            "text" : "\nlink 'A' 65 : Ne rien faire \nlink 'B' 66 : Appuyer sur le bouton pour fermer les SAS.",
-                           "nextvideos" : { "B" : "040", "_" : "039"} ,
+                           "nextvideos" : { "B" : "039", "_" : "061"} ,
                            "type" : "multichoicebykeypressed"
                             }
                          },
                       {
-                       "id":"040",
+                       "id":"039",
                        "onend": {
                         "text" : "\nlink 'A' 65 : S'enfuir en roulant sous la porte.\nlink 'B' 66 : Abandonner la mission.\n",
-                        "nextvideos" : { "A" : "041", "_" : "093"} ,
+                        "nextvideos" : { "A" : "040", "_" : "061"} ,
                         "type" : "multichoicebykeypressed"
                          }
                       },
                     {
-                      "id":"041",
+                      "id":"040",
                       "onend": {
                        "text" : "\nlink 'A' 65 : Bon je suis peinard, je vais au bar de Mars.\nlink 'B' 66 : Abandonner la mission.",
                        "nextvideos" : { "A" : "redirect totalRecall_part3", "_" : "059"} ,

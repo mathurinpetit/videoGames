@@ -1,0 +1,90 @@
+{
+ "globaldelay": "600",
+ "debugstart" : "084",
+ "gamekeys" : {
+                "A" : {"keys" : [65,97] },
+                "B" : { "keys" : [66,98] },
+                "C" : { "keys" : [67,99] },
+                "D" : { "keys" : [68,100]}
+              },
+"scenario":[
+    {
+     "id":"080",
+     "onend": {
+         "text" : "Il faut sauver Mars! Vous avez trouver une bombe!\nlink 'A' 65 : Jeter la bombe dans l'aeration pour expluser de l'air.\nlink 'B' 66 : Je ne sauve pas Mars, ces mutants n'ont qu'a se débrouiller tout seuls.",
+       "nextvideos" : { "A" : "081", "_" : "106"} ,
+       "type" : "multichoicebykeypressed"
+        }
+     },
+     {
+       "id":"081",
+      "onend": {
+        "text" : "\nlink 'A' 65 : Je me baisse pour éviter l'explosion.\nlink 'B' 66 : Je ne crains pas le feu...",
+        "nextvideos" : { "A" : "082", "_" : "105"} ,
+        "type" : "multichoicebykeypressed"
+         }
+      },
+      {
+        "id":"082",
+       "onend": {
+         "text" : "\nlink 'A' 65 : Tan pis je me laisser aspirer dans le feu...\nlink 'B' 66 : J'attrape la corde pour ne pas me faire aspirer!",
+         "nextvideos" : { "B" : "083", "_" : "105"} ,
+         "type" : "multichoicebykeypressed"
+          }
+       },
+       {
+         "id":"083",
+        "onend": {
+          "text" : "\nlink 'A' 65 : Se laisser aspirer dans le feu.\nlink 'B' 66 : Remonter le long de la corde.",
+          "nextvideos" : { "B" : "084", "_" : "105"} ,
+          "type" : "multichoicebykeypressed"
+           }
+        },
+        {
+          "id":"084",
+          "onend": {
+            "text" : "\nFaites des mouvements de haut en bas pour remonter la corde.",
+            "nextvideos" : { "move" : "085", "aftermove" : "086"} ,
+            "type" : "playbymouse"
+          }
+        },
+        {
+          "id":"085"
+        },
+        {
+         "id":"086",
+         "onstart": { "stopvideo" : "085" },
+         "onend": {
+           "text" : "\nlink 'A' 65 : Remonter encore vers l'activateur.\nlink 'B' 66 : B..",
+           "nextvideos" : { "A" : "087", "_" : "107"} ,
+           "type" : "multichoicebykeypressed"
+            }
+         },
+         {
+           "id":"087",
+          "onend": {
+            "text" : "\nlink 'A' 65 : A!\nlink 'B' 66 : B..",
+            "nextvideos" : { "A" : "087", "_" : "086"} ,
+            "type" : "multichoicebykeypressed"
+             }
+          },
+       {
+         "id":"090",
+         "onend": {
+           "text" : "\nBon, marre de discuter de ça, c'est le moment de l'embrasser.\nBougez la souris de haut en bas pour embrasser Melina...",
+           "nextvideos" : { "move" : "065", "aftermove" : "066"} ,
+           "type" : "playbymouse"
+         }
+       },
+       {
+         "id":"065"
+       }
+
+  ],
+  "gameovers":{
+    "idmin" : 105,
+    "idmax" : 107,
+    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'."
+     }
+
+}
