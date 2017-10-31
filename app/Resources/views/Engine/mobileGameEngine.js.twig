@@ -16,11 +16,12 @@ if(anchorValue){
   firstVideoNumber = anchorValue;
 }
 
-video = document.getElementById( 'video_'+ firstVideoNumber );
+document.video = { "val" : document.getElementById( 'video_'+ firstVideoNumber ) };
+var lastVideoPlayed = { "val" : game_json.debugstart };
 
 if(debug){
-  video.onloadedmetadata = function() {
-    video.currentTime = ""+video.duration - 0.1;
+  document.video.onloadedmetadata = function() {
+    document.video.currentTime = ""+document.video.duration - 0.1;
   };
 }
 

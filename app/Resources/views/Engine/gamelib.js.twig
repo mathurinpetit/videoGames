@@ -43,20 +43,6 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
       uv.y = ( uv.y + offsety ) * unity;
   }
 }
-/*
-function changeVideoChoiceWithKeypressed(e,nextLock,keycodeArr,videoGameOver,footerDelay = 0){
-  var codepressed = e.keyCode || e.which;
-  if(nextLock){
-    if(keycodeArr.indexOf(codepressed) !== -1){
-      changeVideo(nextLock,footerDelay);
-      lastVideoPlayed["val"] = nextLock;
-      return nextLock;
-    }else{
-      changeVideo(videoGameOver,footerDelay);
-      return false;
-    }
-  }
-}*/
 
 function stopVideo(numberVideo){
   videoElt = document.getElementById( 'video_'+numberVideo );
@@ -135,11 +121,12 @@ function changeVideoDesktop(numberVideo, footerDelay = 0, pause = false, pauseaf
 
 function changeVideoMobile(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
   videoElt = document.getElementById( 'video_'+numberVideo );
-  videoElt.pause();
-  videoElt.currentTime = 0;
-  videoElt.play();
+  console.log(document.video["val"]);
+  document.video["val"] = videoElt;
+  document.video["val"].pause();
+  document.video["val"].currentTime = 0;
   if(pause){
-    setTimeout(function(){ videoElt.pause(); },pauseafter);
+    setTimeout(function(){ video["val"].pause(); },pauseafter);
   }
   $('video').each(function(){ $(this).hide(); })
   $('#video_'+numberVideo).show();
@@ -150,6 +137,7 @@ function changeVideoMobile(numberVideo, footerDelay = 0, pause = false, pauseaft
   }, footerDelay, function() {
     //$("#footer").hide();
   });
+  console.log(document.video["val"]);
 }
 
 
