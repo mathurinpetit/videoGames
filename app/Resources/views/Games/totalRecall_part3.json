@@ -35,7 +35,7 @@
        {
          "id":"045",
         "onend": {
-          "text" : "link 'A' 65 : Oula, ça m'interresse pas trop bizarre ça!\nlink 'B' 66 : Wahou pas mal ça! Redis moi ça encore !\nlink 'C' 67 : Aller je touche!\nlink 'D' 68 : Je fais une balgue à Marie!",
+          "text" : "link 'A' 65 : Oula, ça m'interresse pas! Trop bizarre ça!\nlink 'B' 66 : Wahou pas mal ça! Redis moi ça encore !\nlink 'C' 67 : Aller je touche!\nlink 'D' 68 : Je fais une balgue à Marie!",
           "nextvideos" : { "A" : "046", "B" : "045", "C" : "058","D" : "047", "_" : "056"} ,
           "type" : "multichoicebykeypressed"
            }
@@ -103,7 +103,7 @@
                  "id":"053",
                  "onend": {
                    "text" : "\nlink 'A' 65 : Casser la gueulle du mutant pas beau!.\nlink 'B' 66 : Mépriser le mutant pas beau et partir avec Melina.",
-                  "nextvideos" : { "B" : "054", "_" : "056"} ,
+                  "nextvideos" : { "B" : "054", "_" : "055"} ,
                   "type" : "multichoicebykeypressed"
                    }
                 },
