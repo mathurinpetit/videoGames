@@ -2,15 +2,15 @@
 
 {% block body %}
 
-{% for i in 0..game.nbVideos %}
-{% set numVideo =  "%03d" | format(i) %}
+{% for numVideo in idsVideos %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
-<video poster="" id="video_{{numVideo}}" preload >
+<video id="video_{{numVideo}}" webkit-playsinline style="display:none" >
    <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
    <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
 </video>
 {% endfor %}
+
    <div id="footer" style="display:none;">
        <div style="position: relative; left: 30%;">
          <span class="text"></span>
