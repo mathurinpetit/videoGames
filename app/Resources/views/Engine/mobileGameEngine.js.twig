@@ -7,11 +7,19 @@ var gamekeys = game_json.gamekeys;
 
 var video = document.getElementById('video_000');
 
-var firstVideoNumber = {{ game.getFirstSequenceNumber() }} ;
-video = document.getElementById( 'video_'+ firstVideoNumber.zeroPad(100) );
+var firstVideoNumber = game_json.debugstart ;
 
-if(game_json.hasOwnProperty("debugstart")){
-  video = document.getElementById( 'video_'+ game_json.debugstart );
+if(anchorValue){
+  debug = true;
+  firstVideoNumber = anchorValue;
+}
+
+video = document.getElementById( 'video_'+ firstVideoNumber );
+
+if(debug){
+  video.onloadedmetadata = function() {
+    video.currentTime = ""+video.duration - 0.1;
+  };
 }
 
 
