@@ -1,7 +1,8 @@
 
 {{ include('Engine/gamelib.js.twig') }}
 
-
+var debug = false;
+var debug_script   = false;
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
 var gamekeys = game_json.gamekeys;
 
