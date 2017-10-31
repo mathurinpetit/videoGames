@@ -5,7 +5,8 @@
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
 var gamekeys = game_json.gamekeys;
 
-var video = document.getElementById('video_000');
+var anchor = window.location.hash;
+var anchorValue = anchor.substring(anchor.indexOf("#")+1);
 
 var firstVideoNumber = game_json.debugstart ;
 
