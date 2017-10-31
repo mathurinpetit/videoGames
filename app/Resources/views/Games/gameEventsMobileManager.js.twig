@@ -24,6 +24,7 @@ function restartOnLastCheckpoint(){
 $(document).ready(function(){
   // Turn on controls on mobile chrome
   video.onclick = function() {
+    console.log("click");
     video.play();
   };
     for (var i = 0; i < game_json.scenario.length; i++) {
