@@ -22,16 +22,11 @@ function restartOnLastCheckpoint(){
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
+  // Turn on controls on mobile chrome
+    video.play();
 
-  $('body').swipe( {
-    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-      //changeVideo(""+mvts[direction],delay);
-      console.log(document.video["val"]);
-      $("#buttonPlay").click();
-      }
-  });
 
-  for (var i = 0; i < game_json.scenario.length; i++) {
+    for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
       if(videoObj.hasOwnProperty("onstart")){
         $('#video_'+videoObj.id).on('play',videoObj,function(event){
@@ -79,14 +74,12 @@ $(document).ready(function(){
               }
               cptSwipe++;
             });
+
             $('body').swipe( {
               swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
                 changeVideo(""+mvts[direction],delay);
-                console.log(document.video["val"]);
-                $("#buttonPlay").click();
                 }
             });
-
         }
 
           // Lorsque l'on appuie pour faire avancer la video
