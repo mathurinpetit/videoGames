@@ -26,6 +26,7 @@ $(document).ready(function(){
   video.onclick = function() {
     video.play();
   };
+
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
       if(videoObj.hasOwnProperty("onstart")){
@@ -53,32 +54,33 @@ $(document).ready(function(){
 
           // Lorsque l'on a un choix multiple
           if(event.data.onend.type == "multichoicebykeypressed"){
-            $(document).bind('keypress', function(e){
-              var code = e.keyCode || e.which;
-              var nextVideos = event.data.onend.nextvideos;
-              var goodKeys = {};
-              var gameOver = "";
-              var found = false;
-              if(debug){ console.log("keypressed "+code); }
-              $.each(nextVideos, function(char, nextvideo) {
-                if(char!=='_'){
-                  $.each(gamekeys, function(gamechar,obj){
-                    if((gamechar === char) && (obj.keys.indexOf(code)!= -1)){
-                      if(debug){ console.log("changeVideo "+nextVideos[char]); }
-                        changeVideo(""+nextVideos[char],delay);
-                        lastVideoPlayed["val"] = ""+nextVideos[char];
-                        unbindAllEvents();
-                        found = true;
-                    }
-                  });
-                }else{
-                  if(!found){
-                    if(debug){ console.log("changeVideo "+nextVideos[char]); }
-                    changeVideo(""+nextVideos[char],delay);
-                    unbindAllEvents();
-                  }
+            var nextVideos = event.data.onend.nextvideos;
+            var mvts = {};
+            var found = false;
+            var cptSwipe = 0;
+            mvts["left"] = nextVideos['_'];
+            mvts["right"] = nextVideos['_'];
+            mvts["up"] = nextVideos['_'];
+            mvts["down"] = nextVideos['_'];
+
+            $.each(nextVideos, function(char, nextvideo) {
+              if(cptSwipe == 0){
+                mvts["left"] = nextvideo;
+              }else if(cptSwipe == 1){
+                mvts["right"] = nextvideo;
+              }else if(cptSwipe == 2){
+                mvts["up"] = nextvideo;
+              }else if(cptSwipe == 3){
+                mvts["down"] = nextvideo;
+              }
+              cptSwipe++;
+            });
+
+            $('body').swipe( {
+              swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                changeVideo(""+mvts[direction],delay);
+                $('body').unbind('swipe');
                 }
-              });
             });
         }
 

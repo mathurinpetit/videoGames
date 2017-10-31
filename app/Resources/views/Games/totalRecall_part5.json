@@ -1,6 +1,6 @@
 {
  "globaldelay": "600",
- "debugstart" : "080",
+ "debugstart" : "098",
  "gamekeys" : {
                 "A" : {"keys" : [65,97] },
                 "B" : { "keys" : [66,98] },
@@ -156,7 +156,7 @@
                      {
                  "id":"098",
                  "onend": {
-                "text" : "\nlink 'A' 65 : Embrasser Melina.\nlink 'B' 66 : Toucher encore la fille au trois seins.\nlink 'C' 67 : Tuer ces vilains mutants.",
+                "text" : "J'ai sauvé Mars, je suis un beau gosse!\nlink 'A' 65 : Embrasser Melina.\nlink 'B' 66 : Toucher encore la fille au trois seins.\nlink 'C' 67 : Tuer ces vilains mutants.",
                 "nextvideos" : { "A" : "099", "B" : "101", "_" : "106"} ,
                   "type" : "multichoicebykeypressed"
                      }
@@ -165,7 +165,7 @@
        {
          "id":"099",
          "onend": {
-           "text" : "Bravo vous avez gagner!\n Bougez la souris pour embrasser Melina...\n autant que vous voulez.",
+           "text" : "Bravo vous avez gagner!\n Bougez la souris pour embrasser Melina...\n autant que vous voulez. <a class='btn btn-xs btn-success' onClick=' window.location = window.hostname; return false;'>Retour</a>",
            "nextvideos" : { "move" : "100", "aftermove" : "099"} ,
            "type" : "playbymouse"
          }

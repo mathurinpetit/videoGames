@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container theme-showcase" role="main">
+<div class="theme-showcase" role="main">
   <div class="row">
     <div class="col-md-12 visible-md visible-lg">
       <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Etant encore expérimental l'ensemble des jeux est prévu pour être jouer sur un ordinateur possèdant un clavier et une souris.<br/>Blabla</p>
@@ -11,14 +11,23 @@
     </div>
   </div>
 {% for game in games %}
-<div class="row">
-  <div class="col-xs-12">
-    <img src="{{ asset('bundles/videogame/'~game.shortName~'_background.png') }}">
-    <a href="{{ path('game', { idName : game.shortName }) }}">
-      {{ game.name }}
-    </a>
+{% if game.visible and game.active %}
+  <div class="row">
+    <div class="col-xs-9 padding-0" >
+      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'.gif') }}" class="img-responsive" style="width:100%;">
+    </div>
+    <div class="col-xs-3 padding-0" >
+      <a href="{{ path('game', { idName : game.shortName }) }}">
+        Jouer {{ game.name }}
+      </a>
+    </div>
   </div>
-</div>
+ {% endif %}
 {% endfor %}
 </div>
+{% endblock %}
+
+
+{% block stylesheetsplus %}
+<link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/index.css') }}" />
 {% endblock %}

@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% block jsgame %}
+  <script type="text/javascript" src="/js/lib/jquery.touchSwipe.min.js"></script>
   </script type="text/javascript">
    <script>
    	{{ include('Engine/mobileGameEngine.js.twig', { 'game': game }) }}
