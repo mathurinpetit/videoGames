@@ -96,53 +96,6 @@ $(document).ready(function(){
             });
         }
 
-          // Lorsque l'on appuie pour faire avancer la video
-          if(event.data.onend.type == "playbykeyup"){
-            $(document).bind('keypress', function(e){
-              var code = e.keyCode || e.which;
-              var nextVideos = event.data.onend.nextvideos;
-              var goodKeys = [];
-              var goodChar = "";
-              var gameOver = "";
-              $.each(nextVideos, function(char, nextvideo) {
-                if(char!=='_'){
-                  $.each(gamekeys, function(gamechar,obj){
-                    if(gamechar === char){
-                      goodKeys = obj.keys;
-                      goodChar = ""+char;
-                    }
-                  });
-                }else{
-                  gameOver = nextvideo;
-                }
-              });
-              if(goodKeys.indexOf(code) !== -1){
-                  if(event.data.onend.hasOwnProperty("textduring")){
-                    text = event.data.onend.textduring;
-                  }
-                  loadText(text,'infini');
-                  changeVideo(""+nextVideos[goodChar],'infini',true);
-                  unbindAllKeypress();
-                  $(document).bind('keyup', function(e){
-                     var code = e.keyCode || e.which;
-                      if(goodKeys.indexOf(code)!== -1){
-                        videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
-                        videoElt.play();
-                        setTimeout(function(){
-                          videoElt.pause();
-                         }, delay);
-                      }else{
-                        changeVideo(""+gameOver,delay);
-                        unbindAllEvents();
-                      }
-                  });
-                }else{
-                  changeVideo(""+gameOver,delay);
-                  unbindAllEvents();
-              }
-            });
-          }
-
 
           // Lorsque l'on appuie pour faire avancer la video en continue
           if(event.data.onend.type == "playbykey"){
@@ -250,7 +203,7 @@ $(document).ready(function(){
                       $(document).bind('keypress', function(e){
                         var code = e.keyCode || e.which;
                         var videoId = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-                        
+
                         if(event.data.onend.hasOwnProperty("ordermulti") && event.data.onend.ordermulti){
                           if(mappedKeyboard[code] !== undefined){
                             videoId = mappedKeyboard[code];

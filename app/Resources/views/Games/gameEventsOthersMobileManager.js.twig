@@ -1,0 +1,140 @@
+
+var compteur = 0;
+var maxCpt = 16;
+var minVideo,maxVideo;
+var mobile = true;
+var lastVideoPlayed = { "val" : "000"};
+var activeEvent = { "val" : false};
+
+function unbindAllKeypress(){
+    $(document).unbind('keypress');
+}
+
+function unbindAllEvents(){
+    $(document).unbind('keydown');
+    $(document).unbind('keyup');
+    $(document).unbind('keypress');
+}
+
+function restartOnLastCheckpoint(){
+  changeVideo(lastVideoPlayed["val"]);
+}
+
+
+
+// Gestion de l'assigmenent des vidéo clefs par evennement
+$(document).ready(function(){
+
+    video.play();
+
+    for (var i = 0; i < game_json.scenario.length; i++) {
+      var videoObj = game_json.scenario[i];
+      if(videoObj.hasOwnProperty("onstart")){
+        $('#video_'+videoObj.id).on('play',videoObj,function(event){
+          stopVideo(event.data.onstart.stopvideo);
+        });
+      }
+      if(videoObj.hasOwnProperty("onend")){
+        $('#video_'+videoObj.id).on('ended',videoObj,function(event){
+          unbindAllEvents();
+          var text = "";
+          if(event.data.onend.hasOwnProperty("textmobile")){
+            text = event.data.onend.textmobile;
+          }
+
+          var delay = "";
+          if(game_json.hasOwnProperty("globaldelay")){
+            delay = game_json.globaldelay;
+          }
+          if(event.data.onend.hasOwnProperty("delay")){
+            delay = event.data.onend.delay;
+          }
+          loadText(text,delay);
+          if(debug){ console.log(event); }
+
+          // Lorsque l'on a un choix multiple
+          if(event.data.onend.type == "multichoicebykeypressed"){
+            var nextVideos = event.data.onend.nextvideosmobile;
+            var mvts = {};
+            mvts["left"] = nextVideos['left'];
+            mvts["right"] = nextVideos['right'];
+            if(nextVideos.hasOwnProperty('up')){
+              mvts["up"] = nextVideos['up'];
+            }
+            if(nextVideos.hasOwnProperty('down')){
+              mvts["down"] = nextVideos['down'];
+            }
+            activeEvent['val'] = true;
+            $('body').swipe( {
+              swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                  if(activeEvent['val']){
+                    changeVideo(""+mvts[direction],delay);
+                  }
+                  activeEvent['val'] = false;
+                }
+              });
+        }
+
+        if(event.data.onend.type == "playbykey" || event.data.onend.type == "playbymouse"){
+          var nextVideo = event.data.onend.videomobiletoplay;
+          videoElt = document.getElementById( 'video_'+nextVideo );
+          activeEvent['val'] = true;
+          firstTap = true;
+          $('body').swipe( {
+            tap:function(event, direction, distance, duration, fingerCount, fingerData) {
+                if(activeEvent['val'] && firstTap){
+                  changeVideo(""+nextVideo,delay,'infini',true,delay);
+                  firstTap = false;
+                }
+                if(activeEvent['val']){
+                  videoElt.pause();
+                }
+              },
+            longtap:function(event, direction, distance, duration, fingerCount, fingerData) {
+                  if(activeEvent['val'] && firstTap){
+                    changeVideo(""+nextVideo,delay,'infini',true,delay);
+                    firstTap = false;
+                  }
+                  if(activeEvent['val']){
+                    videoElt.pause();
+                  }
+                },
+            hold:function(event, direction, distance, duration, fingerCount, fingerData) {
+                    if(activeEvent['val'] && firstTap){
+                      changeVideo(""+nextVideo,delay,'infini',true,delay);
+                      firstTap = false;
+                    }
+                    if(activeEvent['val']){
+                      videoElt.play();
+                    }
+                  }
+            });
+
+        }
+
+                    // playbymouse
+                    if(event.data.onend.type == "multibykeypressed"){
+                      compteur = 0;
+                      var minVideo=event.data.onend.minVideo;
+                      var maxVideo=event.data.onend.maxVideo;
+                      mappedKeyboard = createMappedKeyboard(minVideo,maxVideo,false);
+                      $(document).bind('keypress', function(e){
+                        var code = e.keyCode || e.which;
+                        var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+                        changeVideo(randkey.zeroPad(100),'infini');
+                        compteur++;
+                        if(maxCpt && (compteur > maxCpt)){
+                          lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;
+                          changeVideo(""+event.data.onend.nextvideo,'infini');
+                          unbindAllKeypress();
+                          loadText(event.data.onend.textafter,delay);
+
+                        }
+                        $('.reste').text(maxCpt-(compteur)+1);
+                      });
+                    }
+
+        });
+      }
+    }
+  });

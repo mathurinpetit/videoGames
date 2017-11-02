@@ -1,6 +1,5 @@
 
 {{ include('Engine/gamelib.js.twig') }}
-
 var debug = false;
 var debug_script   = false;
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
@@ -27,5 +26,6 @@ if(debug){
 
 
 
+ // //include('Games/gameEventsMobileIosAndroidManager.js.twig', { 'game': game })
 
- {{ include('Games/gameEventsMobileManager.js.twig', { 'game': game }) }}
+ {{ include('Games/gameEventsOthersMobileManager.js.twig', { 'game': game }) }}
