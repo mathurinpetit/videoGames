@@ -86,8 +86,10 @@
              "id":"007",
             "onend": {
               "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
+              "textmobile" : "\nAppuyer pour sortir l'emetteur du nez",
               "nextvideos" : { "B" : "005", "_" : "058"} ,
               "delay" : 500,
+              "videomobiletoplay" :  "005" ,
               "textduring" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
               "type" : "playbykey"
                }
@@ -95,7 +97,7 @@
             {
               "id":"008",
              "onend": {
-               "text" : "De quel fumier tu parles?\nlink 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
+               "text" : "De quoi tu parles?\nlink 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
                "nextvideos" : { "A" : "009", "C" : "redirect totalRecall_part2", "_" : "058"} ,
                "type" : "multichoicebykeypressed"
                 }
