@@ -42,7 +42,7 @@ $(document).ready(function(){
                 activeEvent['val'] = false;
               }
           });
-        }
+        });
       }
     }
 
@@ -60,7 +60,7 @@ $(document).ready(function(){
           if(event.data.onend.hasOwnProperty("textmobile")){
             text = event.data.onend.textmobile;
           }
-          
+
           var delay = "";
           if(game_json.hasOwnProperty("globaldelay")){
             delay = game_json.globaldelay;
