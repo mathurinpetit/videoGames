@@ -67,7 +67,7 @@
             "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
             "textmobile" : "\nAppuyer pour sortir l'emetteur du nez",
             "nextvideos" : { "B" : "006", "_" : "057"} ,
-            "nextvideosmobile" : { "left" : "006", "right" : "006"} ,
+            "nextvideomobile" : "006",
             "type" : "multichoicebykeypressed"
              }
           },
@@ -98,7 +98,9 @@
               "id":"008",
              "onend": {
                "text" : "De quoi tu parles?\nlink 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
+               "textmobile" : "De quoi tu parles?\nDroite : J'ai pas bien compris ce que je dois faire en fait.\nGauche : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nBas : Accepter la mission et aller sur Mars.",
                "nextvideos" : { "A" : "009", "C" : "redirect totalRecall_part2", "_" : "058"} ,
+               "nextvideosmobile" : { "right" : "009", "down" : "redirect totalRecall_part2", "left" : "058"} ,
                "type" : "multichoicebykeypressed"
                 }
              },
@@ -106,7 +108,9 @@
               "id":"009",
               "onend": {
                 "text" : "\nlink 'A' 65 : Réexplique moi encore...\nlink 'B' 66 : Se casser sur Mars.",
+                "textmobile" : "\nDroite : Réexplique moi encore...\nGauche' 66 : Se casser sur Mars.",
                 "nextvideos" : { "A" : "009", "B" : "redirect totalRecall_part2", "_" : "056"},
+                "nextvideosmobile" : { "right" : "009", "left" : "redirect totalRecall_part2"} ,
                 "type" : "multichoicebykeypressed"
                  }
               }
@@ -114,7 +118,8 @@
   "gameovers":{
     "idmin" : 56,
     "idmax" : 58,
-    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'."
+    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'.",
+    "textmobile" : "\nVous avez perdu !Pour rejouer toucher l'écran."
      }
 
 }

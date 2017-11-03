@@ -27,6 +27,25 @@ $(document).ready(function(){
 
     video.play();
 
+    if(game_json.hasOwnProperty("gameovers")){
+      var gameOverMin = game_json.gameovers.idmin;
+      var gameOverMax = game_json.gameovers.idmax;
+      var gameOverText = game_json.gameovers.textmobile;
+      for (var i = gameOverMin; i <= gameOverMax; i++) {
+        var videoGameOverId =  i.zeroPad(100);
+        $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
+          $('body').swipe( {
+              tap:function(event, target) {
+                if(activeEvent['val']){
+                  changeVideo(lastVideoPlayed["val"],delay);
+                }
+                activeEvent['val'] = false;
+              }
+          });
+        }
+      }
+    }
+
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
       if(videoObj.hasOwnProperty("onstart")){
@@ -41,7 +60,7 @@ $(document).ready(function(){
           if(event.data.onend.hasOwnProperty("textmobile")){
             text = event.data.onend.textmobile;
           }
-
+          
           var delay = "";
           if(game_json.hasOwnProperty("globaldelay")){
             delay = game_json.globaldelay;
