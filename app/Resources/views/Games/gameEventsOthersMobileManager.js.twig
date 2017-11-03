@@ -34,10 +34,12 @@ $(document).ready(function(){
       for (var i = gameOverMin; i <= gameOverMax; i++) {
         var videoGameOverId =  i.zeroPad(100);
         $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
+          activeEvent['val'] = true;
+          loadText(gameOverText,500);
           $('body').swipe( {
               tap:function(event, target) {
                 if(activeEvent['val']){
-                  changeVideo(lastVideoPlayed["val"],delay);
+                  changeVideo(lastVideoPlayed["val"],500);
                 }
                 activeEvent['val'] = false;
               }
