@@ -12,7 +12,9 @@
                 "id":"010",
                 "onend": {
                   "text" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars...",
+                  "textmobile" : "\nTap Appuyer pour faire atterrir le vaisseau sur Mars...",
                   "nextvideos" : { "A" : "011", "_" : "059"} ,
+                  "videomobiletoplay" :  "011" ,
                   "delay" : 500,
                   "type" : "playbykey",
                   "textduring" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars..."
@@ -22,7 +24,9 @@
                  "id":"011",
                  "onend": {
                   "text" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars...",
+                  "textmobile" : "\nTap Appuyer pour faire atterrir le vaisseau sur Mars...",
                   "nextvideos" : { "A" : "012", "_" : "059"} ,
+                  "nextvideomobile" : "012",
                   "type" : "multichoicebykeypressed"
                    }
                 },
@@ -31,7 +35,9 @@
                  "onstart": { "stopvideo" : "011" },
                  "onend": {
                   "text" : "Vous êtes arrivé sur Mars, vous allez passer la douane.\nlink 'A' 65 : Je m'en fou je coupe la file pour aller au concours de Mister Univers.\nlink 'B' 66 : Je suis raisonnable et j'attend mon tour pour montrer mon passeport.\nlink 'C' 67 : Je crois que finalement Mars c'est pas mon truc...",
+                  "textmobile" : "Je grille et je vais à Mr Univers Droite\nGauche J'attend mon tour\nBas Mars c'est pas mon truc...",
                   "nextvideos" : { "A" : "013", "B" : "014", "_" : "059"} ,
+                  "nextvideosmobile" : { "right" : "013", "left" : "014", "down" : "059"} ,
                   "type" : "multichoicebykeypressed"
                    }
                 },
@@ -39,7 +45,9 @@
                   "id":"013",
                   "onend": {
                    "text" : "\nlink 'A' 65 : Revenir sur Mars",
-                   "nextvideos" : { "A" : "012", "_" : "060"} ,
+                   "textmobile" : "\nSe faire arrêter Droite\nGauche Revenir sur Mars",
+                   "nextvideos" : { "A" : "012", "_" : "060"},
+                   "nextvideosmobile" : { "right" : "060", "left" : "012"} ,
                    "type" : "multichoicebykeypressed"
                     }
                  },
@@ -47,7 +55,9 @@
                    "id":"014",
                    "onend": {
                      "text" : "\nFaites des mouvements de gauche à droite avec la souris pour montrer votre plus beau sourir.",
+                     "textmobile" : "\nTap Appuyer pour faire un beau sourir",
                      "nextvideos" : { "move" : "015", "aftermove" : "016"} ,
+                     "videomobiletoplay" :  "015",
                      "type" : "playbymouse"
                    }
                  },
