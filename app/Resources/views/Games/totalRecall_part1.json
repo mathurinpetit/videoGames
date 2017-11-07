@@ -12,7 +12,7 @@
      "id":"000",
      "onend": {
        "text" : "\nSi vous voulez en savoir plus appuyez sur link 'A' 65\nSinon appuyez sur link 'B' 66",
-       "textmobile" : "\nGlisser à droite pour en savoir plus\nSinon Glissez à gauche",
+       "textmobile" : "\nPour en savoir plus glisser vers Droite\nGauche Cela me paraît sans intérêts...",
        "nextvideos" : { "A" : "001", "_" : "056"} ,
        "nextvideosmobile" : { "right" : "001", "left" : "056"} ,
        "type" : "multichoicebykeypressed"
@@ -22,7 +22,7 @@
        "id":"001",
       "onend": {
         "text" : "\nlink 'A' 65 : Cela ne m'interresse pas\nlink 'B' 66 : Je veux en savoir plus",
-        "textmobile" : "\nDroite : Cela ne m'interresse pas\nGauche : Je veux en savoir plus",
+        "textmobile" : "\nCela ne m'interresse pas Droite\nGauche Je veux en savoir plus",
         "nextvideos" : { "B" : "002", "_" : "057"} ,
         "nextvideosmobile" : { "left" : "002", "right" : "057"} ,
         "type" : "multichoicebykeypressed"
@@ -32,7 +32,7 @@
         "id":"002",
        "onend": {
          "text" : "\nlink 'A' 65 : Qu'est ce que je dois faire ?\nlink 'B' 66 : Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas",
-         "textmobile" : "\nDroite : Qu'est ce que je dois faire ?\nGauche : Je ne veux pas 'baiser la gueulle' à Cohagen",
+         "textmobile" : "\nQu'est ce que je dois faire ? Droite\nGauche Je ne veux pas 'baiser la gueulle' à Cohagen",
          "nextvideos" : { "A" : "003", "_" : "058"} ,
          "nextvideosmobile" : { "right" : "003", "left" : "058"} ,
          "type" : "multichoicebykeypressed"
@@ -42,7 +42,7 @@
          "id":"003",
         "onend": {
           "text" : "\nlink 'A' 65 : Je suis prêt\nlink 'B' 66 : Non ça fait peur ce truc!",
-          "textmobile" : "\nDroite : Non ça fait peur ce truc\nGauche : Je suis prêt",
+          "textmobile" : "\nNon ça fait peur ce truc Droite\nOk, je suis prêt Gauche",
           "nextvideos" : { "A" : "004", "_" : "056"} ,
           "nextvideosmobile" : { "left" : "004", "right" : "056"} ,
           "type" : "multichoicebykeypressed"
@@ -53,7 +53,7 @@
          "id":"004",
          "onend": {
            "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc de son nez...",
-           "textmobile" : "\nAppuyer pour sortir l'emetteur du nez",
+           "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
            "nextvideos" : { "B" : "005", "_" : "058"} ,
            "videomobiletoplay" :  "005" ,
            "delay" : 500,
@@ -65,7 +65,7 @@
           "id":"005",
           "onend": {
             "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-            "textmobile" : "\nAppuyer pour sortir l'emetteur du nez",
+            "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
             "nextvideos" : { "B" : "006", "_" : "057"} ,
             "nextvideomobile" : "006",
             "type" : "multichoicebykeypressed"
@@ -76,9 +76,9 @@
             "onstart": { "stopvideo" : "005" },
             "onend": {
              "text" : "C'est quoi ça?\nlink 'A' 65 : Je vais me remettre l'emmetteur dans le nez!\nlink 'B' 66 : C'est quoi ce bordel? Je ne veux pas le savoir je m'en vais.\nlink 'C' 67 : Je dois faire quoi Maintenant ?",
-             "textmobile" : "C'est quoi ça?\nDroite : Je vais me remettre l'emmetteur dans le nez!\nGauche : C'est quoi ce bordel? Je ne veux pas le savoir je m'en vais.\nHaut : Je dois faire quoi Maintenant ?",
+             "textmobile" : "Haut Je dois faire quoi Maintenant ?\nJe vais me remettre l'emmetteur dans le nez ! Droite \nGauche Je ne veux pas le savoir je m'en vais.",
              "nextvideos" : { "A" : "007", "C" : "008", "_" : "056"} ,
-             "nextvideosmobile" : { "left" : "007", "right" : "056", "up" : "008"} ,
+             "nextvideosmobile" : { "left" : "056", "right" : "007", "up" : "008"} ,
              "type" : "multichoicebykeypressed"
               }
            },
@@ -86,7 +86,7 @@
              "id":"007",
             "onend": {
               "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
-              "textmobile" : "\nAppuyer pour sortir l'emetteur du nez",
+              "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
               "nextvideos" : { "B" : "005", "_" : "058"} ,
               "delay" : 500,
               "videomobiletoplay" :  "005" ,
@@ -98,7 +98,7 @@
               "id":"008",
              "onend": {
                "text" : "De quoi tu parles?\nlink 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
-               "textmobile" : "De quoi tu parles?\nDroite : J'ai pas bien compris ce que je dois faire en fait.\nGauche : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nBas : Accepter la mission et aller sur Mars.",
+               "textmobile" : "J'ai pas bien compris ce que je dois faire en fait Droite\nGauche Je ne mettrai jamais les pieds sur Mars!\nBas Accepter la mission et aller sur Mars",
                "nextvideos" : { "A" : "009", "C" : "redirect totalRecall_part2", "_" : "058"} ,
                "nextvideosmobile" : { "right" : "009", "down" : "redirect totalRecall_part2", "left" : "058"} ,
                "type" : "multichoicebykeypressed"
@@ -108,7 +108,7 @@
               "id":"009",
               "onend": {
                 "text" : "\nlink 'A' 65 : Réexplique moi encore...\nlink 'B' 66 : Se casser sur Mars.",
-                "textmobile" : "\nDroite : Réexplique moi encore...\nGauche' 66 : Se casser sur Mars.",
+                "textmobile" : "\nRéexplique moi encore... Droite\nGauche Se casser sur Mars.",
                 "nextvideos" : { "A" : "009", "B" : "redirect totalRecall_part2", "_" : "056"},
                 "nextvideosmobile" : { "right" : "009", "left" : "redirect totalRecall_part2"} ,
                 "type" : "multichoicebykeypressed"
@@ -119,7 +119,7 @@
     "idmin" : 56,
     "idmax" : 58,
     "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'.",
-    "textmobile" : "\nVous avez perdu !Pour rejouer toucher l'écran."
+    "textmobile" : "\nVous avez perdu !\nTap Pour rejouer toucher l'écran."
      }
 
 }

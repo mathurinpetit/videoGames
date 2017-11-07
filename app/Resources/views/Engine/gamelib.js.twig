@@ -182,25 +182,34 @@ function createMappedKeyboard(firstVideo,lastVideo,random = false){
 }
 
 
-function loadText(textStr,footerDelay, is3D = false){
+function loadText(textStr,footerDelay, mobile = false, is3D = false){
   if(is3D){
-    loadText3D(textStr);
+    loadText3D(textStr,mobile);
   }else{
-    loadTextFooter(textStr,footerDelay);
+    loadTextFooter(textStr,footerDelay,mobile);
   }
 }
 
-function loadTextFooter(textStr,footerDelay){
+function loadTextFooter(textStr,footerDelay,ismobile = false){
   var text = textStr.replaceAll("\n", "<br/>");
-  var pattern = /link ('[A-Z]+') ([0-9]+)?/ig;
-  var matches = text.match(pattern);
-  if(matches){
-    for (var i = 0; i < matches.length; i++) {
-      var match = matches[i];
-      var fct = match.replace(/link ('[A-Z]+') ([0-9]+)?/ig,"renderLink($1,$2)");
-      var link = eval(fct);
-      text = text.replaceAll(match,link);
+
+    var pattern = /link ('[A-Z]+') ([0-9]+)?/ig;
+    var matches = text.match(pattern);
+    if(matches){
+      for (var i = 0; i < matches.length; i++) {
+        var match = matches[i];
+        var fct = match.replace(/link ('[A-Z]+') ([0-9]+)?/ig,"renderLink($1,$2)");
+        var link = eval(fct);
+        text = text.replaceAll(match,link);
       }
+    }
+  if(ismobile){
+    text = text.replaceAll('Gauche',"&nbsp;<span class='glyphicon glyphicon-arrow-left' ></span>&nbsp;");
+    text = text.replaceAll('Droite',"&nbsp;<span class='glyphicon glyphicon-arrow-right' ></span>&nbsp;");
+    text = text.replaceAll('Haut',"&nbsp;<span class='glyphicon glyphicon-arrow-up' ></span>&nbsp;");
+    text = text.replaceAll('Bas',"&nbsp;<span class='glyphicon glyphicon-arrow-down' ></span>&nbsp;");
+    text = text.replaceAll('Tap',"&nbsp;<span class='glyphicon glyphicon-hand-down' ></span>&nbsp;");
+
   }
 
   $("#footer").show();

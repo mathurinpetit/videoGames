@@ -155,10 +155,8 @@ $(document).ready(function(){
                     // playbymouse
                     if(event.data.onend.type == "playbymouse"){
                       var nextVideos = event.data.onend.nextvideos;
-                      var mouseMoved = false;
                       var mouseFirstMoved = false;
                       videoElt = document.getElementById( 'video_'+nextVideos.move );
-                      var lastTimeMouseMoved = new Date().getTime();
                       var timeout;
                       var isFinished = false;
                       $(document).bind('mousemove', function(){

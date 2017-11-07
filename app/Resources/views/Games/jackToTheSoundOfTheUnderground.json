@@ -1,0 +1,146 @@
+{
+ "globaldelay": "600",
+ "debugstart" : "000",
+ "gamekeys" : {},
+"scenario":[
+  {
+    "id":"000",
+    "onend": {
+     "text" : "\nAppuyez sur n'importe quelle touche",
+     "nextvideos" : { "_" : "001"} ,
+     "type" : "multichoicebykeypressed"
+      }
+   },
+    {
+      "id":"001",
+      "onend": {
+       "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour jouer.\nPlus que <span class='reste'>21</span> fois.",
+       "minVideo" : 2,
+       "maxVideo" : 18,
+       "nextvideo" :  "019" ,
+       "textafter" : "",
+       "ordermulti" : true,
+       "nbRepeat" : 20,
+       "type" : "multibykeypressed"
+        }
+     },
+     { "id" : "002" },
+     { "id" : "003" },
+     { "id" : "004" },
+     { "id" : "005" },
+     { "id" : "006" },
+     { "id" : "007" },
+     { "id" : "008" },
+     { "id" : "009" },
+     { "id" : "010" },
+     { "id" : "011" },
+     { "id" : "012" },
+     { "id" : "013" },
+     { "id" : "014" },
+     { "id" : "015" },
+     { "id" : "016" },
+     { "id" : "017" },
+     { "id" : "018" },
+     {
+       "id":"019",
+       "onend": {
+         "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour jouer.\nPlus que <span class='reste'>21</span> fois.",
+         "minVideo" : 20,
+        "maxVideo" : 30,
+        "nextvideo" :  "031" ,
+        "textafter" : "",
+        "ordermulti" : true,
+        "type" : "multibykeypressed"
+         }
+       },
+      { "id" : "020" },
+      { "id" : "021" },
+      { "id" : "022" },
+      { "id" : "023" },
+      { "id" : "024" },
+      { "id" : "025" },
+      { "id" : "026" },
+      { "id" : "027" },
+      { "id" : "028" },
+      { "id" : "029" },
+      { "id" : "030" },
+      {
+        "id":"031",
+        "onend": {
+         "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour jouer.\nPlus que <span class='reste'>21</span> fois.",
+         "minVideo" : 32,
+         "maxVideo" : 44,
+         "nbRepeat" : 20,
+         "nextvideo" :  "045" ,
+         "textafter" : "",
+         "ordermulti" : true,
+         "type" : "multibykeypressed"
+          }
+       },
+       { "id" : "031" },
+       { "id" : "032" },
+       { "id" : "033" },
+       { "id" : "034" },
+       { "id" : "035" },
+       { "id" : "036" },
+       { "id" : "037" },
+       { "id" : "038" },
+       { "id" : "039" },
+       { "id" : "040" },
+       { "id" : "041" },
+       { "id" : "042" },
+       { "id" : "043" },
+       { "id" : "044" },
+       {
+         "id":"045",
+         "onend": {
+          "text" : "\nTapes encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+          "minVideo" : 46,
+          "maxVideo" : 59,
+          "nextvideo" :  "060" ,
+          "textafter" : "",
+          "ordermulti" : true,
+          "type" : "multibykeypressed"
+           }
+        },
+        { "id" : "046" },
+        { "id" : "047" },
+        { "id" : "048" },
+        { "id" : "049" },
+        { "id" : "050" },
+        { "id" : "051" },
+        { "id" : "052" },
+        { "id" : "053" },
+        { "id" : "054" },
+        { "id" : "055" },
+        { "id" : "056" },
+        { "id" : "057" },
+        { "id" : "058" },
+        { "id" : "059" },
+        {
+          "id":"060",
+          "onend": {
+           "text" : "\nDebout! Lève toi et chantes !\nYoupi! chantons autant que l'on veut.",
+           "minVideo" : 61,
+           "maxVideo" : 74,
+           "textafter" : "",
+           "ordermulti" : true,
+           "type" : "multibykeypressed"
+            }
+         },
+         { "id" : "061" },
+         { "id" : "062" },
+         { "id" : "063" },
+         { "id" : "064" },
+         { "id" : "065" },
+         { "id" : "066" },
+         { "id" : "067" },
+         { "id" : "068" },
+         { "id" : "069" },
+         { "id" : "070" },
+         { "id" : "071" },
+         { "id" : "072" },
+         { "id" : "073" },
+         { "id" : "074" }
+    ]
+}

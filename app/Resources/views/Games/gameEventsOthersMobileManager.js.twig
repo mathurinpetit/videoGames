@@ -35,7 +35,7 @@ $(document).ready(function(){
         var videoGameOverId =  i.zeroPad(100);
         $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
           activeEvent['val'] = true;
-          loadText(gameOverText,500);
+          loadText(gameOverText,500,mobile);
           $('body').swipe( {
               tap:function(event, target) {
                 if(activeEvent['val']){
@@ -57,6 +57,7 @@ $(document).ready(function(){
       }
       if(videoObj.hasOwnProperty("onend")){
         $('#video_'+videoObj.id).on('ended',videoObj,function(event){
+          lastVideoPlayed["val"] = ""+videoObj.id;
           unbindAllEvents();
           var text = "";
           if(event.data.onend.hasOwnProperty("textmobile")){
@@ -70,71 +71,84 @@ $(document).ready(function(){
           if(event.data.onend.hasOwnProperty("delay")){
             delay = event.data.onend.delay;
           }
-          loadText(text,delay);
+          loadText(text,delay,mobile);
           if(debug){ console.log(event); }
 
           // Lorsque l'on a un choix multiple
           if(event.data.onend.type == "multichoicebykeypressed"){
-            var nextVideos = event.data.onend.nextvideosmobile;
             var mvts = {};
-            mvts["left"] = nextVideos['left'];
-            mvts["right"] = nextVideos['right'];
-            if(nextVideos.hasOwnProperty('up')){
-              mvts["up"] = nextVideos['up'];
-            }
-            if(nextVideos.hasOwnProperty('down')){
-              mvts["down"] = nextVideos['down'];
+            var nextvideomobile = null;
+            if(event.data.onend.hasOwnProperty("nextvideomobile")){
+              nextvideomobile = event.data.onend.nextvideomobile;
             }
             activeEvent['val'] = true;
-            $('body').swipe( {
-              swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-                  if(activeEvent['val']){
-                    changeVideo(""+mvts[direction],delay);
-                  }
-                  activeEvent['val'] = false;
-                }
-              });
-        }
 
-        if(event.data.onend.type == "playbykey" || event.data.onend.type == "playbymouse"){
-          var nextVideo = event.data.onend.videomobiletoplay;
-          videoElt = document.getElementById( 'video_'+nextVideo );
-          activeEvent['val'] = true;
-          firstTap = true;
-          $('body').swipe( {
-            tap:function(event, direction, distance, duration, fingerCount, fingerData) {
-                if(activeEvent['val'] && firstTap){
-                  changeVideo(""+nextVideo,delay,'infini',true,delay);
-                  firstTap = false;
-                }
-                if(activeEvent['val']){
-                  videoElt.pause();
-                }
-              },
-            longtap:function(event, direction, distance, duration, fingerCount, fingerData) {
-                  if(activeEvent['val'] && firstTap){
-                    changeVideo(""+nextVideo,delay,'infini',true,delay);
-                    firstTap = false;
-                  }
-                  if(activeEvent['val']){
-                    videoElt.pause();
+            if(event.data.onend.hasOwnProperty("nextvideosmobile")){
+              var nextVideos = event.data.onend.nextvideosmobile;
+              mvts["left"] = nextVideos['left'];
+              mvts["right"] = nextVideos['right'];
+              if(nextVideos.hasOwnProperty('up')){
+                mvts["up"] = nextVideos['up'];
+              }
+              if(nextVideos.hasOwnProperty('down')){
+                mvts["down"] = nextVideos['down'];
+              }
+            }
+            $('body').swipe( {
+              swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+                 if(activeEvent['val']){
+                    if(!nextvideomobile){
+                      changeVideo(""+mvts[direction],delay);
+                      activeEvent['val'] = false;
+                    }
                   }
                 },
-            hold:function(event, direction, distance, duration, fingerCount, fingerData) {
-                    if(activeEvent['val'] && firstTap){
-                      changeVideo(""+nextVideo,delay,'infini',true,delay);
-                      firstTap = false;
-                    }
-                    if(activeEvent['val']){
-                      videoElt.play();
+                tap: function(event, target) {
+                   if(activeEvent['val']){
+                     if(nextvideomobile){
+                        changeVideo(nextvideomobile,delay);
+                        activeEvent['val'] = false;
+                      }
                     }
                   }
-            });
+              });
+            }
 
-        }
+          // playbykey or playbymouse
+          if(event.data.onend.type == "playbykey" || event.data.onend.type == "playbymouse"){
+            var tappedFirstTime = false;
+            var timeout;
+            var isFinished = false;
+            var idVideomobiletoplay = event.data.onend.videomobiletoplay;
+            videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
+            activeEvent['val'] = true;
+            firstTap = true;
+            $('body').swipe( {
+              tap:function(event, target) {
+                  clearTimeout(timeout);
+                  if(activeEvent['val'] && !tappedFirstTime){
+                      changeVideo(""+idVideomobiletoplay,'infini',true,1000);
+                      tappedFirstTime = true;
+                    }else if(activeEvent['val']){
+                        if(videoElt.paused){
+                          videoElt.play();
+                          timeout = setTimeout(function(){
+                            if(!isFinished){
+                              videoElt.pause();
+                            }
+                          }, 200);
+                        }
+                    }
+                  }
+              });
+              $(videoElt).on('ended', function(){
+                lastVideoPlayed["val"] = ""+idVideomobiletoplay;
+                isFinished = true;
+               });
+          }
 
-                    // playbymouse
-                    if(event.data.onend.type == "multibykeypressed"){
+          // multibykeypressed
+          if(event.data.onend.type == "multibykeypressed"){
                       compteur = 0;
                       var minVideo=event.data.onend.minVideo;
                       var maxVideo=event.data.onend.maxVideo;
@@ -148,7 +162,7 @@ $(document).ready(function(){
                           lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;
                           changeVideo(""+event.data.onend.nextvideo,'infini');
                           unbindAllKeypress();
-                          loadText(event.data.onend.textafter,delay);
+                          loadText(event.data.onend.textafter,delay,mobile);
 
                         }
                         $('.reste').text(maxCpt-(compteur)+1);
