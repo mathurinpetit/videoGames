@@ -98,8 +98,14 @@ $(document).ready(function(){
               swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
                  if(activeEvent['val']){
                     if(!nextvideomobile){
-                      changeVideo(""+mvts[direction],delay);
-                      activeEvent['val'] = false;
+                      var videoId = mvts[direction];
+                      if(videoId.startsWith("redirect")){
+                        window.location = window.location.origin +'/game/m/'+ videoId.replace("redirect ","");
+                        return false;
+                      }else{
+                        changeVideo(""+mvts[direction],delay);
+                        activeEvent['val'] = false;
+                      }
                     }
                   }
                 },

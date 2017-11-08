@@ -193,6 +193,7 @@ function loadText(textStr,footerDelay, mobile = false, is3D = false){
 function loadTextFooter(textStr,footerDelay,ismobile = false){
   var text = textStr.replaceAll("\n", "<br/>");
 
+if(!ismobile){
     var pattern = /link ('[A-Z]+') ([0-9]+)?/ig;
     var matches = text.match(pattern);
     if(matches){
@@ -203,7 +204,7 @@ function loadTextFooter(textStr,footerDelay,ismobile = false){
         text = text.replaceAll(match,link);
       }
     }
-  if(ismobile){
+  }else{
     text = text.replaceAll('Gauche',"&nbsp;<span class='glyphicon glyphicon-arrow-left' ></span>&nbsp;");
     text = text.replaceAll('Droite',"&nbsp;<span class='glyphicon glyphicon-arrow-right' ></span>&nbsp;");
     text = text.replaceAll('Haut',"&nbsp;<span class='glyphicon glyphicon-arrow-up' ></span>&nbsp;");
