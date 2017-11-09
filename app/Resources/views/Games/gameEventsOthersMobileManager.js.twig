@@ -126,6 +126,10 @@ $(document).ready(function(){
             var timeout;
             var isFinished = false;
             var idVideomobiletoplay = event.data.onend.videomobiletoplay;
+            var aftervideomobiletoplay = null;
+            if(event.data.onend.hasOwnProperty("aftervideomobiletoplay")){
+              aftervideomobiletoplay = event.data.onend.aftervideomobiletoplay;
+            }
             videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
             activeEvent['val'] = true;
             firstTap = true;
@@ -133,7 +137,7 @@ $(document).ready(function(){
               tap:function(event, target) {
                   clearTimeout(timeout);
                   if(activeEvent['val'] && !tappedFirstTime){
-                      changeVideo(""+idVideomobiletoplay,'infini',true,1000);
+                      changeVideo(""+idVideomobiletoplay,'infini',true,500);
                       tappedFirstTime = true;
                     }else if(activeEvent['val']){
                         if(videoElt.paused){
@@ -148,6 +152,9 @@ $(document).ready(function(){
                   }
               });
               $(videoElt).on('ended', function(){
+                if(aftervideomobiletoplay && !isFinished){
+                  changeVideo(""+aftervideomobiletoplay, delay);
+                }
                 lastVideoPlayed["val"] = ""+idVideomobiletoplay;
                 isFinished = true;
                });
@@ -155,26 +162,29 @@ $(document).ready(function(){
 
           // multibykeypressed
           if(event.data.onend.type == "multibykeypressed"){
-                      compteur = 0;
-                      var minVideo=event.data.onend.minVideo;
-                      var maxVideo=event.data.onend.maxVideo;
-                      mappedKeyboard = createMappedKeyboard(minVideo,maxVideo,false);
-                      $(document).bind('keypress', function(e){
-                        var code = e.keyCode || e.which;
-                        var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-                        changeVideo(randkey.zeroPad(100),'infini');
-                        compteur++;
-                        if(maxCpt && (compteur > maxCpt)){
-                          lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;
-                          changeVideo(""+event.data.onend.nextvideo,'infini');
-                          unbindAllKeypress();
-                          loadText(event.data.onend.textafter,delay,mobile);
-
-                        }
-                        $('.reste').text(maxCpt-(compteur)+1);
-                      });
-                    }
-
+            compteur = 0;
+            var minVideo=event.data.onend.minVideo;
+            var maxVideo=event.data.onend.maxVideo;
+            var nextVideoId = event.data.onend.nextvideo;
+            var textAfter = event.data.onend.textafter;
+            activeEvent['val'] = true;
+            $('body').swipe( {
+              tap:function(event, target) {
+                if(activeEvent['val']){
+                  var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+                  changeVideo(randkey.zeroPad(100),'infini');
+                  compteur++;
+                  if(maxCpt && (compteur > maxCpt)){
+                    lastVideoPlayed["val"] = ""+nextVideoId;
+                    changeVideo(""+nextVideoId,'infini');
+                    loadText(textAfter,delay,mobile);
+                    activeEvent['val'] = false;
+                  }
+                  $('.reste').text(maxCpt-(compteur)+1);
+                }
+              }
+            });
+          }
         });
       }
     }
