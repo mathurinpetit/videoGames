@@ -25,26 +25,8 @@ function restartOnLastCheckpoint(){
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
-  //  video.play();
-    $('video').each(function(){
-      $(this).show();
-    });
-    var gameOverMin = game_json.gameovers.idmin;
-    var gameOverMax = game_json.gameovers.idmax;
-    for (var i = gameOverMin; i <= gameOverMax; i++) {
-      var videoGameOverId =  i.zeroPad(100);
-      var vid = document.getElementById( 'video_'+videoGameOverId);
-      vid.play();
-    }
+    video.play();
 
-    for (var i = 0; i < game_json.scenario.length; i++) {
-      var videoObj = game_json.scenario[i];
-      var vid = document.getElementById( 'video_'+videoObj.id);
-        vid.play();
-    }
-});
-
-function bonneFonction(){
     if(game_json.hasOwnProperty("gameovers")){
       var gameOverMin = game_json.gameovers.idmin;
       var gameOverMax = game_json.gameovers.idmax;
@@ -192,13 +174,23 @@ function bonneFonction(){
                   var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
                   changeVideo(randkey.zeroPad(100),'infini');
                   compteur++;
+                  $('.reste').text(maxCpt-(compteur++));
                   if(maxCpt && (compteur > maxCpt)){
                     lastVideoPlayed["val"] = ""+nextVideoId;
-                    changeVideo(""+nextVideoId,'infini');
+                    changeVideo(""+nextVideoId,delay);
                     loadText(textAfter,delay,mobile);
                     activeEvent['val'] = false;
+
+                    for (var i = minVideo; i <= maxVideo; i++) {
+                      var videoId =  i.zeroPad(100);
+                      $("#video_"+videoId).each(function(){
+                        this.pause();
+                        delete this;
+                        $(this).remove();
+                      });
+                    }
+
                   }
-                  $('.reste').text(maxCpt-(compteur)+1);
                 }
               }
             });
@@ -206,5 +198,5 @@ function bonneFonction(){
         });
       }
     }
-  }
-  //});
+
+});
