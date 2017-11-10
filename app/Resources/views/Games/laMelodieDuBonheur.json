@@ -7,6 +7,7 @@
       "id":"000",
       "onend": {
        "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
+       "textmobile" : "\nTap Toucher pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
        "minVideo" : 1,
        "maxVideo" : 14,
        "nextvideo" :  "015" ,
@@ -33,6 +34,7 @@
        "id":"015",
        "onend": {
         "text" : "\nAppuyer sur les touches de votre clavier pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
+        "textmobile" : "\nTap Appuyer pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
         "minVideo" : 16,
         "maxVideo" : 29,
         "nextvideo" :  "030" ,
@@ -59,6 +61,7 @@
         "id":"030",
         "onend": {
          "text" : "\nAppuies sur les touches pour chanter tous ensembles.\nOn va chanter encore <span class='reste'>17</span> fois.",
+         "textmobile" : "\nTap Appuyer pour chanter tous ensembles.\nOn va chanter encore <span class='reste'>17</span> fois.",
          "minVideo" : 31,
          "maxVideo" : 44,
          "nextvideo" :  "045" ,
@@ -85,6 +88,7 @@
          "id":"045",
          "onend": {
           "text" : "\nTapes encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+           "textmobile" : "\nTap Tapes encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
           "minVideo" : 46,
           "maxVideo" : 59,
           "nextvideo" :  "060" ,
@@ -111,6 +115,7 @@
           "id":"060",
           "onend": {
            "text" : "\nDebout! Lève toi et chantes !\nYoupi! chantons autant que l'on veut.",
+            "textmobile" : "\nTap Debout! Lève toi et chantes !\nYoupi! chantons autant que l'on veut.",
            "minVideo" : 61,
            "maxVideo" : 74,
            "textafter" : "",
