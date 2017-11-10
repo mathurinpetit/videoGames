@@ -25,8 +25,26 @@ function restartOnLastCheckpoint(){
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
-    video.play();
+  //  video.play();
+    $('video').each(function(){
+      $(this).show();
+    });
+    var gameOverMin = game_json.gameovers.idmin;
+    var gameOverMax = game_json.gameovers.idmax;
+    for (var i = gameOverMin; i <= gameOverMax; i++) {
+      var videoGameOverId =  i.zeroPad(100);
+      var vid = document.getElementById( 'video_'+videoGameOverId);
+      vid.play();
+    }
 
+    for (var i = 0; i < game_json.scenario.length; i++) {
+      var videoObj = game_json.scenario[i];
+      var vid = document.getElementById( 'video_'+videoObj.id);
+        vid.play();
+    }
+});
+
+function bonneFonction(){
     if(game_json.hasOwnProperty("gameovers")){
       var gameOverMin = game_json.gameovers.idmin;
       var gameOverMax = game_json.gameovers.idmax;
@@ -188,4 +206,5 @@ $(document).ready(function(){
         });
       }
     }
-  });
+  }
+  //});
