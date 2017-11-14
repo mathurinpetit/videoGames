@@ -18,18 +18,11 @@ function restartOnLastCheckpoint(){
   changeVideo(lastVideoPlayed["val"]);
 }
 
-$('body').bind('swipeone', function(){
-      alert("TEST");
-    });
-
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
     video.play();
 
 
-    $('body').bind('swipeone', function(){
-      alert("TEST");
-    });
 
     if(game_json.hasOwnProperty("gameovers")){
       var gameOverMin = game_json.gameovers.idmin;
@@ -40,7 +33,8 @@ $(document).ready(function(){
         $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
           activeEvent['val'] = true;
           loadText(gameOverText,500,mobile);
-          $('body').bind('tapone', function() {
+          $('body').bind('tap', function() {
+            console.log(lastVideoPlayed["val"]);
               changeVideo(lastVideoPlayed["val"],500);
               unbindAllEvents();
           });
@@ -57,7 +51,6 @@ $(document).ready(function(){
       }
       if(videoObj.hasOwnProperty("onend")){
         $('#video_'+videoObj.id).on('ended',videoObj,function(event){
-          lastVideoPlayed["val"] = ""+videoObj.id;
           unbindAllEvents();
           var text = "";
           if(event.data.onend.hasOwnProperty("textmobile")){
@@ -83,7 +76,7 @@ $(document).ready(function(){
             activeEvent['val'] = true;
 
             if(nextvideomobile){
-              $('body').bind('tapone', function(){
+              $('body').bind('tap', function(){
                 changeVideo(nextvideomobile,delay);
                 unbindAllEvents();
               });
@@ -129,8 +122,7 @@ $(document).ready(function(){
             videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
             activeEvent['val'] = true;
             firstTap = true;
-            $('body').swipe( {
-              tap:function(event, target) {
+            $('body').bind('tap', function(event) {
                   clearTimeout(timeout);
                   if(activeEvent['val'] && !tappedFirstTime){
                       changeVideo(""+idVideomobiletoplay,'infini',true,500);
@@ -145,13 +137,13 @@ $(document).ready(function(){
                           }, 200);
                         }
                     }
-                  }
               });
               $(videoElt).on('ended', function(){
                 if(aftervideomobiletoplay && !isFinished){
                   changeVideo(""+aftervideomobiletoplay, delay);
                 }
                 lastVideoPlayed["val"] = ""+idVideomobiletoplay;
+                unbindAllEvents();
                 isFinished = true;
                });
           }
@@ -164,8 +156,7 @@ $(document).ready(function(){
             var nextVideoId = event.data.onend.nextvideo;
             var textAfter = event.data.onend.textafter;
             activeEvent['val'] = true;
-            $('body').swipe( {
-              tap:function(event, target) {
+            $('body').bind('tap', function(event) {
                 if(activeEvent['val']){
                   var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
                   changeVideo(randkey.zeroPad(100),'infini');
@@ -183,12 +174,12 @@ $(document).ready(function(){
                         this.pause();
                         delete this;
                         $(this).remove();
+                        unbindAllEvents();
                       });
                     }
 
                   }
                 }
-              }
             });
           }
         });
