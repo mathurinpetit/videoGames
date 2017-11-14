@@ -6,26 +6,30 @@ var mobile = true;
 var lastVideoPlayed = { "val" : "000"};
 var activeEvent = { "val" : false};
 
-function unbindAllKeypress(){
-    $(document).unbind('keypress');
-}
-
 function unbindAllEvents(){
-    $(document).unbind('keydown');
-    $(document).unbind('keyup');
-    $(document).unbind('keypress');
+    $('body').unbind('tap');
+    $('body').unbind('swipeleft');
+    $('body').unbind('swiperight');
+    $('body').unbind('swipeup');
+    $('body').unbind('swipedown');
 }
 
 function restartOnLastCheckpoint(){
   changeVideo(lastVideoPlayed["val"]);
 }
 
-
+$('body').bind('swipeone', function(){
+      alert("TEST");
+    });
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
-
     video.play();
+
+
+    $('body').bind('swipeone', function(){
+      alert("TEST");
+    });
 
     if(game_json.hasOwnProperty("gameovers")){
       var gameOverMin = game_json.gameovers.idmin;
@@ -36,13 +40,9 @@ $(document).ready(function(){
         $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
           activeEvent['val'] = true;
           loadText(gameOverText,500,mobile);
-          $('body').swipe( {
-              tap:function(event, target) {
-                if(activeEvent['val']){
-                  changeVideo(lastVideoPlayed["val"],500);
-                }
-                activeEvent['val'] = false;
-              }
+          $('body').bind('tapone', function() {
+              changeVideo(lastVideoPlayed["val"],500);
+              unbindAllEvents();
           });
         });
       }
@@ -76,48 +76,44 @@ $(document).ready(function(){
 
           // Lorsque l'on a un choix multiple
           if(event.data.onend.type == "multichoicebykeypressed"){
-            var mvts = {};
             var nextvideomobile = null;
             if(event.data.onend.hasOwnProperty("nextvideomobile")){
               nextvideomobile = event.data.onend.nextvideomobile;
             }
             activeEvent['val'] = true;
 
-            if(event.data.onend.hasOwnProperty("nextvideosmobile")){
-              var nextVideos = event.data.onend.nextvideosmobile;
-              mvts["left"] = nextVideos['left'];
-              mvts["right"] = nextVideos['right'];
-              if(nextVideos.hasOwnProperty('up')){
-                mvts["up"] = nextVideos['up'];
-              }
-              if(nextVideos.hasOwnProperty('down')){
-                mvts["down"] = nextVideos['down'];
+            if(nextvideomobile){
+              $('body').bind('tapone', function(){
+                changeVideo(nextvideomobile,delay);
+                unbindAllEvents();
+              });
+            }else{
+              if(event.data.onend.hasOwnProperty("nextvideosmobile")){
+                var nextVideos = event.data.onend.nextvideosmobile;
+                $('body').bind('swipeleft', function(){
+                  changeVideo(nextVideos['left'],delay);
+                  unbindAllEvents();
+                });
+
+                $('body').bind('swiperight', function(){
+                  changeVideo(nextVideos['right'],delay);
+                  unbindAllEvents();
+                });
+
+                if(nextVideos.hasOwnProperty('up')){
+                  $('body').bind('swipeup', function(){
+                    changeVideo(nextVideos['up'],delay);
+                    unbindAllEvents();
+                  });
+                }
+                if(nextVideos.hasOwnProperty('down')){
+                  $('body').bind('swipedown', function(){
+                      changeVideo(nextVideos['down'],delay);
+                      unbindAllEvents();
+                  });
+                }
               }
             }
-            $('body').swipe( {
-              swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-                 if(activeEvent['val']){
-                    if(!nextvideomobile){
-                      var videoId = mvts[direction];
-                      if(videoId.startsWith("redirect")){
-                        window.location = window.location.origin +'/game/m/'+ videoId.replace("redirect ","");
-                        return false;
-                      }else{
-                        changeVideo(""+mvts[direction],delay);
-                        activeEvent['val'] = false;
-                      }
-                    }
-                  }
-                },
-                tap: function(event, target) {
-                   if(activeEvent['val']){
-                     if(nextvideomobile){
-                        changeVideo(nextvideomobile,delay);
-                        activeEvent['val'] = false;
-                      }
-                    }
-                  }
-              });
             }
 
           // playbykey or playbymouse

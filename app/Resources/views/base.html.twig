@@ -10,8 +10,10 @@
         {% block stylesheetsplus %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% block javascripts %}
+        {% block jsbefore %}
         <script src="/js/lib/jquery-3.2.1.min.js"></script>
+        {% endblock %}
+        {% block javascripts %}
         <script src="/js/lib/three.js"></script>
         <script src="/js/lib/shaders/ConvolutionShader.js"></script>
         <script src="/js/lib/shaders/CopyShader.js"></script>

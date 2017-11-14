@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="theme-showcase" role="main">
+<div class="container theme-showcase" role="main">
   <div class="row">
     <div class="col-md-12 visible-md visible-lg">
       <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Etant encore expérimental l'ensemble des jeux est prévu pour être jouer sur un ordinateur possèdant un clavier et une souris.<br/>Blabla</p>
@@ -12,16 +12,24 @@
   </div>
 {% for game in games %}
 {% if game.visible and game.active %}
-  <div class="row">
-    <div class="col-xs-9 padding-0" >
-      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'.gif') }}" class="img-responsive" style="width:100%;">
+  <div class="row visible-md visible-lg ">
+    <div class="col-xs-9 padding-0">
+      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive lien_image" style="width:100%;" >
+      <video id="{{game.shortName}}_videolien" webkit-playsinline style="display:none; width:100%;" class="lien_video" >
+        <source src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.mp4') }}" type='video/mp4'>
+      </video>
     </div>
     <div class="col-xs-3 padding-0 visible-md visible-lg" >
       <a href="{{ path('game', { idName : game.shortName }) }}">
         Jouer {{ game.name }}
       </a>
     </div>
-    <div class="col-xs-3 padding-0 visible-sm visible-xs" >
+  </div>
+  <div class="visible-sm visible-xs">
+    <div class="col-xs-9 padding-0">
+      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
+    </div>
+    <div class="col-xs-3 padding-0" >
       <a href="{{ path('mobile_game', { idName : game.shortName }) }}">
         Jouer {{ game.name }}
       </a>
@@ -30,6 +38,28 @@
  {% endif %}
 {% endfor %}
 </div>
+<script type="text/javascript">
+
+$('.lien_image').each(function(){
+  $(this).hover(function(){
+    $(this).hide();
+    var videoJquery = $(this).siblings(".lien_video");
+    videoJquery.show();
+    var video = document.getElementById( videoJquery.attr('id') );
+    video.currentTime = 0;
+    video.play()
+  });
+});
+
+$('.lien_video').each(function(){
+  $(this).mouseleave(function(){},
+  function() {
+    $(this).hide();
+    $(this).siblings(".lien_image").show();
+  });
+});
+
+</script>
 {% endblock %}
 
 
