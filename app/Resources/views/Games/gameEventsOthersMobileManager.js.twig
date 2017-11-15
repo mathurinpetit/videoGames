@@ -118,9 +118,9 @@ function attachAll(){
             var timeout;
             var isFinished = false;
             var idVideomobiletoplay = event.data.onend.videomobiletoplay;
-            var aftervideomobiletoplay = null;
-            if(event.data.onend.hasOwnProperty("aftervideomobiletoplay")){
-              aftervideomobiletoplay = event.data.onend.aftervideomobiletoplay;
+            var nextvideomobile = null;
+            if(event.data.onend.hasOwnProperty("nextvideomobile")){
+              nextvideomobile = event.data.onend.nextvideomobile;
             }
             changeVideoMobile(pathGame,""+idVideomobiletoplay,'infini',true,500);
             videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
@@ -137,10 +137,10 @@ function attachAll(){
                   }
               });
               $(videoElt).on('ended', function(){
-                if(aftervideomobiletoplay && !isFinished){
-                  changeVideoMobile(pathGame,""+aftervideomobiletoplay, delay);
+                if(nextvideomobile && !isFinished){
+                  changeVideoMobile(pathGame,""+nextvideomobile, delay);
                 }
-                lastVideoPlayed["val"] = ""+idVideomobiletoplay;
+                lastVideoPlayed["val"] = ""+nextvideomobile;
                 unbindAllEvents();
                 isFinished = true;
                 attachAll();

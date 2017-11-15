@@ -15,6 +15,7 @@
                   "textmobile" : "\nTap Appuyer pour faire atterrir le vaisseau sur Mars...",
                   "nextvideos" : { "A" : "011", "_" : "059"} ,
                   "videomobiletoplay" :  "011" ,
+                  "nextvideomobile" : "012",
                   "delay" : 500,
                   "type" : "playbykey",
                   "textduring" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars..."
@@ -58,7 +59,7 @@
                      "textmobile" : "\nTap Appuyer pour faire un beau sourir",
                      "nextvideos" : { "move" : "015", "aftermove" : "016"} ,
                      "videomobiletoplay" :  "015",
-                     "aftervideomobiletoplay" :  "016",
+                     "nextvideomobile" :  "016",
                      "type" : "playbymouse"
                    }
                  },
@@ -116,7 +117,7 @@
                         "textmobile" : "\nTap Toucher pour faire pour secouer la tête.",
                         "nextvideos" : { "move" : "029", "aftermove" : "030"} ,
                         "videomobiletoplay" :  "029",
-                        "aftervideomobiletoplay" :  "030",
+                        "nextvideomobile" :  "030",
                         "type" : "playbymouse"
                          }
                       },
