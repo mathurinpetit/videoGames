@@ -1,3 +1,6 @@
+{% autoescape %}
+var pathGame = "{{ '/bundles/videogame/video/'~game.videoPath~'/' | raw }}";
+{% endautoescape %}
 
 {{ include('Engine/gamelib.js.twig') }}
 var debug = false;

@@ -10,10 +10,12 @@
 {% for numVideo in idsVideos %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
-<video id="video_{{numVideo}}" webkit-playsinline {% if not loop.first %}style="display:none"{% endif %} >
-   <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
-   <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
-</video>
+  {% if loop.first %}
+    <video id="video_{{numVideo}}" webkit-playsinline  >
+       <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
+       <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
+    </video>
+  {% endif %}
 {% endfor %}
 
    <div id="footer" style="display:none;">

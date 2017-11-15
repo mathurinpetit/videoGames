@@ -88,7 +88,7 @@
          "id":"045",
          "onend": {
           "text" : "\nTapes encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
-           "textmobile" : "\nTap Tapes encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+           "textmobile" : "\nTap Appuies encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
           "minVideo" : 46,
           "maxVideo" : 59,
           "nextvideo" :  "060" ,

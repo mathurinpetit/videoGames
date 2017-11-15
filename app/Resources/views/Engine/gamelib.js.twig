@@ -43,20 +43,7 @@ function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
       uv.y = ( uv.y + offsety ) * unity;
   }
 }
-/*
-function changeVideoChoiceWithKeypressed(e,nextLock,keycodeArr,videoGameOver,footerDelay = 0){
-  var codepressed = e.keyCode || e.which;
-  if(nextLock){
-    if(keycodeArr.indexOf(codepressed) !== -1){
-      changeVideo(nextLock,footerDelay);
-      lastVideoPlayed["val"] = nextLock;
-      return nextLock;
-    }else{
-      changeVideo(videoGameOver,footerDelay);
-      return false;
-    }
-  }
-}*/
+
 
 function stopVideo(numberVideo){
   videoElt = document.getElementById( 'video_'+numberVideo );
@@ -66,15 +53,9 @@ function stopVideo(numberVideo){
 }
 
 /* Changement de la vidéo sur la texture de l'objet */
-function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
-  if(!mobile){
-    changeVideoDesktop(numberVideo, footerDelay, pause, pauseafter);
-  }else{
-    changeVideoMobile(numberVideo, footerDelay, pause, pauseafter);
-  }
-}
 
-function changeVideoDesktop(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
+
+function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
 
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
@@ -127,29 +108,45 @@ function changeVideoDesktop(numberVideo, footerDelay = 0, pause = false, pauseaf
   if(footerDelay == 'infini'){ return; }
   $( "#footer" ).animate({
     bottom: "-80px"
-  }, footerDelay, function() {
-    //$("#footer").hide();
-  });
+  }, footerDelay);
 }
 
 
-function changeVideoMobile(numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
-  videoElt = document.getElementById( 'video_'+numberVideo );
-  videoElt.pause();
-  videoElt.currentTime = 0;
-  videoElt.play();
-  if(pause){
-    setTimeout(function(){ videoElt.pause(); },pauseafter);
+function changeVideoMobile(pathGame,numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
+  if(!pause){
+    $("video").each(function(){
+      this.pause();
+      delete this;
+      $(this).remove();
+    });
+    var video = document.createElement('video');
+    var sourceMP4 = document.createElement("source");
+        sourceMP4.type = "video/mp4";
+        sourceMP4.src = pathGame+numberVideo+'.mp4';
+    video.appendChild(sourceMP4);
+    var sourceWebm = document.createElement("source");
+        sourceWebm.type = "video/webm";
+        sourceWebm.src = pathGame+numberVideo+'.webm';
+    video.appendChild(sourceWebm);
+    video.id = 'video_'+numberVideo;
+    video.setAttribute("webkit-playsinline","");
+    document.body.firstChild.appendChild(video);
+
+    var videoToPlay = document.getElementById('video_'+numberVideo);
+    videoToPlay.pause();
+    videoToPlay.currentTime = 0;
+    videoToPlay.play();
   }
-  $('video').each(function(){ $(this).hide(); })
-  $('#video_'+numberVideo).show();
+  if(pause){
+    var videoToPlay = document.getElementById('video_'+numberVideo);
+    videoToPlay.play();
+    setTimeout(function(){ videoToPlay.pause(); },pauseafter);
+  }
 
   if(footerDelay == 'infini'){ return; }
   $( "#footer" ).animate({
     bottom: "-80px"
-  }, footerDelay, function() {
-    //$("#footer").hide();
-  });
+  }, footerDelay);
 }
 
 
