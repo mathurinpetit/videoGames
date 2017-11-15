@@ -6,7 +6,7 @@ var mobile = true;
 var lastVideoPlayed = { "val" : "000"};
 
 function unbindAllEvents(){
-    $('body').unbind('taphold');
+    $('body').unbind('tap');
     $('body').unbind('swipeleft');
     $('body').unbind('swiperight');
     $('body').unbind('swipeup');
@@ -33,10 +33,11 @@ function attachAll(){
         var videoGameOverId =  i.zeroPad(100);
         $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
           loadText(gameOverText,500,mobile);
-          $('body').bind('taphold', function() {
+          $('body').bind('tap', function(event) {
               changeVideoMobile(pathGame,lastVideoPlayed["val"],500);
               unbindAllEvents();
               attachAll();
+              event.preventDefault();
           });
         });
       }
@@ -46,7 +47,7 @@ function attachAll(){
       var videoObj = game_json.scenario[i];
       if(videoObj.hasOwnProperty("onstart")){
         $('#video_'+videoObj.id).on('play',videoObj,function(event){
-          stopVideo(event.data.onstart.stopvideo);
+          //stopVideo(event.data.onstart.stopvideo);
         });
       }
       if(videoObj.hasOwnProperty("onend")){
@@ -74,10 +75,11 @@ function attachAll(){
               nextvideomobile = event.data.onend.nextvideomobile;
             }
             if(nextvideomobile){
-              $('body').bind('taphold', function(){
+              $('body').bind('tap', function(event){
                 changeVideoMobile(pathGame,nextvideomobile,delay);
                 unbindAllEvents();
                 attachAll();
+                event.preventDefault();
               });
             }else{
               if(event.data.onend.hasOwnProperty("nextvideosmobile")){
@@ -124,17 +126,17 @@ function attachAll(){
             }
             changeVideoMobile(pathGame,""+idVideomobiletoplay,'infini',true,500);
             videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
-            $('body').bind('taphold', function(event) {
+            $('body').bind('tap', function(event) {
                   clearTimeout(timeout);
                   if(videoElt.paused){
-                    console.log('ici');
                     videoElt.play();
                     timeout = setTimeout(function(){
                       if(!isFinished){
                         videoElt.pause();
                       }
-                    }, 300);
+                    }, 120);
                   }
+                  event.preventDefault();
               });
               $(videoElt).on('ended', function(){
                 if(nextvideomobile && !isFinished){
@@ -158,7 +160,7 @@ function attachAll(){
               nextVideoId = event.data.onend.nextvideo;
             }
             var textAfter = event.data.onend.textafter;
-            $('body').bind('taphold', function(event) {
+            $('body').bind('tap', function(event) {
                   var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
                   changeVideoMobile(pathGame,randkey.zeroPad(100),'infini');
                   $('.reste').text(maxCpt-(compteur++));
@@ -169,6 +171,7 @@ function attachAll(){
                     unbindAllEvents();
                     attachAll();
                   }
+                  event.preventDefault();
             });
           }
         });
