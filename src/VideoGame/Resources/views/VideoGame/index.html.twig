@@ -1,27 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container theme-showcase" role="main">
+<div class="theme-showcase" role="main">
   <div class="row">
-    <div class="col-md-12 visible-md visible-lg">
-      <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Etant encore expérimental l'ensemble des jeux est prévu pour être jouer sur un ordinateur possèdant un clavier et une souris.<br/>Blabla</p>
+    <div class="col-md-12 visible-md visible-lg entete" style="margin-top:100px; margin-bottom:30px; background-color:#000;">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <h1>VIDEO-JEUX</h1>
+            <p><strong>www.video-jeux.fr</stong> est un site vidéo ludique.</p>
+              <p>Etant encore expérimental l'ensemble des jeux est prévu pour être jouer sur un ordinateur possèdant un clavier et une souris.<br/>Blabla</p>
+          </div>
+        </div>
     </div>
-    <div class="col-xs-12 visible-sm visible-xs">
+    <div class="col-xs-12 visible-sm visible-xs entete-mobile">
       <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Les différents jeux présents ici sont optimisé pour fonctionner sur des ordinateurs de bureau ou des ordinateurs portable.<br/>Il est grandement conseiller de pratiquer ce site sur un appareil de ce type pour profiter au maximum de votre expérience.</p>
     </div>
   </div>
 {% for game in games %}
 {% if game.visible and game.active %}
-  <div class="row visible-md visible-lg ">
-    <div class="col-xs-9 padding-0">
+  <div class="row visible-md visible-lg" style="margin-bottom:30px; border:5px solid black; border-radius: 5px;">
+    <div class="col-xs-8 padding-0">
       <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive lien_image" style="width:100%;" >
       <video id="{{game.shortName}}_videolien" webkit-playsinline style="display:none; width:100%;" class="lien_video" >
         <source src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.mp4') }}" type='video/mp4'>
       </video>
     </div>
-    <div class="col-xs-3 padding-0 visible-md visible-lg" >
-      <a href="{{ path('game', { idName : game.shortName }) }}">
-        Jouer {{ game.name }}
+    <div class="col-xs-4 padding-0 visible-md visible-lg gamelink" style="background-color:000;">
+      <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style="width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button pull-down" >
+        Jouer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
       </a>
     </div>
   </div>
@@ -40,25 +46,54 @@
 </div>
 <script type="text/javascript">
 
+$(document).ready(function(){
+
+$('.pull-down').each(function() {
+  var $this = $(this);
+  $this.css('margin-top', $this.parent().parent().height() - $this.height() - 30);
+});
+
 $('.lien_image').each(function(){
   $(this).hover(function(){
-    $(this).hide();
+    // var image = $(this);
     var videoJquery = $(this).siblings(".lien_video");
+    $(this).hide();
+    //videoJquery.css('top',- image.parent().parent().height());
     videoJquery.show();
     var video = document.getElementById( videoJquery.attr('id') );
+    // timeout = setTimeout(function(){
+    video.pause();
     video.currentTime = 0;
-    video.play()
+    video.play();
+    // }, 50);
   });
 });
 
 $('.lien_video').each(function(){
   $(this).mouseleave(function(){},
   function() {
-    $(this).hide();
-    $(this).siblings(".lien_image").show();
+//    $(this).on('ended',function(){
+      $(this).hide();
+      var video = document.getElementById( $(this).attr('id') );
+      video.pause();
+      video.currentTime = 0;
+      $(this).siblings(".lien_image").show();
+  //  });
   });
 });
 
+$('.gamelink a').each(function(){
+  var name = $(this).attr('data-name');
+  name = name.replaceAll(" ",'');
+  var cookie = readCookie(name);
+  if(cookie){
+    var href = $(this).attr('href');
+    href = href.replace($(this).attr('data-shortname'),cookie);
+    $(this).attr('href',href);
+  }
+});
+
+});
 </script>
 {% endblock %}
 

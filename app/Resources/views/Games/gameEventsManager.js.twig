@@ -81,6 +81,7 @@ $(document).ready(function(){
                         }else {
                           changeVideo(nextId,delay);
                           lastVideoPlayed["val"] = ""+nextVideos[char];
+                          createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                           unbindAllEvents();
                         }
                     }
@@ -183,6 +184,7 @@ $(document).ready(function(){
                           if(!isFinished){
                             if(debug_script){ console.log('unbind et lancement : '+nextVideos.aftermove); }
                             lastVideoPlayed["val"] = ""+nextVideos.aftermove;
+                            createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                             changeVideo(""+nextVideos.aftermove,delay);
                           }
                           isFinished = true;
@@ -212,6 +214,7 @@ $(document).ready(function(){
                         compteur++;
                         if(maxCpt && (compteur > maxCpt)){
                           lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;
+                          createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                           changeVideo(""+event.data.onend.nextvideo,'infini');
                           unbindAllKeypress();
                           loadText(event.data.onend.textafter,delay);

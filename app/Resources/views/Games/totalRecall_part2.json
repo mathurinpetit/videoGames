@@ -241,7 +241,8 @@
   "gameovers":{
     "idmin" : 59,
     "idmax" : 62,
-    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'."
+    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'.",
+    "textmobile": "\nVous avez perdu !\nTap Pour rejouer!"
      }
 
 }

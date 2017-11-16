@@ -1,6 +1,11 @@
+{{ include('Engine/gamelib.js.twig') }}
+
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 var debug = false;
 var debug_script   = false;
+var cookieKey = "{{ game.name }}";
+
+createCookie(cookieKey.replaceAll(" ",''),"{{ game.shortName }}",7," path=/");
 
 var container;
 var camera, scene, renderer;
@@ -31,7 +36,6 @@ var fontName = "optimer"; // helvetiker, optimer, gentilis, droid sans, droid se
 var fontWeight = "regular"; // regular bold
 var mobile = false;
 
-{{ include('Engine/gamelib.js.twig') }}
 
 
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
@@ -68,7 +72,12 @@ function init() {
   container.appendChild( renderer.domElement );
   var anchor = window.location.hash;
   var anchorValue = anchor.substring(anchor.indexOf("#")+1);
+
+  var cookieFirstVideoNumber = readCookie("{{game.shortName}}");
   var firstVideoNumber = game_json.debugstart ;
+  if(cookieFirstVideoNumber){
+    firstVideoNumber = cookieFirstVideoNumber;
+  }
 
   if(anchorValue){
     debug = true;

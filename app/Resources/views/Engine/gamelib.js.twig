@@ -1,16 +1,3 @@
-/** prototype pour les numéros de vidéos */
-
-Number.prototype.zeroPad = Number.prototype.zeroPad ||
-     function(base){
-       var nr = this, len = (String(base).length - String(nr).length)+1;
-       return len > 0? new Array(len).join('0')+nr : nr;
-    };
-
-/** prototype pour les string tout remplacer */
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'ig'), replacement);
-};
 
 /** stratégie de resizing de la scène **/
 

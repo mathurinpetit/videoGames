@@ -1,14 +1,18 @@
 
 body {
-  background-color: #000;
+  background-color: #333;
   color: #fff;
   margin: 0px;
   font-family:Monospace;
-  font-size:13px;
+  font-size:15px;
   text-align:center;
   font-weight: bold;
   text-align:center;
   height: 100%;
+}
+
+.entete {
+  text-align: left;
 }
 
 * {
@@ -28,4 +32,12 @@ header img
 
 .padding-0 {
     padding: 0;
+}
+
+.lien_video{
+  display: block;
+  border-right: 5px solid black; border-radius: 5px;
+}
+.lien_image{
+    border-right: 5px solid black; border-radius: 5px;
 }
