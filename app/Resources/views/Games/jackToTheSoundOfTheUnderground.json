@@ -1,6 +1,7 @@
 {
  "globaldelay": "600",
  "debugstart" : "000",
+ "cookie" : false,
  "gamekeys" : {},
 "scenario":[
   {
