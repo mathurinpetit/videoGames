@@ -1,26 +1,31 @@
 {{ include('Engine/gamelib.js.twig') }}
 
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
 var debug = false;
 var debug_script   = false;
+var hascookie = game_json.cookie;
 var cookieKey = "{{ game.name }}";
 var cookieValue = "{{ game.shortName }}";
-var cookieRegex = /([a-zA-Z0-9]+)_([a-zA-Z]+)([0-9]+)/;
-var match = cookieRegex.exec(cookieValue);
 
-if (match != null) {
+if(hascookie){
+  var cookieRegex = /([a-zA-Z0-9]+)_([a-zA-Z]+)([0-9]+)/;
+  var match = cookieRegex.exec(cookieValue);
+  if (match != null) {
     var num = match[3];
     if(num){
       var c = readCookie(cookieKey.replaceAll(' ',''));
       if(c){
         var matchc = cookieRegex.exec(c);
         if(matchc && matchc[3] && matchc[3] < num){
-            createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
+          createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
         }
+      }else{
+        createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
       }
     }
-}else{
-  createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
+  }
 }
 
 var container;
@@ -54,7 +59,6 @@ var mobile = false;
 
 
 
-var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
 var gamekeys = game_json.gamekeys;
 
 

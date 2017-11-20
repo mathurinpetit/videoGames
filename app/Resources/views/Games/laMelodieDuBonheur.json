@@ -14,8 +14,9 @@
        "nextvideo" :  "015" ,
        "textafter" : "",
        "ordermulti" : true,
-       "type" : "multibykeypressed"
-        }
+       "type" : "multibykeypressed",
+       "dictionnaire" :"\n  Chantez!  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n"
+       }
      },
      { "id" : "001" },
      { "id" : "002" },
@@ -41,6 +42,7 @@
         "nextvideo" :  "030" ,
         "textafter" : "",
         "ordermulti" : true,
+        "dictionnaire" :"\n  Chantez!  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n",
         "type" : "multibykeypressed"
          }
       },
@@ -68,6 +70,7 @@
          "nextvideo" :  "045" ,
          "textafter" : "",
          "ordermulti" : true,
+         "dictionnaire" :"\n  Chantez!  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n",
          "type" : "multibykeypressed"
           }
        },
@@ -95,6 +98,7 @@
           "nextvideo" :  "060" ,
           "textafter" : "",
           "ordermulti" : true,
+          "dictionnaire" :"\n  Chantez!  \n\n  A : Quand  \n  Z : on  \n  E : sait  \n  R : les  \n  T : notes  \n  Y : on  \n  U : chante  \n\n  I : On  \n  O : chante  \n  P : tout  \n  Q : ce  \n  S : qui  \n  D : nous  \n  F : chante  \n\n",
           "type" : "multibykeypressed"
            }
         },
@@ -121,6 +125,7 @@
            "maxVideo" : 74,
            "textafter" : "",
            "ordermulti" : true,
+           "dictionnaire" :"\n  Chantez!  \n\n  A : Quand  \n  Z : on  \n  E : sait  \n  R : les  \n  T : notes  \n  Y : on  \n  U : chante  \n\n  I : On  \n  O : chante  \n  P : tout  \n  Q : ce  \n  S : qui  \n  D : nous  \n  F : chante  \n\n",
            "type" : "multibykeypressed"
             }
          },

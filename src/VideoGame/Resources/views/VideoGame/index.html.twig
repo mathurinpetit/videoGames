@@ -44,63 +44,7 @@
  {% endif %}
 {% endfor %}
 </div>
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-$('.pull-down').each(function() {
-  var $this = $(this);
-  $this.css('margin-top', $this.parent().parent().height() - $this.height() - 30);
-});
-
-$('.lien_image').each(function(){
-  $(this).hover(function(){
-    // var image = $(this);
-    var videoJquery = $(this).siblings(".lien_video");
-    $(this).hide();
-    //videoJquery.css('top',- image.parent().parent().height());
-    videoJquery.show();
-    var video = document.getElementById( videoJquery.attr('id') );
-    // timeout = setTimeout(function(){
-    video.pause();
-    video.currentTime = 0;
-    video.play();
-    // }, 50);
-  });
-});
-
-$('.lien_video').each(function(){
-  $(this).mouseleave(function(){},
-  function() {
-//    $(this).on('ended',function(){
-      $(this).hide();
-      var video = document.getElementById( $(this).attr('id') );
-      video.pause();
-      video.currentTime = 0;
-      $(this).siblings(".lien_image").show();
-  //  });
-  });
-});
-
-$('.gamelink a').each(function(){
-  var name = $(this).attr('data-name');
-  name = name.replaceAll(" ",'');
-  var cookie = readCookie(name);
-  var shortName = $(this).attr('data-shortname');
-
-  var href = $(this).attr('href');
-  if(cookie){
-    var newhref = href.replace(shortName,cookie);
-    $(this).attr('href',newhref);
-  }
-  shortNameCookie = readCookie(shortName);
-  if(!href.includes(shortNameCookie) && shortNameCookie){
-    $(this).html("Continuer<span class=\"pull-right\"><span class=\"glyphicon glyphicon-play text-success\"></span></span>");
-  }
-});
-
-});
-</script>
+<script src="/js/index.js"></script>
 {% endblock %}
 
 

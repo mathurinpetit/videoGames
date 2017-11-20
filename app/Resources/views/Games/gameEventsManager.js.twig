@@ -51,11 +51,16 @@ $(document).ready(function(){
         $('#video_'+videoObj.id).on('ended',videoObj,function(event){
           unbindAllEvents();
           var text = "";
+          var dictionnaire = "";
+          if(event.data.onend.hasOwnProperty("delay")){
+            delay = event.data.onend.delay;
+          }
           if(event.data.onend.hasOwnProperty("text")){
             text = event.data.onend.text;
           }
-          if(event.data.onend.hasOwnProperty("delay")){
-            delay = event.data.onend.delay;
+          if(event.data.onend.hasOwnProperty("dictionnaire")){
+            dictionnaire = event.data.onend.dictionnaire;
+            loadDictionnaire(dictionnaire,delay);
           }
           loadText(text,delay);
           if(debug_script){ console.log(event); }
@@ -225,6 +230,9 @@ $(document).ready(function(){
                           changeVideo(""+event.data.onend.nextvideo,'infini');
                           unbindAllKeypress();
                           loadText(event.data.onend.textafter,delay);
+                          if(dictionnaire){
+                            loadDictionnaire(event.data.onend.textafter,delay);
+                          }
 
                         }
                         $('.reste').text(maxCpt-(compteur)+1);

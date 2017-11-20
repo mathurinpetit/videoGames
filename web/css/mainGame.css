@@ -24,6 +24,18 @@ body {
   background:#333;
 }
 
+#dictionnaire {
+  position: absolute;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  left: 0px;
+  top:20%;
+  height:50%;
+  font-size: 17px;
+  text-align: left;
+  background:#333;
+}
+
 video {
   width:100%;
 }

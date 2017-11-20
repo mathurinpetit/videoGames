@@ -211,6 +211,22 @@ if(!ismobile){
   }
 }
 
+function loadDictionnaire(dictionnairetxt,delay){
+  var dictionnaireText = dictionnairetxt.replaceAll("\n", "<br/>");
+  dictionnaireText = dictionnaireText.replaceAll(" ", "&nbsp;");
+  $("#dictionnaire").show();
+  $("#dictionnaire span.text").html(dictionnaireText);
+  if(delay == 'infini'){ return; }
+  $( "#dictionnaire" ).animate({
+    bottom: "0px"
+    }, delay, function() {
+  });
+  if(!dictionnaireText){
+    $("#dictionnaire").hide();
+    left: "0px"
+  }
+}
+
 function renderLink(str,code){
   return "\"<a href='#' onClick='triggerKeypress("+code+"); return false;' style='color:#fff;' >"+str+"</a>\"";
 }
