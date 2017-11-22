@@ -26,9 +26,14 @@
       </video>
     </div>
     <div class="col-xs-4 padding-0 visible-md visible-lg gamelink" style="background-color:000;">
-      <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style="width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button pull-down" >
-        Jouer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
+      <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style="width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button pull-down no-cookie" >Jouer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
       </a>
+      <div class="btn-group play-button pull-down cookie" style="display:none;">
+        <a class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Clickez ici pour ré-initialiser le jeux" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></a>
+        <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
+        </a>
+      </div>
+
     </div>
   </div>
   <div class="visible-sm visible-xs">

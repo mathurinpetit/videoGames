@@ -37,3 +37,50 @@ function readCookie(name) {
 function eraseCookie(name) {
     createCookie(name,"",-1);
 }
+
+function createCookieOrBackToMenu(cookieKey,cookieValue){
+  var cookieRegex = /([a-zA-Z0-9]+)_([a-zA-Z]+)([0-9]+)/;
+  var match = cookieRegex.exec(cookieValue);
+  if (match != null) {
+    var num = match[3];
+    if(num){
+      var c = readCookie(cookieKey.replaceAll(' ',''));
+      if(c){
+        var matchc = cookieRegex.exec(c);
+        if(matchc && matchc[3]){
+          if(matchc[3] <= num){
+            createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
+          }else{
+            window.location = window.location.origin;
+            return false;
+          }
+        }
+      }else{
+        createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
+      }
+    }
+  }
+}
+
+function eraseAllCookies(name){
+  var theCookies = document.cookie.split(';');
+  var cookieRegex = /([a-zA-Z0-9]+)_(.+)/;
+  var cookieRegexName = /(.+)=(.*)/;
+  var erased = false;
+  for (var i = 1 ; i <= theCookies.length; i++) {
+    var cookie = theCookies[i-1];
+    var match = cookieRegex.exec(cookie);
+    if (match != null) {
+      var cookName = match[1];
+      var nameCleaned = name.replaceAll(" ","").toLowerCase();
+      var realname = cookieRegexName.exec(cookie);
+      if(cookName && (cookName.toLowerCase() == nameCleaned) && realname && realname[1]){
+        eraseCookie(realname[1]);
+        erased = true;
+      }
+    }
+  }
+  if(erased){
+    location.reload();
+  }
+}

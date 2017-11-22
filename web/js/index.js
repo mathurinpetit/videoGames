@@ -1,6 +1,10 @@
 
 $(document).ready(function(){
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  });
+
 adaptView();
 
 $('.lien_image').each(function(){
@@ -26,7 +30,7 @@ $('.lien_video').each(function(){
   });
 });
 
-$('.gamelink a').each(function(){
+$('.gamelink a.no-cookie').each(function(){
   var name = $(this).attr('data-name');
   name = name.replaceAll(" ",'');
   var cookie = readCookie(name);
@@ -35,11 +39,14 @@ $('.gamelink a').each(function(){
   var href = $(this).attr('href');
   if(cookie){
     var newhref = href.replace(shortName,cookie);
-    $(this).attr('href',newhref);
+    $(this).parent().find("a.play-button").each(function(){
+      $(this).attr('href',newhref);
+    })
   }
   shortNameCookie = readCookie(shortName);
   if(cookie || (!href.includes(shortNameCookie) && shortNameCookie)){
-    $(this).html("Continuer<span class=\"pull-right\"><span class=\"glyphicon glyphicon-play text-success\"></span></span>");
+    $(this).hide();
+    $(this).parent().find('div.cookie').show();
   }
 });
 

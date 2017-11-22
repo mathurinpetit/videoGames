@@ -15,7 +15,9 @@ function unbindAllEvents(){
     $(document).unbind('keypress');
 }
 
-
+function restartOnLastCheckpoint(){
+  changeVideo(lastVideoPlayed["val"]);
+}
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
