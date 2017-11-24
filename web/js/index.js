@@ -1,11 +1,7 @@
 
 $(document).ready(function(){
 
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  });
-
-adaptView();
+ adaptView();
 
 $('.lien_image').each(function(){
   $(this).hover(function(){
@@ -58,6 +54,7 @@ function adaptView() {
   $('.pull-down').each(function() {
     var $this = $(this);
     $this.css('margin-top', 0);
-    $this.css('margin-top', $this.parent().parent().height() - $this.height() - 30);
+    var descriptionHeight = $this.parent().find(".description").height();
+    $this.css('margin-top', $this.parent().parent().height() - descriptionHeight - 50);
   });
 }

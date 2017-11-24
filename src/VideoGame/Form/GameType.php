@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class GameType extends AbstractType
 {
@@ -14,7 +16,12 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('shortName')->add('description')->add('videoPath')->add('width')->add('height')->add('date')->add('visible')->add('active');
+        $builder->add('name')->add('shortName')
+          ->add('description', TextareaType::class)
+          ->add('videoPath')->add('width')->add('height')->add('date',DateType::class,array('required' => false,
+                                                      'widget' =>'single_text',
+                                                      'format' =>'dd/MM/yyyy',
+                                                      'attr' => array('class' => 'js-datepicker')))->add('visible')->add('active');
     }
 
     /**

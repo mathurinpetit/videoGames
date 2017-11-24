@@ -6,8 +6,6 @@ body {
   font-family:Monospace;
   font-size:15px;
   text-align:center;
-  font-weight: bold;
-  text-align:center;
   height: 100%;
 }
 
@@ -32,6 +30,10 @@ header img
 
 .padding-0 {
     padding: 0;
+}
+
+.description{
+  text-align: left;
 }
 
 .lien_video{

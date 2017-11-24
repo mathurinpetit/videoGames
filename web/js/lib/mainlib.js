@@ -12,6 +12,26 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.replace(new RegExp(search, 'ig'), replacement);
 };
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+
+$('.summernote').summernote({
+      lang: 'fr-FR',
+      height: 170,
+      minHeight: 170,
+      toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['font', ['strikethrough']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['height', ['height']],
+          ['link', ['link']]
+      ]
+  });
+  $('.js-datepicker').datepicker({});
+
+});
 
 function createCookie(name,value,days) {
     var expires = "";
@@ -63,24 +83,28 @@ function createCookieOrBackToMenu(cookieKey,cookieValue){
 }
 
 function eraseAllCookies(name){
-  var theCookies = document.cookie.split(';');
-  var cookieRegex = /([a-zA-Z0-9]+)_(.+)/;
-  var cookieRegexName = /(.+)=(.*)/;
-  var erased = false;
-  for (var i = 1 ; i <= theCookies.length; i++) {
-    var cookie = theCookies[i-1];
-    var match = cookieRegex.exec(cookie);
-    if (match != null) {
-      var cookName = match[1];
-      var nameCleaned = name.replaceAll(" ","").toLowerCase();
-      var realname = cookieRegexName.exec(cookie);
-      if(cookName && (cookName.toLowerCase() == nameCleaned) && realname && realname[1]){
-        eraseCookie(realname[1]);
-        erased = true;
+  var txt;
+  var r = confirm("Êtes vous sûr de vouloir recommencer ce jeu?");
+  if (r == true) {
+    var theCookies = document.cookie.split(';');
+    var cookieRegex = /([a-zA-Z0-9]+)_(.+)/;
+    var cookieRegexName = /(.+)=(.*)/;
+    var erased = false;
+    for (var i = 1 ; i <= theCookies.length; i++) {
+      var cookie = theCookies[i-1];
+      var match = cookieRegex.exec(cookie);
+      if (match != null) {
+        var cookName = match[1];
+        var nameCleaned = name.replaceAll(" ","").toLowerCase();
+        var realname = cookieRegexName.exec(cookie);
+        if(cookName && (cookName.toLowerCase() == nameCleaned) && realname && realname[1]){
+          eraseCookie(realname[1]);
+          erased = true;
+        }
       }
     }
-  }
-  if(erased){
-    location.reload();
+    if(erased){
+      location.reload();
+    }
   }
 }

@@ -10,10 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Nom court</th>
+                <th>Nom court/Video path</th>
                 <th>Description</th>
-                <th>Video path</th>
-                <th>Format</th>
                 <th>visible/active</th>
                 <th>date</th>
                 <th></th>
@@ -24,10 +22,8 @@
             <tr>
                 <td>{{ game.id }}</td>
                 <td>{{ game.name }}</td>
-                <td>{{ game.shortName }}</td>
-                <td>{{ game.description }}</td>
-                <td>{{ game.videoPath }}</td>
-                <td>{{ game.width }}x{{ game.height }}</td>
+                <td>Nom court : {{ game.shortName }}<br/>Path : {{ game.videoPath }}<br/>Format :{{ game.width }}x{{ game.height }}></td>
+                <td>{% autoescape %}{{ game.description |raw }}{% endautoescape %}</td>
                 <td>{{ "%01d" | format(game.visible) }}/{{ "%01d" | format(game.active) }}</td>
                 <td>{{ game.date | date("d/m/Y") }}</td>
                 <td>

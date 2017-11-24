@@ -2,68 +2,101 @@
 
 {% block body %}
 <div class="container theme-showcase" role="main">
-    <h1>Jeu {{ game.name }} - Modification</h1>
-
-    <div class="row">
-    {{ form_start(edit_form) }}
-    <div class="col-md-12">
-      <div class="form-group">
-          {{ form_errors(edit_form.name) }}
-          {{ form_label(edit_form.name, "Nom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-          <div class="col-xs-10">
-              {{ form_widget(edit_form.name, {'attr': {'autofocus': 'autofocus'}}) }}
-          </div>
-      </div>
-    </div>
-    <div class="col-md-12">
-        <div class="form-group">
-          {{ form_errors(edit_form.shortName) }}
-          {{ form_label(edit_form.shortName, "Nom court", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-          <div class="col-xs-10">
-              {{ form_widget(edit_form.shortName) }}
-          </div>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="form-group">
-          {{ form_errors(edit_form.description) }}
-          {{ form_label(edit_form.description, "description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-          <div class="col-xs-10">
-              {{ form_widget(edit_form.description) }}
-          </div>
-      </div>
-    </div>
-    <div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>Jeu {{ game.name }} - Modification</h1></div>
+    <div class="panel-body">
+      <div class="row">
+      {{ form_start(edit_form) }}
+        <div class="col-md-12" style="padding-bottom:10px;" >
           <div class="form-group">
-          {{ form_errors(edit_form.videoPath) }}
-          {{ form_label(edit_form.videoPath, "videoPath", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
-          <div class="col-xs-10">
-              {{ form_widget(edit_form.videoPath) }}
+              {{ form_errors(edit_form.name) }}
+              {{ form_label(edit_form.name, "Nom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+              <div class="col-xs-10">
+                  {{ form_widget(edit_form.name, {'attr': {'autofocus': 'autofocus'}}) }}
+              </div>
           </div>
-      </div>
-    </div>
-      <div class="col-md-12">
+        </div>
+        <div class="col-md-12">
+            <div class="form-group" style="padding-bottom:10px;" >
+              {{ form_errors(edit_form.shortName) }}
+              {{ form_label(edit_form.shortName, "Nom court", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+              <div class="col-xs-10">
+                  {{ form_widget(edit_form.shortName) }}
+              </div>
+          </div>
+        </div>
+      <div class="col-md-12" style="padding-bottom:10px;" >
         <div class="form-group">
-            {{ form_errors(edit_form.width) }}
-            {{ form_label(edit_form.width, "width", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="form-group event_description">
+            {{ form_errors(edit_form.description) }}
+            {{ form_label(edit_form.description, "description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
             <div class="col-xs-10">
-                {{ form_widget(edit_form.width) }}
+                {{ form_widget(edit_form.description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte publique'} }) }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+            {{ form_errors(edit_form.videoPath) }}
+            {{ form_label(edit_form.videoPath, "videoPath", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+            <div class="col-xs-10">
+                {{ form_widget(edit_form.videoPath) }}
             </div>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12" style="padding-bottom:10px;" >
+        <div class="form-group">
+          {{ form_errors(edit_form.height) }}
+          {{ form_label(edit_form.height, "height", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+            {{ form_widget(edit_form.height) }}
+          </div>
+        </div>
+      </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
           <div class="form-group">
-              {{ form_errors(edit_form.height) }}
-              {{ form_label(edit_form.height, "height", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+              {{ form_errors(edit_form.width) }}
+              {{ form_label(edit_form.width, "width", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
               <div class="col-xs-10">
-                  {{ form_widget(edit_form.height) }}
+                  {{ form_widget(edit_form.width) }}
               </div>
           </div>
-      </div>
-
-      <input type="submit" value="Modifier" class="btn btn-success pull-right" />
-        {{ form_end(edit_form) }}
-        <a href="{{ path('admin_index') }}" class="btn btn-default  pull-left" style="margin-right:10px;">Revenir à la liste</a>
-      </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(edit_form.date) }}
+                {{ form_label(edit_form.date, "Date", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.date) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(edit_form.visible) }}
+                {{ form_label(edit_form.visible, "Visible", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.visible) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(edit_form.active) }}
+                {{ form_label(edit_form.active, "Actif", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.active) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+          <div class="form-group">
+            <input type="submit" value="Modifier" class="btn btn-success pull-right" />
+              {{ form_end(edit_form) }}
+              <a href="{{ path('admin_index') }}" class="btn btn-default  pull-left" style="margin-right:10px;">Revenir à la liste</a>
+          </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

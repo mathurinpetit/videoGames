@@ -33,7 +33,7 @@ class Game
     private $shortName;
 
    /**
-    * @ORM\Column(type="string")
+    * @ORM\Column(type="string", length=4096)
     */
     private $description;
 

@@ -17,7 +17,10 @@ class VideoGameController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $games = $em->getRepository('VideoGameBundle:Game')->findAll();
+      $games = $em->getRepository('VideoGameBundle:Game')->findBy(
+        array(),
+        array('date' => 'DESC')
+        );
 
       return array("games" => $games);
     }
