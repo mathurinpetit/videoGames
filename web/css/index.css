@@ -41,6 +41,8 @@ p {
 
 .description{
   text-align: left;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 
 .lien_video{
