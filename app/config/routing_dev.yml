@@ -12,3 +12,7 @@ _errors:
 
 _main:
     resource: routing.yml
+
+video_game_game:
+    resource: "@VideoGameBundle/Controller/GameController.php"
+    type:     annotation

@@ -1,11 +1,3 @@
-video_game_game:
-    resource: "@VideoGameBundle/Controller/GameController.php"
-    type:     annotation
-
-admin:
-    prefix:  /admin
-    resource: "@VideoGameBundle/Controller/AdminController.php"
-    type:     annotation
 
 videogame:
     path:  /
