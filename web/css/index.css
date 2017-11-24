@@ -4,7 +4,6 @@ body {
   color: #fff;
   margin: 0px;
   font-family:Monospace;
-  font-size:15px;
   text-align:center;
   height: 100%;
 }
@@ -27,6 +26,10 @@ header img
 {
     width: 100%;
 }
+h3
+{
+margin-top: 10px;
+}
 
 .padding-0 {
     padding: 0;
@@ -38,8 +41,7 @@ header img
 
 .lien_video{
   display: block;
-  border-right: 5px solid black; border-radius: 5px;
 }
-.lien_image{
-    border-right: 5px solid black; border-radius: 5px;
+.gamelink{
+  border-left: 5px solid black;
 }
