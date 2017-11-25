@@ -166,6 +166,14 @@ function createMappedKeyboard(firstVideo,lastVideo,random = false){
   return mappedKeyboard;
 }
 
+function displaySkipBtn(){
+  $("#skip").show();
+}
+
+function undisplaySkipBtn(){
+  $("#skip").hide();
+}
+
 
 function loadText(textStr,footerDelay, mobile = false, is3D = false){
   if(is3D){

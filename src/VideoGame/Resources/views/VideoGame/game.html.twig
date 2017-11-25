@@ -14,6 +14,11 @@
 </video>
 {% endfor %}
 
+<div id="retour_accueil" >
+      <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
+</div>
+
 <div id="dictionnaire" style="display:none">
     <div style="position: relative;">
       <span class="text"></span>
@@ -24,6 +29,12 @@
        <div style="position: relative; left: 20%;">
          <span class="text"></span>
      </div>
+   </div>
+
+   <div id="skip" style="display:none;">
+     <a href="#" class="btn btn-default skip" style="text-decoration:none;">
+       Passer&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
+     </a>
    </div>
 
 {% endblock %}

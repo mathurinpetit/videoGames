@@ -166,7 +166,7 @@
        {
          "id":"099",
          "onend": {
-           "text" : "Bravo vous avez gagner!\n Bougez la souris pour embrasser Melina...\n autant que vous voulez. <a class='btn btn-xs btn-success' onClick=' window.location = window.hostname; return false;'>Retour</a>",
+           "text" : "Bravo vous avez gagner!\n Bougez la souris pour embrasser Melina...     autant que vous voulez.&nbsp;&nbsp;&nbsp;<a class='btn btn-xs btn-success' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home'></span>&nbsp;Retour</a>",
            "nextvideos" : { "move" : "100", "aftermove" : "099"} ,
            "type" : "playbymouse"
          }
@@ -184,7 +184,7 @@
   "gameovers":{
     "idmin" : 105,
     "idmax" : 107,
-    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' onClick='restartOnLastCheckpoint(); return false;'>Rejouer</a>\nOu appuyez sur 'ESPACE'."
+    "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' style='text-decoration:none' onClick='restartOnLastCheckpoint(); return false;'><span class='glyphicon glyphicon-repeat'></span>&nbsp;Rejouer</a>\nOu appuyez sur 'ESPACE'."
      }
 
 }

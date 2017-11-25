@@ -10,7 +10,7 @@ var cookieKey = "{{ game.name }}";
 var cookieValue = "{{ game.shortName }}";
 
 if(hascookie){
-  createCookieOrBackToMenu(cookieKey,cookieValue);  
+  createCookieOrBackToMenu(cookieKey,cookieValue);
 }
 
 var container;
@@ -82,6 +82,7 @@ function init() {
   var firstVideoNumber = game_json.debugstart ;
   if(cookieFirstVideoNumber){
     firstVideoNumber = cookieFirstVideoNumber;
+    lastVideoPlayed["val"] = cookieFirstVideoNumber;
   }
 
   if(anchorValue){

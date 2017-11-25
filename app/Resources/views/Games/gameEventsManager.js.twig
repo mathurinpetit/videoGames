@@ -4,6 +4,7 @@ var minVideo,maxVideo;
 
 var mobile = false;
 var cookie = game_json.cookie;
+var cpt_gameover = 0;
 
 function unbindAllKeypress(){
     $(document).unbind('keypress');
@@ -19,6 +20,12 @@ function restartOnLastCheckpoint(){
   changeVideo(lastVideoPlayed["val"]);
 }
 
+function skipGameOver(){
+  videoElt.pause();
+  videoElt.currentTime = ""+videoElt.duration - 1.5;
+  videoElt.play();
+}
+
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
 
@@ -28,7 +35,15 @@ $(document).ready(function(){
       var gameOverText = game_json.gameovers.text;
       for (var i = gameOverMin; i <= gameOverMax; i++) {
         var videoGameOverId =  i.zeroPad(100);
+        $('#video_'+videoGameOverId).on('play',function(){
+          if(cpt_gameover){
+            displaySkipBtn();
+            videoElt = document.getElementById($(this).attr("id"));
+          }
+          cpt_gameover++;
+        });
         $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
+          undisplaySkipBtn()
           unbindAllEvents();
           loadText(gameOverText,delay);
           $(document).bind('keypress', function(e){
@@ -244,4 +259,7 @@ $(document).ready(function(){
         });
       }
     }
+    $("a.skip").click(function(){
+      skipGameOver();
+    });
   });

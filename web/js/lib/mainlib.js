@@ -31,6 +31,12 @@ $('.summernote').summernote({
   });
   $('.js-datepicker').datepicker({});
 
+  $(".retour_accueil_btn").hover(function(){
+    $(this).css("opacity","1");
+  },function(){
+    $(this).css("opacity","0.6");
+  });
+
 });
 
 function createCookie(name,value,days) {
