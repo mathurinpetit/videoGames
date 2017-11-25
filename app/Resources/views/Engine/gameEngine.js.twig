@@ -196,5 +196,6 @@ function render() {
  {{ include('Games/gameEventsManager.js.twig', { 'game': game }) }}
 
  video.onloadeddata = function() {
+    $("#divLoading").hide();
     video.play();
  };
