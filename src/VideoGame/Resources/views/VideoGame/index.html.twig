@@ -1,9 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<nav class="navbar navbar-fixed-top padding-0" style="background-color:#000; height:70px;">
+  <div class="padding-0" >
+      <div class="navbar-header padding-0" style="width:100%;">
+            <div class="col-xs-1">
+
+              <a href="{{ path('videogame') }}" alt="Liste des jeux" class="btn btn-default btn-lg pull-left" style="margin-top:8px;"><span class="glyphicon glyphicon-list"></span></a>
+            </div>
+            <h1 class="col-xs-10"><a href="{{ path('videogame') }}" alt="Accueil" style="text-decoration:none; color:#fff;"><strong>www.video-jeux.fr</strong></a></h1>
+            <div class="col-xs-1">
+              <a href="{{ path('videogame') }}" alt="Autres projets" class="btn btn-default btn-lg pull-right" style="margin-top:8px;"><span class="glyphicon glyphicon-question-sign"></span></a>
+            </div>
+      </div>
+  </div>
+</nav>
+
 <div class="theme-showcase" role="main">
   <div class="row">
-    <div class="col-md-12 visible-md visible-lg entete" style="margin-top:100px; margin-bottom:30px; background-color:#000;">
+    <div class="col-md-12 entete" style="margin-top:100px; margin-bottom:30px; background-color:#000;">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <h1>VIDEO-JEUX</h1>
@@ -15,13 +30,10 @@
           </div>
         </div>
     </div>
-    <div class="col-xs-12 visible-sm visible-xs entete-mobile">
-      <p>www.video-jeux.fr est un site vidéo ludique créée à partir de vidéos.<br/>Les différents jeux présents ici sont optimisé pour fonctionner sur des ordinateurs de bureau ou des ordinateurs portable.<br/>Il est grandement conseiller de pratiquer ce site sur un appareil de ce type pour profiter au maximum de votre expérience.</p>
-    </div>
   </div>
 {% for game in games %}
 {% if game.visible and game.active %}
-  <div class="row visible-md visible-lg" style="margin-bottom:30px; border:5px solid black;">
+  <div class="row" style="margin-bottom:30px; border:5px solid black;">
     <div class="col-xs-7 padding-0">
       <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive lien_image" style="width:100%;" >
       <video id="{{game.shortName}}_videolien" webkit-playsinline style="display:none; width:100%;" class="lien_video" >
@@ -44,17 +56,7 @@
       <div class="text-right" style='font-size : 10px; font-weight:bold; padding : 0'><span style="font-style: italic;">mis en ligne le</span>&nbsp;{{ game.date | date("d/m/Y") }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
     </div>
-  </div>
-  <div class="visible-sm visible-xs">
-    <div class="col-xs-9 padding-0">
-      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
-    </div>
-    <div class="col-xs-3 padding-0" >
-      <a href="{{ path('mobile_game', { idName : game.shortName }) }}">
-        Jouer {{ game.name }}
-      </a>
-    </div>
-  </div>
+  </div>  
  {% endif %}
 {% endfor %}
 </div>

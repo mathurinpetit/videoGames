@@ -5,6 +5,13 @@ videogame:
     requirements:
        _method:  GET
 
+videogame_mobile:
+     path:  /mobile
+     defaults: { _controller: VideoGameBundle:VideoGame:indexMobile }
+     requirements:
+        _method:  GET
+
+
 game:
     path:  /game/{idName}
     defaults: { _controller: VideoGameBundle:VideoGame:game }

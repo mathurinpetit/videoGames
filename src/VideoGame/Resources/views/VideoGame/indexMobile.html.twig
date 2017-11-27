@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="theme-showcase" role="main">
+  <div class="row">
+    <div class="col-xs-12 entete-mobile">
+      <h1>VIDEO-JEUX</h1>
+      <p><strong>www.video-jeux.fr</strong> est un site de jeux vidéo ou plutôt un site proposant plusieurs <span style="font-style: italic;"><strong>expériences vidéo ludiques</span></strong>.</p>
+      <br/>
+      <p>Ce site ainsi que le jeux auxquels vous pourrez jouer sont encore expérimentaux et en cours de construction.<br/>
+      Les jeux proposés ici sont prévus pour être joués avec un ordinateur possèdant un clavier et une souris.</p>
+      <p><strong>Très bonnes expériences à vous!</strong></p>
+    </div>
+  </div>
+{% for game in games %}
+{% if game.visible and game.active %}
+    <div class="col-xs-9 padding-0">
+      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
+    </div>
+    <div class="col-xs-3 padding-0" >
+      <a href="{{ path('mobile_game', { idName : game.shortName }) }}">
+        Jouer {{ game.name }}
+      </a>
+    </div>
+ {% endif %}
+{% endfor %}
+</div>
+<script src="/js/index.js"></script>
+{% endblock %}
+
+
+{% block stylesheetsplus %}
+<link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/index.css') }}" />
+{% endblock %}

@@ -447,3 +447,6 @@ input[type="button"].btn-block {
 .glyphicon-repeat:before {
   content: "\e030";
 }
+.glyphicon-floppy-disk:before {
+  content: "\e172";
+}
