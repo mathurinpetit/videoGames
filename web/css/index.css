@@ -6,6 +6,7 @@ body {
   font-family:Monospace;
   text-align:center;
   height: 100%;
+   overflow-x: hidden;
 }
 
 .entete {
