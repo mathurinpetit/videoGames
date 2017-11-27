@@ -11,6 +11,12 @@ videogame_mobile:
      requirements:
         _method:  GET
 
+videogame_apropos:
+     path:  /apropos
+     defaults: { _controller: VideoGameBundle:VideoGame:aPropos }
+     requirements:
+        _method:  GET
+
 
 game:
     path:  /game/{idName}

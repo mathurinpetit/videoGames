@@ -30,7 +30,7 @@ class VideoGameController extends Controller
     /**
      * @Template()
      */
-    public function indexMobileAction() {    
+    public function indexMobileAction() {
       $em = $this->getDoctrine()->getManager();
 
       $games = $em->getRepository('VideoGameBundle:Game')->findBy(
@@ -39,6 +39,13 @@ class VideoGameController extends Controller
         );
 
       return array("games" => $games);
+    }
+
+    /**
+     * @Template()
+     */
+    public function aProposAction() {
+      return array();
     }
 
     /**
