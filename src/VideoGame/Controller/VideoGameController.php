@@ -17,13 +17,13 @@ class VideoGameController extends Controller
       if($this->isMobile()){
         return $this->redirectToRoute('videogame_mobile');
       }
+        
       $em = $this->getDoctrine()->getManager();
 
       $games = $em->getRepository('VideoGameBundle:Game')->findBy(
         array(),
         array('date' => 'DESC')
         );
-
       return array("games" => $games);
     }
 
