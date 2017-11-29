@@ -172,7 +172,7 @@
              {
                "id":"123",
                "onend": {
-                 "text" : "Elle a l'air d'aimer\n\nC'est le moment de l'embrasser.\nBougez la souris de haut en bas pour embrasser Melina...",
+                 "text" : "Elle a l'air d'aimer...\nC'est le moment de l'embrasser.\nBougez la souris de haut en bas pour embrasser Melina...",
                  "nextvideos" : { "move" : "065", "aftermove" : "066"} ,
                  "type" : "playbymouse"
                }
