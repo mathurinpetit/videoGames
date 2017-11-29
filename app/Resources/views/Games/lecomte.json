@@ -1,6 +1,6 @@
 {
  "globaldelay": "600",
- "debugstart" : "007",
+ "debugstart" : "001",
  "cookie" : false,
  "gamekeys" : {
                 "A" : {"keys" : [65,97] },
@@ -88,8 +88,8 @@
                        {
                          "id":"018",
                          "onend": {
-                           "text" : "C'est très bien, vous voilà un bon publicitaire.\nA B",
-                           "nextvideos" : { "A" : "002","B" : "003"},
+                           "text" : "C'est très bien, vous voilà un bon publicitaire.\nlink 'A' 65 : Demandez à Norbert et Laura, producteurs, de parler du fromage.\nlink 'B' 66 : Demandez à Chistophe, agriculteur dans le Jura, de parler de l'herbe et du TéCom.",
+                           "nextvideos" : { "A" : "002","B" : "006"},
                            "type" : "multichoicebykeypressed"
                             }
                         },
@@ -97,42 +97,34 @@
                         {
                           "id":"002",
                           "onend": {
-                            "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
+                            "text" : "\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 65 : Demandez à André, le laitier, de parler des bienfaits du TéCom.",
                             "nextvideos" : { "A" : "004","B" : "005"},
                             "type" : "multichoicebykeypressed"
                              }
                          },
                          {
-                           "id":"003",
+                           "id":"006",
                            "onend": {
-                             "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
-                             "nextvideos" : { "A" : "004","B" : "006"},
+                             "text" : "\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 65 : Demandez à André, le laitier, de parler des biensfait du TéCom.",
+                             "nextvideos" : { "A" : "004","B" : "005"},
                              "type" : "multichoicebykeypressed"
                               }
                           },
                           {
                             "id":"004",
                             "onend": {
-                              "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
-                              "nextvideos" : { "A" : "005","B" : "006"},
+                              "text" : "\nlink 'A' 65 : Demandez à André, le laitier, de parler des biensfait du TéCom.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
+                              "nextvideos" : { "A" : "005","B" : "001","_" : "001"},
                               "type" : "multichoicebykeypressed"
                                }
                            },
                            {
                              "id":"005",
                              "onend": {
-                               "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
-                               "nextvideos" : { "_" : "001"},
+                               "text" : "\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
+                               "nextvideos" : { "A" : "004","B" : "001","_" : "001" },
                                "type" : "multichoicebykeypressed"
                                 }
-                            },
-                            {
-                              "id":"005",
-                              "onend": {
-                                "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
-                                "nextvideos" : { "_" : "001"},
-                                "type" : "multichoicebykeypressed"
-                                 }
-                             }
+                            }
                        ]
 }
