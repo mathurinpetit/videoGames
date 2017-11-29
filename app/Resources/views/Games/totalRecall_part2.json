@@ -71,9 +71,9 @@
                    "id":"016",
                    "onstart": { "stopvideo" : "015" },
                    "onend": {
-                     "text" : "\nlink 'A' 65 : Je crache sur le douanier.\nlink 'B' 66 : Faire les yeux doux au douanier.",
+                     "text" : "link 'A' 65 : Je crache sur le douanier.\nlink 'B' 66 : Faire les yeux doux au douanier.\nlink 'C' 67 : Parler en binaire pour impressionner le douanier.",
                      "textmobile" : "\nJe crache sur le douanier Droite\nGauche Faire les yeux doux au douanier.",
-                     "nextvideos" : { "B" : "017", "_" : "061"} ,
+                     "nextvideos" : { "B" : "017", "C": "041", "_" : "061"} ,
                      "nextvideosmobile" : { "right" : "061", "left" : "017"} ,
                      "type" : "multichoicebykeypressed"
                    }
@@ -83,7 +83,7 @@
                     "onend": {
                      "text" : "\nlink 'A' 65 : Continuer d'avoir l'air normal devant le douanier.\nlink 'B' 66 : Faire une connerie.",
                      "textmobile" : "\nContinuer d'avoir l'air normal devant le douanier Droite\nGauche Faire une connerie.",
-                     "nextvideos" : { "A" : "018", "_" : "062"} ,
+                     "nextvideos" : { "A" : "018", "B" : "041","_" : "062"} ,
                      "nextvideosmobile" : { "right" : "018", "left" : "062"} ,
                      "type" : "multichoicebykeypressed"
                       }
@@ -181,7 +181,7 @@
                         {
                           "id":"035",
                           "onend": {
-                            "text" : "link 'A' 65 : Ne rien faire \nlink 'B' 66 : Re-renvoyer le masque pour jouer.\nlink 'C' 67 : Aller se la raconter au concours de Mister Univers.\nlink 'D' 68 : Se débarrasser pour de bon de ce masque.\n",
+                            "text" : "link 'A' 65 : Ne rien faire. \nlink 'B' 66 : Re-renvoyer le masque pour jouer.\nlink 'C' 67 : Aller se la raconter au concours de Mister Univers.\nlink 'D' 68 : Se débarrasser pour de bon de ce masque.\n",
                             "textmobile" : "Re-renvoyer le masque pour jouer Droite\nGauche Aller se la raconter au concours de Mister Univers.\nSe débarrasser pour de bon de ce masque Bas",
                             "nextvideos" : { "B" : "033","C" : "034","D" : "036", "_" : "061"} ,
                             "nextvideosmobile" : { "right" : "033", "left" : "034", "down" : "036"} ,
@@ -211,9 +211,9 @@
                         {
                           "id":"038",
                           "onend": {
-                           "text" : "\nlink 'A' 65 : Ne rien faire \nlink 'B' 66 : Appuyer sur le bouton pour fermer les SAS.",
+                           "text" : "link 'A' 65 : Ne rien faire \nlink 'B' 66 : Appuyer sur le bouton pour fermer les SAS.\nlink 'C' 67 : Me téléporter sur Terre pour aller au bistrot.",
                           "textmobile" : "Ne rien faire Droite\nGauche Appuyer sur le bouton pour fermer les SAS.",
-                          "nextvideos" : { "B" : "039", "_" : "061"} ,
+                          "nextvideos" : { "B" : "039", "C" : "121", "_" : "061"} ,
                           "nextvideosmobile" : { "left" : "039", "right" : "061"} ,
                           "type" : "multichoicebykeypressed"
                             }
@@ -221,9 +221,9 @@
                       {
                        "id":"039",
                        "onend": {
-                        "text" : "\nlink 'A' 65 : S'enfuir en roulant sous la porte.\nlink 'B' 66 : Abandonner la mission.\n",
+                        "text" : "link 'A' 65 : S'enfuir en roulant sous la porte.\nlink 'B' 66 : Me téléporter sur Terre.\nlink 'C' 67 : Abandonner la mission.",
                         "textmobile" : "S'enfuir en roulant sous la porte Droite\nGauche Abandonner la mission.\n",
-                        "nextvideos" : { "A" : "040", "_" : "061"} ,
+                        "nextvideos" : { "A" : "040", "B" : "121", "_" : "061"} ,
                         "nextvideosmobile" : { "right" : "040", "left" : "061"} ,
                         "type" : "multichoicebykeypressed"
                          }
@@ -231,13 +231,39 @@
                     {
                       "id":"040",
                       "onend": {
-                       "text" : "\nlink 'A' 65 : Bon je suis peinard, je vais au bar de Mars.\nlink 'B' 66 : Abandonner la mission.",
+                       "text" : "\nlink 'A' 65 : Bon je suis peinard, je vais au bar de Mars.\nlink 'B' 66 : Aller plutôt au bar sur Terre en téléportation. ",
                         "textmobile" : "Bon je vais au bar de Mars Droite\nGauche Abandonner la mission.",
-                       "nextvideos" : { "A" : "redirect totalRecall_part3", "_" : "059"} ,
+                       "nextvideos" : { "A" : "redirect totalRecall_part3", "B" : "121", "_" : "059"} ,
                        "nextvideosmobile" : { "right" : "redirect totalRecall_part3", "left" : "059"} ,
                        "type" : "multichoicebykeypressed"
                         }
-                     }
+                     },
+                     {
+                        "id":"041",
+                        "onend": {
+                         "text" : "link 'A' 65 : Dire 'deux semaines!'\nlink 'B' 66 : Abandonner la mission.\nlink 'C' 67 : Faire les yeux doux au douanier.",
+                         "textmobile" : "Dire 'deux semaines!' Droite\nGauche Abandonner la mission.\n",
+                         "nextvideos" : { "A" : "019","C" : "017", "_" : "061"} ,
+                         "nextvideosmobile" : { "right" : "019", "left" : "061"} ,
+                         "type" : "multichoicebykeypressed"
+                          }
+                       },
+                       {
+                          "id":"121",
+                          "onend": {
+                           "text" : "Ma téléportation est finie... Merde je suis à poils !\nlink 'A' 65' : Je vais au bar ! Il me faut des habits !\nlink 'B' 66' : Je me les pèle ! Je retourne sur Mars !",
+                           "nextvideos" : { "A" : "122", "_" : "redirect totalRecall_part3" } ,
+                           "type" : "multichoicebykeypressed"
+                            }
+                         },
+                         {
+                            "id":"122",
+                            "onend": {
+                             "text" : "\nlink 'A' 65' : Bon rien d'intéressant ici, je vais au bar sur Mars...",
+                             "nextvideos" : { "A" : "redirect totalRecall_part3", "_" : "redirect totalRecall_part3" },
+                             "type" : "multichoicebykeypressed"
+                              }
+                           }
   ],
   "gameovers":{
     "idmin" : 59,

@@ -2,22 +2,101 @@
 
 {% block body %}
 <div class="container theme-showcase" role="main">
-    <h1>Jeu {{ game.name }} - Création</h1>
-    <div class="row">
-      <div class="col-md-12">
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul class="list-unstyled">
-        <li>
-            <a href="{{ path('admin_index') }}" class="btn btn-default">Revenir à la liste</a>
-        </li>
-    </ul>
-
-  </div>
-</div>
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>Jeu {{ game.name }} - Création</h1></div>
+    <div class="panel-body">
+      <div class="row">
+      {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+        <div class="col-md-12" style="padding-bottom:10px;" >
+          <div class="form-group">
+              {{ form_errors(form.name) }}
+              {{ form_label(form.name, "Nom", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+              <div class="col-xs-10">
+                  {{ form_widget(form.name, {'attr': {'autofocus': 'autofocus'}}) }}
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group" style="padding-bottom:10px;" >
+              {{ form_errors(form.shortName) }}
+              {{ form_label(form.shortName, "Nom court", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+              <div class="col-xs-10">
+                  {{ form_widget(form.shortName) }}
+              </div>
+          </div>
+        </div>
+      <div class="col-md-12" style="padding-bottom:10px;" >
+        <div class="form-group">
+          <div class="form-group event_description">
+            {{ form_errors(form.description) }}
+            {{ form_label(form.description, "description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+            <div class="col-xs-10">
+                {{ form_widget(form.description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte publique'} }) }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+            {{ form_errors(form.videoPath) }}
+            {{ form_label(form.videoPath, "videoPath", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+            <div class="col-xs-10">
+                {{ form_widget(form.videoPath) }}
+            </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="padding-bottom:10px;" >
+        <div class="form-group">
+          {{ form_errors(form.height) }}
+          {{ form_label(form.height, "height", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+          <div class="col-xs-10">
+            {{ form_widget(form.height) }}
+          </div>
+        </div>
+      </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+          <div class="form-group">
+              {{ form_errors(form.width) }}
+              {{ form_label(form.width, "width", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+              <div class="col-xs-10">
+                  {{ form_widget(form.width) }}
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(form.date) }}
+                {{ form_label(form.date, "Date", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(form.date) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(form.visible) }}
+                {{ form_label(form.visible, "Visible", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(form.visible) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(form.active) }}
+                {{ form_label(form.active, "Actif", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(form.active) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
+          <div class="form-group">
+            <input type="submit" value="Modifier" class="btn btn-success pull-right" />
+              {{ form_end(form) }}
+              <a href="{{ path('admin_index') }}" class="btn btn-default  pull-left" style="margin-right:10px;">Revenir à la liste</a>
+          </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

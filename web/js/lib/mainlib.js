@@ -29,7 +29,7 @@ $('.summernote').summernote({
           ['link', ['link']]
       ]
   });
-  $('.js-datepicker').datepicker({});
+  $('.js-datepicker').datepicker({dateFormat: 'dd/mm/yy' });
 
   $(".retour_accueil_btn").hover(function(){
     $(this).css("opacity","1");

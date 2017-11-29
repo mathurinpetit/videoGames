@@ -12,9 +12,9 @@
     {
      "id":"000",
      "onend": {
-       "text" : "\nSi vous voulez en savoir plus appuyez sur link 'A' 65\nSinon appuyez sur link 'B' 66",
+       "text" : "link 'A' 65 : Si vous voulez en savoir plus appuyez sur link 'A' 65\nlink 'B' 66 : Frappez vous la tête avec link 'B' 66 si vous pensez que c'est un rêve\nlink 'C' 67 : Si vous ne voulez pas en savoir plus appuyer sur link 'C' 67",
        "textmobile" : "\nPour en savoir plus glisser vers Droite\nGauche Cela me paraît sans intérêts...",
-       "nextvideos" : { "A" : "001", "_" : "056"} ,
+       "nextvideos" : { "A" : "001", "B" : "107", "_" : "056"} ,
        "nextvideosmobile" : { "right" : "001", "left" : "056"} ,
        "type" : "multichoicebykeypressed"
         }
@@ -22,9 +22,9 @@
      {
        "id":"001",
       "onend": {
-        "text" : "\nlink 'A' 65 : Cela ne m'interresse pas\nlink 'B' 66 : Je veux en savoir plus",
+        "text" : "link 'A' 65 : Sornettes! Je préfére séduire une blonde avec mes compétences en informatique!\nlink 'B' 66 : Tes histoires ne m'intéressent pas...\nlink 'C' 67 : Je veux en savoir plus... Continues!",
         "textmobile" : "\nCela ne m'interresse pas Droite\nGauche Je veux en savoir plus",
-        "nextvideos" : { "B" : "002", "_" : "057"} ,
+        "nextvideos" : {"A" : "131", "C" : "002", "_" : "057"} ,
         "nextvideosmobile" : { "left" : "002", "right" : "057"} ,
         "type" : "multichoicebykeypressed"
          }
@@ -53,7 +53,7 @@
         {
          "id":"004",
          "onend": {
-           "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc de son nez...",
+           "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal!\nlink 'B' 66 : Sortir le truc de son nez...",
            "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
            "nextvideos" : { "B" : "005", "_" : "058"} ,
            "videomobiletoplay" :  "005" ,
@@ -76,7 +76,7 @@
             "id":"006",
             "onstart": { "stopvideo" : "005" },
             "onend": {
-             "text" : "C'est quoi ça?\nlink 'A' 65 : Je vais me remettre l'emmetteur dans le nez!\nlink 'B' 66 : C'est quoi ce bordel? Je ne veux pas le savoir je m'en vais.\nlink 'C' 67 : Je dois faire quoi Maintenant ?",
+             "text" : "C'est quoi ça?\nlink 'A' 65 : Je dois faire quoi Maintenant? Me remettre l'emmetteur dans le nez?\nlink 'B' 66 : C'est quoi ce bordel? Je ne veux pas le savoir je m'en vais!\nlink 'C' 67 : Télévision, dis moi quoi faire!",
              "textmobile" : "Haut Je dois faire quoi Maintenant ?\nJe vais me remettre l'emmetteur dans le nez ! Droite \nGauche Je ne veux pas le savoir je m'en vais.",
              "nextvideos" : { "A" : "007", "C" : "008", "_" : "056"} ,
              "nextvideosmobile" : { "left" : "056", "right" : "007", "up" : "008"} ,
@@ -114,7 +114,31 @@
                 "nextvideosmobile" : { "right" : "009", "left" : "redirect totalRecall_part2"} ,
                 "type" : "multichoicebykeypressed"
                  }
-              }
+              },
+              {
+               "id":"107",
+               "onend": {
+                 "text" : "\nlink 'A' 65 : Ce n'est pas un rêve! Dis moi quoi faire...\nlink 'B' 66 : Réexplique moi ça je ne t'ai pas écouté!",
+                 "nextvideos" : { "A" : "001", "B" : "000", "_" : "056"},
+                 "type" : "multichoicebykeypressed"
+                  }
+               },
+               {
+                "id":"131",
+                "onend": {
+                  "text" : "Mince! Elle n'a rien compris...\nlink 'A' 65 : Je vais insulter son fils!\nlink 'B' 66 : Bon télévision, parles moi encore!",
+                  "nextvideos" : { "A" : "125", "B" : "002", "_" : "057"},
+                  "type" : "multichoicebykeypressed"
+                   }
+                },
+                {
+                 "id":"125",
+                 "onend": {
+                   "text" : "\nIl ne réagit pas non plus... bon...\nlink 'A' 65 : Allez, télévision, racontes moi des trucs!",
+                   "nextvideos" : { "A" : "003", "_" : "057"},
+                   "type" : "multichoicebykeypressed"
+                    }
+                 }
   ],
   "gameovers":{
     "idmin" : 56,

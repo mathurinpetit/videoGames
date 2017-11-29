@@ -1,0 +1,138 @@
+{
+ "globaldelay": "600",
+ "debugstart" : "007",
+ "cookie" : false,
+ "gamekeys" : {
+                "A" : {"keys" : [65,97] },
+                "B" : { "keys" : [66,98] },
+                "C" : { "keys" : [67,99] },
+                "D" : { "keys" : [68,100]}
+              },
+              "scenario":[
+              {
+                "id":"001",
+                "onend": {
+                  "text" : "\nBonjour! Vous êtes publicitaire!\nAppuyer sur n'importe quelle touche pour commencer à crééer votre publicité sur le formage ...",
+                  "nextvideos" : { "_" : "007"},
+                  "type" : "multichoicebykeypressed"
+                   }
+               },
+               {
+                 "id":"007",
+                 "onend": {
+                   "text" : "\nC'est bien! Mais pour vous moquez des téléspectateurs... il vous faudra parler du produit un peu plus vite!\nAppuyer encore sur une touche.",
+                   "nextvideos" : { "_" : "008"},
+                   "type" : "multichoicebykeypressed"
+                    }
+                },
+                {
+                  "id":"008",
+                  "onend": {
+                    "text" : "\nBon encore un peu plus vite! Le nom du fromage n'est pas assez mis en valeur.\nAppuyer sur n'importe quelle touche.",
+                    "nextvideos" : { "_" : "009"},
+                    "type" : "multichoicebykeypressed"
+                     }
+                 },
+                 {
+                   "id":"009",
+                   "onend": {
+                     "text" : "\nTrès bien!\nPlus vite encore! ",
+                     "nextvideos" : { "_" : "010"},
+                     "type" : "multichoicebykeypressed"
+                      }
+                  },
+                  {
+                    "id":"010",
+                    "onend": {
+                      "text" : "\nParfait! Répéter maintenenant plusieurs fois le nom du fromage!\nAppuyer sur n'importe quelle touche.",
+                      "nextvideos" : { "_" : "011"},
+                      "type" : "multichoicebykeypressed"
+                       }
+                   },
+                   {
+                     "id":"011",
+                     "onend": {
+                       "text" : "\nOui! Oui! Oui! Super! Encore plus vite!\nAppuyez sur les touches de votre clavier.",
+                       "nextvideos" : { "_" : "012"},
+                       "type" : "multichoicebykeypressed"
+                        }
+                    },
+                    {
+                      "id":"012",
+                      "onend": {
+                        "text" : "Génial!\nEncore plus vite! Appuyez sur toute les touches de votre clavier.\nEncore <span class='reste'>9</span> fois.",
+                        "minVideo" : 13,
+                        "maxVideo" : 15,
+                        "nextvideo" :  "016" ,
+                        "textafter" : "",
+                        "nbRepeat" : 8,
+                        "type" : "multibykeypressed"
+                         }
+                     }, { "id":"013" }, { "id":"014" }, { "id":"015" },
+                     {
+                       "id":"016",
+                       "onend": {
+                         "text" : "Bravo!\nMaintenez ralentissez un peu le rythme.\nAppuyer sur n'importe quelle touche.",
+                         "nextvideos" : { "_" : "017"},
+                         "type" : "multichoicebykeypressed"
+                          }
+                      },
+                      {
+                        "id":"017",
+                        "onend": {
+                          "text" : "\nBah voilà!\nRalentissez encore",
+                          "nextvideos" : { "_" : "018"},
+                          "type" : "multichoicebykeypressed"
+                           }
+                       },
+                       {
+                         "id":"018",
+                         "onend": {
+                           "text" : "C'est très bien, vous voilà un bon publicitaire.\nA B",
+                           "nextvideos" : { "A" : "002","B" : "003"},
+                           "type" : "multichoicebykeypressed"
+                            }
+                        },
+
+                        {
+                          "id":"002",
+                          "onend": {
+                            "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
+                            "nextvideos" : { "A" : "004","B" : "005"},
+                            "type" : "multichoicebykeypressed"
+                             }
+                         },
+                         {
+                           "id":"003",
+                           "onend": {
+                             "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
+                             "nextvideos" : { "A" : "004","B" : "006"},
+                             "type" : "multichoicebykeypressed"
+                              }
+                          },
+                          {
+                            "id":"004",
+                            "onend": {
+                              "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
+                              "nextvideos" : { "A" : "005","B" : "006"},
+                              "type" : "multichoicebykeypressed"
+                               }
+                           },
+                           {
+                             "id":"005",
+                             "onend": {
+                               "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
+                               "nextvideos" : { "_" : "001"},
+                               "type" : "multichoicebykeypressed"
+                                }
+                            },
+                            {
+                              "id":"005",
+                              "onend": {
+                                "text" : "\nC'est très bien, vous voilà un bon publicitaire.\nA B",
+                                "nextvideos" : { "_" : "001"},
+                                "type" : "multichoicebykeypressed"
+                                 }
+                             }
+                       ]
+}
