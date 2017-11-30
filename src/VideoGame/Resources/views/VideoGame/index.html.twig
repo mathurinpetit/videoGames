@@ -79,12 +79,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Dommage! Votre navigateur semble être <strong>Safari</strong></h4>
+          <h4 class="modal-title">Dommage! Votre navigateur risque de ne pas bien fonctionner avec le site</h4>
         </div>
         <div class="modal-body  text-left">
           <p>Vous ne pourrez pas profiter pleinement de l'expérience proposée ici.<br/><br/></p>
-          <p>En effet <strong>votre navigateur</strong> ne permet <strong>pas</strong> de lancer du contenu vidéo <strong>automatiquement</strong><br/><br/></p>
-          <p>Veuillez essayer avec un <strong>autre</strong> navigateur web comme <strong>Mozilla Firefox</strong> par exemple.<br/><br/></p>
+          <p>En effet <strong>votre navigateur</strong> semble de ne pas pouvoir lancer du contenu vidéo <strong>automatiquement</strong><br/><br/></p>
+          <p>Vous devriez essayer avec un <strong>autre</strong> navigateur web comme <strong>Mozilla Firefox</strong> par exemple.<br/><br/></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -93,19 +93,6 @@
     </div>
 </div>
 <script src="/js/index.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function () {
-  Modernizr.on('videoautoplay', function(result){
-    if(result) {
-      console.log("ce navigateur peut lire les vidéos en autoplay.");
-    }  else {
-      $('#videoNotSupportedModal').modal('show');
-    }
-  });
-
-});
-</script>
 
 {% endblock %}
 
