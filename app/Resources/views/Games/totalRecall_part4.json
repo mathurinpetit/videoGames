@@ -212,7 +212,7 @@
                   {
                       "id":"129",
                      "onend": {
-                       "text" : "link 'A' 65 : Re-suspecter le chef d'être Quato \nlink 'B' 66 : Attendre Quato...\nlink 'C' 66 : Faire un peu la moral au chef...",
+                       "text" : "link 'A' 65 : Re-suspecter le chef d'être Quato. \nlink 'B' 66 : Attendre Quato...\nlink 'C' 66 : Faire un peu la morale au chef... pour qu'il arrête de vous cacher Quato!",
                        "nextvideos" : { "A" : "075", "B" : "076", "C" : "129", "_" : "087"} ,
                        "type" : "multichoicebykeypressed"
                         }
