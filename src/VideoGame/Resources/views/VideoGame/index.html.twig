@@ -38,7 +38,7 @@
             <p><strong>www.video-jeux.fr</strong> propose plusieurs <span style="font-style: italic;"><strong>expériences vidéo ludiques</strong></span>.</p>
             <br/>
             <p>Ce site ainsi que les jeux auxquels vous pourrez jouer sont encore expérimentaux et en cours de construction.<br/>
-            Les expériences vidéo ludiques proposés ici sont prévus pour être joués avec un ordinateur possèdant un clavier et une souris.</p>
+            Les expériences vidéo ludiques proposées ici sont prévus pour être jouées avec un ordinateur possèdant un clavier et une souris.</p>
             <p><strong>Très bonnes expériences à vous!</strong></p><br/>
           </div>
         </div>
@@ -92,28 +92,21 @@
       </div>
     </div>
 </div>
-<script type="text/javascript">
+<script src="/js/index.js"></script>
 
+<script type="text/javascript">
 $(document).ready(function () {
-  var supports_video_autoplay = function(callback) {
-  if (typeof callback !== "function") return false;
-  var v = document.createElement("video");
-  v.paused = true;
-  var p = "play" in v && v.play();
-  callback(!v.paused || ("Promise" in window && p instanceof Promise));
-  };
-  supports_video_autoplay(function(supported) {
-  if (!supported) {
-    $('#videoNotSupportedModal').modal('show');
-  } else {
-    console.log("ce navigateur peut lire les vidéos en autoplay.");
-  }
-});
+  Modernizr.on('videoautoplay', function(result){
+    if(result) {
+      console.log("ce navigateur peut lire les vidéos en autoplay.");
+    }  else {
+      $('#videoNotSupportedModal').modal('show');
+    }
+  });
 
 });
 </script>
 
-<script src="/js/index.js"></script>
 {% endblock %}
 
 
