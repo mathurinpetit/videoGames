@@ -28,7 +28,7 @@
       {
         "id":"082",
        "onend": {
-         "text" : "link 'A' 66 : Je conseille à ma copine de rester cool!\nlink 'B' 66 : J'attrape la corde pour ne pas me faire aspirer!\nlink 'C' 67 : Tan pis je me laisser aspirer dans le feu...",
+         "text" : "link 'A' 65 : J'attrape la corde et je conseille à ma copine de rester cool!\nlink 'B' 66 : J'attrape la corde pour ne pas me faire aspirer!\nlink 'C' 67 : Tan pis je me laisser aspirer dans le feu...",
          "nextvideos" : {"A" : "120", "B" : "083", "_" : "105"} ,
          "type" : "multichoicebykeypressed"
           }
