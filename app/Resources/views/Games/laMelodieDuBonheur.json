@@ -7,8 +7,8 @@
     {
       "id":"000",
       "onend": {
-       "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
-       "textmobile" : "\nTap Toucher pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
+       "text" : "\nMaintenant, appuyez sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
+       "textmobile" : "\nTap Appuyez sur une touche pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
        "minVideo" : 1,
        "maxVideo" : 14,
        "nextvideo" :  "015" ,
@@ -35,14 +35,14 @@
      {
        "id":"015",
        "onend": {
-        "text" : "\nAppuyer sur les touches de votre clavier pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
-        "textmobile" : "\nTap Appuyer pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
+        "text" : "\nAppuyez sur les touches de votre clavier pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
+        "textmobile" : "\nTap Appuyez pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
         "minVideo" : 16,
         "maxVideo" : 29,
         "nextvideo" :  "030" ,
         "textafter" : "",
         "ordermulti" : true,
-        "dictionnaire" :"\n  Chantez!  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n",
+        "dictionnaire" :"\n  Chantez !  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n",
         "type" : "multibykeypressed"
          }
       },
@@ -63,14 +63,14 @@
       {
         "id":"030",
         "onend": {
-         "text" : "\nAppuies sur les touches pour chanter tous ensembles.\nOn va chanter encore <span class='reste'>17</span> fois.",
-         "textmobile" : "\nTap Appuyer pour chanter tous ensembles.\nOn va chanter encore <span class='reste'>17</span> fois.",
+         "text" : "\nAppuie sur les touches pour que Fräulein Maria et les enfants chantent tous ensemble !\nOn va chanter encore <span class='reste'>17</span> fois.",
+         "textmobile" : "\nTap Appuyez pour que Fräulein Maria et les enfants chantent tous ensemble.\nOn va chanter encore <span class='reste'>17</span> fois.",
          "minVideo" : 31,
          "maxVideo" : 44,
          "nextvideo" :  "045" ,
          "textafter" : "",
          "ordermulti" : true,
-         "dictionnaire" :"\n  Chantez!  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n",
+         "dictionnaire" :"\n  Chantez !  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n",
          "type" : "multibykeypressed"
           }
        },
@@ -91,14 +91,14 @@
        {
          "id":"045",
          "onend": {
-          "text" : "\nTapes encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
-           "textmobile" : "\nTap Appuies encore pour chanter des paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+          "text" : "\nTape encore sur ton clavier pour chanter les paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+           "textmobile" : "\nTap Appuie encore pour chanter les paroles de toute la chanson !.\nPlus que <span class='reste'>17</span> paroles à chanter.",
           "minVideo" : 46,
           "maxVideo" : 59,
           "nextvideo" :  "060" ,
           "textafter" : "",
           "ordermulti" : true,
-          "dictionnaire" :"\n  Chantez!  \n\n  A : Quand  \n  Z : on  \n  E : sait  \n  R : les  \n  T : notes  \n  Y : on  \n  U : chante  \n\n  I : On  \n  O : chante  \n  P : tout  \n  Q : ce  \n  S : qui  \n  D : nous  \n  F : chante  \n\n",
+          "dictionnaire" :"\n  Chantez !  \n\n  A : Quand  \n  Z : on  \n  E : sait  \n  R : les  \n  T : notes  \n  Y : on  \n  U : chante  \n\n  I : On  \n  O : chante  \n  P : tout  \n  Q : ce  \n  S : qui  \n  D : nous  \n  F : chante  \n\n",
           "type" : "multibykeypressed"
            }
         },
@@ -119,13 +119,13 @@
         {
           "id":"060",
           "onend": {
-           "text" : "\nDebout! Lève toi et chantes !\nYoupi! chantons autant que l'on veut.",
-            "textmobile" : "\nTap Debout! Lève toi et chantes !\nYoupi! chantons autant que l'on veut.",
+           "text" : "\nDebout ! Lève toi et chante !\nYoupi ! Chantons autant que l'on veut.",
+            "textmobile" : "\nTap Debout ! Lève toi et chante !\nYoupi ! Chantons autant que l'on veut.",
            "minVideo" : 61,
            "maxVideo" : 74,
            "textafter" : "",
            "ordermulti" : true,
-           "dictionnaire" :"\n  Chantez!  \n\n  A : Quand  \n  Z : on  \n  E : sait  \n  R : les  \n  T : notes  \n  Y : on  \n  U : chante  \n\n  I : On  \n  O : chante  \n  P : tout  \n  Q : ce  \n  S : qui  \n  D : nous  \n  F : chante  \n\n",
+           "dictionnaire" :"\n  Chantez !  \n\n  A : Quand  \n  Z : on  \n  E : sait  \n  R : les  \n  T : notes  \n  Y : on  \n  U : chante  \n\n  I : On  \n  O : chante  \n  P : tout  \n  Q : ce  \n  S : qui  \n  D : nous  \n  F : chante  \n\n",
            "type" : "multibykeypressed"
             }
          },
