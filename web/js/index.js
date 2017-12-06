@@ -49,10 +49,15 @@ $('.gamelink a.no-cookie').each(function(){
 window.addEventListener( 'resize', adaptView, false );
 
 Modernizr.on('videoautoplay', function(result){
-  if(result && navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+
+  if(result) {
     console.log("ce navigateur peut lire les vidéos en autoplay.");
   }  else {
-    $('#videoNotSupportedModal').modal('show');
+    if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
+      $('#videoNotSupportedModal').modal('show');
+    }else{
+      console.log("ce navigateur peut lire les vidéos en autoplay.");
+    }
   }
 });
 
