@@ -38,8 +38,8 @@
             <p><strong>www.video-jeux.fr</strong> propose plusieurs <span style="font-style: italic;"><strong>expériences vidéo ludiques</strong></span>.</p>
             <br/>
             <p>Ce site ainsi que les jeux auxquels vous pourrez jouer sont encore expérimentaux et en cours de construction.<br/>
-            Les expériences vidéo ludiques proposées ici sont prévus pour être jouées avec un ordinateur possèdant un clavier et une souris.</p>
-            <p><strong>Très bonnes expériences à vous!</strong></p><br/>
+            Les expériences vidéo ludiques proposées ici sont prévues pour être jouées avec un ordinateur équipé d'un clavier et d'une souris.</p>
+            <p><strong>Très bonnes expériences à vous !</strong></p><br/>
           </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
       <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style="width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button pull-down no-cookie" >Jouer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
       </a>
       <div class="btn-group play-button pull-down cookie" style="display:none;">
-        <a class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Clickez ici pour ré-initialiser le jeux" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></a>
+        <a class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></a>
         <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
         </a>
       </div>
@@ -79,12 +79,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Dommage! Votre navigateur risque de ne pas bien fonctionner avec le site</h4>
+          <h4 class="modal-title">Dommage ! Votre navigateur risque de ne pas bien fonctionner avec le site</h4>
         </div>
         <div class="modal-body  text-left">
           <p>Vous ne pourrez pas profiter pleinement de l'expérience proposée ici.<br/><br/></p>
-          <p>En effet <strong>votre navigateur</strong> semble de ne pas pouvoir lancer du contenu vidéo <strong>automatiquement</strong><br/><br/></p>
-          <p>Vous devriez essayer avec un <strong>autre</strong> navigateur web comme <strong>Mozilla Firefox</strong> par exemple.<br/><br/></p>
+          <p>En effet <strong>votre navigateur</strong> semble de ne pas pouvoir lancer le contenu vidéo <strong>automatiquement</strong><br/><br/></p>
+          <p>Essayez avec un <strong>autre</strong> navigateur web comme <strong>Mozilla Firefox</strong> par exemple.<br/><br/></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
