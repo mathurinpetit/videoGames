@@ -107,7 +107,7 @@
           "nextvideo" :  "061" ,
           "textafter" : "",
           "nbRepeat" : 16,
-          
+
           "type" : "multibykeypressed"
            }
         },
@@ -172,7 +172,7 @@
          {
            "id":"083",
            "onend": {
-            "text" : "\nContinuer à appuyer sur les touches pour faire la techno des années 80.\nPlus que <span class='reste'>16</span> fois.",
+            "text" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez finit !\nContinuer à appuyer sur les touches pour faire la techno des années 80.\nPlus que <span class='reste'>16</span> fois.",
             "minVideo" : 10,
             "maxVideo" : 21,
             "textafter" : "",

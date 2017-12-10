@@ -119,7 +119,7 @@
         {
           "id":"060",
           "onend": {
-           "text" : "\nDebout ! Lève toi et chante !\nYoupi ! Chantons autant que l'on veut.",
+           "text" : "<a class='btn btn-xs btn-success' onClick=' window.location = window.location.origin; return false;' style='margin: 5px 0px;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous savez chanter !\nDebout ! Lève toi et chante !\nYoupi ! Chantons autant que l'on veut.",
             "textmobile" : "\nTap Debout ! Lève toi et chante !\nYoupi ! Chantons autant que l'on veut.",
            "minVideo" : 61,
            "maxVideo" : 74,

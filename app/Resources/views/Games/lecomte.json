@@ -113,7 +113,7 @@
                           {
                             "id":"004",
                             "onend": {
-                              "text" : "\nlink 'A' 65 : Demandez à André, le laitier, de parler des biensfait du TéCom.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
+                              "text" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez finit !\nlink 'A' 65 : Demandez à André, le laitier, de parler des biensfait du TéCom.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
                               "nextvideos" : { "A" : "005","B" : "001","_" : "001"},
                               "type" : "multichoicebykeypressed"
                                }
@@ -121,7 +121,7 @@
                            {
                              "id":"005",
                              "onend": {
-                               "text" : "\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
+                               "text" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez finit !\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
                                "nextvideos" : { "A" : "004","B" : "001","_" : "001" },
                                "type" : "multichoicebykeypressed"
                                 }
