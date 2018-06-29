@@ -1,0 +1,79 @@
+var wordsToSay = [];
+
+
+function addWord(data,majurl = false){
+    var html = '<a class="btn btn-xs btn-default" onClick="removeWord($(this));" title="'+data.text+'" style="margin-right:5px;" ><strong><span class="text-muted" role="presentation">×</span>&nbsp;'+data.text+'</strong></a>';
+     wordsToSay.push(data);
+     $("#footer > div > span").html($("#footer > div > span").html()+html);
+     $("#select2").val(null).trigger("change");
+     $("#select2").focus();
+     if(majurl){
+         rebuildUrlFromWords();
+     }
+}
+
+function removeWord(btn){
+    var btn_index = $('#footer .text a').index(btn);
+    if (btn_index !== -1) {
+        wordsToSay.splice(btn_index, 1);
+        btn.remove();
+        rebuildUrlFromWords();
+    }
+}
+
+function createWordFromUrl(){
+    var url_string = window.location;
+    var url = new URL(url_string);
+    var texte = decodeURIComponent(url.searchParams.get("texte"));
+    if(""+texte == "null"){
+        var msg = url.searchParams.get("msg");
+        if(msg){
+            texte=atou(msg);
+        }
+    }
+    if(""+texte != "null"){
+        var texteArray = texte.split(',');
+        var totalTextes = game_json.dictionnaire;
+        for (var ti in texteArray) {
+            var t = texteArray[ti];
+            for (var x in totalTextes) {
+                var o = totalTextes[x];
+                if(o.word = t){
+                    addWord({text : t,id : o.id });
+                    break;
+                }
+        }
+        }
+    }
+}
+
+function rebuildUrlFromWords(){
+
+    history.pushState("toto","str","?texte="+encodeURIComponent(createParamsUrl()));
+    get_short_url();
+}
+
+function createParamsUrl(){
+    str = "";
+    for (var x in wordsToSay) {
+        str+=wordsToSay[x].text+",";
+    }
+    return str.slice(0, -1);
+}
+
+function get_short_url()
+{
+    console.log(window.location.host+window.location.pathname+"?msg="+utoa(createParamsUrl()));
+}
+
+// ucs-2 string to base64 encoded ascii
+function utoa(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+}
+
+// base64 encoded ascii to ucs-2 string
+function atou(str) {
+    return decodeURIComponent(escape(window.atob(str)));
+}
+
+createWordFromUrl();

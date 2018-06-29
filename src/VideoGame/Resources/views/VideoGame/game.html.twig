@@ -29,10 +29,20 @@
 <div id="dictionnaire" style="display:none">
     <div style="position: relative;">
       <span class="text"></span>
+      {% if urlgame %}
+      <div class="choices">
+        <select id="select2" style="width:80%; color:#000;" multiple="multiple">
+          <option value=""></option>
+            {% for videoWord in game_json.dictionnaire %}
+              <option value="{{ videoWord.id }}">{{ videoWord.word }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      {% endif %}
   </div>
 </div>
 
-   <div id="footer" style="display:none;">
+   <div id="footer" >
        <div style="position: relative; left: 20%;">
          <span class="text"></span>
      </div>
@@ -47,7 +57,7 @@
 {% endblock %}
 {% block jsgame %}
   <script type="text/javascript">
-   	{{ include('Engine/gameEngine.js.twig', { 'game': game }) }}
+   	{{ include('Engine/gameEngine.js.twig', { 'game': game ,'urlgame' : urlgame}) }}
    </script>
 {% endblock %}
 

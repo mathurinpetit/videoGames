@@ -13,7 +13,26 @@ String.prototype.replaceAll = function(search, replacement) {
 };
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('#select2').select2({
+      allowClear: true,
+      placeholder: "Tapez des mots"
+  });
+
+ $('#select2').on('select2:select', function (e) {
+    var data = e.params.data;
+    var word = { "text" : data.text, "id" : data.id }
+    addWord(word,true);
+
+});
+
+$('#select2').on('select2:close', function (e) {
+    var select2SearchField = $(this).parent().find('.select2-search__field');
+    var setfocus = setTimeout(function() {
+        select2SearchField.focus();
+    }, 100);
+});
 
 $('.summernote').summernote({
       lang: 'fr-FR',

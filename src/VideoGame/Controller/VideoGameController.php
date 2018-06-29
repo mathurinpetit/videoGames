@@ -17,7 +17,7 @@ class VideoGameController extends Controller
       if($this->isMobile()){
         return $this->redirectToRoute('videogame_mobile');
       }
-        
+
       $em = $this->getDoctrine()->getManager();
 
       $games = $em->getRepository('VideoGameBundle:Game')->findBy(
@@ -56,6 +56,7 @@ class VideoGameController extends Controller
       $game = $em->getRepository('VideoGameBundle:Game')->findOneByShortName($idName);
       $game_json = json_decode(file_get_contents($this->get('kernel')->getRootDir() . '/Resources/views/Games/'.$game->getShortName().'.json'));
       $idsVideos = array();
+      $urlgame = (property_exists($game_json, 'urlgame'))? $game_json->urlgame : null;
       foreach ($game_json->scenario as $sequence) {
         $idsVideos[$sequence->id] = $sequence->id;
       }
@@ -66,7 +67,7 @@ class VideoGameController extends Controller
         }
       }
       ksort($idsVideos);
-      return array('game' => $game, "idsVideos" => $idsVideos);
+      return array('game' => $game, "idsVideos" => $idsVideos, "urlgame" => $urlgame, 'game_json' => $game_json);
     }
 
     /**

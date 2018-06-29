@@ -7,6 +7,7 @@
         <meta name="description" content="www.video-jeux.fr - Joues avec des vidéos - Jeux en lignes avec des extraits de vidéos, films, publicités, clips..." />
         <meta name="author" content="Mathurin Petit">
         <title>{% block title %}www.video-jeux.fr - Joues avec des vidéos{% endblock %}</title>
+        <link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/select2.min.css') }}" />
         {% block stylesheets %}
         <link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/jquery-ui.min.css') }}" />
         <link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/bootstrap.min.css') }}" />
@@ -31,7 +32,9 @@
         <script src="/js/lib/TweenLite.min.js"></script>
         {% endblock %}
         {% block javascripts %}
+        <script src="/js/lib/jquery-3.2.1.min.js"></script>
         <script src="/js/lib/bootstrap.min.js"></script>
+        <script src="/js/lib/select2.full.min.js"></script>
         <script src="/js/lib/modernizr-3.0.0.js"></script>
         <script src="/js/lib/mainlib.js"></script>
         <script src="/js/lib/jquery-ui.min.js"></script>

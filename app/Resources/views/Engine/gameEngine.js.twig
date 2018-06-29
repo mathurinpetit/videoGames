@@ -195,7 +195,10 @@ function render() {
 }
 
 
- {{ include('Games/gameEventsManager.js.twig', { 'game': game }) }}
+{% if urlgame %}
+ {{ include('Games/gameUrlInitialization.js.twig', { 'game': game , 'urlgame' : urlgame }) }}
+{% endif %}
+ {{ include('Games/gameEventsManager.js.twig', { 'game': game , 'urlgame' : urlgame }) }}
 
  video.onloadeddata = function() {
     $("#divLoading").hide();

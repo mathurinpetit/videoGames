@@ -55,6 +55,11 @@ $(document).ready(function(){
     }
 
     var delay = game_json.globaldelay;
+    var dictionnaireGlobal = "";
+    if(game_json.hasOwnProperty("dictionnairetext")){
+      dictionnaireGlobal = game_json.dictionnairetext;
+      loadDictionnaire(dictionnaireGlobal,delay);
+    }
 
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];

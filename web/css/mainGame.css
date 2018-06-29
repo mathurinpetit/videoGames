@@ -35,6 +35,10 @@ body {
   text-align: left;
   background:#333;
 }
+.select2-selection__clear{
+    display: none !important;
+}
+
 
 #retour_accueil {
   position: absolute;
@@ -51,6 +55,11 @@ body {
 
 video {
   width:100%;
+}
+
+.select2-container {
+  color: #000;
+  width: 200px;
 }
 
 
