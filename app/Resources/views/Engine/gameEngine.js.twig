@@ -202,5 +202,7 @@ function render() {
 
  video.onloadeddata = function() {
     $("#divLoading").hide();
-    video.play();
+    {% if not urlgame %}
+        {{ "video.play();" }}
+    {% endif %}
  };

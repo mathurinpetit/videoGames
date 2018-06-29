@@ -26,17 +26,21 @@
   </p>
 </div>
 
-<div id="dictionnaire" style="display:none">
+<div id="dictionnaire" style="display:none; {% if urlgame %} width:250px;{% endif %}">
     <div style="position: relative;">
-      <span class="text"></span>
+      <span style="margin: 0 10px; float:right; width: 80%;" class="text"></span>
       {% if urlgame %}
-      <div class="choices">
-        <select id="select2" style="width:80%; color:#000;" multiple="multiple">
+      <div class="choices" style="margin: 0 10px;">
+        <select id="select2" style="color:#000;" multiple="multiple">
           <option value=""></option>
             {% for videoWord in game_json.dictionnaire %}
               <option value="{{ videoWord.id }}">{{ videoWord.word }}</option>
             {% endfor %}
         </select>
+      </div>
+      <br/>
+      <div class="playwords" style="margin: 0 10px;">
+        <a id="playSequenceBtn" class="btn btn-success" style="width: 200px" onclick="playSequenceBtn();"><strong>Lecture</strong>&nbsp;<span class="glyphicon glyphicon-play"></span></a>
       </div>
       {% endif %}
   </div>

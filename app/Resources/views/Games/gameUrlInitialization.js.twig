@@ -9,6 +9,7 @@ function addWord(data,majurl = false){
      $("#select2").focus();
      if(majurl){
          rebuildUrlFromWords();
+         changeVideo(""+data.id,'infini');
      }
 }
 
@@ -24,6 +25,7 @@ function removeWord(btn){
 function createWordFromUrl(){
     var url_string = window.location;
     var url = new URL(url_string);
+    var oneOrMoreVideo = false;
     var texte = decodeURIComponent(url.searchParams.get("texte"));
     if(""+texte == "null"){
         var msg = url.searchParams.get("msg");
@@ -38,11 +40,15 @@ function createWordFromUrl(){
             var t = texteArray[ti];
             for (var x in totalTextes) {
                 var o = totalTextes[x];
-                if(o.word = t){
-                    addWord({text : t,id : o.id });
+                if(o.word == t){
+                    oneOrMoreVideo = true
+                    addWord({text : t, id : o.id });
                     break;
                 }
+           }
         }
+        if(oneOrMoreVideo){
+            playSequenceBtn();
         }
     }
 }
@@ -75,5 +81,33 @@ function utoa(str) {
 function atou(str) {
     return decodeURIComponent(escape(window.atob(str)));
 }
+
+function playSequenceBtn(cpt = 0){
+    var localCpt = 0;
+    var videoElt = null;
+    for (var x in wordsToSay) {
+        if(localCpt == cpt){
+            var videoId = wordsToSay[x].id;
+            changeVideo(""+videoId,'infini');
+            videoElt = document.getElementById( 'video_'+videoId );
+            cpt++;
+            break;
+        }
+        localCpt++;
+    }
+    if(videoElt){
+        $(videoElt).bind('ended', function () {
+            $(videoElt).unbind('ended');
+            playSequenceBtn(cpt);
+        });
+    }else{
+        for (var x in wordsToSay) {
+            var videoIdToStop = wordsToSay[x].id;
+            stopVideo(videoIdToStop);
+        }
+
+    }
+}
+
 
 createWordFromUrl();
