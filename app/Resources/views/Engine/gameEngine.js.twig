@@ -112,7 +112,7 @@ function init() {
 
   xsize = {{ game.width }} ;
   ysize = {{ game.height }} ;
-  zsize = {{ game.width }} ;
+  zsize = {{ game.width }} / 1000 ;
 
   //zsize = 10 ;
 
@@ -129,7 +129,7 @@ function init() {
   mesh_0 = new THREE.Mesh( geometry, material_0 );
   mesh_0.position.x = 0;
   mesh_0.position.y = 0;
-  mesh_0.position.z = 0;
+  mesh_0.position.z = 200;
 
   mesh_0.scale.x = mesh_0.scale.y = mesh_0.scale.z = 0.5;
 
@@ -138,7 +138,7 @@ function init() {
   mesh_1 = new THREE.Mesh( geometry, material_1 );
   mesh_1.position.x = 0;
   mesh_1.position.y = 0;
-  mesh_1.position.z = 0;
+  mesh_1.position.z = 200;
 
   mesh_1.scale.x = mesh_1.scale.y = mesh_1.scale.z = 0.5;
 
@@ -185,8 +185,10 @@ function animate() {
 function render() {
 
   var time = Date.now() * 0.0005;
-  camera.position.x += ( mouseX - camera.position.x ) * 0.25;
-  camera.position.y += ( - mouseY - camera.position.y ) * 0.25;
+  if(mouseX < 400 && mouseX > -400 )
+    camera.position.x += ( mouseX - camera.position.x ) * 0.1;
+  if(mouseY < 400 && mouseY > -400 )
+    camera.position.y += ( - mouseY - camera.position.y ) * 0.1;
 
   camera.lookAt( scene.position );
   renderer.clear();
