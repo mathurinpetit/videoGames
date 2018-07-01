@@ -21,160 +21,160 @@ function restartOnLastCheckpoint(){
 $(document).ready(function(){
     video.play();
 
-    attachAll();
-});
+        attachAll();
+    });
 
-function attachAll(){
-    if(game_json.hasOwnProperty("gameovers")){
-      var gameOverMin = game_json.gameovers.idmin;
-      var gameOverMax = game_json.gameovers.idmax;
-      var gameOverText = game_json.gameovers.textmobile;
-      for (var i = gameOverMin; i <= gameOverMax; i++) {
-        var videoGameOverId =  i.zeroPad(100);
-        $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
-          loadText(gameOverText,500,mobile);
-          $('body').bind('tap', function(event) {
-              changeVideoMobile(pathGame,lastVideoPlayed["val"],500);
-              unbindAllEvents();
-              attachAll();
-              event.preventDefault();
-          });
-        });
-      }
-    }
-
-    for (var i = 0; i < game_json.scenario.length; i++) {
-      var videoObj = game_json.scenario[i];
-      if(videoObj.hasOwnProperty("onstart")){
-        $('#video_'+videoObj.id).on('play',videoObj,function(event){
-          //stopVideo(event.data.onstart.stopvideo);
-        });
-      }
-      if(videoObj.hasOwnProperty("onend")){
-        $('#video_'+videoObj.id).on('ended',videoObj,function(event){
-          unbindAllEvents();
-          var text = "";
-          if(event.data.onend.hasOwnProperty("textmobile")){
-            text = event.data.onend.textmobile;
-          }
-
-          var delay = "";
-          if(game_json.hasOwnProperty("globaldelay")){
-            delay = game_json.globaldelay;
-          }
-          if(event.data.onend.hasOwnProperty("delay")){
-            delay = event.data.onend.delay;
-          }
-          loadText(text,delay,mobile);
-          if(debug){ console.log(event); }
-
-          // Lorsque l'on a un choix multiple
-          if(event.data.onend.type == "multichoicebykeypressed"){
-            var nextvideomobile = null;
-            if(event.data.onend.hasOwnProperty("nextvideomobile")){
-              nextvideomobile = event.data.onend.nextvideomobile;
-            }
-            if(nextvideomobile){
-              $('body').bind('tap', function(event){
-                changeVideoMobile(pathGame,nextvideomobile,delay);
-                unbindAllEvents();
-                attachAll();
-                event.preventDefault();
-              });
-            }else{
-              if(event.data.onend.hasOwnProperty("nextvideosmobile")){
-                lastVideoPlayed["val"] = ""+videoObj.id;
-                var nextVideos = event.data.onend.nextvideosmobile;
-                $('body').bind('swipeleft', function(){
-                  changeVideoMobile(pathGame,nextVideos['left'],delay);
+    function attachAll(){
+        if(game_json.hasOwnProperty("gameovers")){
+          var gameOverMin = game_json.gameovers.idmin;
+          var gameOverMax = game_json.gameovers.idmax;
+          var gameOverText = game_json.gameovers.textmobile;
+          for (var i = gameOverMin; i <= gameOverMax; i++) {
+            var videoGameOverId =  i.zeroPad(100);
+            $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
+              loadText(gameOverText,500,mobile);
+              $('body').bind('tap', function(event) {
+                  changeVideoMobile(pathGame,lastVideoPlayed["val"],500);
                   unbindAllEvents();
                   attachAll();
-                });
-
-                $('body').bind('swiperight', function(){
-                  changeVideoMobile(pathGame,nextVideos['right'],delay);
-                  unbindAllEvents();
-                  attachAll();
-                });
-
-                if(nextVideos.hasOwnProperty('up')){
-                  $('body').bind('swipeup', function(){
-                    changeVideoMobile(pathGame,nextVideos['up'],delay);
-                    unbindAllEvents();
-                    attachAll();
-                  });
-                }
-                if(nextVideos.hasOwnProperty('down')){
-                  $('body').bind('swipedown', function(){
-                      changeVideoMobile(pathGame,nextVideos['down'],delay);
-                      unbindAllEvents();
-                      attachAll();
-                  });
-                }
-              }
-            }
-            }
-
-          // playbykey or playbymouse
-          if(event.data.onend.type == "playbykey" || event.data.onend.type == "playbymouse"){
-            var timeout;
-            var isFinished = false;
-            var idVideomobiletoplay = event.data.onend.videomobiletoplay;
-            var nextvideomobile = null;
-            if(event.data.onend.hasOwnProperty("nextvideomobile")){
-              nextvideomobile = event.data.onend.nextvideomobile;
-            }
-            changeVideoMobile(pathGame,""+idVideomobiletoplay,'infini',true,500);
-            videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
-            $('body').bind('tap', function(event) {
-                  clearTimeout(timeout);
-                  if(videoElt.paused){
-                    videoElt.play();
-                    timeout = setTimeout(function(){
-                      if(!isFinished){
-                        videoElt.pause();
-                      }
-                    }, 120);
-                  }
                   event.preventDefault();
               });
-              $(videoElt).on('ended', function(){
-                if(nextvideomobile && !isFinished){
-                  changeVideoMobile(pathGame,""+nextvideomobile, delay);
-                }
-                lastVideoPlayed["val"] = ""+nextvideomobile;
-                unbindAllEvents();
-                isFinished = true;
-                attachAll();
-               });
-          }
-
-          // multibykeypressed
-          if(event.data.onend.type == "multibykeypressed"){
-            unbindAllEvents();
-            compteur = 0;
-            var minVideo=event.data.onend.minVideo;
-            var maxVideo=event.data.onend.maxVideo;
-            var nextVideoId = false;
-            if(event.data.onend.hasOwnProperty("nextvideo")){
-              nextVideoId = event.data.onend.nextvideo;
-            }
-            var textAfter = event.data.onend.textafter;
-            $('body').bind('tap', function(event) {
-                  var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-                  changeVideoMobile(pathGame,randkey.zeroPad(100),'infini');
-                  $('.reste').text(maxCpt-(compteur++));
-                  if(nextVideoId && maxCpt && (compteur > maxCpt)){
-                    lastVideoPlayed["val"] = ""+nextVideoId;
-                    changeVideoMobile(pathGame,""+nextVideoId,delay);
-                    loadText(textAfter,delay,mobile);
-                    unbindAllEvents();
-                    attachAll();
-                  }
-                  event.preventDefault();
             });
           }
-        });
-      }
+        }
+
+        for (var i = 0; i < game_json.scenario.length; i++) {
+          var videoObj = game_json.scenario[i];
+          if(videoObj.hasOwnProperty("onstart")){
+            $('#video_'+videoObj.id).on('play',videoObj,function(event){
+              //stopVideo(event.data.onstart.stopvideo);
+            });
+          }
+          if(videoObj.hasOwnProperty("onend")){
+            $('#video_'+videoObj.id).on('ended',videoObj,function(event){
+              unbindAllEvents();
+              var text = "";
+              if(event.data.onend.hasOwnProperty("textmobile")){
+                text = event.data.onend.textmobile;
+              }
+
+              var delay = "";
+              if(game_json.hasOwnProperty("globaldelay")){
+                delay = game_json.globaldelay;
+              }
+              if(event.data.onend.hasOwnProperty("delay")){
+                delay = event.data.onend.delay;
+              }
+              loadText(text,delay,mobile);
+              if(debug){ console.log(event); }
+
+              // Lorsque l'on a un choix multiple
+              if(event.data.onend.type == "multichoicebykeypressed"){
+                var nextvideomobile = null;
+                if(event.data.onend.hasOwnProperty("nextvideomobile")){
+                  nextvideomobile = event.data.onend.nextvideomobile;
+                }
+                if(nextvideomobile){
+                  $('body').bind('tap', function(event){
+                    changeVideoMobile(pathGame,nextvideomobile,delay);
+                    unbindAllEvents();
+                    attachAll();
+                    event.preventDefault();
+                  });
+                }else{
+                  if(event.data.onend.hasOwnProperty("nextvideosmobile")){
+                    lastVideoPlayed["val"] = ""+videoObj.id;
+                    var nextVideos = event.data.onend.nextvideosmobile;
+                    $('body').bind('swipeleft', function(){
+                      changeVideoMobile(pathGame,nextVideos['left'],delay);
+                      unbindAllEvents();
+                      attachAll();
+                    });
+
+                    $('body').bind('swiperight', function(){
+                      changeVideoMobile(pathGame,nextVideos['right'],delay);
+                      unbindAllEvents();
+                      attachAll();
+                    });
+
+                    if(nextVideos.hasOwnProperty('up')){
+                      $('body').bind('swipeup', function(){
+                        changeVideoMobile(pathGame,nextVideos['up'],delay);
+                        unbindAllEvents();
+                        attachAll();
+                      });
+                    }
+                    if(nextVideos.hasOwnProperty('down')){
+                      $('body').bind('swipedown', function(){
+                          changeVideoMobile(pathGame,nextVideos['down'],delay);
+                          unbindAllEvents();
+                          attachAll();
+                      });
+                    }
+                  }
+                }
+                }
+
+              // playbykey or playbymouse
+              if(event.data.onend.type == "playbykey" || event.data.onend.type == "playbymouse"){
+                var timeout;
+                var isFinished = false;
+                var idVideomobiletoplay = event.data.onend.videomobiletoplay;
+                var nextvideomobile = null;
+                if(event.data.onend.hasOwnProperty("nextvideomobile")){
+                  nextvideomobile = event.data.onend.nextvideomobile;
+                }
+                changeVideoMobile(pathGame,""+idVideomobiletoplay,'infini',true,500);
+                videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
+                $('body').bind('tap', function(event) {
+                      clearTimeout(timeout);
+                      if(videoElt.paused){
+                        videoElt.play();
+                        timeout = setTimeout(function(){
+                          if(!isFinished){
+                            videoElt.pause();
+                          }
+                        }, 120);
+                      }
+                      event.preventDefault();
+                  });
+                  $(videoElt).on('ended', function(){
+                    if(nextvideomobile && !isFinished){
+                      changeVideoMobile(pathGame,""+nextvideomobile, delay);
+                    }
+                    lastVideoPlayed["val"] = ""+nextvideomobile;
+                    unbindAllEvents();
+                    isFinished = true;
+                    attachAll();
+                   });
+              }
+
+              // multibykeypressed
+              if(event.data.onend.type == "multibykeypressed"){
+                unbindAllEvents();
+                compteur = 0;
+                var minVideo=event.data.onend.minVideo;
+                var maxVideo=event.data.onend.maxVideo;
+                var nextVideoId = false;
+                if(event.data.onend.hasOwnProperty("nextvideo")){
+                  nextVideoId = event.data.onend.nextvideo;
+                }
+                var textAfter = event.data.onend.textafter;
+                $('body').bind('tap', function(event) {
+                      var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+                      changeVideoMobile(pathGame,randkey.zeroPad(100),'infini');
+                      $('.reste').text(maxCpt-(compteur++));
+                      if(nextVideoId && maxCpt && (compteur > maxCpt)){
+                        lastVideoPlayed["val"] = ""+nextVideoId;
+                        changeVideoMobile(pathGame,""+nextVideoId,delay);
+                        loadText(textAfter,delay,mobile);
+                        unbindAllEvents();
+                        attachAll();
+                      }
+                      event.preventDefault();
+                });
+              }
+            });
+          }
+        }
     }
-}

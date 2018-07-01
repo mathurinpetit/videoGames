@@ -2,7 +2,7 @@ var wordsToSay = [];
 
 
 function addWord(data,majurl = false){
-    var html = '<a class="btn btn-xs btn-default" onClick="removeWord($(this));" title="'+data.text+'" style="margin-right:5px;" ><strong><span class="text-muted" role="presentation">×</span>&nbsp;'+data.text+'</strong></a>';
+    var html = '<a class="btn btn-xs btn-default" onClick="removeWord($(this));" title="'+data.text+'" style="margin-right:5px; margin-top:5px;" ><strong><span class="text-muted" role="presentation">×</span>&nbsp;'+data.text+'</strong></a>';
      wordsToSay.push(data);
      $("#footer > div > span").html($("#footer > div > span").html()+html);
      $("#select2").val(null).trigger("change");

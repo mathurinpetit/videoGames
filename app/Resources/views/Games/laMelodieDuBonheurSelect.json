@@ -4,9 +4,7 @@
  "cookie" : false,
  "urlgame" : true,
  "dictionnairetext" :  "\nChoississez ici \ndes mots \n \n",
- "dictionnaire" : [ { "word" : "phrase",
-                      "id" : "000"
-                     },
+ "dictionnaire" : [
                     { "word" : "sol",
                       "id" : "001"
                     },
