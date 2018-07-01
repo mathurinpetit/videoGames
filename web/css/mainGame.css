@@ -464,3 +464,7 @@ input[type="button"].btn-block {
 .glyphicon-floppy-disk:before {
   content: "\e172";
 }
+
+.glyphicon-play:before {
+  content: "\e072";
+}
