@@ -13,6 +13,17 @@ function onWindowResize() {
   composer.reset();
 
 }
+var texteStocked;
+function onWindowResizeMobile(){
+    var ratio = window.innerWidth / window.innerHeight;
+    var pad = window.innerWidth / 2 - 32;
+    if(ratio < 1){
+        texteStocked = $("#footer .text").html();
+        $("#footer .text").html("<span style='padding-left : "+pad+"px;'><img src='/phone-position.png' /></span>");
+    }else {
+        $("#footer .text").html(texteStocked);
+    }
+}
 
 /* Changement pour le mapping de la vidéo sur la forme */
 
@@ -217,7 +228,12 @@ if(!ismobile){
     $("#footer").hide();
     bottom: "-80px"
   }
+  if(ismobile){
+      onWindowResizeMobile();
+  }
 }
+
+
 
 function loadDictionnaire(dictionnairetxt,delay){
   var dictionnaireText = dictionnairetxt.replaceAll("\n", "<br/>");

@@ -8,7 +8,7 @@
       "id":"000",
       "onend": {
        "text" : "\nMaintenant, appuyez sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
-       "textmobile" : "\nTap Appuyez sur une touche pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
+       "textmobile" : "Tap Appuyez pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
        "minVideo" : 1,
        "maxVideo" : 14,
        "nextvideo" :  "015" ,
