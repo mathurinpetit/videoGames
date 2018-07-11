@@ -97,9 +97,9 @@ function init() {
       video.currentTime = ""+video.duration - 0.1;
     };
   }
-
   video.setAttribute('autoplay',true);
   video.pause();
+
 
   texture_0 = new THREE.VideoTexture( video );
   texture_0.minFilter = THREE.LinearFilter;

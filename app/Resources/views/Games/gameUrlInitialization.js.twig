@@ -88,7 +88,7 @@ function playSequenceBtn(cpt = 0){
     for (var x in wordsToSay) {
         if(localCpt == cpt){
             var videoId = wordsToSay[x].id;
-            changeVideo(""+videoId,'infini');
+            changeVideo(""+videoId,'infini',false,0,0.4);
             videoElt = document.getElementById( 'video_'+videoId );
             cpt++;
             break;
@@ -96,9 +96,23 @@ function playSequenceBtn(cpt = 0){
         localCpt++;
     }
     if(videoElt){
-        $(videoElt).bind('ended', function () {
-            $(videoElt).unbind('ended');
-            playSequenceBtn(cpt);
+        $(videoElt).bind('play', function() {
+            var duration = videoElt.duration;
+            if(isNaN(duration)){
+                $(videoElt).bind('loadedmetadata', function() {
+                    var diff = (duration * 1000) - 30;
+                    setTimeout(function(){
+                        playSequenceBtn(cpt);
+                        }, diff);
+                        $(videoElt).unbind('loadedmetadata');
+                });
+            }else{
+                var diff = (duration * 1000) - 30;
+                setTimeout(function(){
+                    playSequenceBtn(cpt);
+                    }, diff);
+                $(videoElt).unbind('play');
+            }
         });
     }else{
         for (var x in wordsToSay) {
