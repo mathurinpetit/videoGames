@@ -1,6 +1,8 @@
-{{ include('Engine/gamelib.js.twig') }}
+{% autoescape %}
+var pathGame = "{{ '/bundles/videogame/video/'~game.videoPath~'/' | raw }}";
+{% endautoescape %}
 
-if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+{{ include('Engine/gamelib.js.twig') }}
 
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
 var debug = false;
@@ -13,189 +15,32 @@ if(hascookie){
   createCookieOrBackToMenu(cookieKey,cookieValue);
 }
 
-var container;
-var camera, scene, renderer;
-var video, texture_0, texture_1, material_0, material_1, mesh_0, mesh_1;
-var active = 0;
-var composer;
-var mouseX = 0;
-var mouseY = 0;
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
-var mappedKeyboard = [];
-var h, counter = 1;
-var velocity = 0.15;
-
-var textGeo,textMaterial;
-
-var textMesh;
-var textHeight = 1;
-var textSize = 12;
-var textHover = 1;
-var textCurveSegments = 4;
-var bevelThickness = 2;
-var bevelSize = 0.5;
-var bevelSegments = 3;
-var bevelEnabled = true;
-var font = undefined;
-var fontName = "optimer"; // helvetiker, optimer, gentilis, droid sans, droid serif
-var fontWeight = "regular"; // regular bold
 var mobile = false;
-
-
-
+var debug = false;
+var debug_script   = false;
+var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
 var gamekeys = game_json.gamekeys;
 
+var anchor = window.location.hash;
+var anchorValue = anchor.substring(anchor.indexOf("#")+1);
 
+var firstVideoNumber = game_json.debugstart ;
+
+if(anchorValue){
+  debug = true;
+  firstVideoNumber = anchorValue;
+}
+
+video = document.getElementById( 'video_'+ firstVideoNumber );
 var lastVideoPlayed = { "val" : game_json.debugstart };
 
-init();
-animate();
-
-
-function init() {
-
-  container = document.createElement( 'div' );
-  document.body.appendChild( container );
-
-  camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 0.5, 10000 );
-  camera.position.z = 500;
-
-  scene = new THREE.Scene();
-  var loader = new THREE.TextureLoader();
-  var light = new THREE.DirectionalLight( 0xaaaaaa );
-  light.position.set( 400, 200, 200 ).normalize();
-  scene.add( light );
-
-  var light2 = new THREE.DirectionalLight( 0xaaaaaa );
-  light2.position.set( -400, -200, 200 ).normalize();
-  scene.add( light2 );
-
-  renderer = new THREE.WebGLRenderer( { antialias: false } );
-  renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  container.appendChild( renderer.domElement );
-  var anchor = window.location.hash;
-  var anchorValue = anchor.substring(anchor.indexOf("#")+1);
-
-  var cookieFirstVideoNumber = readCookie("{{game.shortName}}");
-  var firstVideoNumber = game_json.debugstart ;
-  if(cookieFirstVideoNumber){
-    firstVideoNumber = cookieFirstVideoNumber;
-    lastVideoPlayed["val"] = cookieFirstVideoNumber;
-  }
-
-  if(anchorValue){
-    debug = true;
-    firstVideoNumber = anchorValue;
-  }
-
-  video = document.getElementById( 'video_'+ firstVideoNumber );
-
-  if(debug){
-    video.onloadedmetadata = function() {
-      video.currentTime = ""+video.duration - 0.1;
-    };
-  }
-  video.setAttribute('autoplay',true);
-  video.pause();
-
-
-  texture_0 = new THREE.VideoTexture( video );
-  texture_0.minFilter = THREE.LinearFilter;
-  texture_0.magFilter = THREE.LinearFilter;
-  texture_0.format = THREE.RGBFormat;
-  texture_0.needsUpdate = true;
-
-  var geometry, xsize, ysize;
-
-
-  xsize = {{ game.width }} ;
-  ysize = {{ game.height }} ;
-  zsize = {{ game.width }} / 1000 ;
-
-  //zsize = 10 ;
-
-  material_0 = new THREE.MeshLambertMaterial( { color: 0xffffff, map: texture_0 } );
-  material_0.transparent = true;
-  material_0.opacity = 1;
-
-
-  material_1 = new THREE.MeshLambertMaterial( { color: 0xffffff } );
-  material_1.transparent = true;
-  material_1.opacity = 0;
-  geometry = new THREE.BoxGeometry( xsize, ysize, zsize);
-
-  mesh_0 = new THREE.Mesh( geometry, material_0 );
-  mesh_0.position.x = 0;
-  mesh_0.position.y = 0;
-  mesh_0.position.z = 200;
-
-  mesh_0.scale.x = mesh_0.scale.y = mesh_0.scale.z = 0.5;
-
-  scene.add( mesh_0 );
-
-  mesh_1 = new THREE.Mesh( geometry, material_1 );
-  mesh_1.position.x = 0;
-  mesh_1.position.y = 0;
-  mesh_1.position.z = 200;
-
-  mesh_1.scale.x = mesh_1.scale.y = mesh_1.scale.z = 0.5;
-
-  scene.add( mesh_1 );
-
-  renderer.autoClear = false;
-
-  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-
-  // postprocessing
-
-  var renderModel = new THREE.RenderPass( scene, camera );
-  var effectBloom = new THREE.BloomPass( 1.3 );
-  var effectCopy = new THREE.ShaderPass( THREE.CopyShader );
-
-  effectCopy.renderToScreen = true;
-
-  composer = new THREE.EffectComposer( renderer );
-
-  composer.addPass( renderModel );
-  composer.addPass( effectBloom );
-  composer.addPass( effectCopy );
-
-
-  window.addEventListener( 'resize', onWindowResize, false );
-
+if(debug){
+  video.onloadedmetadata = function() {
+    video.currentTime = ""+video.duration - 0.1;
+  };
 }
 
-// game.velocityX velocityY
-function onDocumentMouseMove(event) {
-
-  mouseX = ( event.clientX - windowHalfX ) * 0.8;
-  mouseY = ( event.clientY - windowHalfY ) * 0.8;
-
-}
-
-function animate() {
-
-  requestAnimationFrame( animate );
-  render();
-
-}
-
-function render() {
-
-  var time = Date.now() * 0.0005;
-  if(mouseX < 400 && mouseX > -400 )
-    camera.position.x += ( mouseX - camera.position.x ) * 0.1;
-  if(mouseY < 400 && mouseY > -400 )
-    camera.position.y += ( - mouseY - camera.position.y ) * 0.1;
-
-  camera.lookAt( scene.position );
-  renderer.clear();
-  composer.render();
-
-}
-
+var lastVideoPlayed = { "val" : game_json.debugstart };
 
 {% if urlgame %}
  {{ include('Games/gameUrlInitialization.js.twig', { 'game': game , 'urlgame' : urlgame }) }}

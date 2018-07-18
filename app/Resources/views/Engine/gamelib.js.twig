@@ -53,7 +53,27 @@ function stopVideo(numberVideo){
 /* Changement de la vidéo sur la texture de l'objet */
 
 
-function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 0.17){
+function changeVideo(pathGame,numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 0.17){
+ $("video").each(function(){
+        this.pause();
+        delete this;
+        $(this).remove();
+  });
+  var videoElt = document.getElementById('video_'+numberVideo);
+  if(videoElt === null){
+      var video = document.createElement('video');
+      var sourceMP4 = document.createElement("source");
+          sourceMP4.type = "video/mp4";
+          sourceMP4.src = pathGame+numberVideo+'.mp4';
+      video.appendChild(sourceMP4);
+      var sourceWebm = document.createElement("source");
+          sourceWebm.type = "video/webm";
+          sourceWebm.src = pathGame+numberVideo+'.webm';
+      video.appendChild(sourceWebm);
+      video.id = 'video_'+numberVideo;
+      video.setAttribute("webkit-playsinline","");
+      document.body.firstChild.appendChild(video);
+  }
 
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
@@ -67,40 +87,23 @@ function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0
     }
     window.history.pushState('page2', 'Title', window.location+numberVideo);
   }
+
   if(pause){
     setTimeout(function(){ videoElt.pause(); },pauseafter);
   }
 
   if(!active){
-    TweenLite.to(mesh_0.material, transitionDuration, {opacity: 0.15});
-    mesh_0.material.needsUpdate = true;
-    mesh_0.updateMatrix();
+    TweenLite.to(videoElt, transitionDuration, {opacity: 0.15});
 
-    texture_1 = new THREE.VideoTexture( videoElt );
-    texture_1.minFilter = THREE.LinearFilter;
-    texture_1.magFilter = THREE.LinearFilter;
-    texture_1.format = THREE.RGBFormat;
-
-    mesh_1.material.map = texture_1;
-    mesh_1.material.needsUpdate = true;
     setTimeout(function(){
-        TweenLite.to(mesh_1.material, 0, {opacity: 1});
+        TweenLite.to(videoElt, 0, {opacity: 1});
     }, transitionDuration/4);
 
   }else{
-      TweenLite.to(mesh_1.material, transitionDuration, {opacity: 0.15});
-      mesh_1.material.needsUpdate = true;
-      mesh_1.updateMatrix();
+      TweenLite.to(videoElt, transitionDuration, {opacity: 0.15});
 
-      texture_0 = new THREE.VideoTexture( videoElt );
-      texture_0.minFilter = THREE.LinearFilter;
-      texture_0.magFilter = THREE.LinearFilter;
-      texture_0.format = THREE.RGBFormat;
-
-      mesh_0.material.map = texture_0;
-      mesh_0.material.needsUpdate = true;
       setTimeout(function(){
-          TweenLite.to(mesh_0.material, 0, {opacity: 1});
+          TweenLite.to(videoElt, 0, {opacity: 1});
       }, transitionDuration/4);
 
   }
@@ -113,7 +116,7 @@ function changeVideo(numberVideo, footerDelay = 0, pause = false, pauseafter = 0
 }
 
 
-function changeVideoMobile(pathGame,numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
+function changeVideoMobile(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
   $("video").each(function(){
       this.pause();
       delete this;
@@ -133,7 +136,8 @@ function changeVideoMobile(pathGame,numberVideo, footerDelay = 0, pause = false,
       video.appendChild(sourceWebm);
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
-      document.body.firstChild.appendChild(video);
+
+      $(document.body).append(video);
   }
   var videoToPlay = document.getElementById('video_'+numberVideo);
   if(!pause){

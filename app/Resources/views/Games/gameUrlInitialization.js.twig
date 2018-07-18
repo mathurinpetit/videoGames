@@ -1,6 +1,5 @@
 var wordsToSay = [];
 
-
 function addWord(data,majurl = false){
     var html = '<a class="btn btn-xs btn-default" onClick="removeWord($(this));" title="'+data.text+'" style="margin-right:5px; margin-top:5px;" ><strong><span class="text-muted" role="presentation">×</span>&nbsp;'+data.text+'</strong></a>';
      wordsToSay.push(data);
@@ -9,7 +8,7 @@ function addWord(data,majurl = false){
      $("#select2").focus();
      if(majurl){
          rebuildUrlFromWords();
-         changeVideo(""+data.id,'infini');
+         changeVideoMobile(pathGame,""+data.id,'infini');
      }
 }
 
@@ -88,7 +87,7 @@ function playSequenceBtn(cpt = 0){
     for (var x in wordsToSay) {
         if(localCpt == cpt){
             var videoId = wordsToSay[x].id;
-            changeVideo(""+videoId,'infini',false,0,0.4);
+            changeVideoMobile(pathGame,""+videoId,'infini',false,0,0.4);
             videoElt = document.getElementById( 'video_'+videoId );
             cpt++;
             break;
