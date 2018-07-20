@@ -50,15 +50,8 @@ function stopVideo(numberVideo){
   videoElt.pause();
 }
 
-/* Changement de la vidéo sur la texture de l'objet */
-
-
-function changeVideo(pathGame,numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 0.17){
- $("video").each(function(){
-        this.pause();
-        delete this;
-        $(this).remove();
-  });
+/* Changement de la vidéo */
+function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 120,priorVid = true){
   var videoElt = document.getElementById('video_'+numberVideo);
   if(videoElt === null){
       var video = document.createElement('video');
@@ -72,13 +65,14 @@ function changeVideo(pathGame,numberVideo, footerDelay = 0, pause = false, pause
       video.appendChild(sourceWebm);
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
-      document.body.firstChild.appendChild(video);
+      document.body.appendChild(video);
   }
 
   videoElt = document.getElementById( 'video_'+numberVideo );
   videoElt.pause();
   videoElt.currentTime = 0;
   videoElt.setAttribute('autoplay',true);
+
   videoElt.play();
   if(debug){
     var hash = window.location.hash.replace('#','');
@@ -91,28 +85,45 @@ function changeVideo(pathGame,numberVideo, footerDelay = 0, pause = false, pause
   if(pause){
     setTimeout(function(){ videoElt.pause(); },pauseafter);
   }
+     $("video").each(function(){
+          if(($(this).attr("id") != videoElt.id) && (videoElt.paused === false)){
+              TweenLite.to($(this), transitionDuration, {css: { opacity : 0}});
+          }
+    });
 
-  if(!active){
-    TweenLite.to(videoElt, transitionDuration, {opacity: 0.15});
 
+    if(priorVid){
+        removeOtherVidAndTween(videoElt,transitionDuration);
+    }else{
+        setTimeout(function(){
+            if($("video").length > 1){
+                removeOtherVidAndTween(videoElt,transitionDuration);
+            }
+        },transitionDuration);
+    }
     setTimeout(function(){
-        TweenLite.to(videoElt, 0, {opacity: 1});
-    }, transitionDuration/4);
-
-  }else{
-      TweenLite.to(videoElt, transitionDuration, {opacity: 0.15});
-
-      setTimeout(function(){
-          TweenLite.to(videoElt, 0, {opacity: 1});
-      }, transitionDuration/4);
-
-  }
-  active = !active;
+            TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
+    }, transitionDuration);
 
   if(footerDelay == 'infini'){ return; }
   $( "#footer" ).animate({
     bottom: "-80px"
   }, footerDelay);
+}
+
+function removeOtherVidAndTween(videoElt,transitionDuration){
+    $("video").each(function(){
+        if(($(this).attr("id") != videoElt.id) && (videoElt.paused === false)){
+            this.pause();
+            delete this;
+            $(this).remove();
+        }else{
+            var v = document.getElementById($(this).attr('id').replace("#",''));
+            v.play();
+            videoElt.play();
+        }
+    });
+    TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
 }
 
 
@@ -247,6 +258,8 @@ function loadDictionnaire(dictionnairetxt,delay){
   dictionnaireText = dictionnaireText.replaceAll(" ", "&nbsp;");
   $("#dictionnaire").show();
   $("#dictionnaire span.text").html(dictionnaireText);
+  var h = $("#dictionnaire span.text").height();
+  $("#dictionnaire").css("height",h);
   if(delay == 'infini'){ return; }
   $( "#dictionnaire" ).animate({
     bottom: "0px"

@@ -7,12 +7,13 @@
     {
       "id":"000",
       "onend": {
-       "text" : "\nMaintenant, appuyez sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
-       "textmobile" : "Tap Appuyez pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>17</span> notes à chanter.",
+       "text" : "\nMaintenant, appuyez sur les touches de votre clavier pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>16</span> notes à chanter.",
+       "textmobile" : "Tap Appuyez pour faire chanter Fräulein Maria.\nPlus que <span class='reste'>16</span> notes à chanter.",
        "minVideo" : 1,
        "maxVideo" : 14,
        "nextvideo" :  "015" ,
        "textafter" : "",
+       "nbRepeat" : 16,
        "ordermulti" : true,
        "type" : "multibykeypressed",
        "dictionnaire" :"\n  Chantez!  \n\n  A : Sol  \n  Z : Do  \n  E : La  \n  R : Fa  \n  T : Mi  \n  Y : Do  \n  U : Ré  \n\n  I : Sol  \n  O : Do  \n  P : La  \n  Q : Si  \n  S : Do  \n  D : Ré  \n  F : Do  \n\n"
@@ -35,8 +36,8 @@
      {
        "id":"015",
        "onend": {
-        "text" : "\nAppuyez sur les touches de votre clavier pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
-        "textmobile" : "\nTap Appuyez pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>17</span> notes à chanter.",
+        "text" : "\nAppuyez sur les touches de votre clavier pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>16</span> notes à chanter.",
+        "textmobile" : "\nTap Appuyez pour faire chanter les enfants.\nLes enfants, il vous reste <span class='reste'>16</span> notes à chanter.",
         "minVideo" : 16,
         "maxVideo" : 29,
         "nextvideo" :  "030" ,
@@ -63,8 +64,8 @@
       {
         "id":"030",
         "onend": {
-         "text" : "\nAppuie sur les touches pour que Fräulein Maria et les enfants chantent tous ensemble !\nOn va chanter encore <span class='reste'>17</span> fois.",
-         "textmobile" : "\nTap Appuyez pour que Fräulein Maria et les enfants chantent tous ensemble.\nOn va chanter encore <span class='reste'>17</span> fois.",
+         "text" : "\nAppuie sur les touches pour que Fräulein Maria et les enfants chantent tous ensemble !\nOn va chanter encore <span class='reste'>16</span> fois.",
+         "textmobile" : "\nTap Appuyez pour que Fräulein Maria et les enfants chantent tous ensemble.\nOn va chanter encore <span class='reste'>16</span> fois.",
          "minVideo" : 31,
          "maxVideo" : 44,
          "nextvideo" :  "045" ,
@@ -91,8 +92,8 @@
        {
          "id":"045",
          "onend": {
-          "text" : "\nTape encore sur ton clavier pour chanter les paroles.\nPlus que <span class='reste'>17</span> paroles à chanter.",
-           "textmobile" : "\nTap Appuie encore pour chanter les paroles de toute la chanson !.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+          "text" : "\nTape encore sur ton clavier pour chanter les paroles.\nPlus que <span class='reste'>16</span> paroles à chanter.",
+           "textmobile" : "\nTap Appuie encore pour chanter les paroles de toute la chanson !.\nPlus que <span class='reste'>16</span> paroles à chanter.",
           "minVideo" : 46,
           "maxVideo" : 59,
           "nextvideo" :  "060" ,

@@ -30,7 +30,8 @@ body {
   border-bottom-right-radius: 15px;
   left: 0px;
   top:20%;
-  height:50%;
+  height:auto;
+  z-index:1;
   font-size: 17px;
   text-align: left;
   background:#333;

@@ -17,7 +17,7 @@ function unbindAllEvents(){
 }
 
 function restartOnLastCheckpoint(){
-  changeVideoMobile(pathGame,lastVideoPlayed["val"]);
+  changeVideo(pathGame,lastVideoPlayed["val"]);
 }
 
 function skipGameOver(){
@@ -28,7 +28,10 @@ function skipGameOver(){
 
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
+    refreshGame();
+});
 
+function refreshGame(){
     if(game_json.hasOwnProperty("gameovers")){
       var gameOverMin = game_json.gameovers.idmin;
       var gameOverMax = game_json.gameovers.idmax;
@@ -47,7 +50,7 @@ $(document).ready(function(){
           unbindAllEvents();
           loadText(gameOverText,delay);
           $(document).bind('keypress', function(e){
-            changeVideoMobile(pathGame,lastVideoPlayed["val"],delay);
+            changeVideo(pathGame,lastVideoPlayed["val"],delay);
             unbindAllEvents();
           });
         });
@@ -100,14 +103,14 @@ $(document).ready(function(){
                 if(char!=='_'){
                   $.each(gamekeys, function(gamechar,obj){
                     if((gamechar === char) && (obj.keys.indexOf(code)!= -1)){
-                      if(debug_script){ console.log("changeVideoMobile "+nextVideos[char]); }
+                      if(debug_script){ console.log("changeVideo "+nextVideos[char]); }
                         var nextId = ""+nextVideos[char];
                         found = true;
                         if(nextId.startsWith("redirect")){
                           window.location = window.location.origin +'/game/'+ nextId.replace("redirect ","");
                           return false;
                         }else {
-                          changeVideoMobile(pathGame,nextId,delay);
+                          changeVideo(pathGame,nextId,delay);
                           lastVideoPlayed["val"] = ""+nextVideos[char];
                           if(cookie){
                             createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
@@ -118,8 +121,8 @@ $(document).ready(function(){
                   });
                 }else{
                   if(!found){
-                    if(debug_script){ console.log("changeVideoMobile "+nextVideos[char]); }
-                    changeVideoMobile(pathGame,""+nextVideos[char],delay);
+                    if(debug_script){ console.log("changeVideo "+nextVideos[char]); }
+                    changeVideo(pathGame,""+nextVideos[char],delay);
                     unbindAllEvents();
                   }
                 }
@@ -154,7 +157,7 @@ $(document).ready(function(){
                               text = event.data.onend.textduring;
                             }
                             loadText(text,'infini');
-                            changeVideoMobile(pathGame,""+nextVideos[goodChar],'infini',true,100);
+                            changeVideo(pathGame,""+nextVideos[goodChar],'infini',true,100);
                             unbindAllKeypress();
                             videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
 
@@ -163,7 +166,7 @@ $(document).ready(function(){
                                 if(goodKeys.indexOf(code)!== -1){
                                   videoElt.play();
                                 }else{
-                                  changeVideoMobile(pathGame,""+gameOver,delay);
+                                  changeVideo(pathGame,""+gameOver,delay);
                                   unbindAllEvents();
                                 }
                             });
@@ -172,12 +175,12 @@ $(document).ready(function(){
                                 if(goodKeys.indexOf(code)!== -1){
                                   videoElt.pause();
                                 }else{
-                                  changeVideoMobile(pathGame,""+gameOver,delay);
+                                  changeVideo(pathGame,""+gameOver,delay);
                                   unbindAllEvents();
                                 }
                             });
                           }else{
-                            changeVideoMobile(pathGame,""+gameOver,delay);
+                            changeVideo(pathGame,""+gameOver,delay);
                             unbindAllEvents();
                         }
                       });
@@ -193,7 +196,7 @@ $(document).ready(function(){
                       $(document).bind('mousemove', function(){
                         clearTimeout(timeout);
                         if(!mouseFirstMoved){
-                            changeVideoMobile(pathGame,""+nextVideos.move,'infini',true,1000);
+                            changeVideo(pathGame,""+nextVideos.move,'infini',true,1000);
                             mouseFirstMoved = true;
                           }else{
                             if(videoElt.paused){
@@ -217,7 +220,7 @@ $(document).ready(function(){
                             if(cookie){
                               createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                             }
-                            changeVideoMobile(pathGame,""+nextVideos.aftermove,delay);
+                            changeVideo(pathGame,""+nextVideos.aftermove,delay);
                           }
                           isFinished = true;
                         });
@@ -241,23 +244,27 @@ $(document).ready(function(){
                             videoId = mappedKeyboard[code];
                           }
                         }
-                        changeVideoMobile(pathGame,videoId.zeroPad(100),'infini');
 
                         compteur++;
-                        if(maxCpt && (compteur > maxCpt)){
+                        if(maxCpt && (compteur > maxCpt) && event.data.onend.hasOwnProperty("nextvideo")){
                           lastVideoPlayed["val"] = ""+event.data.onend.nextvideo;
                           if(cookie){
                             createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                           }
-                          changeVideoMobile(pathGame,""+event.data.onend.nextvideo,'infini');
+                          changeVideo(pathGame,""+event.data.onend.nextvideo,'infini',false,0,150,true);
                           unbindAllKeypress();
+                          refreshGame();
                           loadText(event.data.onend.textafter,delay);
                           if(dictionnaire){
                             loadDictionnaire(event.data.onend.textafter,delay);
                           }
-
-                        }
-                        $('.reste').text(maxCpt-(compteur)+1);
+                      }else{
+                          if(videoId === undefined){
+                              var videoId = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+                          }
+                          changeVideo(pathGame,videoId.zeroPad(100), 'infini',false,0,200,false);
+                      }
+                        $('.reste').text(maxCpt-(compteur));
                       });
                     }
 
@@ -267,4 +274,4 @@ $(document).ready(function(){
     $("a.skip").click(function(){
       skipGameOver();
     });
-  });
+  };
