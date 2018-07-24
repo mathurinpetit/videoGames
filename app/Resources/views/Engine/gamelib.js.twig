@@ -25,33 +25,19 @@ function onWindowResizeMobile(){
     }
 }
 
-/* Changement pour le mapping de la vidéo sur la forme */
-
-function change_uvs( geometry, unitx, unity, offsetx, offsety ) {
-  var faceVertexUvs = geometry.faceVertexUvs[ 0 ];
-  var uvs = faceVertexUvs[ 8 ];
-
-    for ( var j = 0; j < uvs.length; j ++ ) {
-
-      var uv = uvs[ j ];
-      // console.log(uv0.x,uv0.y);
-      // uv0.x = ( uv0.x + 1 ) ;
-      // uv0.y = ( uv0.y + 0 ) ;
-      uv.x = ( uv.x + offsetx ) * unitx;
-      uv.y = ( uv.y + offsety ) * unity;
-  }
-}
 
 
 function stopVideo(numberVideo){
   videoElt = document.getElementById( 'video_'+numberVideo );
-  videoElt.pause();
-  videoElt.currentTime = 0;
-  videoElt.pause();
+  if(videoElt){
+      videoElt.pause();
+      videoElt.currentTime = 0;
+      videoElt.pause();
+  }
 }
 
 /* Changement de la vidéo */
-function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 120,priorVid = true){
+function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 120, priorVid = true){
   var videoElt = document.getElementById('video_'+numberVideo);
   if(videoElt === null){
       var video = document.createElement('video');
@@ -258,8 +244,8 @@ function loadDictionnaire(dictionnairetxt,delay){
   dictionnaireText = dictionnaireText.replaceAll(" ", "&nbsp;");
   $("#dictionnaire").show();
   $("#dictionnaire span.text").html(dictionnaireText);
-  var h = $("#dictionnaire span.text").height();
-  $("#dictionnaire").css("height",h);
+  var h = $("#dictionnaire span.text").height() + $("#dictionnaire span.text").parent().height();
+  $("#dictionnaire").css("height",h+20);
   if(delay == 'infini'){ return; }
   $( "#dictionnaire" ).animate({
     bottom: "0px"

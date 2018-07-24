@@ -12,13 +12,25 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.replace(new RegExp(search, 'ig'), replacement);
 };
 
+
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
-  $('#select2').select2({
+  var select2 = $('#select2').select2({
       allowClear: true,
-      placeholder: "Tapez des mots"
-  });
+      placeholder: "Tapez des mots",
+      closeOnSelect: false
+  }).on("select2:closing", function(e) {
+  e.preventDefault();
+ }).on("select2:closed", function(e) {
+  select2.select2("open");
+ });
+ select2.select2("open");
+
+ $(document).on('focus', '.select2', function() {
+     $(this).siblings('select').select2('open');
+ });
 
  $('#select2').on('select2:select', function (e) {
     var data = e.params.data;

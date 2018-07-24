@@ -115,6 +115,7 @@ function refreshGame(){
                           if(cookie){
                             createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                           }
+                          refreshGame();
                           unbindAllEvents();
                         }
                     }
@@ -123,6 +124,7 @@ function refreshGame(){
                   if(!found){
                     if(debug_script){ console.log("changeVideo "+nextVideos[char]); }
                     changeVideo(pathGame,""+nextVideos[char],delay);
+                    refreshGame();
                     unbindAllEvents();
                   }
                 }

@@ -46,10 +46,13 @@ var lastVideoPlayed = { "val" : game_json.debugstart };
  {{ include('Games/gameUrlInitialization.js.twig', { 'game': game , 'urlgame' : urlgame }) }}
 {% endif %}
  {{ include('Games/gameEventsManager.js.twig', { 'game': game , 'urlgame' : urlgame }) }}
-
+if(video){
  video.onloadeddata = function() {
     $("#divLoading").hide();
     {% if not urlgame %}
         {{ "video.play();" }}
     {% endif %}
  };
+}else{
+    $("#divLoading").hide();
+}
