@@ -115,5 +115,37 @@ function playSequenceBtn(cpt = 0){
     }
 }
 
+var select2 = $('#select2').select2({
+    allowClear: true,
+    placeholder: "Tapez des mots",
+}).on("select2:closing", function(e) {
+e.preventDefault();
+}).on("select2:closed", function(e) {
+select2.select2("open");
+});
+
+select2.focus();
+
+$('#select2').on('select2:select', function (e) {
+  var data = e.params.data;
+  var word = { "text" : data.text, "id" : data.id }
+  addWord(word,true);
+
+});
+
+$('#select2').on('select2:close', function (e) {
+  var select2SearchField = $(this).parent().find('.select2-search__field');
+  var setfocus = setTimeout(function() {
+      select2SearchField.focus();
+  }, 100);
+});
+
+$(document).on('focus', '.select2.select2-container', function (e) {
+  // only open on original attempt - close focus event should not fire open
+  if (e.originalEvent && $(this).find(".select2-selection--single").length > 0) {
+    $(this).siblings('select').select2('open');
+  }
+});
+$('#select2').select2('open');    
 
 createWordFromUrl();

@@ -50,8 +50,9 @@ function refreshGame(){
           unbindAllEvents();
           loadText(gameOverText,delay);
           $(document).bind('keypress', function(e){
-            changeVideo(pathGame,lastVideoPlayed["val"],delay);
+            changeVideo(pathGame,lastVideoPlayed["val"],'infini');
             unbindAllEvents();
+            refreshGame();
           });
         });
       }

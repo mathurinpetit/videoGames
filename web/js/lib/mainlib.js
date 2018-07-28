@@ -17,36 +17,7 @@ String.prototype.replaceAll = function(search, replacement) {
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
-  var select2 = $('#select2').select2({
-      allowClear: true,
-      placeholder: "Tapez des mots",
-      closeOnSelect: false
-  }).on("select2:closing", function(e) {
-  e.preventDefault();
- }).on("select2:closed", function(e) {
-  select2.select2("open");
- });
- select2.select2("open");
-
- $(document).on('focus', '.select2', function() {
-     $(this).siblings('select').select2('open');
- });
-
- $('#select2').on('select2:select', function (e) {
-    var data = e.params.data;
-    var word = { "text" : data.text, "id" : data.id }
-    addWord(word,true);
-
-});
-
-$('#select2').on('select2:close', function (e) {
-    var select2SearchField = $(this).parent().find('.select2-search__field');
-    var setfocus = setTimeout(function() {
-        select2SearchField.focus();
-    }, 100);
-});
-
-$('.summernote').summernote({
+  $('.summernote').summernote({
       lang: 'fr-FR',
       height: 170,
       minHeight: 170,
