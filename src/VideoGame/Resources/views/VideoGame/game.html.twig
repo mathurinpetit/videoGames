@@ -63,12 +63,15 @@
    </div>
 
 {% endblock %}
+
 {% block jsgame %}
   <script type="text/javascript">
    	{{ include('Engine/gameEngine.js.twig', { 'game': game ,'urlgame' : urlgame}) }}
    </script>
 {% endblock %}
 
+{% block fblike %}
+{% endblock %}
 
 {% block stylesheets %}
 <link rel="stylesheet"  type="text/css" media="all" href="{{ asset('/css/mainGame.css') }}" />

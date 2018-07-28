@@ -46,7 +46,7 @@
         {% block body %}{% endblock %}
         {% block jsgame %}
         {% endblock %}
-
+        {% block fblike %}
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -55,5 +55,6 @@
             js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.11';
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));</script>
+        {% endblock %}
     </body>
 </html>
