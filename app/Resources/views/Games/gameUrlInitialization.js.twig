@@ -6,9 +6,8 @@ function addWord(data,majurl = false){
      $("#footer > div > span").html($("#footer > div > span").html()+html);
      $("#select2").val("").trigger("change");
      $("#select2").css("color","#000").css("width","224");
-     if(true){
+     if(majurl){
          initSelect2();
-
      }
      $("#select2").focus();
 
@@ -87,6 +86,8 @@ function atou(str) {
     return decodeURIComponent(escape(window.atob(str)));
 }
 
+var lastVideoId = null;
+var isSameVideo = false;
 function playSequenceBtn(cpt = 0){
     var localCpt = 0;
     var videoElt = null;
@@ -95,6 +96,9 @@ function playSequenceBtn(cpt = 0){
             var videoId = wordsToSay[x].id;
             changeVideo(pathGame,videoId, 'infini',false,0,120,false);
             videoElt = document.getElementById( 'video_'+videoId );
+
+            isSameVideo = (lastVideoId == videoId);
+            lastVideoId = videoId;
             cpt++;
             break;
         }
@@ -107,10 +111,13 @@ function playSequenceBtn(cpt = 0){
             var diff = (duration * 1000) - (currentTime * 1000);
             setTimeout(function(){
                     playSequenceBtn(cpt);
-                    }, diff);
+            }, diff);
             $(videoElt).unbind('play');
             $(videoElt).unbind('loadedmetadata');
         });
+        if(isSameVideo){
+            $(videoElt).trigger('loadedmetadata');
+        }
     }else{
         for (var x in wordsToSay) {
             var videoIdToStop = wordsToSay[x].id;
