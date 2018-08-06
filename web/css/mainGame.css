@@ -46,6 +46,12 @@ body {
 }
 
 
+.select2-selection__arrow {
+    display: none
+}
+
+
+
 #retour_accueil {
   position: absolute;
   left: 10px;

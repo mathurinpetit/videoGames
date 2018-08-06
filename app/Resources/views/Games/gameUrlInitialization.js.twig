@@ -5,15 +5,10 @@ function addWord(data,majurl = false){
      wordsToSay.push(data);
      $("#footer > div > span").html($("#footer > div > span").html()+html);
      $("#select2").val("").trigger("change");
-     $("#select2").css("color","#000").css("width","224");
-     if(majurl){
-         initSelect2();
-     }
-     $("#select2").focus();
-
      if(majurl){
          rebuildUrlFromWords();
          changeVideo(pathGame,""+data.id, 'infini',false,1000,0);
+         initSelect2();
      }
 }
 
@@ -128,61 +123,27 @@ function playSequenceBtn(cpt = 0){
 }
 
 function initSelect2(){
-    var select2 = $('#select2').select2({
-        allowClear: true,
+    var list = $('#select2').select2({
         placeholder: "Tapez des mots",
-        openOnEnter : true
-    }).on("select2:closing", function(e) {
-        e.preventDefault();
-    }).on("select2:closed", function(e) {
-        select2.select2("open");
-    }).focus(function () { select2.select2('open'); });
-    resizeDictionnaire();
-
+        allowClear: true,
+        closeOnSelect: false,
+        }).on("select2:closing", function(e) {
+          e.preventDefault();
+        }).on("select2:closed", function(e) {
+          list.select2("open");
+       });
+       list.select2("open");
+       
 }
-initSelect2();
 
-function resizeDictionnaire(){
-    var ch = $(".choices").height();
-    var choicesh = $(".select2-results").height();
-    $(".choices").css("height", choicesh + ch);
-    var h = $("#dictionnaire span.text").height() + $("#dictionnaire span.text").parent().height();
-    $("#dictionnaire").css("height",h);
-}
 
 $('#select2').on('select2:select', function (e) {
   var data = e.params.data;
   var word = { "text" : data.text, "id" : data.id }
   addWord(word,true);
-$(".select2-select2-results").css("width",$("select2-selection").width());
 });
 
-$('.select2-results__option').on("click",function(){
-    console.log("la");
-
-});
-
-$('#select2').on('select2:close', function (e) {
-
-  var select2SearchField = $(this).parent().find('.select2-search__field');
-  var setfocus = setTimeout(function() {
-      select2SearchField.focus();
-  }, 100);
-});
-
-$('#select2').focus();
-
-var select2SearchField = $(this).parent().find('.select2-search__field');
 $(document).ready(function(){
-
-setTimeout(function() {
-    $('#select2').focus();
-}, 200);
-
-setTimeout(function() {
-    resizeDictionnaire();
-},250);
+    initSelect2();
+    createWordFromUrl();
 });
-
-
-createWordFromUrl();
