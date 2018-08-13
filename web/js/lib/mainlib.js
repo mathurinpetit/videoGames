@@ -40,7 +40,7 @@ $(function () {
   });
 
         $(window).keypress(function(e) {
-        if (e.which == 32) e.preventDefault();
+        if (e.which == 32 || e.which == 46) e.preventDefault();
         });
 
 

@@ -18,6 +18,8 @@ function unbindAllEvents(){
 
 function restartOnLastCheckpoint(){
   changeVideo(pathGame,lastVideoPlayed["val"]);
+  loadText("");
+  refreshGame();
 }
 
 function skipGameOver(){
@@ -29,6 +31,7 @@ function skipGameOver(){
 // Gestion de l'assigmenent des vidéo clefs par evennement
 $(document).ready(function(){
     refreshGame();
+    loadText("");
 });
 
 function refreshGame(){
@@ -52,6 +55,7 @@ function refreshGame(){
           $(document).bind('keypress', function(e){
             changeVideo(pathGame,lastVideoPlayed["val"],'infini');
             unbindAllEvents();
+            loadText("");
             refreshGame();
           });
         });
@@ -154,7 +158,6 @@ function refreshGame(){
                             gameOver = nextvideo;
                           }
                         });
-
                         if(goodKeys.indexOf(code) !== -1){
                             if(event.data.onend.hasOwnProperty("textduring")){
                               text = event.data.onend.textduring;
@@ -171,6 +174,7 @@ function refreshGame(){
                                   videoElt.play();
                                 }else{
                                   changeVideo(pathGame,""+gameOver,delay);
+                                  refreshGame();
                                   unbindAllEvents();
                                 }
                             });
@@ -185,6 +189,7 @@ function refreshGame(){
                             });
                           }else{
                             changeVideo(pathGame,""+gameOver,delay);
+                            refreshGame();
                             unbindAllEvents();
                         }
                       });
@@ -194,26 +199,21 @@ function refreshGame(){
                     if(event.data.onend.type == "playbymouse"){
                       var nextVideos = event.data.onend.nextvideos;
                       var mouseFirstMoved = false;
-                      videoElt = document.getElementById( 'video_'+nextVideos.move );
                       var timeout;
                       var isFinished = false;
+                      changeVideo(pathGame,""+nextVideos.move,'infini',true,1000);
+                      var videoElt = document.getElementById( 'video_'+nextVideos.move );
                       $(document).bind('mousemove', function(){
-                        clearTimeout(timeout);
-                        if(!mouseFirstMoved){
-                            changeVideo(pathGame,""+nextVideos.move,'infini',true,1000);
-                            mouseFirstMoved = true;
-                          }else{
-                            if(videoElt.paused){
-                              if(debug_script){ console.log('play Video : '+'video_'+nextVideos.move); }
-                              videoElt.play();
-                            }else{
-                              timeout = setTimeout(function(){
-                                if(!isFinished){
-                                  if(debug_script){ console.log('paused Video : '+'video_'+nextVideos.move); }
-                                  videoElt.pause();
-                                }
-                              }, 100);
-                            }
+                          if(!isFinished){
+                              if(videoElt.paused){
+                                  if(debug_script){ console.log('play Video : '+'video_'+nextVideos.move); }
+                                  videoElt.play();
+                              }else{
+                                  timeout = setTimeout(function(){
+                                      if(debug_script){ console.log('paused Video : '+'video_'+nextVideos.move); }
+                                      videoElt.pause();
+                                }, 100);
+                              }
                           }
                         });
                         $(videoElt).on('ended', function(){
@@ -225,6 +225,7 @@ function refreshGame(){
                               createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
                             }
                             changeVideo(pathGame,""+nextVideos.aftermove,delay);
+                            refreshGame();
                           }
                           isFinished = true;
                         });
@@ -266,7 +267,7 @@ function refreshGame(){
                           if(videoId === undefined){
                               var videoId = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
                           }
-                          changeVideo(pathGame,videoId.zeroPad(100), 'infini',false,0,200,false);
+                          changeVideo(pathGame,videoId.zeroPad(100), 'infini',false,0,150,true);
                       }
                         $('.reste').text(maxCpt-(compteur));
                       });

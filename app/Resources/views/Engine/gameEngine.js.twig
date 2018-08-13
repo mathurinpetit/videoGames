@@ -28,7 +28,10 @@ if(hascookie){
     createCookieOrBackToMenu(cookieKey,cookieValue);
     var c = readCookie(cookieKey.replace(" ",""));
     if(c){
-        firstVideoNumber = readCookie(c);
+        var startVid = readCookie(c);
+        if(startVid){
+            firstVideoNumber = startVid;
+        }
     }
 }
 

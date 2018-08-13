@@ -14,7 +14,7 @@
                 "onend": {
                   "text" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars...",
                   "textmobile" : "\nTap Appuyer pour faire atterrir le vaisseau sur Mars...",
-                  "nextvideos" : { "A" : "011", "_" : "059"} ,
+                  "nextvideos" : { "A" : "011", "_" : "060"} ,
                   "videomobiletoplay" :  "011" ,
                   "nextvideomobile" : "012",
                   "delay" : 500,
@@ -27,7 +27,7 @@
                  "onend": {
                   "text" : "\nMaintenez link 'A' 65 pour faire atterrir le vaisseau sur Mars...",
                   "textmobile" : "\nTap Appuyer pour faire atterrir le vaisseau sur Mars...",
-                  "nextvideos" : { "A" : "012", "_" : "059"} ,
+                  "nextvideos" : { "A" : "012", "_" : "061"} ,
                   "nextvideomobile" : "012",
                   "type" : "multichoicebykeypressed"
                    }

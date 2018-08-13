@@ -7,7 +7,6 @@
 {% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
 {% set cookieVidVal = app.request.cookies.get(cookieVal) %}
 
-
 {% if cookieVidVal %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.webm' %}
@@ -16,16 +15,12 @@
    <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
 </video>
 {% else %}
-{% for numVideo in idsVideos %}
-{% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
-{% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
-{% if loop.first %}
-<video id="video_{{numVideo}}" webkit-playsinline >
+{% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~ game_json.debugstart~'.mp4' %}
+{% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~game_json.debugstart~'.webm' %}
+<video id="video_{{game_json.debugstart}}" webkit-playsinline >
    <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
    <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
 </video>
-  {% endif %}
-{% endfor %}
 {% endif %}
 
 <div id="retour_accueil" >

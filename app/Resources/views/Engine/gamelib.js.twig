@@ -189,16 +189,7 @@ function undisplaySkipBtn(){
   $("#skip").hide();
 }
 
-
-function loadText(textStr,footerDelay, mobile = false, is3D = false){
-  if(is3D){
-    loadText3D(textStr,mobile);
-  }else{
-    loadTextFooter(textStr,footerDelay,mobile);
-  }
-}
-
-function loadTextFooter(textStr,footerDelay,ismobile = false){
+function loadText(textStr,footerDelay,ismobile = false){
   var text = textStr.replaceAll("\n", "<br/>");
 
 if(!ismobile){
@@ -275,39 +266,3 @@ function triggerKeypress(code){
 
   $(document).trigger(ku);
 };
-
-function loadText3D(textStr) {
-  var loader = new THREE.FontLoader();
-
-				textMaterial = [
-					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.SmoothShading } ), // front
-					new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ) // side FlatShading
-				];
-  loader.load( '/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
-    font = response;
-    scene.remove( textMesh );
-    if ( !textStr ) return;
-    textGeo = new THREE.TextBufferGeometry( textStr, {
-      font: font,
-      size: textSize,
-      height: textHeight,
-      curveSegments: textCurveSegments,
-      bevelThickness: bevelThickness,
-      bevelSize: bevelSize,
-      bevelEnabled: bevelEnabled,
-      material: 0,
-      extrudeMaterial: 1
-    });
-    textGeo.computeBoundingBox();
-    textGeo.computeVertexNormals();
-    var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-          textMesh = new THREE.Mesh( textGeo, textMaterial );
-          textMesh.position.x = centerOffset;
-          textMesh.position.y = -140;
-          textMesh.position.z = 0;
-          textMesh.rotation.x = 0;
-          textMesh.rotation.y = Math.PI * 2;
-          scene.add( textMesh );
-
-  } );
-}
