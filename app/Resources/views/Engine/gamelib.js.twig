@@ -1,27 +1,16 @@
 
-/** stratégie de resizing de la scène **/
 
-function onWindowResize() {
-
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  composer.reset();
-
-}
-var texteStocked;
 function onWindowResizeMobile(){
     var ratio = window.innerWidth / window.innerHeight;
     var pad = window.innerWidth / 2 - 32;
     if(ratio < 1){
-        texteStocked = $("#footer .text").html();
-        $("#footer .text").html("<span style='padding-left : "+pad+"px;'><img src='/phone-position.png' /></span>");
+        $("#footer").hide();
+        $("#footer-turn-mobile").show();
+        $("#footer-turn-mobile .turn-mobile").show();
+        $("#footer-turn-mobile .turn-mobile img").css('right',pad+"px");
     }else {
-        $("#footer .text").html(texteStocked);
+        $("#footer-turn-mobile .turn-mobile").hide();
+        $("#footer").show();
     }
 }
 

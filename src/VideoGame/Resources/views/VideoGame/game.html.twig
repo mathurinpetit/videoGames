@@ -78,7 +78,7 @@
 
 {% block jsgame %}
   <script type="text/javascript">
-   	{{ include('Engine/gameEngine.js.twig', { 'game': game ,'urlgame' : urlgame}) }}
+   	{{ include('Engine/gameEngine.js.twig', { 'game': game ,'urlgame' : urlgame, 'mobile' : false}) }}
    </script>
 {% endblock %}
 

@@ -13,7 +13,7 @@ var cookieValue = "{{ game.shortName }}";
 
 
 
-var mobile = false;
+var mobile = {{ mobile }};
 var debug = false;
 var debug_script   = false;
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
@@ -50,9 +50,9 @@ if(debug){
 var lastVideoPlayed = { "val" : game_json.debugstart };
 
 {% if urlgame %}
- {{ include('Games/gameUrlInitialization.js.twig', { 'game': game , 'urlgame' : urlgame }) }}
+ {{ include('Games/gameUrlInitialization.js.twig', { 'game': game , 'urlgame' : urlgame, 'mobile' : mobile }) }}
 {% else %}
- {{ include('Games/gameEventsManager.js.twig', { 'game': game , 'urlgame' : urlgame }) }}
+ {{ include('Games/gameEventsManager.js.twig', { 'game': game , 'urlgame' : urlgame, 'mobile' : mobile }) }}
 {% endif %}
 if(video){
  video.onloadeddata = function() {
@@ -64,4 +64,8 @@ if(video){
 }else{
 
     $("#divLoading").hide();
+}
+
+if(mobile){
+    $(window).on("resize",onWindowResizeMobile);
 }

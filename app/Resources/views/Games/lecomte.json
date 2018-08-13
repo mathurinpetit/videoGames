@@ -13,6 +13,7 @@
                 "id":"001",
                 "onend": {
                   "text" : "\nBonjour! Vous êtes publicitaire!\nAppuyer sur n'importe quelle touche pour commencer à crééer votre publicité sur le formage ...",
+                  "textmobile" : "Bonjour! Vous êtes publicitaire!\nAppuyer sur pour commencer à crééer votre publicité sur le formage ...",
                   "nextvideos" : { "_" : "007"},
                   "type" : "multichoicebykeypressed"
                    }
