@@ -133,9 +133,9 @@ function refreshGame(){
             });
         }
 
-
           // Lorsque l'on appuie pour faire avancer la video en continue
           if(event.data.onend.type == "playbykey"){
+
                       $(document).bind('keypress', function(e){
                         var code = e.keyCode || e.which;
                         var nextVideos = event.data.onend.nextvideos;
@@ -161,6 +161,7 @@ function refreshGame(){
                             }
                             loadText(text,'infini');
                             changeVideo(pathGame,""+nextVideos[goodChar],'infini',true,100);
+                            refreshGame();
                             unbindAllKeypress();
                             videoElt = document.getElementById( 'video_'+nextVideos[goodChar] );
 

@@ -4,7 +4,18 @@
 {% block title %}video-jeux.fr - {{ game.name }}{% endblock %}
 
 {% block body %}
+{% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
+{% set cookieVidVal = app.request.cookies.get(cookieVal) %}
 
+
+{% if cookieVidVal %}
+{% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.mp4' %}
+{% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.webm' %}
+<video id="video_{{cookieVidVal}}" webkit-playsinline >
+   <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
+   <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
+</video>
+{% else %}
 {% for numVideo in idsVideos %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~numVideo~'.webm' %}
@@ -15,6 +26,7 @@
 </video>
   {% endif %}
 {% endfor %}
+{% endif %}
 
 <div id="retour_accueil" >
       <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6">
