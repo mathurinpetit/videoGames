@@ -40,7 +40,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
       video.appendChild(sourceWebm);
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
-      document.body.appendChild(video);
+      document.body.insertBefore(video,document.body.firstChild);
   }
 
   videoElt = document.getElementById( 'video_'+numberVideo );
@@ -101,7 +101,7 @@ function removeOtherVidAndTween(videoElt,transitionDuration){
     TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
 }
 
-
+/*
 function changeVideoMobile(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0){
   $("video").each(function(){
       this.pause();
@@ -139,7 +139,7 @@ function changeVideoMobile(pathGame, numberVideo, footerDelay = 0, pause = false
   $( "#footer" ).animate({
     bottom: "-80px"
   }, footerDelay);
-}
+}*/
 
 
 /** KeyBoardAzerty **/

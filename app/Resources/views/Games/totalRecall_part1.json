@@ -15,6 +15,7 @@
        "text" : "link 'A' 65 : Si vous voulez en savoir plus appuyez sur link 'A' 65\nlink 'B' 66 : Frappez vous la tête avec link 'B' 66 si vous pensez que c'est un rêve\nlink 'C' 67 : Si vous ne voulez pas en savoir plus appuyer sur link 'C' 67",
        "textmobile" : "\nPour en savoir plus glisser vers Droite\nGauche Cela me paraît sans intérêts...",
        "nextvideos" : { "A" : "001", "B" : "107", "_" : "056"} ,
+       "nextvideosmobile" : { "right" : "001", "left" : "056"} ,
        "type" : "multichoicebykeypressed"
         }
      },

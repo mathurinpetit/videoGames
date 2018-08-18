@@ -12,8 +12,11 @@ var cookieKey = "{{ game.name }}";
 var cookieValue = "{{ game.shortName }}";
 
 
-
-var mobile = {{ mobile }};
+{% if mobile %}
+var mobile = true;
+{% else %}
+var mobile = false;
+{% endif %}
 var debug = false;
 var debug_script   = false;
 var game_json = {{ include('Games/'~game.shortName~'.json', { 'game': game }) }};
