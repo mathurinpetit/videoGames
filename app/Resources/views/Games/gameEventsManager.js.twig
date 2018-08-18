@@ -13,6 +13,11 @@ function unbindAllEvents(){
     $(document).unbind('keydown');
     $(document).unbind('keyup');
     $(document).unbind('keypress');
+    $('body').unbind('taphold');
+    $('body').unbind('swipeleft');
+    $('body').unbind('swiperight');
+    $('body').unbind('swipeup');
+    $('body').unbind('swipedown');
 }
 
 function restartOnLastCheckpoint(){
@@ -37,15 +42,19 @@ $(document).ready(function(){
 });
 
 function refreshGame(){
-
-    initGameOvers(game_json);
-
     var delay = game_json.globaldelay;
     var dictionnaireGlobal = "";
     if(game_json.hasOwnProperty("dictionnairetext")){
-      dictionnaireGlobal = game_json.dictionnairetext;
-      loadDictionnaire(dictionnaireGlobal,delay);
+        dictionnaireGlobal = game_json.dictionnairetext;
+        loadDictionnaire(dictionnaireGlobal,delay);
     }
+
+    if(mobile){
+        initGameOversMobile(game_json,delay);
+    }else{
+        initGameOvers(game_json,delay);
+    }
+
 
     for (var i = 0; i < game_json.scenario.length; i++) {
       var videoObj = game_json.scenario[i];
@@ -66,7 +75,6 @@ function refreshGame(){
           if(event.data.onend.hasOwnProperty("text")){
             text = event.data.onend.text;
           }
-          console.log(mobile);
           if(mobile && event.data.onend.hasOwnProperty("textmobile")){
               text = event.data.onend.textmobile;
           }
@@ -80,7 +88,7 @@ function refreshGame(){
           // Lorsque l'on a un choix multiple
           if(event.data.onend.type == "multichoicebykeypressed"){
               if(mobile){
-                  initMultichoiceByTouch(event,delay,videoObj);
+                  initMultichoiceBySwipe(event,delay,videoObj,game_json);
               }else{
                   initMultichoiceBykeypressed(event,delay,videoObj);
               }
@@ -88,12 +96,20 @@ function refreshGame(){
 
           // Lorsque l'on appuie pour faire avancer la video en continue
           if(event.data.onend.type == "playbykey"){
-              initPlaybykey(event,delay,videoObj);
+              if(mobile){
+                initPlayByTouch(event,delay,videoObj);
+              }else{
+                initPlaybykey(event,delay,videoObj);
+              }
           }
 
           // playbymouse
           if(event.data.onend.type == "playbymouse"){
-            initPlaybymouse(event,delay,videoObj);
+              if(mobile){
+                initPlayByTouch(event,delay,videoObj);
+              }else{
+                initPlaybymouse(event,delay,videoObj);
+              }
           }
 
           // multibykeypressed
@@ -110,7 +126,7 @@ function refreshGame(){
 }
 
 
-  function initGameOvers(event,delay,videoObj){
+  function initGameOvers(game_json,delay){
       if(game_json.hasOwnProperty("gameovers")){
         var gameOverMin = game_json.gameovers.idmin;
         var gameOverMax = game_json.gameovers.idmax;
@@ -129,7 +145,7 @@ function refreshGame(){
             cpt_gameover++;
           });
           if($('#video_'+videoGameOverId).length){
-              $('#video_'+videoGameOverId).on('ended',videoObj,function(event){
+              $('#video_'+videoGameOverId).on('ended',function(event){
                   undisplaySkipBtn()
                   unbindAllEvents();
                   loadText(gameOverText,delay);
@@ -330,31 +346,71 @@ function refreshGame(){
       skipGameOver();
     });
 
-    // mobile functions
+   // mobile functions
+
+  //Mobile functions
 
   function initMultichoiceByTouch(event,delay,videoObj){
-        var nextvideomobile = null;
+        unbindAllEvents();
+        compteur = 0;
+        var minVideo=event.data.onend.minVideo;
+        var maxVideo=event.data.onend.maxVideo;
+        var nextVideoId = false;
+        if(event.data.onend.hasOwnProperty("nextvideo")){
+          nextVideoId = event.data.onend.nextvideo;
+        }
+        var textAfter = event.data.onend.textafter;
+        $('body').bind('taphold', function(event) {
+              var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+              changeVideo(pathGame,randkey.zeroPad(100),'infini');
+              $('.reste').text(maxCpt-(compteur++));
+              if(nextVideoId && maxCpt && (compteur > maxCpt)){
+                changeVideo(pathGame,""+nextVideoId,delay);
+                lastVideoPlayed["val"] = ""+nextVideoId;
+                loadText(textAfter,delay,mobile);
+                unbindAllEvents();
+                refreshGame();
+              }
+        });
+  }
+
+  function initMultichoiceBySwipe(event,delay,videoObj,game_json){
+            var nextvideomobile = null;
+            var gameOverMin = null;
+            var gameOverMax = null;
+            var hasgameover = false;
+            if(game_json.hasOwnProperty("gameovers")){
+                hasgameover = true;
+                gameOverMin = game_json.gameovers.idmin;
+                gameOverMax = game_json.gameovers.idmax;
+            }
             if(event.data.onend.hasOwnProperty("nextvideomobile")){
               nextvideomobile = event.data.onend.nextvideomobile;
             }
             if(nextvideomobile){
               $('body').bind('taphold', function(){
                 changeVideo(pathGame,nextvideomobile,delay);
+                lastVideoPlayed["val"] = nextvideomobile;
                 unbindAllEvents();
                 refreshGame();
               });
             }else{
               if(event.data.onend.hasOwnProperty("nextvideosmobile")){
-                lastVideoPlayed["val"] = ""+videoObj.id;
                 var nextVideos = event.data.onend.nextvideosmobile;
                 $('body').bind('swipeleft', function(){
                   changeVideo(pathGame,nextVideos['left'],delay);
+                  if(hasgameover && (parseInt(nextVideos['left']) < gameOverMin || parseInt(nextVideos['left']) > gameOverMax)){
+                      lastVideoPlayed["val"] = nextVideos['left'];
+                  }
                   unbindAllEvents();
                   refreshGame();
                 });
 
                 $('body').bind('swiperight', function(){
                   changeVideo(pathGame,nextVideos['right'],delay);
+                  if(hasgameover && (parseInt(nextVideos['right']) < gameOverMin || parseInt(nextVideos['right']) > gameOverMax)){
+                      lastVideoPlayed["val"] = nextVideos['right'];
+                  }
                   unbindAllEvents();
                   refreshGame();
                 });
@@ -362,6 +418,9 @@ function refreshGame(){
                 if(nextVideos.hasOwnProperty('up')){
                   $('body').bind('swipeup', function(){
                     changeVideo(pathGame,nextVideos['up'],delay);
+                    if(hasgameover && (parseInt(nextVideos['up']) < gameOverMin || parseInt(nextVideos['up']) > gameOverMax)){
+                        lastVideoPlayed["val"] = nextVideos['up'];
+                    }
                     unbindAllEvents();
                     refreshGame();
                   });
@@ -369,10 +428,83 @@ function refreshGame(){
                 if(nextVideos.hasOwnProperty('down')){
                   $('body').bind('swipedown', function(){
                       changeVideo(pathGame,nextVideos['down'],delay);
+                      if(hasgameover && (parseInt(nextVideos['down']) < gameOverMin || parseInt(nextVideos['down']) > gameOverMax)){
+                          lastVideoPlayed["val"] = nextVideos['down'];
+                      }
                       unbindAllEvents();
                       refreshGame();
                   });
                 }
               }
           }
+  }
+
+  function initPlayByTouch(event,delay,videoObj){
+      var timeout;
+            var isFinished = false;
+            var idVideomobiletoplay = event.data.onend.videomobiletoplay;
+            var nextvideomobile = null;
+            if(event.data.onend.hasOwnProperty("nextvideomobile")){
+              nextvideomobile = event.data.onend.nextvideomobile;
+            }
+            changeVideo(pathGame,""+idVideomobiletoplay,'infini',true,500);
+            videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
+            $('body').bind('taphold', function(event) {
+                  clearTimeout(timeout);
+                  if(videoElt.paused){
+                    console.log('ici');
+                    videoElt.play();
+                    timeout = setTimeout(function(){
+                      if(!isFinished){
+                        videoElt.pause();
+                      }
+                    }, 300);
+                  }
+              });
+              $(videoElt).on('ended', function(){
+                if(nextvideomobile && !isFinished){
+                  changeVideo(pathGame,""+nextvideomobile, delay);
+                }
+                lastVideoPlayed["val"] = ""+nextvideomobile;
+                unbindAllEvents();
+                isFinished = true;
+                refreshGame();
+               });
+  }
+
+  function initGameOversMobile(game_json,delay){
+    if(game_json.hasOwnProperty("gameovers")){
+      var gameOverMin = game_json.gameovers.idmin;
+      var gameOverMax = game_json.gameovers.idmax;
+
+      var gameOverText = game_json.gameovers.text;
+      if(mobile && game_json.gameovers.hasOwnProperty("textmobile")){
+          gameOverText = game_json.gameovers.textmobile;
+      }
+      for (var i = gameOverMin; i <= gameOverMax; i++) {
+        var videoGameOverId =  i.zeroPad(100);
+        $('#video_'+videoGameOverId).on('play',function(){
+          if(cpt_gameover){
+            displaySkipBtn();
+            videoElt = document.getElementById($(this).attr("id"));
+          }
+          cpt_gameover++;
+        });
+        if($('#video_'+videoGameOverId).length){
+            $('#video_'+videoGameOverId).on('ended',function(event){
+                undisplaySkipBtn()
+                loadText(gameOverText,delay);
+                console.log('endOf',videoGameOverId);
+                $('body').bind('tap',function(){
+
+                                        console.log('taphold');
+                    changeVideo(pathGame,lastVideoPlayed["val"],'infini');
+                    unbindAllEvents();
+                    loadText("");
+                    refreshGame();
+                });
+            });
+        }
+      }
+    }
   }
