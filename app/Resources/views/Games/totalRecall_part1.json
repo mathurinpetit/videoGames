@@ -13,7 +13,7 @@
      "id":"000",
      "onend": {
        "text" : "link 'A' 65 : Si vous voulez en savoir plus appuyez sur link 'A' 65\nlink 'B' 66 : Frappez vous la tête avec link 'B' 66 si vous pensez que c'est un rêve\nlink 'C' 67 : Si vous ne voulez pas en savoir plus appuyer sur link 'C' 67",
-       "textmobile" : "\nPour en savoir plus glisser vers Droite\nGauche Cela me paraît sans intérêts...",
+       "textmobile" : "Pour en savoir plus glisser vers Droite\nGauche Cela me paraît sans intérêts...",
        "nextvideos" : { "A" : "001", "B" : "107", "_" : "056"} ,
        "nextvideosmobile" : { "right" : "001", "left" : "056"} ,
        "type" : "multichoicebykeypressed"
@@ -23,7 +23,7 @@
        "id":"001",
       "onend": {
         "text" : "link 'A' 65 : Sornettes! Je préfére séduire une blonde avec mes compétences en informatique!\nlink 'B' 66 : Tes histoires ne m'intéressent pas...\nlink 'C' 67 : Je veux en savoir plus... Continues!",
-        "textmobile" : "\nCela ne m'interresse pas Droite\nGauche Je veux en savoir plus",
+        "textmobile" : "Cela ne m'interresse pas Droite\nGauche Je veux en savoir plus",
         "nextvideos" : {"A" : "131", "C" : "002", "_" : "057"} ,
         "nextvideosmobile" : { "left" : "002", "right" : "057"} ,
         "type" : "multichoicebykeypressed"
@@ -33,7 +33,7 @@
         "id":"002",
        "onend": {
          "text" : "\nlink 'A' 65 : Qu'est ce que je dois faire ?\nlink 'B' 66 : Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas",
-         "textmobile" : "\nQu'est ce que je dois faire ? Droite\nGauche Je ne veux pas 'baiser la gueulle' à Cohagen",
+         "textmobile" : "Qu'est ce que je dois faire ? Droite\nGauche Je ne veux pas 'baiser la gueulle' à Cohagen",
          "nextvideos" : { "A" : "003", "_" : "058"} ,
          "nextvideosmobile" : { "right" : "003", "left" : "058"} ,
          "type" : "multichoicebykeypressed"
@@ -43,7 +43,7 @@
          "id":"003",
         "onend": {
           "text" : "\nlink 'A' 65 : Je suis prêt\nlink 'B' 66 : Non ça fait peur ce truc!",
-          "textmobile" : "\nNon ça fait peur ce truc Droite\nOk, je suis prêt Gauche",
+          "textmobile" : "Non ça fait peur ce truc Droite\nOk, je suis prêt Gauche",
           "nextvideos" : { "A" : "004", "_" : "056"} ,
           "nextvideosmobile" : { "left" : "004", "right" : "056"} ,
           "type" : "multichoicebykeypressed"
@@ -54,9 +54,10 @@
          "id":"004",
          "onend": {
            "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal!\nlink 'B' 66 : Sortir le truc de son nez...",
-           "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
+           "textmobile" : "Tap Appuyer pour sortir l'emetteur du nez",
            "nextvideos" : { "B" : "005", "_" : "058"} ,
            "videomobiletoplay" : "005" ,
+           "nextvideomobile" : "006",
            "delay" : 500,
            "type" : "playbykey",
            "textduring" : "\nAppuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez"
@@ -66,9 +67,8 @@
           "id":"005",
           "onend": {
             "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-            "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
+            "textmobile" : "Tap Appuyer pour sortir l'emetteur du nez",
             "nextvideos" : { "B" : "006", "_" : "057"} ,
-            "nextvideomobile" : "006",
             "type" : "multichoicebykeypressed"
              }
           },
@@ -87,10 +87,11 @@
              "id":"007",
             "onend": {
               "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
-              "textmobile" : "\nTap Appuyer pour sortir l'emetteur du nez",
+              "textmobile" : "Tap Appuyer pour sortir l'emetteur du nez",
               "nextvideos" : { "B" : "005", "_" : "058"} ,
               "delay" : 500,
               "videomobiletoplay" :  "005" ,
+              "nextvideomobile" : "006",
               "textduring" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
               "type" : "playbykey"
                }

@@ -14,6 +14,7 @@ function unbindAllEvents(){
     $(document).unbind('keyup');
     $(document).unbind('keypress');
     $('body').unbind('taphold');
+    $('body').unbind('tap');
     $('body').unbind('swipeleft');
     $('body').unbind('swiperight');
     $('body').unbind('swipeup');
@@ -360,7 +361,7 @@ function refreshGame(){
           nextVideoId = event.data.onend.nextvideo;
         }
         var textAfter = event.data.onend.textafter;
-        $('body').bind('taphold', function(event) {
+        $('body').bind('tap', function(event) {
               var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
               changeVideo(pathGame,randkey.zeroPad(100),'infini');
               $('.reste').text(maxCpt-(compteur++));
@@ -398,41 +399,77 @@ function refreshGame(){
               if(event.data.onend.hasOwnProperty("nextvideosmobile")){
                 var nextVideos = event.data.onend.nextvideosmobile;
                 $('body').bind('swipeleft', function(){
-                  changeVideo(pathGame,nextVideos['left'],delay);
-                  if(hasgameover && (parseInt(nextVideos['left']) < gameOverMin || parseInt(nextVideos['left']) > gameOverMax)){
-                      lastVideoPlayed["val"] = nextVideos['left'];
-                  }
-                  unbindAllEvents();
-                  refreshGame();
+                    nextId = nextVideos['left'];
+                    if(nextId.startsWith("redirect")){
+                      window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
+                      return false;
+                    }else {
+                      changeVideo(pathGame,nextId,delay);
+                      if(hasgameover && (parseInt(nextId) < gameOverMin || parseInt(nextId) > gameOverMax)){
+                          lastVideoPlayed["val"] = nextId;
+                      }
+                      if(cookie){
+                        createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
+                      }
+                      unbindAllEvents();
+                      refreshGame();
+                    }
                 });
-
                 $('body').bind('swiperight', function(){
-                  changeVideo(pathGame,nextVideos['right'],delay);
-                  if(hasgameover && (parseInt(nextVideos['right']) < gameOverMin || parseInt(nextVideos['right']) > gameOverMax)){
-                      lastVideoPlayed["val"] = nextVideos['right'];
+                  nextId = nextVideos['right'];
+                  if(nextId.startsWith("redirect")){
+                    window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
+                    return false;
+                  }else {
+                      changeVideo(pathGame,nextId,delay);
+                      if(hasgameover && (parseInt(nextId) < gameOverMin || parseInt(nextId) > gameOverMax)){
+                          lastVideoPlayed["val"] = nextId;
+                      }
+                      if(cookie){
+                        createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
+                      }
+                      unbindAllEvents();
+                      refreshGame();
                   }
-                  unbindAllEvents();
-                  refreshGame();
                 });
 
                 if(nextVideos.hasOwnProperty('up')){
                   $('body').bind('swipeup', function(){
-                    changeVideo(pathGame,nextVideos['up'],delay);
-                    if(hasgameover && (parseInt(nextVideos['up']) < gameOverMin || parseInt(nextVideos['up']) > gameOverMax)){
-                        lastVideoPlayed["val"] = nextVideos['up'];
+                    nextId = nextVideos['up'];
+                    if(nextId.startsWith("redirect")){
+                      window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
+                      return false;
+                    }else {
+                        changeVideo(pathGame,nextId,delay);
+                        if(hasgameover && (parseInt(nextId) < gameOverMin || parseInt(nextId) > gameOverMax)){
+                            lastVideoPlayed["val"] = nextId;
+                        }
+                        if(cookie){
+                          createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
+                        }
+                        unbindAllEvents();
+                        refreshGame();
                     }
-                    unbindAllEvents();
-                    refreshGame();
                   });
                 }
                 if(nextVideos.hasOwnProperty('down')){
                   $('body').bind('swipedown', function(){
-                      changeVideo(pathGame,nextVideos['down'],delay);
-                      if(hasgameover && (parseInt(nextVideos['down']) < gameOverMin || parseInt(nextVideos['down']) > gameOverMax)){
-                          lastVideoPlayed["val"] = nextVideos['down'];
+                      nextId = nextVideos['down'];
+                      return;
+                      if(nextId.startsWith("redirect")){
+                        window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
+                        return false;
+                      }else {
+                          changeVideo(pathGame,nextId,delay);
+                          if(hasgameover && (parseInt() < gameOverMin || parseInt() > gameOverMax)){
+                              lastVideoPlayed["val"] = nextId;
+                          }
+                          if(cookie){
+                            createCookie("{{game.shortName}}",lastVideoPlayed["val"],7);
+                          }
+                          unbindAllEvents();
+                          refreshGame();
                       }
-                      unbindAllEvents();
-                      refreshGame();
                   });
                 }
               }
@@ -449,27 +486,30 @@ function refreshGame(){
             }
             changeVideo(pathGame,""+idVideomobiletoplay,'infini',true,500);
             videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
-            $('body').bind('taphold', function(event) {
+            var duration = videoElt.duration;
+            var currentTime = videoElt.currentTime;
+            $('body').bind('tap', function(event) {
                   clearTimeout(timeout);
                   if(videoElt.paused){
-                    console.log('ici');
                     videoElt.play();
                     timeout = setTimeout(function(){
                       if(!isFinished){
                         videoElt.pause();
                       }
                     }, 300);
-                  }
-              });
-              $(videoElt).on('ended', function(){
-                if(nextvideomobile && !isFinished){
-                  changeVideo(pathGame,""+nextvideomobile, delay);
                 }
-                lastVideoPlayed["val"] = ""+nextvideomobile;
-                unbindAllEvents();
-                isFinished = true;
-                refreshGame();
-               });
+                duration = videoElt.duration*1000;
+                currentTime = videoElt.currentTime*1000;
+                if((duration - currentTime) < 350){
+                        if(nextvideomobile && !isFinished){
+                          changeVideo(pathGame,""+nextvideomobile, delay);
+                          lastVideoPlayed["val"] = ""+nextvideomobile;
+                          unbindAllEvents();
+                          isFinished = true;
+                          refreshGame();
+                        }
+                }
+              });
   }
 
   function initGameOversMobile(game_json,delay){
@@ -494,10 +534,7 @@ function refreshGame(){
             $('#video_'+videoGameOverId).on('ended',function(event){
                 undisplaySkipBtn()
                 loadText(gameOverText,delay);
-                console.log('endOf',videoGameOverId);
                 $('body').bind('tap',function(){
-
-                                        console.log('taphold');
                     changeVideo(pathGame,lastVideoPlayed["val"],'infini');
                     unbindAllEvents();
                     loadText("");
