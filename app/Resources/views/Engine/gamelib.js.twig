@@ -27,9 +27,12 @@ function stopVideo(numberVideo){
 
 /* Changement de la vidéo */
 function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 120, priorVid = true){
+  var mobile = $('video').first().hasClass('mobile');
   var videoElt = document.getElementById('video_'+numberVideo);
+
   if(videoElt === null){
       var video = document.createElement('video');
+      if(mobile){ video.classList.add("mobile"); }
       var sourceMP4 = document.createElement("source");
           sourceMP4.type = "video/mp4";
           sourceMP4.src = pathGame+numberVideo+'.mp4';
@@ -40,7 +43,11 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
       video.appendChild(sourceWebm);
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
-      document.body.insertBefore(video,document.body.firstChild);
+      if(mobile){
+          document.body.firstChild.insertBefore(video,document.body.firstChild.firstChild);
+        }else {
+          document.body.insertBefore(video,document.body.firstChild);
+      }
   }
 
   videoElt = document.getElementById( 'video_'+numberVideo );

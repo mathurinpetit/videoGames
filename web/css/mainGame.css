@@ -68,6 +68,10 @@ body {
 video {
   width:100%;
 }
+video.mobile {
+  height: 100%;
+  width: auto !important;
+}
 
 .select2-container {
   color: #000;

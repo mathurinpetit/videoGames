@@ -13,14 +13,14 @@
 {% if cookieVidVal %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.webm' %}
-<video id="video_{{cookieVidVal}}" webkit-playsinline >
+<video id="video_{{cookieVidVal}}" class="mobile" webkit-playsinline >
    <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
    <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
 </video>
 {% else %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~ game_json.debugstart~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~game_json.debugstart~'.webm' %}
-<video id="video_{{game_json.debugstart}}" webkit-playsinline >
+<video id="video_{{game_json.debugstart}}" class="mobile" webkit-playsinline >
    <source src="{{ asset(pathVideoMp4) }}" type='video/mp4'>
    <source src="{{ asset(pathVideoWebm) }}" type='video/webm'>
 </video>

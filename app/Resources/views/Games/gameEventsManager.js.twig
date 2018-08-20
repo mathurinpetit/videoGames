@@ -364,18 +364,7 @@ function refreshGame(){
           nextVideoId = event.data.onend.nextvideo;
         }
         var textAfter = event.data.onend.textafter;
-        $('video').bind('tap', function(event) {
-              var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-              changeVideo(pathGame,randkey.zeroPad(100),'infini');
-              $('.reste').text(maxCpt-(compteur++));
-              if(nextVideoId && maxCpt && (compteur > maxCpt)){
-                changeVideo(pathGame,""+nextVideoId,delay);
-                lastVideoPlayed["val"] = ""+nextVideoId;
-                loadText(textAfter,delay,mobile);
-                unbindAllEvents();
-                refreshGame();
-              }
-        });
+        bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter);
   }
 
   function initMultichoiceBySwipe(event,delay,videoObj,game_json){
@@ -547,6 +536,24 @@ function refreshGame(){
         }
       }
     }
+  }
+
+  function bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter){
+      $('video').bind('tap', function(event) {
+            var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
+            changeVideo(pathGame,randkey.zeroPad(100),'infini');
+            unbindAllEvents();
+            $('.reste').text(maxCpt-(compteur++));
+            if(nextVideoId && maxCpt && (compteur > maxCpt)){
+              changeVideo(pathGame,""+nextVideoId,delay);
+              lastVideoPlayed["val"] = ""+nextVideoId;
+              loadText(textAfter,delay,mobile);
+              unbindAllEvents();
+              refreshGame();
+            }
+            bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter);
+      });
+
   }
 
   $(window).keypress(function(e) {
