@@ -1,0 +1,13 @@
+html, body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+body{
+    position: relative;
+}
+
+
+video.mobile {
+  height: 100%;
+  width: auto !important;
+}

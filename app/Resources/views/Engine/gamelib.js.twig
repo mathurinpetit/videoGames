@@ -211,17 +211,16 @@ if(!ismobile){
   $("#footer").show();
   $("#footer span.text").html(text);
   if(footerDelay == 'infini'){ return; }
+  bottomValue = (ismobile)? "74px" : "0px";
   $( "#footer" ).animate({
-    bottom: "0px"
+    bottom: bottomValue
     }, footerDelay, function() {
   });
   if(!text){
     $("#footer").hide();
     bottom: "-80px"
   }
-  if(ismobile){
-      onWindowResizeMobile();
-  }
+
 }
 
 

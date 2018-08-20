@@ -23,7 +23,7 @@ function unbindAllEvents(){
 
 function restartOnLastCheckpoint(){
   changeVideo(pathGame,lastVideoPlayed["val"]);
-  loadText("");
+  loadText("",0,mobile);
   refreshGame();
 }
 
@@ -39,7 +39,7 @@ $(document).ready(function(){
          onWindowResizeMobile();
      }
     refreshGame();
-    loadText("");
+    loadText("",0,mobile);
 });
 
 function refreshGame(){
@@ -83,7 +83,7 @@ function refreshGame(){
             dictionnaire = event.data.onend.dictionnaire;
             loadDictionnaire(dictionnaire,delay);
           }
-          loadText(text,delay);
+          loadText(text,delay,mobile);
           if(debug_script){ console.log(event); }
 
           // Lorsque l'on a un choix multiple
@@ -525,11 +525,11 @@ function refreshGame(){
         if($('#video_'+videoGameOverId).length){
             $('#video_'+videoGameOverId).on('ended',function(event){
                 undisplaySkipBtn()
-                loadText(gameOverText,delay);
+                loadText(gameOverText,delay,true);
                 $('video').bind('tap',function(){
                     changeVideo(pathGame,lastVideoPlayed["val"],'infini');
                     unbindAllEvents();
-                    loadText("");
+                    loadText("",0,true);
                     refreshGame();
                 });
             });
@@ -547,7 +547,7 @@ function refreshGame(){
             if(nextVideoId && maxCpt && (compteur > maxCpt)){
               changeVideo(pathGame,""+nextVideoId,delay);
               lastVideoPlayed["val"] = ""+nextVideoId;
-              loadText(textAfter,delay,mobile);
+              loadText(textAfter,delay,true);
               unbindAllEvents();
               refreshGame();
             }
