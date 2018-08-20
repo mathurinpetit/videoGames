@@ -71,4 +71,9 @@ if(video){
 
 if(mobile){
     $(window).on("resize",onWindowResizeMobile);
+
+    $("a").each(function(){
+        $(this).attr("href", "http://"+location.host+"/mobile");
+        $(this).attr("data-ajax","false");
+    });
 }
