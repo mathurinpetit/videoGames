@@ -7,7 +7,7 @@ function addWord(data,majurl = false){
      $("#select2").val("").trigger("change");
      if(majurl){
          rebuildUrlFromWords();
-         changeVideo(pathGame,""+data.id, 'infini',false,1000,0);
+         changeVideo(pathGame,""+data.id, 'infini',false,200,false);
          initSelect2();
      }
 }
@@ -89,7 +89,7 @@ function playSequenceBtn(cpt = 0){
     for (var x in wordsToSay) {
         if(localCpt == cpt){
             var videoId = wordsToSay[x].id;
-            changeVideo(pathGame,videoId, 'infini',false,0,120,false);
+            changeVideo(pathGame,videoId, 'infini',false,0,200,false);
             videoElt = document.getElementById( 'video_'+videoId );
 
             isSameVideo = (lastVideoId == videoId);
@@ -133,7 +133,7 @@ function initSelect2(){
           list.select2("open");
        });
        list.select2("open");
-       
+
 }
 
 

@@ -354,6 +354,9 @@ function refreshGame(){
   function initMultichoiceByTouch(event,delay,videoObj){
         unbindAllEvents();
         compteur = 0;
+        if(event.data.onend.hasOwnProperty("nbRepeat")){
+          maxCpt = event.data.onend.nbRepeat;
+        }
         var minVideo=event.data.onend.minVideo;
         var maxVideo=event.data.onend.maxVideo;
         var nextVideoId = false;
@@ -389,7 +392,7 @@ function refreshGame(){
               nextvideomobile = event.data.onend.nextvideomobile;
             }
             if(nextvideomobile){
-              $('body').bind('taphold', function(){
+              $('body').bind('tap', function(){
                 changeVideo(pathGame,nextvideomobile,delay);
                 lastVideoPlayed["val"] = nextvideomobile;
                 unbindAllEvents();
@@ -545,3 +548,7 @@ function refreshGame(){
       }
     }
   }
+
+  $(window).keypress(function(e) {
+  if (e.which == 32 || e.which == 46 || e.which == 0) e.preventDefault();
+  });

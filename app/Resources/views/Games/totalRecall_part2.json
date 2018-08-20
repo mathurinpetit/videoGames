@@ -102,7 +102,7 @@
                       "id":"019",
                       "onend": {
                        "text" : "\nAppuyez sur différentes touches du clavier pour repéter 'Deux semaines'...\nAvoir l'air bizarre encore <span class='reste'>17</span> fois.",
-                       "textmobile" : "\nTap Toucher pour repéter 'Deux semaines'...\nAvoir l'air bizarre encore <span class='reste'>17</span> fois.",
+                       "textmobile" : "Tap Toucher pour repéter 'Deux semaines'...\nAvoir l'air bizarre encore <span class='reste'>17</span> fois.",
                        "minVideo" : 20,
                        "maxVideo" : 27,
                        "nextvideo" :  "028" ,
@@ -204,7 +204,7 @@
                             "text" : "Attention...\nlink 'A' 65 : Bon je vais quand même au concours de Mister Univers.\nlink 'B' 66 : Faire exploser mon masque même si c'est dangeureux.\nlink 'C' 67 : Fuir mais ne pas faire exploser le masque.",
                             "textmobile" : "Aller au concours de Mister Univers Droite\nGauche Faire exploser mon masque même si c'est dangeureux.\nFuir mais ne pas faire exploser le masque Bas",
                             "nextvideos" : { "A" : "034", "B" : "038", "_" : "062"} ,
-                            "nextvideosmobile" : { "A" : "034", "B" : "038", "_" : "062"} ,
+                            "nextvideosmobile" : { "right" : "034", "left" : "038", "down" : "062"} ,
                             "type" : "multichoicebykeypressed"
                              }
                           },

@@ -39,10 +39,6 @@ $(function () {
     $(this).css("opacity","0.6");
   });
 
-        $(window).keypress(function(e) {
-        if (e.which == 32 || e.which == 46) e.preventDefault();
-        });
-
 
 });
 
