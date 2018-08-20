@@ -3,9 +3,3 @@ html, body {
 }
 body{
 }
-
-
-video.mobile {
-  min-height: 100vh;
-  width: auto !important;
-}

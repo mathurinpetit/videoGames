@@ -8,7 +8,9 @@ function onWindowResizeMobile(){
         $("#footer-turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile img").css('right',pad+"px");
+        $('video').each(function(){ $(this).css('width','100% !important'); $(this).css('height','auto'); });
     }else {
+        $('video').each(function(){ $(this).css('width','auto !important'); $(this).css('height',$(window).height()); });
         $("#footer-turn-mobile .turn-mobile").hide();
         $("#footer").show();
     }
@@ -48,6 +50,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
         }else {
           document.body.insertBefore(video,document.body.firstChild);
       }
+      $('video').css('height',$(window).height());
   }
 
   videoElt = document.getElementById( 'video_'+numberVideo );
@@ -216,9 +219,8 @@ if(!ismobile){
   $("#footer").show();
   $("#footer span.text").html(text);
   if(footerDelay == 'infini'){ return; }
-  bottomValue = (ismobile)? "0px" : "0px";
   $( "#footer" ).animate({
-    bottom: bottomValue
+    bottom: "0px"
     }, footerDelay, function() {
   });
   if(!text){
