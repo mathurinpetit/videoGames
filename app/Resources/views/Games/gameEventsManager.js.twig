@@ -13,12 +13,12 @@ function unbindAllEvents(){
     $(document).unbind('keydown');
     $(document).unbind('keyup');
     $(document).unbind('keypress');
-    $('body').unbind('taphold');
-    $('body').unbind('tap');
-    $('body').unbind('swipeleft');
-    $('body').unbind('swiperight');
-    $('body').unbind('swipeup');
-    $('body').unbind('swipedown');
+    $('video').unbind('taphold');
+    $('video').unbind('tap');
+    $('video').unbind('swipeleft');
+    $('video').unbind('swiperight');
+    $('video').unbind('swipeup');
+    $('video').unbind('swipedown');
 }
 
 function restartOnLastCheckpoint(){
@@ -364,7 +364,7 @@ function refreshGame(){
           nextVideoId = event.data.onend.nextvideo;
         }
         var textAfter = event.data.onend.textafter;
-        $('body').bind('tap', function(event) {
+        $('video').bind('tap', function(event) {
               var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
               changeVideo(pathGame,randkey.zeroPad(100),'infini');
               $('.reste').text(maxCpt-(compteur++));
@@ -392,7 +392,7 @@ function refreshGame(){
               nextvideomobile = event.data.onend.nextvideomobile;
             }
             if(nextvideomobile){
-              $('body').bind('tap', function(){
+              $('video').bind('tap', function(){
                 changeVideo(pathGame,nextvideomobile,delay);
                 lastVideoPlayed["val"] = nextvideomobile;
                 unbindAllEvents();
@@ -401,7 +401,7 @@ function refreshGame(){
             }else{
               if(event.data.onend.hasOwnProperty("nextvideosmobile")){
                 var nextVideos = event.data.onend.nextvideosmobile;
-                $('body').bind('swipeleft', function(){
+                $('video').bind('swipeleft', function(){
                     nextId = nextVideos['left'];
                     if(nextId.startsWith("redirect")){
                       window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
@@ -418,7 +418,7 @@ function refreshGame(){
                       refreshGame();
                     }
                 });
-                $('body').bind('swiperight', function(){
+                $('video').bind('swiperight', function(){
                   nextId = nextVideos['right'];
                   if(nextId.startsWith("redirect")){
                     window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
@@ -437,7 +437,7 @@ function refreshGame(){
                 });
 
                 if(nextVideos.hasOwnProperty('up')){
-                  $('body').bind('swipeup', function(){
+                  $('video').bind('swipeup', function(){
                     nextId = nextVideos['up'];
                     if(nextId.startsWith("redirect")){
                       window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
@@ -456,7 +456,7 @@ function refreshGame(){
                   });
                 }
                 if(nextVideos.hasOwnProperty('down')){
-                  $('body').bind('swipedown', function(){
+                  $('video').bind('swipedown', function(){
                       nextId = nextVideos['down'];
                       return;
                       if(nextId.startsWith("redirect")){
@@ -491,7 +491,7 @@ function refreshGame(){
             videoElt = document.getElementById( 'video_'+idVideomobiletoplay );
             var duration = videoElt.duration;
             var currentTime = videoElt.currentTime;
-            $('body').bind('tap', function(event) {
+            $('video').bind('tap', function(event) {
                   clearTimeout(timeout);
                   if(videoElt.paused){
                     videoElt.play();
@@ -537,7 +537,7 @@ function refreshGame(){
             $('#video_'+videoGameOverId).on('ended',function(event){
                 undisplaySkipBtn()
                 loadText(gameOverText,delay);
-                $('body').bind('tap',function(){
+                $('video').bind('tap',function(){
                     changeVideo(pathGame,lastVideoPlayed["val"],'infini');
                     unbindAllEvents();
                     loadText("");
