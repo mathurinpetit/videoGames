@@ -8,9 +8,15 @@ function onWindowResizeMobile(){
         $("#footer-turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile img").css('right',pad+"px");
-        $('video').each(function(){ $(this).css('width','100% !important'); $(this).css('height','auto'); });
+        $('video').each(function(){
+            $(this).attr('style','width : 100% !important; height : auto;');
+         });
     }else {
-        $('video').each(function(){ $(this).css('width','auto !important'); $(this).css('height',$(window).height()); });
+        $('video').each(function(){
+             var vh = window.innerHeight * 0.01;
+             console.log(vh);
+             $(this).attr('style','--vh : '+vh+"px");
+         });
         $("#footer-turn-mobile .turn-mobile").hide();
         $("#footer").show();
     }
@@ -46,11 +52,13 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
       if(mobile){
+          var vh = window.innerHeight * 0.01;
+          video.style.setProperty('--vh', vh+"px");
+          $(this).css('width','auto !important');
           document.body.firstChild.insertBefore(video,document.body.firstChild.firstChild);
-        }else {
+      }else {
           document.body.insertBefore(video,document.body.firstChild);
       }
-      $('video').css('height',$(window).height());
   }
 
   videoElt = document.getElementById( 'video_'+numberVideo );
@@ -143,19 +151,6 @@ function changeVideoMobile(pathGame, numberVideo, footerDelay = 0, pause = false
     bottom: "-80px"
   }, footerDelay);
 }*/
-
-function openFullscreen(elem) {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { /* Firefox */
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE/Edge */
-    elem.msRequestFullscreen();
-  }
-}
-
 
 /** KeyBoardAzerty **/
 var keyboardAzerty = ["97","122","101","114","116","121","117","105","111","112","113","115","100","102","103","104","106","107","108","109","119","120","99","118",
