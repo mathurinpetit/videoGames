@@ -162,7 +162,6 @@ function attachAll(){
               nextVideoId = event.data.onend.nextvideo;
             }
             var textAfter = event.data.onend.textafter;
-            console.log("taped",event);
             $('body').bind('tap', function(event) {
 
                   var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;

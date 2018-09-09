@@ -8,17 +8,11 @@ function onWindowResizeMobile(){
         $("#footer-turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile img").css('right',pad+"px");
-        $('video').each(function(){
-            $(this).attr('style','width : 100% !important; height : auto;');
-         });
     }else {
-        $('video').each(function(){
-             var vh = window.innerHeight * 0.01;
-             console.log(vh);
-             $(this).attr('style','--vh : '+vh+"px");
-         });
         $("#footer-turn-mobile .turn-mobile").hide();
-        $("#footer").show();
+        if($("#footer span.text").html()){
+            $("#footer").show();
+        }
     }
 }
 
@@ -52,11 +46,8 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
       if(mobile){
-          var vh = window.innerHeight * 0.01;
-          video.style.setProperty('--vh', vh+"px");
-          $(this).css('width','auto !important');
           document.body.firstChild.insertBefore(video,document.body.firstChild.firstChild);
-      }else {
+        }else {
           document.body.insertBefore(video,document.body.firstChild);
       }
   }
@@ -92,9 +83,13 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
     }, transitionDuration);
 
   if(footerDelay == 'infini'){ return; }
-  $( "#footer" ).animate({
-    bottom: "-80px"
-  }, footerDelay);
+  if(!mobile){
+      $( "#footer" ).animate({
+          bottom: "-80px"
+    }, footerDelay);
+  }else{
+      $( "#footer" ).hide();
+  }
 }
 
 function removeOtherVidAndTween(videoElt,transitionDuration){
@@ -211,16 +206,23 @@ if(!ismobile){
 
   }
 
-  $("#footer").show();
   $("#footer span.text").html(text);
   if(footerDelay == 'infini'){ return; }
-  $( "#footer" ).animate({
-    bottom: "0px"
-    }, footerDelay, function() {
-  });
-  if(!text){
-    $("#footer").hide();
-    bottom: "-80px"
+  bottomValue = "0px";
+  if(ismobile){
+          $( "#footer" ).show();
+      if(!text){
+          $("#footer").hide();
+      }
+  }else{
+      $( "#footer" ).animate({
+        bottom: bottomValue
+        }, footerDelay, function() {
+      });
+      if(!text){
+        $("#footer").hide();
+        bottom: "-80px"
+      }
   }
 
 }
