@@ -6,7 +6,7 @@
     <div class="panel-heading"><h1>Jeu {{ game.name }} - Modification</h1></div>
     <div class="panel-body">
       <div class="row">
-      {{ form_start(edit_form) }}
+      {{ form_start(edit_form, {attr: {novalidate: 'novalidate'}}) }}
         <div class="col-md-12" style="padding-bottom:10px;" >
           <div class="form-group">
               {{ form_errors(edit_form.name) }}
@@ -31,7 +31,18 @@
             {{ form_errors(edit_form.description) }}
             {{ form_label(edit_form.description, "description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
             <div class="col-xs-10">
-                {{ form_widget(edit_form.description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte publique'} }) }}
+                {{ form_widget(edit_form.description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte'} }) }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="padding-bottom:10px;" >
+        <div class="form-group">
+          <div class="form-group event_description">
+            {{ form_errors(edit_form.mobile_description) }}
+            {{ form_label(edit_form.mobile_description, "mobile_description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+            <div class="col-xs-10">
+                {{ form_widget(edit_form.mobile_description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte mobile'} }) }}
             </div>
           </div>
         </div>

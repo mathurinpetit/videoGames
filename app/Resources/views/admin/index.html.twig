@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ game.id }}</td>
                 <td>{{ game.name }}</td>
-                <td>Nom court : {{ game.shortName }}<br/>Path : {{ game.videoPath }}<br/>Format :{{ game.width }}x{{ game.height }}></td>
+                <td>Nom court : {{ game.shortName }}<br/>Path : {{ game.videoPath }}<br/>Format :{{ game.width }}x{{ game.height }} </td>
                 <td>{% autoescape %}{{ game.description |raw }}{% endautoescape %}</td>
                 <td>{{ "%01d" | format(game.visible) }}/{{ "%01d" | format(game.active) }}</td>
                 <td>{{ game.date | date("d/m/Y") }}</td>

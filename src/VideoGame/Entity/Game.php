@@ -37,6 +37,11 @@ class Game
     */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=4096, nullable=true)
+     */
+     private $mobile_description;
+
    /**
     * @ORM\Column(type="string")
     */
@@ -303,5 +308,29 @@ class Game
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+     * Set mobileDescription
+     *
+     * @param string $mobileDescription
+     *
+     * @return Game
+     */
+    public function setMobileDescription($mobileDescription)
+    {
+        $this->mobile_description = $mobileDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get mobileDescription
+     *
+     * @return string
+     */
+    public function getMobileDescription()
+    {
+        return $this->mobile_description;
     }
 }

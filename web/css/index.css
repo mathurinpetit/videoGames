@@ -52,3 +52,16 @@ p {
 .gamelink{
   border-left: 5px solid black;
 }
+
+
+@media (orientation:landscape) {
+    .hide-on-landscape {
+        display: none;
+    }
+}
+
+@media (orientation:portrait) {
+    .hide-on-portrait {
+        display: none;
+    }
+}

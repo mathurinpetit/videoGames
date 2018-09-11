@@ -18,6 +18,7 @@ class GameType extends AbstractType
     {
         $builder->add('name')->add('shortName')
           ->add('description', TextareaType::class)
+          ->add('mobile_description', TextareaType::class)
           ->add('videoPath')->add('width')->add('height')->add('date',DateType::class,array('required' => false,
                                                       'widget' =>'single_text','html5' => false,
                                                       'format' =>'dd/MM/yyyy',
