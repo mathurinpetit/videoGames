@@ -33,7 +33,7 @@
 
         {% endblock %}
     </head>
-    <body>
+    <body style="{% block stylebody %}{% endblock %}">
         {% block body %}{% endblock %}
         {% block jsgame %}
         {% endblock %}
