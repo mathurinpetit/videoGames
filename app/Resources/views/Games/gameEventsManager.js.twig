@@ -33,7 +33,11 @@ function skipGameOver(){
   videoElt.play();
 }
 
-// Gestion de l'assigmenent des vidéo clefs par evennement
+// Gestion de l'assigmenent des< vidéo clefs par evennement
+if(mobile){
+    window.addEventListener("load",function(){ window.scrollTo(0,0); });
+    document.addEventListener("touchmove",function(e) { e.preventDefault() });
+}
 $(document).ready(function(){
      if(mobile){
          onWindowResizeMobile();

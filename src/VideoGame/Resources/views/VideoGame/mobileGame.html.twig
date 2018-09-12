@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 
-
 {% block jsbefore %}
   <script type="text/javascript" src="/js/lib/jquery-2.2.4.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery.mobile-1.4.5.min.js"></script>
 {% endblock %}
 
-{% block stylebody %}margin:0;padding:0;width:100%;height:100%{% endblock %}
-
 {% block body %}
-<div style="position:absolute;width:100%;height:100%;overflow:scroll;">
+
 {% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
 {% set cookieVidVal = app.request.cookies.get(cookieVal) %}
 
@@ -86,7 +83,6 @@
        Passer&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
      </a>
    </div>
-</div>
 {% endblock %}
 
 {% block jsgame %}
