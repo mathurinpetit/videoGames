@@ -70,7 +70,7 @@ if(video){
 }
 
 if(mobile){
-    $(window).on("resize",onWindowResizeMobile);
+    $(window).on("resize orientationchange",onWindowResizeMobile);
 
     $("a").each(function(){
         $(this).attr("href", "http://"+location.host+"/mobile");
