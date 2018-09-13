@@ -37,15 +37,27 @@ function skipGameOver(){
 $(document).ready(function(){
      if(mobile){
          onWindowResizeMobile();
+             var goFS = document.getElementById("goFSButton");
+             goFS.addEventListener("click", function() {
+                 var doc = window.document;
+                 var docEl = doc.documentElement;
+                 var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+                 var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+                 if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                   requestFullScreen.call(docEl);
+                   $(".goFSSpan").removeClass("glyphicon-resize-full").addClass("glyphicon-resize-small");
+                 }else {
+                   $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
+                   cancelFullScreen.call(doc);
+                 }
+
+             }, false);
      }
     loadText("",0,mobile);
     refreshGame();
 });
 
-var scroll = 0;
-if(mobile){
-
-}
 
 function refreshGame(){
     var delay = game_json.globaldelay;
