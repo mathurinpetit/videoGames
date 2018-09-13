@@ -15,3 +15,10 @@ video{
     right: 10px;
     top: 10px;
 }
+
+#retour_accueil_mobile {
+    position: absolute;
+    padding-left: 10px;
+    top: 10px;
+    width: 100%;
+}
