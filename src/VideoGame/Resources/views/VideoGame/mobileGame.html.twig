@@ -7,11 +7,12 @@
 
 {% block body %}
 
-
-<div id="retour_accueil_mobile" >
-      <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6; float:left">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
-        <button id="goFSButton" class="btn btn-default" style="text-decoration:none; opacity:0.6; float:right;margin-right: 10px;" ><span class="goFSSpan glyphicon glyphicon-resize-full"></span></button>
+<div style="position:relative;">
+    <div id="retour_accueil_mobile" >
+          <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6; float:left">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
+            <button id="goFSButton" class="btn btn-default" style="text-decoration:none; opacity:0.6; float:right;margin-right: 10px;" ><span class="goFSSpan glyphicon glyphicon-resize-full"></span></button>
+    </div>
 </div>
 
 {% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
