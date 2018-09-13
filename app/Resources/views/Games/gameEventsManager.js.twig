@@ -45,6 +45,7 @@ $(document).ready(function(){
 var scroll = 0;
 if(mobile){
     $('body').on('scroll touchmove mousewheel', function(e){
+        $(".text").html($('body').scrollTop());
       if(scroll < 100){
           scroll = $('body').scrollTop();
       }else{
