@@ -8,3 +8,10 @@ video{
     width: 100%;
     height: auto;
 }
+
+
+#goFS {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

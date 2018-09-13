@@ -26,6 +26,21 @@
 </video>
 {% endif %}
 
+
+<button id="goFS" class="btn btn-default" style="text-decoration:none; opacity:0.6" ><span class="glyphicon glyphicon-resize-full"></span></button>
+<script>
+  var goFS = document.getElementById("goFS");
+  goFS.addEventListener("click", function() {
+      var doc = window.document;
+      var docEl = doc.documentElement;
+      var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+
+      if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+        requestFullScreen.call(docEl);
+      }
+  }, false);
+</script>
+
 <div id="retour_accueil" >
       <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
