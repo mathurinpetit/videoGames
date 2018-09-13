@@ -9,6 +9,7 @@ function onWindowResizeMobile(){
         $("#footer-turn-mobile .turn-mobile").show();
         $("#footer-turn-mobile .turn-mobile img").css('right',pad+"px");
     }else {
+        $('body').scrollTo(100);
         $("#footer-turn-mobile .turn-mobile").hide();
         if($("#footer span.text").html()){
             $("#footer").show();
