@@ -8,10 +8,3 @@ video{
     width: 100%;
     height: auto;
 }
-
-
-#goFSDiv {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-}

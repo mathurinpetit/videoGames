@@ -10,7 +10,7 @@
   </div>
 {% for game in games %}
 {% if game.visible and game.active %}
-<a href="{{ path('mobile_game', { idName : game.shortName }) }}">
+<a href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" class="no-cookie">
   <div class="row" style="margin-bottom:30px; border:5px solid black;">
     <div class="col-xs-8 padding-0">
       <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >

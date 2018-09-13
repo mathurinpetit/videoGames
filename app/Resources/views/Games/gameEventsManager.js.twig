@@ -360,7 +360,7 @@ function refreshGame(){
       });
     }
 
-    $("a.skip").click(function(){
+    $(".skip").click(function(){
       skipGameOver();
     });
 
@@ -544,6 +544,7 @@ function refreshGame(){
                 undisplaySkipBtn()
                 loadText(gameOverText,delay,true);
                 $('video').bind('tap',function(){
+                    console.log(lastVideoPlayed["val"]);
                     changeVideo(pathGame,lastVideoPlayed["val"],'infini');
                     unbindAllEvents();
                     loadText("",0,true);
