@@ -42,6 +42,14 @@ $(document).ready(function(){
     refreshGame();
 });
 
+if(mobile){
+    addEventListener("load", function() {
+        setTimeout(function(){
+            window.scrollTo(1, 0);
+        }, 0);
+    });
+}
+
 function refreshGame(){
     var delay = game_json.globaldelay;
     var dictionnaireGlobal = "";
