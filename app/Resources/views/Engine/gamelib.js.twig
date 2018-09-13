@@ -46,7 +46,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
       video.id = 'video_'+numberVideo;
       video.setAttribute("webkit-playsinline","");
       if(mobile){
-          insertAfter(video,document.getElementById('retour_accueil_mobile'));
+          document.body.firstChild.insertBefore(video,document.body.firstChild.firstChild);
         }else {
           document.body.insertBefore(video,document.body.firstChild);
       }
