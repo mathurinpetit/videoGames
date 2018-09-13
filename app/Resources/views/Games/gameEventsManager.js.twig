@@ -45,9 +45,10 @@ $(document).ready(function(){
 if(mobile){
     addEventListener("load", function() {
         setTimeout(function(){
-            window.scrollTo(1, 0);
-        }, 0);
+            window.scrollTo(0,100);
+        }, 1000);
     });
+    $('.ui-loader-default').hide();
 }
 
 function refreshGame(){
