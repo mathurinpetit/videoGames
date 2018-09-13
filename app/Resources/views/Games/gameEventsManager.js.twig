@@ -42,9 +42,17 @@ $(document).ready(function(){
     refreshGame();
 });
 
+var scroll = 0;
 if(mobile){
-    $(".ui-page").css("padding-top","130");
-    $('.ui-loader-default').hide();
+    $('body').on('scroll touchmove mousewheel', function(e){
+      if(scroll < 100){
+          scroll = $('body').scrollTop();
+      }else{
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+      }
+    })
 }
 
 function refreshGame(){
