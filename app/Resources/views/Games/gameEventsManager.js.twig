@@ -464,7 +464,6 @@ function refreshGame(){
                 if(nextVideos.hasOwnProperty('down')){
                   $('video').bind('swipedown', function(){
                       nextId = nextVideos['down'];
-                      return;
                       if(nextId.startsWith("redirect")){
                         window.location = window.location.origin +'/game/m/'+ nextId.replace("redirect ","");
                         return false;
@@ -544,7 +543,6 @@ function refreshGame(){
                 undisplaySkipBtn()
                 loadText(gameOverText,delay,true);
                 $('video').bind('tap',function(){
-                    console.log(lastVideoPlayed["val"]);
                     changeVideo(pathGame,lastVideoPlayed["val"],'infini');
                     unbindAllEvents();
                     loadText("",0,true);
