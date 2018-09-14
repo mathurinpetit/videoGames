@@ -30,15 +30,15 @@ class VideoGameController extends Controller
     /**
      * @Template()
      */
-    public function indexMobileAction() {
+    public function indexMobileAction(Request $request) {
       $em = $this->getDoctrine()->getManager();
-
+      $navigator = $request->get('navigator',0) == '1';
       $games = $em->getRepository('VideoGameBundle:Game')->findBy(
         array(),
         array('date' => 'DESC')
         );
 
-      return array("games" => $games);
+      return array("games" => $games,"navigator" => $navigator);
     }
 
     /**

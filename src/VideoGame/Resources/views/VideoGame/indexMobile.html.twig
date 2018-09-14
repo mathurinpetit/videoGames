@@ -1,16 +1,34 @@
 {% extends 'base.html.twig' %}
-
+{% block jsbefore %}
+<script src="/js/lib/jquery-3.2.1.min.js"></script>
+<script src="/js/lib/isautoplay.js"></script>
+{% endblock %}
 {% block body %}
+{% if not navigator %}
+<script>
+isAutoplaySupported(function(supported) {
+  if (!supported) {
+    window.location = window.location.origin + "mobile?navigator=true"
+  }
+});
+</script>
+{% endif %}
 <div class="theme-showcase" role="main">
   <div class="row">
     <div class="col-xs-12 entete-mobile" style="margin-bottom:30px; background-color:#000; font-size: 20px;">
       <h1>VIDEO-JEUX</h1>
-      <p><strong>www.video-jeux.fr</strong> est un site de jeux vidéo ou plutôt un site proposant plusieurs <span style="font-style: italic;"><strong>expériences vidéo ludiques</span></strong>.</p>
+      <p><span style="font-style: italic;"><strong>Une expériences vidéo ludiques</span></strong></p>
+      {% if navigator %}
+          <p>Veuillez utiliser Chrome pour une expérience complète</p>
+          <p><a href="market://details?id=com.android.chrome"></a></p>
+      {% endif %}
     </div>
   </div>
 {% for game in games %}
 {% if game.visible and game.active %}
-<a href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" class="no-cookie">
+{% if not navigator %}
+    <a href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" class="no-cookie">
+{% endif %}
   <div class="row" style="margin-bottom:30px; border:5px solid black;">
     <div class="col-xs-8 padding-0">
       <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
@@ -32,8 +50,10 @@
       </div>
     </div>
     </div>
+{% if not navigator %}
   </a>
- {% endif %}
+{% endif %}
+{% endif %}
 {% endfor %}
 </div>
 <script src="/js/index.js"></script>
