@@ -5,13 +5,13 @@
 {% endblock %}
 {% block body %}
 {% if not navigator %}
-<script>
-// isAutoplaySupported(function(supported) {
-//   if (!supported) {
-//     window.location = window.location.origin + "/mobile?navigator=true";
-//   }
-// });
-</script>
+    <script>
+    isAutoplaySupported(function(supported) {
+      if (!supported) {
+        window.location = window.location.origin + "/mobile?navigator=1";
+      }
+    });
+    </script>
 {% endif %}
 <div class="theme-showcase" role="main">
   <div class="row">
