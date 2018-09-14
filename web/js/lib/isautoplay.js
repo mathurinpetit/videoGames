@@ -9,7 +9,8 @@ function redirectIfAutoplaySupported(){
         video.play();
         setTimeout(function(){
             if(!isNaN(video.currentTime) && !video.currentTime){
-                window.location = window.location.origin + "/mobile?navigator=1";
+                $("body").text(video.currentTime);
+                //window.location = window.location.origin + "/mobile?navigator=1";
             }
         },500);
     }
