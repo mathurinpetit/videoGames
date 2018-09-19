@@ -9,7 +9,7 @@
         redirectIfAutoplaySupported();
     </script>
 {% endif %}
-<div class="theme-showcase" role="main">
+<div class="theme-showcase mobile" role="main">
   <div class="row">
     <div class="col-xs-12 entete-mobile" style="margin-bottom:30px; background-color:#000; font-size: 20px;">
       <h1>VIDEO-JEUX</h1>
@@ -22,36 +22,61 @@
   </div>
 {% for game in games %}
 {% if game.visible and game.active %}
-{% if not navigator %}
-    <a href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" class="no-cookie">
-{% endif %}
-  <div class="row" style="margin-bottom:30px; border:5px solid black;">
-    <div class="col-xs-8 padding-0">
-      <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
-    </div>
-    <div class="col-xs-4 padding-0" style="background-color:000;" >
-      <div class="col-xs-12">
-          <div class="hide-on-landscape">
-            {% autoescape %}
-              <h4 style="font-size: 14px; color: white !important;"><strong>{{ game.name|raw }}</strong></h4>
-              <span class="btn btn-default btn-xs">Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span>
-            {% endautoescape %}
+<div class="row" style="margin-bottom:5px; border:2px solid black;">
+    <div class="gamelink">
+    {% if not navigator %}
+        <a href="{{ path('mobile_game', { idName : game.shortName }) }}" class="play-button">
+            <div class="col-xs-8 padding-0">
+                <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
+            </div>
+            <div class="col-xs-4 padding-0" style="background-color:000;" >
+              <div class="col-xs-12">
+                  <div class="hide-on-landscape">
+                      {% autoescape %}
+                        <h4 style="font-size: 11px; color: white !important;"><strong>{{ game.name|raw }}</strong></h4>
+                      {% endautoescape %}
+                        <span class="btn btn-default btn-xs no-cookie" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
+                        <div class="btn-group pull-down cookie" style="display:none;">
+                          <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
+                          <span data-href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:60px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Suite <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
+                         </div>
+                     </div>
+                     <div class="hide-on-portrait">
+                     {% autoescape %}
+                        <div style="font-size: 14px; color: white !important;">{{ game.mobileDescription|raw }}</div>
+                     {% endautoescape %}
+                          <span class="btn btn-default btn-xs no-cookie" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
+                          <div class="btn-group pull-down cookie" style="display:none;">
+                            <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
+                            <span data-href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
+                           </div>
+                      </div>
+              </div>
+            </div>
+        </a>
+    {% else %}
+        <div class="col-xs-8 padding-0">
+            <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
+        </div>
+        <div class="col-xs-4 padding-0" style="background-color:000;" >
+          <div class="col-xs-12">
+              <div class="hide-on-landscape">
+                {% autoescape %}
+                  <h4 style="font-size: 11px; color: white !important;"><strong>{{ game.name|raw }}</strong></h4>
+                {% endautoescape %}
+              </div>
+              <div class="hide-on-portrait">
+                {% autoescape %}
+                  <div style="font-size: 14px; color: white !important;">{{ game.mobileDescription|raw }}</div>
+                {% endautoescape %}
+              </div>
           </div>
-          <div class="hide-on-portrait">
-            {% autoescape %}
-              <div style="font-size: 14px; color: white !important;">{{ game.mobileDescription|raw }}</div>
-              <span class="btn btn-default btn-xs">Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span>
-            {% endautoescape %}
-          </div>
-      </div>
+        </div>
+    {% endif %}
     </div>
-    </div>
-{% if not navigator %}
-  </a>
-{% endif %}
+</div>
 {% endif %}
 {% endfor %}
-</div>
 <script src="/js/index.js"></script>
 {% endblock %}
 

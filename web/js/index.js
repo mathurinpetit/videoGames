@@ -26,18 +26,26 @@ $('.lien_video').each(function(){
   });
 });
 
-$('.gamelink a.no-cookie').each(function(){
+$('.gamelink .no-cookie').each(function(){
   var name = $(this).attr('data-name');
   name = name.replaceAll(" ",'');
   var cookie = readCookie(name);
   var shortName = $(this).attr('data-shortname');
 
   var href = $(this).attr('href');
+  if(href == undefined){
+      href = $(this).parents("a").attr('href');
+
+  }
   if(cookie){
     var newhref = href.replace(shortName,cookie);
+    console.log(href,newhref);
+    $(this).parents("a.play-button").each(function(){
+        $(this).attr('href',newhref);
+    });
     $(this).parent().find("a.play-button").each(function(){
       $(this).attr('href',newhref);
-    })
+    });
   }
   shortNameCookie = readCookie(shortName);
   if(cookie || (!href.includes(shortNameCookie) && shortNameCookie)){
@@ -56,5 +64,17 @@ function adaptView() {
     $this.css('margin-top', 0);
     var descriptionHeight = $this.parent().find(".description").height();
     $this.css('margin-top', $this.parent().parent().height() - descriptionHeight - 50);
+  });
+  $('.mobile').each(function(){
+      var ratio = window.innerWidth / window.innerHeight;
+      var pad = window.innerWidth / 2 - 32;
+      if(ratio < 1){
+         $('.hide-on-landscape').show();
+         $('.hide-on-portrait').hide();
+      }else {
+          $('.hide-on-landscape').hide();
+          $('.hide-on-portrait').show();
+
+     }
   });
 }
