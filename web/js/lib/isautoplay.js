@@ -20,14 +20,14 @@ function redirectIfAutoplaySupported(){
     videoElt.play();
     var finVideo = false;
     $('#video_test').on('ended',function(){
-        console.log("vrai fin de video test");
+        //console.log("vrai fin de video test");
         finVideo = true;
     });
     setTimeout(function(){
         if(finVideo){
-            console.log("la fin de video a eu lieu");
+            //console.log("la fin de video a eu lieu");
         }else{
-        console.log("aucune fin de video n'a eu lieu");
+        //console.log("aucune fin de video n'a eu lieu");
         window.location = window.location.origin + "/mobile?navigator=1";
         }
     },2000);

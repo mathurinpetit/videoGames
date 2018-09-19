@@ -39,7 +39,6 @@ $('.gamelink .no-cookie').each(function(){
   }
   if(cookie){
     var newhref = href.replace(shortName,cookie);
-    console.log(href,newhref);
     $(this).parents("a.play-button").each(function(){
         $(this).attr('href',newhref);
     });
