@@ -169,18 +169,15 @@ if(!ismobile){
     text = text.replaceAll('Tap',"&nbsp;<span class='glyphicon glyphicon-hand-down' ></span>&nbsp;");
 
   }
-
   $("#footer span.text").html(text);
   if(footerDelay == 'infini'){ return; }
-  bottomValue = "0px";
-  if(ismobile){
-          $( "#footer" ).show();
-      if(!text){
-          $("#footer").hide();
-      }
-  }else{
+  $( "#footer" ).show();
+  if(!text){
+      $("#footer").hide();
+  }
+  if(!ismobile){
       $( "#footer" ).animate({
-        bottom: bottomValue
+        bottom: "0px"
         }, footerDelay, function() {
       });
       if(!text){
@@ -188,7 +185,6 @@ if(!ismobile){
         bottom: "-80px"
       }
   }
-
 }
 
 
