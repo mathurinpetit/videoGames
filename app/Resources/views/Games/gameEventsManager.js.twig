@@ -212,6 +212,11 @@ function refreshGame(){
           }else{
             if(!found){
               if(debug_script){ console.log("changeVideo "+nextVideos[char]); }
+              var nextId = ""+nextVideos[char];
+              if(nextId.startsWith("redirect")){
+                window.location = window.location.origin +'/game/'+ nextId.replace("redirect ","");
+                return false;
+              }
               changeVideo(pathGame,""+nextVideos[char],delay);
               refreshGame();
               unbindAllEvents();
@@ -241,6 +246,7 @@ function refreshGame(){
           }
         });
         if(goodKeys.indexOf(code) !== -1){
+            var text = "";
             if(event.data.onend.hasOwnProperty("textduring")){
               text = event.data.onend.textduring;
             }
