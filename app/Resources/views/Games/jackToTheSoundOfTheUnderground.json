@@ -8,7 +8,9 @@
     "id":"000",
     "onend": {
      "text" : "\nAppuyez sur n'importe quelle touche pour jouer comme Hit House",
+     "textmobile" : "\nGlissez vers Droite pour jouer comme Hit House",
      "nextvideos" : { "_" : "001"} ,
+     "nextvideosmobile" : { "right" : "001"} ,
      "type" : "multichoicebykeypressed"
       }
    },

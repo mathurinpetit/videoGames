@@ -1,6 +1,12 @@
-{% autoescape %}
-var pathGame = "{{ '/bundles/videogame/video/'~game.videoPath~'/' | raw }}";
-{% endautoescape %}
+{% if mobile %}
+    {% autoescape %}
+    var pathGame = "{{ '/bundles/videogame/video/'~game.videoPath~'/mobile/' | raw }}";
+    {% endautoescape %}
+{% else %}
+    {% autoescape %}
+    var pathGame = "{{ '/bundles/videogame/video/'~game.videoPath~'/' | raw }}";
+    {% endautoescape %}
+{% endif %}
 
 {{ include('Engine/gamelib.js.twig') }}
 
