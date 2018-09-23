@@ -7,7 +7,7 @@
 {% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
 {% set cookieVidVal = app.request.cookies.get(cookieVal) %}
 
-{% if cookieVidVal %}
+{% if cookieVidVal and (game.videoPath == cookieVal) %}
 {% set pathVideoMp4 = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.mp4' %}
 {% set pathVideoWebm = 'bundles/videogame/video/'~game.videoPath~'/'~cookieVidVal~'.webm' %}
 <video id="video_{{cookieVidVal}}" webkit-playsinline >
