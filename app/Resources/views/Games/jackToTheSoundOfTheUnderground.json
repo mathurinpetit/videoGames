@@ -18,6 +18,7 @@
       "id":"001",
       "onend": {
        "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour faire de la techno.\nPlus que <span class='reste'>11</span> fois.",
+       "textmobile" : "Tap Toucher pour faire de la techno...\ncomme un beau gosse encore <span class='reste'>11</span> fois.",
        "minVideo" : 2,
        "maxVideo" : 8,
        "nextvideo" :  "009" ,
