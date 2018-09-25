@@ -17,8 +17,8 @@
     {
       "id":"001",
       "onend": {
-       "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour faire de la techno.\nPlus que <span class='reste'>11</span> fois.",
-       "textmobile" : "Tap Toucher pour faire de la techno...\ncomme un beau gosse encore <span class='reste'>11</span> fois.",
+       "text" : "\nMaintenant, appuyer sur les touches de votre clavier pour faire de la techno.\nPlus que <span class='reste'>10</span> fois.",
+       "textmobile" : "Tap Toucher pour faire de la techno...\ncomme un beau gosse encore <span class='reste'>10</span> fois.",
        "minVideo" : 2,
        "maxVideo" : 8,
        "nextvideo" :  "009" ,
@@ -38,7 +38,8 @@
      {
        "id":"009",
        "onend": {
-         "text" : "\nBravo, appuyer sur les touches de votre clavier pour jouer du synthé!\nPlus que <span class='reste'>17</span> fois.",
+         "text" : "\nBravo, appuyer sur les touches de votre clavier pour jouer du synthé!\nPlus que <span class='reste'>16</span> fois.",
+         "textmobile" : "Vous jouer du synthé comme un fou!\nTap Toucher encore <span class='reste'>16</span> fois.",
          "minVideo" : 10,
         "maxVideo" : 21,
         "nextvideo" :  "032" ,
@@ -63,7 +64,9 @@
         "id":"032",
         "onend": {
          "text" : "\nAppuyer sur n'importe quelle touche pour jouer la suite.",
+         "textmobile" : "\nGlissez vers Droite pour jouer la suite.",
          "nextvideos" : { "_" : "033"} ,
+         "nextvideosmobile" : { "right" : "033"} ,
          "type" : "multichoicebykeypressed"
          }
        },
@@ -71,6 +74,7 @@
          "id":"033",
          "onend": {
            "text" : "\nAppuyer les touches pour chanter la techno des années 80.\nPlus que <span class='reste'>16</span> fois.",
+           "textmobile" : "Chantez moi cette belle techno des année 80.\nTap Toucher encore <span class='reste'>16</span> fois.",
            "minVideo" : 34,
            "maxVideo" : 46,
            "nbRepeat" : 15,
@@ -97,14 +101,17 @@
          "id":"047",
          "onend": {
           "text" : "\nAppuyer sur n'importe quelle touche pour jouer pour continuer le morceau.",
+          "textmobile" : "\nGlissez vers Droite pour continuer le morceau.",
           "nextvideos" : { "_" : "048"} ,
+          "nextvideosmobile" : { "right" : "048"} ,
           "type" : "multichoicebykeypressed"
           }
         },
        {
          "id":"048",
          "onend": {
-          "text" : "\nTapes encore pour jouer du Hit House comme un dieu.\nPlus que <span class='reste'>17</span> paroles à chanter.",
+          "text" : "\nTapes encore pour jouer du Hit House comme un dieu.\nPlus que <span class='reste'>16</span> paroles à chanter.",
+          "textmobile" : "\nTap Tapes encore pour jouer du Hit House comme un dieu.\nPlus que <span class='reste'>16</span> paroles à chanter.",
           "minVideo" : 49,
           "maxVideo" : 60,
           "nextvideo" :  "061" ,
@@ -129,12 +136,13 @@
         {
           "id":"061",
           "onend": {
-           "text" : "\nAppuyez sur les touches pour continuer à faire de la techno!\nEncore <span class='reste'>18</span> notes à jouer.",
+           "text" : "\nAppuyez sur les touches pour continuer à faire de la techno!\nEncore <span class='reste'>16</span> notes à jouer.",
+           "textmobile" : "\nTape Tapes encore <span class='reste'>16</span> fois\n J'aime cette techno!",
            "minVideo" : 62,
            "maxVideo" : 72,
            "textafter" : "",
            "nextvideo" :  "073" ,
-           "nbRepeat" : 17,
+           "nbRepeat" : 16,
            "ordermulti" : true,
            "type" : "multibykeypressed"
             }
@@ -154,6 +162,7 @@
            "id":"073",
            "onend": {
             "text" : "\nAppuyez sur les touches pour faire chanter la chanteuse!\nChante <span class='reste'>19</span> fois...",
+            "textmobile" : "\nTape Tapes encore pour faire chanter la chanteuse!\nChante <span class='reste'>19</span> fois...",
             "minVideo" : 74,
             "maxVideo" : 82,
             "textafter" : "",
@@ -176,6 +185,7 @@
            "id":"083",
            "onend": {
             "text" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez finit !\nContinuer à appuyer sur les touches pour faire la techno des années 80.\nPlus que <span class='reste'>16</span> fois.",
+            "textmobile" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez finit !\nTap Tapez encore pour faire la techno des années 80.\nPlus que <span class='reste'>16</span> fois.",
             "minVideo" : 10,
             "maxVideo" : 21,
             "textafter" : "",
