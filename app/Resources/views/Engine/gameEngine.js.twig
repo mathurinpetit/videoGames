@@ -63,9 +63,9 @@ var lastVideoPlayed = { "val" : ""+firstVideoNumber };
 {% endif %}
 if(video){
  video.onloadeddata = function() {
-    $("#divLoading").hide();
     {% if not urlgame %}
         {{ "video.play();" }}
+        initDivLoadingShowHide();
     {% endif %}
  };
 }else{

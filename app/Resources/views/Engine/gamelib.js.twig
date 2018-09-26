@@ -213,12 +213,10 @@ function renderLink(str,code){
 }
 
 function initDivLoadingShowHide(){
+    $("#divLoading").show();
     $("video").each(function(){
-        $(this).waiting = function(){
-            $("#divLoading").show();
-            $(this).playing = function() {
-                $("#divLoading").hide();
-            };
+        $(this).playing = function() {
+            $("#divLoading").hide();
         };
     });
 }
