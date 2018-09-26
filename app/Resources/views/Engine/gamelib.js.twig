@@ -90,7 +90,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
   }else{
       $( "#footer" ).hide();
   }
-  initDivLoadingShowHide();
+  initDivLoadingShowHide(videoElt);
 }
 
 function removeOtherVidAndTween(videoElt,transitionDuration){
@@ -212,13 +212,11 @@ function renderLink(str,code){
   return "\"<a href='#' onClick='triggerKeypress("+code+"); return false;' style='color:#fff;' >"+str+"</a>\"";
 }
 
-function initDivLoadingShowHide(){
+function initDivLoadingShowHide(video){
     $("#divLoading").show();
-    $("video").each(function(){
-        $(this).playing = function() {
+        video.onplaying = function() {
             $("#divLoading").hide();
         };
-    });
 }
 
 function initFullScreenButton(){

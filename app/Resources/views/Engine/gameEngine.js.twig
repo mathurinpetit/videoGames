@@ -62,10 +62,10 @@ var lastVideoPlayed = { "val" : ""+firstVideoNumber };
  {{ include('Games/gameEventsManager.js.twig', { 'game': game , 'urlgame' : urlgame, 'mobile' : mobile }) }}
 {% endif %}
 if(video){
- video.onloadeddata = function() {
+ video.onloadeddata = function(){
     {% if not urlgame %}
         {{ "video.play();" }}
-        initDivLoadingShowHide();
+        initDivLoadingShowHide(video);
     {% endif %}
  };
 }else{
