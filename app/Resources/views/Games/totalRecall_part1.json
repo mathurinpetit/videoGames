@@ -120,7 +120,9 @@
                "id":"107",
                "onend": {
                  "text" : "\nlink 'A' 65 : Ce n'est pas un rêve! Dis moi quoi faire...\nlink 'B' 66 : Réexplique moi ça je ne t'ai pas écouté!",
+                  "textmobile" : "Ce n'est pas un rêve! Dis moi quoi faire... Droite\nGauche Réexplique moi ça je ne t'ai pas écouté!",
                  "nextvideos" : { "A" : "001", "B" : "000", "_" : "056"},
+                 "nextvideosmobile" : { "right" : "001", "left" : "000"} ,
                  "type" : "multichoicebykeypressed"
                   }
                },
@@ -128,7 +130,9 @@
                 "id":"131",
                 "onend": {
                   "text" : "Mince! Elle n'a rien compris...\nlink 'A' 65 : Je vais insulter son fils!\nlink 'B' 66 : Bon télévision, parles moi encore!",
+                  "textmobile" : "Mince! Elle n'a rien compris...\nJe vais insulter son fils! Droite\nGauche Bon télévision, parles moi encore!",
                   "nextvideos" : { "A" : "125", "B" : "002", "_" : "057"},
+                  "nextvideosmobile" : { "right" : "125","left" : "002"} ,
                   "type" : "multichoicebykeypressed"
                    }
                 },

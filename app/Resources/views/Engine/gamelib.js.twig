@@ -90,6 +90,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
   }else{
       $( "#footer" ).hide();
   }
+  initDivLoadingShowHide();
 }
 
 function removeOtherVidAndTween(videoElt,transitionDuration){
@@ -209,6 +210,38 @@ function loadDictionnaire(dictionnairetxt,delay){
 
 function renderLink(str,code){
   return "\"<a href='#' onClick='triggerKeypress("+code+"); return false;' style='color:#fff;' >"+str+"</a>\"";
+}
+
+function initDivLoadingShowHide(){
+    $("video").each(function(){
+        $(this).waiting = function(){
+            $("#divLoading").show();
+            $(this).playing = function() {
+                $("#divLoading").hide();
+            };
+        };
+    });
+}
+
+function initFullScreenButton(){
+    var goFS = document.getElementById("goFSButton");
+    goFS.addEventListener("click", function() {
+        var doc = window.document;
+        var docEl = doc.documentElement;
+        var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+        var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+        if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+          requestFullScreen.call(docEl);
+          $(".goFSText").hide();
+          $(".goFSSpan").removeClass("glyphicon-resize-full").addClass("glyphicon-resize-small");
+        }else {
+          $(".goFSText").show();
+          $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
+          cancelFullScreen.call(doc);
+        }
+
+    }, false);
 }
 
 function triggerKeypress(code){
