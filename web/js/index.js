@@ -26,7 +26,7 @@ $('.lien_video').each(function(){
   });
 });
 
-$('.gamelink .no-cookie').each(function(){
+$('.no-cookie').each(function(){
   var name = $(this).attr('data-name');
   name = name.replaceAll(" ",'');
   var cookie = readCookie(name);
