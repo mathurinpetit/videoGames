@@ -74,6 +74,10 @@ class Game
        */
       private $visible;
 
+      /**
+       * @ORM\Column(type="boolean")
+       */
+      private $optimiseMobile;
 
 
     /**
@@ -332,5 +336,29 @@ class Game
     public function getMobileDescription()
     {
         return $this->mobile_description;
+    }
+
+    /**
+     * Set optimiseMobile
+     *
+     * @param boolean $optimiseMobile
+     *
+     * @return Game
+     */
+    public function setOptimiseMobile($optimiseMobile)
+    {
+        $this->optimiseMobile = $optimiseMobile;
+
+        return $this;
+    }
+
+    /**
+     * Get optimiseMobile
+     *
+     * @return boolean
+     */
+    public function getOptimiseMobile()
+    {
+        return $this->optimiseMobile;
     }
 }

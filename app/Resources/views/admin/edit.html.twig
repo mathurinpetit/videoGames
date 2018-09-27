@@ -102,6 +102,15 @@
             </div>
         </div>
         <div class="col-md-12" style="padding-bottom:10px;" >
+            <div class="form-group">
+                {{ form_errors(edit_form.optimiseMobile) }}
+                {{ form_label(edit_form.optimiseMobile, "optimiseMobile", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.optimiseMobile) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-bottom:10px;" >
           <div class="form-group">
             <input type="submit" value="Modifier" class="btn btn-success pull-right" />
               {{ form_end(edit_form) }}

@@ -12,7 +12,7 @@
                 <th>Nom</th>
                 <th>Nom court/Video path</th>
                 <th>Description</th>
-                <th>visible/active</th>
+                <th>visible/active/mobile</th>
                 <th>date</th>
                 <th></th>
             </tr>
@@ -24,7 +24,7 @@
                 <td>{{ game.name }}</td>
                 <td>Nom court : {{ game.shortName }}<br/>Path : {{ game.videoPath }}<br/>Format :{{ game.width }}x{{ game.height }} </td>
                 <td>{% autoescape %}{{ game.description |raw }}{% endautoescape %}</td>
-                <td>{{ "%01d" | format(game.visible) }}/{{ "%01d" | format(game.active) }}</td>
+                <td>{{ "%01d" | format(game.visible) }}/{{ "%01d" | format(game.active) }}/{{ "%01d" | format(game.optimiseMobile) }}</td>
                 <td>{{ game.date | date("d/m/Y") }}</td>
                 <td>
                       <div class="btn-group btn-group-xs" >

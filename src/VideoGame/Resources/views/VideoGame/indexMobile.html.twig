@@ -21,7 +21,7 @@
     </div>
   </div>
 {% for game in games %}
-{% if game.visible and game.active %}
+{% if game.visible and game.active and game.optimiseMobile %}
 <div class="row" style="margin-bottom:5px; border:2px solid black;">
     <div class="gamelink">
     {% if not navigator %}
