@@ -54,7 +54,7 @@
          "id":"004",
          "onend": {
            "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal!\nlink 'B' 66 : Sortir le truc de son nez...",
-           "textmobile" : "Tap Tapoter pour sortir l'emetteur du nez",
+           "textmobile" : "Tap Toucher doucement pour sortir l'emetteur du nez",
            "nextvideos" : { "B" : "005", "_" : "058"} ,
            "videomobiletoplay" : "005" ,
            "nextvideomobile" : "006",
@@ -67,7 +67,7 @@
           "id":"005",
           "onend": {
             "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-            "textmobile" : "Tap Tapoter pour sortir l'emetteur du nez",
+            "textmobile" : "Tap Toucher doucement pour sortir l'emetteur du nez",
             "nextvideos" : { "B" : "006", "_" : "057"} ,
             "type" : "multichoicebykeypressed"
              }
@@ -87,7 +87,7 @@
              "id":"007",
             "onend": {
               "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
-              "textmobile" : "Tap Tapoter pour sortir l'emetteur du nez",
+              "textmobile" : "Tap Toucher doucement pour sortir l'emetteur du nez",
               "nextvideos" : { "B" : "005", "_" : "058"} ,
               "delay" : 500,
               "videomobiletoplay" :  "005" ,
@@ -140,7 +140,9 @@
                  "id":"125",
                  "onend": {
                    "text" : "\nIl ne réagit pas non plus... bon...\nlink 'A' 65 : Allez, télévision, racontes moi des trucs!",
+                   "textmobile" : "Il ne réagit pas non plus... bon...Droite\nGauche Allez, télévision, racontes moi encore des trucs!",
                    "nextvideos" : { "A" : "003", "_" : "057"},
+                   "nextvideosmobile" : { "right" : "003","left" : "057"},
                    "type" : "multichoicebykeypressed"
                     }
                  }
