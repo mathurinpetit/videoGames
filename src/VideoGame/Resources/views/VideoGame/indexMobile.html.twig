@@ -22,10 +22,16 @@
   </div>
 {% for game in games %}
 {% if game.visible and game.active and game.optimiseMobile %}
+{% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
+{{ cookieVal }}
 <div class="row" style="margin-bottom:5px; border:2px solid black;">
     <div class="gamelink">
     {% if not navigator %}
+        {% if cookieVal %}
+        <a href="{{ path('mobile_game', { idName : cookieVal }) }}" class="play-button">
+        {% else %}
         <a href="{{ path('mobile_game', { idName : game.shortName }) }}" class="play-button">
+        {% endif %}
             <div class="col-xs-7 padding-0">
                 <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >
             </div>
@@ -35,21 +41,27 @@
                       {% autoescape %}
                         <h4 style="font-size: 11px; color: white !important;"><strong>{{ game.name|raw }}</strong></h4>
                       {% endautoescape %}
-                        <span class="btn btn-default btn-xs no-cookie" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
-                        <div class="btn-group pull-down cookie" style="display:none;">
-                          <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
-                          <span data-href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:60px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Suite <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
-                         </div>
+                        {% if cookieVal %}
+                        <div class="btn-group pull-down">
+                            <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
+                            <span data-href="{{ path('mobile_game', { idName : cookieVal }) }}" data-name="{{ game.name }}" data-shortname="{{ cookieVal }}" style=" width:60px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Suite <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
+                        </div>
+                        {% else %}
+                        <span class="btn btn-default btn-xs" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
+                        {% endif %}
                      </div>
                      <div class="hide-on-portrait">
                      {% autoescape %}
                         <div style="font-size: 14px; color: white !important;">{{ game.mobileDescription|raw }}</div>
                      {% endautoescape %}
-                          <span class="btn btn-default btn-xs no-cookie" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
-                          <div class="btn-group pull-down cookie" style="display:none;">
-                            <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
-                            <span data-href="{{ path('mobile_game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
-                           </div>
+                     {% if cookieVal %}
+                     <div class="btn-group pull-down" >
+                         <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
+                         <span data-href="{{ path('mobile_game', { idName : cookieVal }) }}" data-name="{{ game.name }}" data-shortname="{{ cookieVal }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
+                     </div>
+                     {% else %}
+                          <span class="btn btn-default btn-xs" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
+                     {% endif %}
                       </div>
               </div>
             </div>
