@@ -23,7 +23,6 @@
 {% for game in games %}
 {% if game.visible and game.active and game.optimiseMobile %}
 {% set cookieVal = app.request.cookies.get(game.name|replace({" ":''})) %}
-{{ cookieVal }}
 <div class="row" style="margin-bottom:5px; border:2px solid black;">
     <div class="gamelink">
     {% if not navigator %}
@@ -44,7 +43,7 @@
                         {% if cookieVal %}
                         <div class="btn-group pull-down">
                             <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
-                            <span data-href="{{ path('mobile_game', { idName : cookieVal }) }}" data-name="{{ game.name }}" data-shortname="{{ cookieVal }}" style=" width:60px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Suite <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
+                            <span data-href="{{ path('mobile_game', { idName : cookieVal }) }}" data-name="{{ game.name }}" data-shortname="{{ cookieVal }}" style=" width:62px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Suite <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
                         </div>
                         {% else %}
                         <span class="btn btn-default btn-xs" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
@@ -57,7 +56,7 @@
                      {% if cookieVal %}
                      <div class="btn-group pull-down" >
                          <span class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></span>
-                         <span data-href="{{ path('mobile_game', { idName : cookieVal }) }}" data-name="{{ game.name }}" data-shortname="{{ cookieVal }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
+                         <span data-href="{{ path('mobile_game', { idName : cookieVal }) }}" data-name="{{ game.name }}" data-shortname="{{ cookieVal }}" style=" width:90px; white-space: inherit ! important;" class="btn btn-default btn-xs" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span></span>
                      </div>
                      {% else %}
                           <span class="btn btn-default btn-xs" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}"><span>Jouer&nbsp;<span class="glyphicon glyphicon-play text-success"></span></span></span>
