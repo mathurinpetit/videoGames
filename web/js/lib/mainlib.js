@@ -80,7 +80,7 @@ function createCookieOrBackToMenu(cookieKey,cookieValue){
           if(matchc[3] <= num){
             createCookie(cookieKey.replaceAll(" ",''),cookieValue,7);
           }else{
-            //window.location = window.location.origin;
+            window.location = window.location.origin+"/"+window.location.pathname.replace(num,matchc[3]);
             return false;
           }
         }

@@ -23,9 +23,9 @@
        "id":"001",
       "onend": {
         "text" : "link 'A' 65 : Sornettes! Je préfére séduire une blonde avec mes compétences en informatique!\nlink 'B' 66 : Tes histoires ne m'intéressent pas...\nlink 'C' 67 : Je veux en savoir plus... Continues!",
-        "textmobile" : "Cela ne m'interresse pas Droite\nGauche Je veux en savoir plus",
+        "textmobile" : "Haut Je préfère draguer une blonde avec mon savoir!\nCela ne m'interresse pas Droite\nGauche Je veux en savoir plus",
         "nextvideos" : {"A" : "131", "C" : "002", "_" : "057"} ,
-        "nextvideosmobile" : { "left" : "002", "right" : "057"} ,
+        "nextvideosmobile" : { "left" : "002", "right" : "057","up" : "131"} ,
         "type" : "multichoicebykeypressed"
          }
       },
