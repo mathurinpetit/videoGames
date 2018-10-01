@@ -26,11 +26,10 @@
 {% endif %}
 
 
-<div id="retour_accueil" >
-    <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6" rel="external">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
+<div id="mobileHead" >
+    <a href="{{ path("videogame") }}" class="btn btn-default retour_accueil_btn" style="text-decoration:none; opacity:0.6; float:right;" rel="external"><span class="glyphicon glyphicon-home"></span></a>
+    <button id="goFSButton" class="btn btn-default" style="text-decoration:none; opacity:0.6; float: left;" ><span class="goFSSpan glyphicon glyphicon-resize-full"></span><span class="goFSText">&nbsp;Plein Écran</span></button>
 </div>
-<button id="goFSButton" class="btn btn-default" style="text-decoration:none; opacity:0.6" ><span class="goFSSpan glyphicon glyphicon-resize-full"></span><span class="goFSText">&nbsp;Plein Écran</span></button>
 
 <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; z-index: 30001; opacity: 0.8;">
   <p style="position: absolute; color: White; top: 35%; left: 40%;">

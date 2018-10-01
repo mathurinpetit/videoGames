@@ -57,6 +57,12 @@ body {
   left: 10px;
   top:10px;
 }
+#mobileHead {
+    position: absolute;
+    left: 10px;
+    top:10px;
+    width: 96%;
+}
 
 
 #skip{
