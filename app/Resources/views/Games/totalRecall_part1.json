@@ -97,7 +97,7 @@
                }
             },
             {
-              "id":"008",
+              "id":"008", 
              "onend": {
                "text" : "De quoi tu parles?\nlink 'A' 65 : J'ai pas bien compris ce que je dois faire en fait.\nlink 'B' 66 : Ca va pas la tête je ne mettrai jamais les pieds sur Mars!\nlink 'C' 67 : Accepter la mission et aller sur Mars.",
                "textmobile" : "Haut Accepter la mission et aller sur Mars\nJ'ai pas bien compris ce que je dois faire en fait Droite\nGauche Je ne mettrai jamais les pieds sur Mars!",
@@ -142,7 +142,7 @@
                    "text" : "\nIl ne réagit pas non plus... bon...\nlink 'A' 65 : Allez, télévision, racontes moi des trucs!",
                    "textmobile" : "Il ne réagit pas non plus... bon...Droite\nGauche Allez, télévision, racontes moi encore des trucs!",
                    "nextvideos" : { "A" : "003", "_" : "057"},
-                   "nextvideosmobile" : { "right" : "003","left" : "057"},
+                   "nextvideosmobile" : { "right" : "057","left" : "003"},
                    "type" : "multichoicebykeypressed"
                     }
                  }
