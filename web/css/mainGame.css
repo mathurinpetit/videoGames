@@ -58,12 +58,17 @@ body {
   top:10px;
 }
 
-.mobileHead {
+.mobileHeadRight {
     position: absolute;
     left: 10px;
     top:10px;
 }
 
+.mobileHeadLeft {
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
 
 #skip{
   position: absolute;
