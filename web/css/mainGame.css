@@ -58,7 +58,7 @@ body {
   top:10px;
 }
 
-#mobileHead {
+.mobileHead {
     position: absolute;
     left: 10px;
     top:10px;
