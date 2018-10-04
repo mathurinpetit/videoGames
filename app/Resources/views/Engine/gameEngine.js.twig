@@ -73,6 +73,9 @@ if(video){
 }
 
 if(mobile){
+    if (typeof screen.lockOrientation === "function") {
+        screen.lockOrientation('landscape');
+    }
     $(window).on("resize orientationchange",onWindowResizeMobile);
 
     $("a").each(function(){
