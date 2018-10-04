@@ -12,7 +12,7 @@ video{
 
 #containerMobile { display:block; }
 
-@media only screen and (orientation:portrait){
+@media(orientation:portrait){
 
   #containerMobile {
 
@@ -33,7 +33,7 @@ video{
 
 }
 
-@media only screen and (orientation:landscape){
+@media(orientation:landscape){
 
   #containerMobile {
 
