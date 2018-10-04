@@ -33,7 +33,7 @@
         <script src="/components/summernote/summernote-fr-FR.js"></script>
         {% endblock %}
     </head>
-    <body>
+    <body id="{% block bodyid %}{% endblock %}">
         {% block body %}{% endblock %}
         {% block jsgame %}
         {% endblock %}

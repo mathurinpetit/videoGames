@@ -8,3 +8,45 @@ video{
     width: 100%;
     height: auto;
 }
+
+
+#containerMobile { display:block; }
+
+@media only screen and (orientation:portrait){
+
+  #containerMobile {
+
+    height: 100vw;
+    width: 100vh;
+
+    -webkit-transform: rotate(90deg);
+
+    -moz-transform: rotate(90deg);
+
+    -o-transform: rotate(90deg);
+
+    -ms-transform: rotate(90deg);
+
+    transform: rotate(90deg);
+
+  }
+
+}
+
+@media only screen and (orientation:landscape){
+
+  #containerMobile {
+
+     -webkit-transform: rotate(0deg);
+
+     -moz-transform: rotate(0deg);
+
+     -o-transform: rotate(0deg);
+
+     -ms-transform: rotate(0deg);
+
+     transform: rotate(0deg);
+
+  }
+
+}
