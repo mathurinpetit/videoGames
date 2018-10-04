@@ -72,10 +72,7 @@ if(video){
     $("#divLoading").hide();
 }
 
-if(mobile){
-    if (typeof screen.lockOrientation === "function") {
-        screen.lockOrientation('landscape');
-    }
+if(mobile){    
     $(window).on("resize orientationchange",onWindowResizeMobile);
 
     $("a").each(function(){
