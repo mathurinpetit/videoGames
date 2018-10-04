@@ -10,14 +10,12 @@ video{
 }
 
 
-#containerMobile { display:block; }
 
-@media(orientation:portrait){
+@media all and (orientation:portrait){
 
-  #containerMobile {
+  body {
 
     height: 100vw;
-    width: 100vh;
 
     -webkit-transform: rotate(90deg);
 
@@ -33,9 +31,9 @@ video{
 
 }
 
-@media(orientation:landscape){
+@media all and (orientation:landscape){
 
-  #containerMobile {
+  body {
 
      -webkit-transform: rotate(0deg);
 
