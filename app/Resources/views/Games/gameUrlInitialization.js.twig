@@ -2,9 +2,16 @@ var wordsToSay = [];
 
 function addWord(data,majurl = false){
     var html = '<a class="btn btn-xs btn-default" onClick="removeWord($(this));" title="'+data.text+'" style="margin-right:5px; margin-top:5px;" ><strong><span class="text-muted" role="presentation">×</span>&nbsp;'+data.text+'</strong></a>';
+
      wordsToSay.push(data);
-     $("#footer > div > span").html($("#footer > div > span").html()+html);
+     if(!mobile){
+         $("#footer > div > span").html($("#footer > div > span").html()+html);
+     }else{
+         html = '<a class="btn btn-xs btn-default" onClick="removeWordMobile($(this));" title="'+data.text+'" style="margin-right:5px; margin-top:5px;" ><strong><span class="text-muted" role="presentation">×</span>&nbsp;'+data.text+'</strong></a>';
+         $("#selectionsSelect2").html($("#selectionsSelect2").html()+html);
+     }
      $("#select2").val("").trigger("change");
+     $("#select2-mobile").val("").trigger("change");
      if(majurl){
          rebuildUrlFromWords();
          changeVideo(pathGame,""+data.id, 'infini',false,200,false);
@@ -14,6 +21,15 @@ function addWord(data,majurl = false){
 
 function removeWord(btn){
     var btn_index = $('#footer .text a').index(btn);
+    if (btn_index !== -1) {
+        wordsToSay.splice(btn_index, 1);
+        btn.remove();
+        rebuildUrlFromWords();
+    }
+}
+
+function removeWordMobile(btn) {
+    var btn_index = $('#selectionsSelect2 a').index(btn);
     if (btn_index !== -1) {
         wordsToSay.splice(btn_index, 1);
         btn.remove();
@@ -134,6 +150,14 @@ function initSelect2(){
        });
        list.select2("open");
 
+      if($('#dictionnairemobile').length){
+          var list = $('#select2-mobile').select2({
+              placeholder: "",
+              allowClear: true,
+              closeOnSelect: true,
+          });
+      }
+
 }
 
 
@@ -142,6 +166,13 @@ $('#select2').on('select2:select', function (e) {
   var word = { "text" : data.text, "id" : data.id }
   addWord(word,true);
 });
+
+$('#select2-mobile').on('select2:select', function (e) {
+  var data = e.params.data;
+  var word = { "text" : data.text, "id" : data.id }
+  addWord(word,true);
+});
+
 
 $(document).ready(function(){
     initSelect2();

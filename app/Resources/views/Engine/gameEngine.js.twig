@@ -67,12 +67,13 @@ if(video){
         {{ "video.play();" }}
         initDivLoadingShowHide(video);
     {% endif %}
+    $("#divLoading").hide();
  };
 }else{
     $("#divLoading").hide();
 }
 
-if(mobile){    
+if(mobile){
     $(window).on("resize orientationchange",onWindowResizeMobile);
 
     $("a").each(function(){
