@@ -39,10 +39,10 @@
       <div class="col-md-12" style="padding-bottom:10px;" >
         <div class="form-group">
           <div class="form-group event_description">
-            {{ form_errors(edit_form.mobile_description) }}
-            {{ form_label(edit_form.mobile_description, "mobile_description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+            {{ form_errors(form.mobile_description) }}
+            {{ form_label(form.mobile_description, "mobile_description", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
             <div class="col-xs-10">
-                {{ form_widget(edit_form.mobile_description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte mobile'} }) }}
+                {{ form_widget(form.mobile_description,{'attr': {'class': 'form-control summernote', 'placeholder': 'Petit texte mobile'} }) }}
             </div>
           </div>
         </div>
