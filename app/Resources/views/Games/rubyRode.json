@@ -12,63 +12,92 @@
               {
                 "id":"000",
                 "onend": {
-                  "text" : "",
-                  "textmobile" : "",
-                  "nextvideos" : { "_" : "001"},
-                  "nextvideomobile" : "001" ,
+                    "text" : "Super ! \nlink 'A' 65 : Faites une belle entrée en tant que Ruby Rode !\nlink 'B' 66 : Faites une entrée fracassante avec Ruby Rode !\nlink 'C' 67 : Faites une entrée vraiment vraiment excessive ! (Attention Korben pourrait ne pas aimer)",
+                    "textmobile" : "Super! Ruby Rode !!! \nGauche Faites une belle entrée en tant que Ruby Rode !\nFaites une entrée fracassante avec Ruby Rode ! Droite\nBas Faites une entrée vraiment vraiment excessive ! (Attention Korben pourrait ne pas aimer)",
+                  "nextvideos" : { "A" : "002","B" : "003","C" : "027"},
+                  "nextvideomobile" : { "left" : "002","right" : "003","down" : "027"},
                   "type" : "multichoicebykeypressed"
                    }
                },
+                {
+                  "id":"001",
+                  "onend": {
+                    "text" : "",
+                    "textmobile" : "",
+                    "nextvideos" : { "A" : "002","B" : "003"},
+                    "nextvideosmobile" : { "right" : "002", "left" : "003"} ,
+                    "type" : "multichoicebykeypressed"
+                     }
+                 },
                {
-                 "id":"001",
+                 "id":"002",
                  "onend": {
-                   "text" : "",
-                   "textmobile" : "",
-                   "nextvideos" : { "A" : "002","B" : "006"},
-                           "nextvideosmobile" : { "right" : "006", "left" : "002"} ,
-                           "type" : "multichoicebykeypressed"
-                            }
-                        },
-
-                        {
-                          "id":"002",
-                          "onend": {
-                            "text" : "\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 65 : Demandez à André, le laitier, de parler des bienfaits du TéCom.",
-                            "textmobile" : "Gauche Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nDroite Demandez à André, le laitier, de parler des bienfaits du TéCom.",
-                            "nextvideos" : { "A" : "004","B" : "005"},
-                            "nextvideosmobile" : { "right" : "004", "left" : "005"} ,
-                            "type" : "multichoicebykeypressed"
-                             }
-                         },
-                         {
-                           "id":"006",
-                           "onend": {
-                             "text" : "\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 65 : Demandez à André, le laitier, de parler des biensfait du TéCom.",
-                             "textmobile" : "Gauche Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nDroite Demandez à André, le laitier, de parler des bienfaits du TéCom.",
-                             "nextvideos" : { "A" : "004","B" : "005"},
-                             "nextvideosmobile" : { "right" : "005", "left" : "004"} ,
-                             "type" : "multichoicebykeypressed"
-                              }
-                          },
-                          {
-                            "id":"004",
-                            "onend": {
-                              "text" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez fini !\nlink 'A' 65 : Demandez à André, le laitier, de parler des biensfait du TéCom.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
-                              "textmobile" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez fini !\nGauche Demandez à André, le laitier, de parler des biensfait du TéCom.\nDroite C'est raté, je recommence ma publicité.",
-                              "nextvideos" : { "A" : "005","B" : "001","_" : "001"},
-                              "nextvideosmobile" : { "right" : "001", "left" : "005"} ,
-                              "type" : "multichoicebykeypressed"
-                               }
-                           },
-                           {
-                             "id":"005",
-                             "onend": {
-                               "text" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez fini !\nlink 'A' 65 : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nlink 'B' 66 : C'est raté, je recommence ma publicité.",
-                               "textmobile" : "<a class='btn btn-xs btn-success' style='margin : 5px 0px;' onClick=' window.location = window.location.origin; return false;'><span class='glyphicon glyphicon-home' ></span>&nbsp;Retour</a>&nbsp;&nbsp;Bravo ! Vous avez fini !\nGauche : Demandez à Bernard, producteurs de TéCom, de faire de la pub pour son fromage.\nDroite : C'est raté, je recommence ma publicité.",
-                               "nextvideos" : { "A" : "004","B" : "001","_" : "001" },
-                               "nextvideosmobile" : { "right" : "001", "left" : "004"} ,
-                               "type" : "multichoicebykeypressed"
-                                }
-                            }
-                       ]
+                     "text" : "Il a l'air perdu le pauvre... On va détendre un peu l'athmosphère...\nlink 'A' 65 : Dire à la radio que Korben est Hot Hot Hot !\nlink 'B' 66 : Signer des autographe en parlant du beau physique de Korben.",
+                     "textmobile" : "Il a l'air perdu le pauvre... On va détendre un peu l'athmosphère...\nGauche Dire à la radio que Korben est Hot Hot Hot !\nSigner des autographe en parlant du beau physique de Korben Droite",
+                   "nextvideos" : { "A" : "006","B" : "007"},
+                   "nextvideosmobile" : { "right" : "006", "left" : "007"} ,
+                   "type" : "multichoicebykeypressed"
+                    }
+                },
+                {
+                  "id":"003",
+                  "onend": {
+                      "text" : "Il a l'air perdu le pauvre... On va détendre un peu l'athmosphère...\nlink 'A' 65 : Dire à la radio que Korben est Hot Hot Hot !\nlink 'B' 66 : Signer des autographe en parlant du beau physique de Korben\nlink 'C' 67 : Je vais refaire mon entrée de manière plus expressive...",
+                      "textmobile" : "Il a l'air perdu le pauvre... On va détendre un peu l'athmosphère...\nHaut : Je vais refaire mon entrée de manière plus expressive...\nGauche Dire à la radio que Korben est Hot Hot Hot !\nSigner des autographe en parlant du beau physique de Korben Droite",
+                    "nextvideos" : { "A" : "004","B" : "005", "C" : "027"},
+                    "nextvideosmobile" : { "right" : "004", "left" : "005", "up" : "027"} ,
+                    "type" : "multichoicebykeypressed"
+                     }
+                 },
+                 {
+                   "id":"004",
+                   "onend": {
+                      "text" : "Il faut détendre un peu Korben...\nlink 'A' 65 : Dire à la radio que Korben est Hot Hot Hot !\nlink 'B' 66 : Signer des autographe en parlant du beau physique de Korben.",
+                      "textmobile" : "Il faut détendre un peu Korben...\nGauche Dire à la radio que Korben est Hot Hot Hot !\nSigner des autographe en parlant du beau physique de Korben Droite",
+                     "nextvideos" : { "A" : "006","B" : "007"},
+                     "nextvideosmobile" : { "right" : "006", "left" : "007"} ,
+                     "type" : "multichoicebykeypressed"
+                      }
+                  },
+                  {
+                    "id":"006",
+                    "onend": {
+                        "text" : "Il a l'air un peu mieux...\nlink 'A' 65 : Interviewer le beau Korben !\nlink 'B' 66 : Parler de la belle carrure et de la belle coiffure de Korben pour le détendre encore un peu.",
+                        "textmobile" : "Il faut détendre un peu Korben...\nGauche Dire à la radio que Korben est Hot Hot Hot !\nSigner des autographe en parlant du beau physique de Korben Droite",
+                       "nextvideos" : { "A" : "008","B" : "007"},
+                       "nextvideosmobile" : { "right" : "008", "left" : "007"} ,
+                      "type" : "multichoicebykeypressed"
+                       }
+                   },
+                   {
+                     "id":"007",
+                     "onend": {
+                         "text" : "Ha beaucoup plus détendu cette ambiance...\nlink 'A' 65 : Je vais faire des tours sur moi-même pour détendre encore plus l'ambiance\nlink 'B' 66 : Interviewer le beau Korben !",
+                         "textmobile" : "Ha beaucoup plus détendu cette ambiance...\nGauche Je vais faire des tours sur moi-même pour détendre encore plus l'ambiance\nInterviewer le beau Korben ! Droite",
+                        "nextvideos" : { "A" : "001","B" : "008"},
+                        "nextvideosmobile" : { "right" : "001", "left" : "008"} ,
+                       "type" : "multichoicebykeypressed"
+                        }
+                    },
+                    {
+                      "id":"008",
+                      "onend": {
+                          "text" : "Zut zut zut...\nlink 'A' 65 : Aller c'est pas grave on reprend...\nlink 'B' 66 : Engueuler un peu Korben !",
+                          "textmobile" : "Zut zut zut...\nGauche Aller c'est pas grave on reprend...\nEngueuler un peu Korben ! Droite",
+                         "nextvideos" : { "A" : "001","B" : "008"},
+                         "nextvideosmobile" : { "right" : "001", "left" : "008"} ,
+                        "type" : "multichoicebykeypressed"
+                         }
+                     },
+                 {
+                   "id":"027",
+                   "onend": {
+                       "text" : "Bon Korben à l'air un peu énervé... \nlink 'A' 65 : Je l'interview pour le mettre en confiance !\nlink 'B' 66 : Je vais faire des tours sur moi-même pour l'impressionner !\nlink 'C' 67 : Je vais refaire mon entrée un chouilla plus soft.",
+                       "textmobile" : "Bon Korben à l'air un peu énervé... \nHaut Je l'interview pour le mettre en confiance !\nGauche Je vais faire des tours sur moi-même pour l'impressionner !\nJe vais refaire mon entrée un chouilla plus soft Droite",
+                     "nextvideos" : { "A" : "008","B" : "001","C" : "004"},
+                     "nextvideomobile" : { "left" : "008","right" : "001","down" : "004"},
+                     "type" : "multichoicebykeypressed"
+                      }
+                  }
+            ]
 }
