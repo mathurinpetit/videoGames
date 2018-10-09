@@ -40,23 +40,25 @@
 
 {% if urlgame %}
 <div id="dictionnairemobile">
-    <p style="margin: 0 10px 5px;" >Tapez des mots ici : <a id="playSequenceBtn" class="btn btn-xs btn-success" onclick="playSequenceBtn(); return false;" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;">Lire&nbsp;<span class="glyphicon glyphicon-play"></span>
-     </a>
-    </p>
-    <div class="choices" style="margin: 0px 10px;">
-      <select id="select2-mobile" style="color:#000; width:100%; height: 48px;" multiple="multiple">
-        <option value=""></option>
-          {% for videoWord in game_json.dictionnaire %}
-            <option value="{{ videoWord.id }}">{{ videoWord.word }}</option>
-          {% endfor %}
-      </select>
-      <span id="selectionsSelect2"></span>
+    <div style="position: relative;">
+        <p style="margin: 0 10px 5px;" >Tapez des mots ici : <a id="playSequenceBtn" class="btn btn-xs btn-success" onclick="playSequenceBtn(); return false;" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;">Lire&nbsp;<span class="glyphicon glyphicon-play"></span>
+         </a>
+        </p>
+        <div class="choices" style="margin: 0px 10px;">
+          <select id="select2-mobile" style="color:#000; width:100%; height: 48px;" multiple="multiple">
+            <option value=""></option>
+              {% for videoWord in game_json.dictionnaire %}
+                <option value="{{ videoWord.id }}">{{ videoWord.word }}</option>
+              {% endfor %}
+          </select>
+          <span id="selectionsSelect2"></span>
+        </div>
     </div>
 </div>
 {% else %}
 
    <div id="footer" >
-       <div style="position: relative; position: relative; left: 2%; max-width: 96%;">
+       <div style="position: relative; left: 2%; max-width: 96%;">
          <span class="text" style="font-size : 9pt;"></span>
      </div>
    </div>

@@ -398,7 +398,6 @@ function refreshGame(){
             }else{
               if(event.data.onend.hasOwnProperty("nextvideosmobile")){
                 var nextVideos = event.data.onend.nextvideosmobile;
-                console.log(nextVideos);
                 if(nextVideos.hasOwnProperty('left')){
                     $('video').bind('swipeleft', function(){
                         nextId = nextVideos['left'];

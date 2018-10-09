@@ -7,6 +7,9 @@ body{
 video{
     width: 100%;
     height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #dictionnairemobile {
@@ -25,5 +28,5 @@ video{
     top: 22px;
 }
 .select2-selection{
-    min-height: 60px !important; 
+    min-height: 60px !important;
 }

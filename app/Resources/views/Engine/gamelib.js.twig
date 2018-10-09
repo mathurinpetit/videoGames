@@ -69,7 +69,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
     });
 
 
-    if(priorVid){
+    if(priorVid && !mobile){
         removeOtherVidAndTween(videoElt,transitionDuration);
     }else{
         setTimeout(function(){
