@@ -74,13 +74,18 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
     }else{
         setTimeout(function(){
             if($("video").length > 1){
+                if(mobile){
+                    transitionDuration = 0;
+                }
                 removeOtherVidAndTween(videoElt,transitionDuration);
             }
         },transitionDuration);
     }
-    setTimeout(function(){
-            TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
-    }, transitionDuration);
+    if(transitionDuration){
+        setTimeout(function(){
+                TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
+        }, transitionDuration);
+    }
 
   if(footerDelay == 'infini'){ return; }
   if(!mobile){
@@ -105,7 +110,9 @@ function removeOtherVidAndTween(videoElt,transitionDuration){
             videoElt.play();
         }
     });
-    TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
+    if(transitionDuration){
+        TweenLite.to(videoElt, transitionDuration/2, {css: { opacity : 1}});
+    }
 }
 
 function insertAfter(newNode, referenceNode) {
