@@ -64,7 +64,6 @@ var lastVideoPlayed = { "val" : ""+firstVideoNumber };
 if(video){
  video.onloadeddata = function(){
     {% if not urlgame %}
-        {{ "video.play();" }}
         initDivLoadingShowHide(video);
     {% endif %}
     $("#divLoading").hide();
@@ -72,6 +71,12 @@ if(video){
 }else{
     $("#divLoading").hide();
 }
+
+$("#startGame").click(function(){
+    video.play();
+
+}
+);
 
 if(mobile){
     $(window).on("resize orientationchange",onWindowResizeMobile);
