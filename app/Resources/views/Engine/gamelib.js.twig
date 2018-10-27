@@ -5,11 +5,13 @@ function onWindowResizeMobile(){
     var pad = window.innerWidth / 2 - 32;
     if(ratio < 1){
         $("#footer").hide();
-        $("#footer-turn-mobile").show();
-        $("#footer-turn-mobile .turn-mobile").show();
-        $("#footer-turn-mobile .turn-mobile img").css('right',pad+"px");
+        $(".turn-mobile").show();
+        $("#startGame").hide();
+        $(".buttonStartParent").addClass("positionPortrait").removeClass("positionLandscape");
     }else {
-        $("#footer-turn-mobile .turn-mobile").hide();
+        $(".turn-mobile").hide();
+        $("#startGame").show();
+        $(".buttonStartParent").addClass("positionLandscape").removeClass("positionPortrait");
         if($("#footer span.text").html()){
             $("#footer").show();
         }
@@ -229,22 +231,26 @@ function initDivLoadingShowHide(video){
 function initFullScreenButton(){
     var goFS = document.getElementById("goFSButton");
     goFS.addEventListener("click", function() {
-        var doc = window.document;
-        var docEl = doc.documentElement;
-        var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-        var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-        if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-          requestFullScreen.call(docEl);
-          $(".goFSText").hide();
-          $(".goFSSpan").removeClass("glyphicon-resize-full").addClass("glyphicon-resize-small");
-        }else {
-          $(".goFSText").show();
-          $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
-          cancelFullScreen.call(doc);
-        }
+        toggleFullscreen();
 
     }, false);
+}
+
+function toggleFullscreen(){
+    var doc = window.document;
+    var docEl = doc.documentElement;
+    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+      requestFullScreen.call(docEl);
+      $(".goFSText").hide();
+      $(".goFSSpan").removeClass("glyphicon-resize-full").addClass("glyphicon-resize-small");
+    }else {
+      $(".goFSText").show();
+      $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
+      cancelFullScreen.call(doc);
+    }
 }
 
 function triggerKeypress(code){

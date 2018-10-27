@@ -30,3 +30,22 @@ video{
 .select2-selection{
     min-height: 60px !important;
 }
+
+.buttonStart{
+    background-color: rgb(51, 51, 51);
+    color: white;
+    height: 150px;
+    width: 180px;
+}
+
+.positionPortrait {
+    position: absolute;
+    left: 22%;
+    top: 30%;
+}
+
+.positionLandscape {
+    position: absolute;
+    left: 35%;
+    top: 30%;
+}

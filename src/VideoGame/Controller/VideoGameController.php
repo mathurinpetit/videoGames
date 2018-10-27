@@ -38,7 +38,7 @@ class VideoGameController extends Controller
         array('date' => 'DESC')
         );
 
-      return array("games" => $games,"navigator" => $navigator);
+      return array("games" => $games,"navigator" => 0);
     }
 
     /**

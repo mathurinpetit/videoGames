@@ -75,6 +75,9 @@ if(video){
 $("#startGame").click(function(){
     video.play();
     $("#startButton").remove();
+    if(mobile){
+        toggleFullscreen();
+    }
 });
 
 if(mobile){
