@@ -84,7 +84,32 @@ if(mobile){
     $(window).on("resize orientationchange",onWindowResizeMobile);
 
     $("a").each(function(){
-        $(this).attr("href", "http://"+location.host+"/mobile");
-        $(this).attr("data-ajax","false");
+        if(!$(this).hasClass('share') && !$(this).hasClass('popupPartage')){
+            $(this).attr("href", "http://"+location.host+"/mobile");
+            $(this).attr("data-ajax","false");
+        }
+
     });
 }
+
+
+$('a.share').click(function(e){
+	e.preventDefault();
+	var $link   = $(this);
+	var href    = $link.attr('href');
+	var network = $link.attr('data-network');
+
+	var networks = {
+		facebook : { width : 600, height : 300 },
+		twitter  : { width : 600, height : 254 },
+		google   : { width : 515, height : 490 },
+		linkedin : { width : 600, height : 473 }
+	};
+
+	var popup = function(network){
+		var options = 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,';
+		window.open(href, '', options+'height='+networks[network].height+',width='+networks[network].width);
+	}
+
+	popup(network);
+});

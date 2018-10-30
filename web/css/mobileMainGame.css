@@ -40,12 +40,12 @@ video{
 
 .positionPortrait {
     position: absolute;
-    left: 22%;
+    left: 26%;
     top: 30%;
 }
 
 .positionLandscape {
     position: absolute;
-    left: 35%;
+    left: 40%;
     top: 30%;
 }

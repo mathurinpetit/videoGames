@@ -46,8 +46,11 @@
 
 {% if urlgame %}
 <div id="dictionnairemobile">
+<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline popupPartage" data-transition="pop">Partager</a>
     <div style="position: relative;">
-        <p style="margin: 0 10px 5px;" >Tapez des mots ici : <a id="playSequenceBtn" class="btn btn-xs btn-success" onclick="playSequenceBtn(); return false;" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;">Lire&nbsp;<span class="glyphicon glyphicon-play"></span>
+
+        <p style="margin: 0 10px 5px;" >Tapez des mots ici :
+            <a id="playSequenceBtn" class="btn btn-xs btn-success" onclick="playSequenceBtn(); return false;" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;">Lire&nbsp;<span class="glyphicon glyphicon-play"></span>
          </a>
         </p>
         <div class="choices" style="margin: 0px 10px;">
@@ -67,6 +70,12 @@
        <div style="position: relative; left: 2%; max-width: 96%;">
          <span class="text" style="font-size : 9pt;"></span>
      </div>
+   </div>
+   <div data-role="popup" id="popupBasic">
+       <p><a href="https://www.facebook.com/sharer/sharer.php?u=URLENCODED&t=TITLE" class="share facebook" data-network="facebook">Partager sur Facebook</a></p>
+       <p><a href="https://twitter.com/share?url=URLENCODED&text=TITLE" class="share twitter" data-network="twitter">Partager sur Twitter</a></p>
+       <p><a href="https://plus.google.com/share?url=URLENCODED" class="share google" data-network="google">Partager sur Google+</a></p>
+       <p><a href="https://www.linkedin.com/shareArticle?mini=true&url=URLENCODED&title=TITLE&source=COMPANY" class="share linkedin" data-network="linkedin">Partager sur LinkedIn</a></p>
    </div>
 {% endif %}
 
