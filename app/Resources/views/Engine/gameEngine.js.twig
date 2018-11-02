@@ -94,7 +94,7 @@ if(mobile){
 $('a.share').click(function(e){
 	e.preventDefault();
 	var $link   = $(this);
-	var href    = $link.attr('href').replace('URLENCODED',encodeURI(get_short_url())).replace('TITLE',$(document).title);
+	var href    = $link.attr('href').replace('URLENCODED',encodeURI(get_short_url())).replace('TITLE',encodeURI("video-jeux.fr - "+'{{ game.name }}'));
 	var network = $link.attr('data-network');
 
 	var networks = {
