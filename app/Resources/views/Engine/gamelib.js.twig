@@ -31,7 +31,7 @@ function stopVideo(numberVideo){
 
 /* Changement de la vidéo */
 function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 120, priorVid = true){
-  var mobile = $('video').first().hasClass('mobile');
+  var mobile = $('div.ui-page-active').length;
   var videoElt = document.getElementById('video_'+numberVideo);
 
   if(videoElt === null){
@@ -55,7 +55,7 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
   }
 
   videoElt = document.getElementById( 'video_'+numberVideo );
-  videoElt.pause();
+  videoElt.load();
   videoElt.currentTime = 0;
   videoElt.setAttribute('autoplay',true);
 
@@ -74,14 +74,18 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
     if(priorVid && !mobile){
         removeOtherVidAndTween(videoElt,transitionDuration);
     }else{
-        setTimeout(function(){
-            if($("video").length > 1){
-                if(mobile){
-                    transitionDuration = 0;
+        if(mobile){
+            removeOtherVidAndTween(videoElt,transitionDuration,true);
+        }else{
+            setTimeout(function(){
+                if($("video").length > 1){
+                    if(mobile){
+                        transitionDuration = 0;
+                    }
+                    removeOtherVidAndTween(videoElt,transitionDuration);
                 }
-                removeOtherVidAndTween(videoElt,transitionDuration);
-            }
-        },transitionDuration);
+            },transitionDuration);
+        }
     }
     if(transitionDuration){
         setTimeout(function(){
@@ -100,10 +104,12 @@ function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, paus
   initDivLoadingShowHide(videoElt);
 }
 
-function removeOtherVidAndTween(videoElt,transitionDuration){
+function removeOtherVidAndTween(videoElt,transitionDuration,noPause = false){
     $("video").each(function(){
-        if(($(this).attr("id") != videoElt.id) && (videoElt.paused === false)){
-            this.pause();
+        if(($(this).attr("id") != videoElt.id)  && (videoElt.paused === false)){
+            if(!noPause){
+                this.pause();
+            }
             delete this;
             $(this).remove();
         }else{

@@ -502,7 +502,7 @@ function refreshGame(){
                     }
                     timeout = setTimeout(function(){
                       if(!finished){
-                          videoElt.pause();
+                          //videoElt.pause();
                       }
                       pause = true;
                   }, 300);
@@ -556,17 +556,24 @@ function refreshGame(){
   function bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter){
       $('video').bind('tap', function(event) {
             var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
-            changeVideo(pathGame,randkey.zeroPad(100),'infini');
+            var vidId = ""+randkey.zeroPad(100);
+            $("video").each(function(){
+                $(this).remove();
+            });
+            changeVideo(pathGame,vidId,'infini');
             unbindAllEvents();
             $('.reste').text(maxCpt-(compteur++));
             if(nextVideoId && maxCpt && (compteur > maxCpt)){
+              unbindAllEvents();
               changeVideo(pathGame,""+nextVideoId,delay);
               lastVideoPlayed["val"] = ""+nextVideoId;
               loadText(textAfter,delay,true);
-              unbindAllEvents();
               refreshGame();
-            }
-            bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter);
+          }else{
+              $('#video_'+vidId).bind('ended',function(){
+                  bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter);
+              });
+          }
       });
 
   }
