@@ -68,7 +68,7 @@ function createWordFromUrl(){
 function rebuildUrlFromWords(){
 
     history.pushState("toto","str","?texte="+encodeURIComponent(createParamsUrl()));
-    get_short_url();
+    show_short_url();
 }
 
 function createParamsUrl(){
@@ -80,6 +80,11 @@ function createParamsUrl(){
 }
 
 function get_short_url()
+{
+    return "http://"+window.location.host+window.location.pathname+"?msg="+utoa(createParamsUrl());
+}
+
+function show_short_url()
 {
     console.log(window.location.host+window.location.pathname+"?msg="+utoa(createParamsUrl()));
 }

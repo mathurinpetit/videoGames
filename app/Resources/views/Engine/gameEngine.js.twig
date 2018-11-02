@@ -75,7 +75,7 @@ if(video){
 $("#startGame").click(function(){
     video.play();
     $("#startButton").remove();
-    
+
 });
 
 if(mobile){
@@ -94,7 +94,7 @@ if(mobile){
 $('a.share').click(function(e){
 	e.preventDefault();
 	var $link   = $(this);
-	var href    = $link.attr('href');
+	var href    = $link.attr('href').replace('URLENCODED',encodeURI(get_short_url())).replace('TITLE',$(document).title);
 	var network = $link.attr('data-network');
 
 	var networks = {

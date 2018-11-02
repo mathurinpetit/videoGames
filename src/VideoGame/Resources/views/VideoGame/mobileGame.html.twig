@@ -44,16 +44,42 @@
   </p>
 </div>
 
+<div class="modal fade" id="sharePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+            <div class="col-xs-10">
+                <h4 class="modal-title" style="color:black;">Partager</h4>
+            </div>
+            <div class="col-xs-2">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            </div>
+      </div>
+      <div class="modal-body">
+          <p><a href="https://www.facebook.com/sharer/sharer.php?u=URLENCODED&t=TITLE" class="share facebook" data-network="facebook">Partager sur Facebook</a></p>
+          <p><a href="https://twitter.com/share?url=URLENCODED&text=TITLE" class="share twitter" data-network="twitter">Partager sur Twitter</a></p>
+          <p><a href="https://plus.google.com/share?url=URLENCODED" class="share google" data-network="google">Partager sur Google+</a></p>
+          <p><a href="https://www.linkedin.com/shareArticle?mini=true&url=URLENCODED&title=TITLE&source=COMPANY" class="share linkedin" data-network="linkedin">Partager sur LinkedIn</a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-xs">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% if urlgame %}
 <div id="dictionnairemobile">
-<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline popupPartage" data-transition="pop">Partager<object type="image/svg+xml" data="{{ asset('share.svg') }}" width="10" height="10" color="white">
-    Le navigateur ne peut lire ce kiwi
-</object></a>
     <div style="position: relative;">
 
         <p style="margin: 0 10px 5px;" >Tapez des mots ici :
-            <a id="playSequenceBtn" class="btn btn-xs btn-success" onclick="playSequenceBtn(); return false;" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;">Lire&nbsp;<span class="glyphicon glyphicon-play"></span>
-         </a>
+            <a id="playSequenceBtn" class="btn btn-xs btn-success" onclick="playSequenceBtn(); return false;" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;margin-right:2px;">Lire&nbsp;<span class="glyphicon glyphicon-play"></span></a>
+            <button data-toggle="modal" data-target="#sharePopup" class="popupPartage btn btn-xs btn-primary" style="float:right;font-size: 10px;line-height: 1.4; font-weight:bold;margin-top:2px;margin-right:5px;">
+                    <strong>Partager</strong>&nbsp;<object type="image/svg+xml" data="{{ asset('share.svg') }}" width="10" height="10" color="white"></object>
+            </button>
         </p>
         <div class="choices" style="margin: 0px 10px;">
           <select id="select2-mobile" style="color:#000; width:100%; height: 48px;" multiple="multiple">
@@ -72,12 +98,6 @@
        <div style="position: relative; left: 2%; max-width: 96%;">
          <span class="text" style="font-size : 9pt;"></span>
      </div>
-   </div>
-   <div data-role="popup" id="popupBasic">
-       <p><a href="https://www.facebook.com/sharer/sharer.php?u=URLENCODED&t=TITLE" class="share facebook" data-network="facebook">Partager sur Facebook</a></p>
-       <p><a href="https://twitter.com/share?url=URLENCODED&text=TITLE" class="share twitter" data-network="twitter">Partager sur Twitter</a></p>
-       <p><a href="https://plus.google.com/share?url=URLENCODED" class="share google" data-network="google">Partager sur Google+</a></p>
-       <p><a href="https://www.linkedin.com/shareArticle?mini=true&url=URLENCODED&title=TITLE&source=COMPANY" class="share linkedin" data-network="linkedin">Partager sur LinkedIn</a></p>
    </div>
 {% endif %}
 
