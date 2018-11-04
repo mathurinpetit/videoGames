@@ -242,7 +242,7 @@ function initFullScreenButton(){
     }, false);
 }
 
-function toggleFullscreen(forceFS = false){
+function toggleFullscreen(){
     var doc = window.document;
     var docEl = doc.documentElement;
     var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
@@ -252,13 +252,23 @@ function toggleFullscreen(forceFS = false){
       requestFullScreen.call(docEl);
       $(".goFSText").hide();
       $(".goFSSpan").removeClass("glyphicon-resize-full").addClass("glyphicon-resize-small");
+      $(".FSButtonHelperPanel").hide();
+      $(".FSButtonHelperPanel").remove();
     }else {
-        if(!forceFS){
-            $(".goFSText").show();
-            $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
-            cancelFullScreen.call(doc);
-        }
+        $(".goFSText").show();
+        $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
+        cancelFullScreen.call(doc);
+
     }
+}
+
+function displayFSButtonHelper(){
+    $(".FSButtonHelperPanel").show();
+    setTimeout(function(){
+        $(".FSButtonHelperPanel").hide();
+        $(".FSButtonHelperPanel").remove();
+    },5000);
+
 }
 
 function triggerKeypress(code){

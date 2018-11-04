@@ -2,7 +2,7 @@ var compteur = 0;
 var maxCpt = 16;
 var minVideo,maxVideo;
 
-var isFullScreen = false;
+var hasDisplayedFSButtonHelper = false;
 
 var cookie = game_json.cookie;
 var cpt_gameover = 0;
@@ -392,9 +392,9 @@ function refreshGame(){
             }
             if(nextvideomobile){
               $('video').bind('tap', function(){
-                if(!isFullScreen){
-                   toggleFullscreen(true);
-                   isFullScreen = true;
+                if(!hasDisplayedFSButtonHelper){
+                   displayFSButtonHelper();
+                   hasDisplayedFSButtonHelper = true;
                 }
                 changeVideo(pathGame,nextvideomobile,delay);
                 lastVideoPlayed["val"] = nextvideomobile;
@@ -406,9 +406,9 @@ function refreshGame(){
                 var nextVideos = event.data.onend.nextvideosmobile;
                 if(nextVideos.hasOwnProperty('left')){
                     $('video').bind('swipeleft', function(){
-                        if(!isFullScreen){
-                           toggleFullscreen(true);
-                           isFullScreen = true;
+                        if(!hasDisplayedFSButtonHelper){
+                           displayFSButtonHelper();
+                           hasDisplayedFSButtonHelper = true;
                         }
                         nextId = nextVideos['left'];
                         if(nextId.startsWith("redirect")){
@@ -430,9 +430,9 @@ function refreshGame(){
 
                 if(nextVideos.hasOwnProperty('right')){
                     $('video').bind('swiperight', function(){
-                        if(!isFullScreen){
-                           toggleFullscreen(true);
-                           isFullScreen = true;
+                        if(!hasDisplayedFSButtonHelper){
+                           displayFSButtonHelper();
+                           hasDisplayedFSButtonHelper = true;
                         }
                       nextId = nextVideos['right'];
                       if(nextId.startsWith("redirect")){
@@ -454,9 +454,9 @@ function refreshGame(){
 
                 if(nextVideos.hasOwnProperty('up')){
                   $('video').bind('swipeup', function(){
-                      if(!isFullScreen){
-                         toggleFullscreen(true);
-                         isFullScreen = true;
+                      if(!hasDisplayedFSButtonHelper){
+                         displayFSButtonHelper();
+                         hasDisplayedFSButtonHelper = true;
                       }
                     nextId = nextVideos['up'];
                     if(nextId.startsWith("redirect")){
@@ -478,9 +478,9 @@ function refreshGame(){
 
                 if(nextVideos.hasOwnProperty('down')){
                   $('video').bind('swipedown', function(){
-                      if(!isFullScreen){
-                         toggleFullscreen(true);
-                         isFullScreen = true;
+                      if(!hasDisplayedFSButtonHelper){
+                         displayFSButtonHelper();
+                         hasDisplayedFSButtonHelper = true;
                       }
                       nextId = nextVideos['down'];
                       if(nextId.startsWith("redirect")){
@@ -507,9 +507,9 @@ function refreshGame(){
             var timeout;
             var idVideomobiletoplay = event.data.onend.videomobiletoplay;
             var nextvideomobile = null;
-            if(!isFullScreen){
-                toggleFullscreen(true);
-                isFullScreen = true;
+            if(!hasDisplayedFSButtonHelper){
+                displayFSButtonHelper();
+                hasDisplayedFSButtonHelper = true;
             }
             if(event.data.onend.hasOwnProperty("nextvideomobile")){
               nextvideomobile = event.data.onend.nextvideomobile;
@@ -581,9 +581,9 @@ function refreshGame(){
 
   function bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter){
       $('video').bind('tap', function(event) {
-            if(!isFullScreen){
-                toggleFullscreen(true);
-                isFullScreen = true;
+            if(!hasDisplayedFSButtonHelper){
+                displayFSButtonHelper();
+                hasDisplayedFSButtonHelper = true;
             }
             var randkey = Math.floor(Math.random() * (maxVideo-minVideo)) + minVideo;
             var vidId = ""+randkey.zeroPad(100);
