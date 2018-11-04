@@ -1,6 +1,6 @@
 {
  "globaldelay": "600",
- "debugstart" : "011",
+ "debugstart" : "001",
  "cookie" : false,
  "gamekeys" : {
                 "A" : {"keys" : [65,97] },

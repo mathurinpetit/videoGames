@@ -242,7 +242,7 @@ function initFullScreenButton(){
     }, false);
 }
 
-function toggleFullscreen(){
+function toggleFullscreen(forceFS = false){
     var doc = window.document;
     var docEl = doc.documentElement;
     var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
@@ -253,9 +253,11 @@ function toggleFullscreen(){
       $(".goFSText").hide();
       $(".goFSSpan").removeClass("glyphicon-resize-full").addClass("glyphicon-resize-small");
     }else {
-      $(".goFSText").show();
-      $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
-      cancelFullScreen.call(doc);
+        if(!forceFS){
+            $(".goFSText").show();
+            $(".goFSSpan").addClass("glyphicon-resize-full").removeClass("glyphicon-resize-small");
+            cancelFullScreen.call(doc);
+        }
     }
 }
 
