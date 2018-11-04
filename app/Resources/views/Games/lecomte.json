@@ -1,6 +1,6 @@
 {
  "globaldelay": "600",
- "debugstart" : "001",
+ "debugstart" : "011",
  "cookie" : false,
  "gamekeys" : {
                 "A" : {"keys" : [65,97] },
@@ -73,12 +73,12 @@
                       "id":"012",
                       "onend": {
                         "text" : "Génial!\nEncore plus vite! Appuyez sur toute les touches de votre clavier.\nEncore <span class='reste'>9</span> fois.",
-                        "textmobile" : "Génial!\nEncore plus vite! Tap Touchez l'écran.\nEncore <span class='reste'>9</span> fois.",
+                        "textmobile" : "Génial!\nEncore plus vite! Tap Touchez l'écran.\nEncore <span class='reste'>6</span> fois.",
                         "minVideo" : 13,
                         "maxVideo" : 15,
                         "nextvideo" :  "016" ,
                         "textafter" : "",
-                        "nbRepeat" : 8,
+                        "nbRepeat" : 5,
                         "type" : "multibykeypressed"
                          }
                      }, { "id":"013" }, { "id":"014" }, { "id":"015" },

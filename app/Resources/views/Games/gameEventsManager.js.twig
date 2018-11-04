@@ -560,8 +560,6 @@ function refreshGame(){
             $("video").each(function(){
                 $(this).remove();
             });
-            changeVideo(pathGame,vidId,'infini');
-            unbindAllEvents();
             $('.reste').text(maxCpt-(compteur++));
             if(nextVideoId && maxCpt && (compteur > maxCpt)){
               unbindAllEvents();
@@ -570,6 +568,8 @@ function refreshGame(){
               loadText(textAfter,delay,true);
               refreshGame();
           }else{
+              changeVideo(pathGame,vidId,'infini');
+              unbindAllEvents();
               $('#video_'+vidId).bind('ended',function(){
                   bindMultichoiceByTouch(event,delay,videoObj,nextVideoId,minVideo,maxVideo,maxCpt,compteur,textAfter);
               });
