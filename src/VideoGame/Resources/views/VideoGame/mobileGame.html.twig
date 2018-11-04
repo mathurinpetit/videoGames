@@ -25,10 +25,16 @@
 
 <div class="mobileHeadLeft" >
     <button id="goFSButton" class="btn btn-default btn-xs" style="text-decoration:none; opacity:0.6;" ><span class="goFSSpan glyphicon glyphicon-resize-full"></span><span class="goFSText">&nbsp;Plein Écran</span></button>
+    </button>
 </div>
 
 <div class="mobileHeadRight" >
-    <a href="{{ path("videogame") }}" class="btn btn-default btn-xs retour_accueil_btn" style="text-decoration:none; opacity:0.6;" rel="external"><span class="glyphicon glyphicon-home"></span></a>
+    <a href="{{ path("videogame") }}" class="btn btn-default btn-xs retour_accueil_btn" style="text-decoration:none; opacity:0.6; margin-bottom:5px;" rel="external"><span class="glyphicon glyphicon-home"></span></a><br/>
+    {% if not urlgame %}
+    <button data-toggle="modal" data-target="#sharePopup" class="popupPartage btn btn-xs btn-primary" style="padding-top:5px;" >
+            <object type="image/svg+xml" data="{{ asset('share.svg') }}" width="12" height="12" color="white"></object>
+    </button>
+    {% endif %}
 </div>
 <div id="startButton" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; z-index: 30001; background: rgba(0,0,0,.5); " >
     <div class="buttonStartParent">

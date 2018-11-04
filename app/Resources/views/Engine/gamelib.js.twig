@@ -33,7 +33,6 @@ function stopVideo(numberVideo){
 function changeVideo(pathGame, numberVideo, footerDelay = 0, pause = false, pauseafter = 0, transitionDuration = 120, priorVid = true){
   var mobile = $('div.ui-page-active').length;
   var videoElt = document.getElementById('video_'+numberVideo);
-
   if(videoElt === null){
       var video = document.createElement('video');
       if(mobile){ video.classList.add("mobile"); }
@@ -229,9 +228,9 @@ function renderLink(str,code){
 
 function initDivLoadingShowHide(video){
     $("#divLoading").show();
-        video.onplaying = function() {
-            $("#divLoading").hide();
-        };
+    video.onplaying = function() {
+        $("#divLoading").hide();
+    };
 }
 
 function initFullScreenButton(){

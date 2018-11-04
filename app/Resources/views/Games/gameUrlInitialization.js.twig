@@ -102,6 +102,7 @@ function atou(str) {
 var lastVideoId = null;
 var isSameVideo = false;
 function playSequenceBtn(cpt = 0){
+    $("video").each(function(){ $(this).unbind("ended"); });
     var localCpt = 0;
     var videoElt = null;
     for (var x in wordsToSay) {
@@ -118,18 +119,21 @@ function playSequenceBtn(cpt = 0){
         localCpt++;
     }
     if(videoElt){
-        $(videoElt).bind('loadedmetadata', function() {
-            var duration = videoElt.duration;
-            var currentTime = videoElt.currentTime;
-            var diff = (duration * 1000) - (currentTime * 1000);
-            setTimeout(function(){
-                    playSequenceBtn(cpt);
-            }, diff);
-            $(videoElt).unbind('play');
-            $(videoElt).unbind('loadedmetadata');
-        });
         if(isSameVideo){
-            $(videoElt).trigger('loadedmetadata');
+                $(videoElt).bind('ended',function(){
+                    playSequenceBtn(cpt);
+                });
+        }else{
+            $(videoElt).bind('loadedmetadata', function() {
+                var duration = videoElt.duration;
+                var currentTime = videoElt.currentTime;
+                var diff = (duration * 1000) - (currentTime * 1000);
+                setTimeout(function(){
+                        playSequenceBtn(cpt);
+                }, diff);
+                $(videoElt).unbind('play');
+                $(videoElt).unbind('loadedmetadata');
+            });
         }
     }else{
         for (var x in wordsToSay) {

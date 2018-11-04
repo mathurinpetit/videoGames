@@ -3,6 +3,7 @@ var maxCpt = 16;
 var minVideo,maxVideo;
 
 var hasDisplayedFSButtonHelper = false;
+var countNetworkLost = 0;
 
 var cookie = game_json.cookie;
 var cpt_gameover = 0;
@@ -611,3 +612,8 @@ function refreshGame(){
   $(window).keypress(function(e) {
   if (e.which == 32 || e.which == 46 || e.which == 0) e.preventDefault();
   });
+
+  function get_short_url()
+  {
+      return "http://"+window.location.host+window.location.pathname;
+  }
