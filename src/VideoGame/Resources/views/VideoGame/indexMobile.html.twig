@@ -9,10 +9,6 @@
     <div class="col-xs-12 entete-mobile" style="margin-bottom:30px; background-color:#000; font-size: 20px;">
       <h1>VIDEO-JEUX</h1>
       <p><span style="font-style: italic;"><strong>Une expérience vidéo ludique</span></strong></p>
-      {% if navigator %}
-          <p>Veuillez utiliser Chrome pour une expérience complète</p>
-          <p><a href="market://details?id=com.android.chrome"><img src="{{ asset('chrome_icon.png') }}" style="width: 64px;" aria-hidden="true" alt="Couverture" itemprop="image"></a></p>
-      {% endif %}
     </div>
   </div>
 {% for game in games %}
@@ -24,7 +20,7 @@
         {% if cookieVal %}
         <a href="{{ path('mobile_game', { idName : cookieVal }) }}" class="play-button">
         {% else %}
-        <a href="{{ path('mobile_game', { idName : game.shortName }) }}" class="play-button">
+        <a href="{{ path('mobile_game', { idName : game.shortName })~game.urlstart }}" class="play-button">
         {% endif %}
             <div class="col-xs-7 padding-0">
                 <img src="{{ asset('bundles/videogame/images/'~game.shortName~'_lien.png') }}" class="img-responsive" style="width:100%;" >

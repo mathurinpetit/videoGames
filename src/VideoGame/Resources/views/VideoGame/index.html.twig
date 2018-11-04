@@ -64,7 +64,7 @@
       </a>
       <div class="btn-group play-button pull-down cookie" style="display:none;">
         <a class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Cliquez ici pour réinitialiser le jeu" onClick="eraseAllCookies('{{ game.name }}'); return false;"  ><span class="glyphicon glyphicon-repeat"></span></a>
-        <a href="{{ path('game', { idName : game.shortName }) }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
+        <a href="{{ path('game', { idName : game.shortName }) }}{{ game.urlstart }}" data-name="{{ game.name }}" data-shortname="{{ game.shortname }}" style=" width:160px; white-space: inherit ! important;" class="btn btn-default form-control play-button" >Continuer <span class="pull-right" ><span class="glyphicon glyphicon-play text-success"></span></span>
         </a>
       </div>
       <div class="text-right" style='font-size : 10px; font-weight:bold; padding : 0'><span style="font-style: italic;">mis en ligne le</span>&nbsp;{{ game.date | date("d/m/Y") }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>

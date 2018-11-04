@@ -19,7 +19,7 @@ class GameType extends AbstractType
         $builder->add('name')->add('shortName')
           ->add('description', TextareaType::class)
           ->add('mobile_description', TextareaType::class)
-          ->add('videoPath')->add('width')->add('height')->add('date',DateType::class,array('required' => false,
+          ->add('videoPath')->add('width')->add('height')->add('urlstart')->add('date',DateType::class,array('required' => false,
                                                       'widget' =>'single_text','html5' => false,
                                                       'format' =>'dd/MM/yyyy',
                                                       'attr' => array('class' => 'js-datepicker')))->add('visible')->add('active')->add('optimiseMobile');

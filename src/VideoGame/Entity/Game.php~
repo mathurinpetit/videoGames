@@ -366,28 +366,4 @@ class Game
     {
         return $this->optimiseMobile;
     }
-
-    /**
-     * Set urlStart
-     *
-     * @param string $urlStart
-     *
-     * @return Game
-     */
-    public function setUrlStart($urlStart)
-    {
-        $this->urlStart = $urlStart;
-
-        return $this;
-    }
-
-    /**
-     * Get urlStart
-     *
-     * @return string
-     */
-    public function getUrlStart()
-    {
-        return $this->urlStart;
-    }
 }
