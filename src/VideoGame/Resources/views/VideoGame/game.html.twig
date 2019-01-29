@@ -64,6 +64,21 @@
           <span style="padding-left: 20px;"><span class="glyphicon glyphicon-play"></span></span>
       </a>
     </div>
+    <br/>
+    <div  style="  position: absolute; bottom: 100px; left:30px;">
+      <center>
+        <a target="_blank" title="Facebook" href="https://www.facebook.com/sharer.php?u=URLENCODED&t=TITLE" class="share facebook" data-network="facebook" rel="nofollow">
+          <img src="{{ asset('bundles/videogame/icons/facebook_icon.png') }}" alt="Facebook" />
+        </a>
+        <a target="_blank" title="Twitter" href="https://twitter.com/share?url=URLENCODED&text=TITLE" class="share twitter" data-network="twitter" rel="nofollow" >
+          <img src="{{ asset('bundles/videogame/icons/twitter_icon.png') }}" alt="Twitter" />
+        </a>
+        <a target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=URLENCODED&title=TITLE" class="share linkedin" data-network="linkedin" rel="nofollow">
+          <img src="{{ asset('bundles/videogame/icons/linkedin_icon.png') }}" alt="Linkedin" />
+        </a>
+        <a target="_blank" title="Envoyer par mail" href="mailto:?Subject=Laurent à un message! &amp;Body=Salut, je suis Laurent, j'ai un message pour toi : URLENCODED" class="share" data-network="email" rel="nofollow"><img src="{{ asset('bundles/videogame/icons/email_icon.png') }}" alt="email" /></a>
+      </center>
+    </div>
     {% endif %}
 </div>
 

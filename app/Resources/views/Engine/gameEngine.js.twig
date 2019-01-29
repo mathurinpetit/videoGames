@@ -91,11 +91,13 @@ if(mobile){
 }
 
 
-$('a.share').click(function(e){
-	e.preventDefault();
-	var $link   = $(this);
+$('a.share').click(function(event){
+  var $link   = $(this);
+  var network = $link.attr('data-network');
+  if(network != "email"){
+    event.preventDefault(event);
+  }
 	var href    = $link.attr('href').replace('URLENCODED',encodeURI(get_short_url())).replace('TITLE',encodeURI("video-jeux.fr - "+'{{ game.name }}'));
-	var network = $link.attr('data-network');
 
 	var networks = {
 		facebook : { width : 600, height : 300 },
@@ -103,11 +105,13 @@ $('a.share').click(function(e){
 		google   : { width : 515, height : 490 },
 		linkedin : { width : 600, height : 473 }
 	};
-
-	var popup = function(network){
-		var options = 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,';
-		window.open(href, '', options+'height='+networks[network].height+',width='+networks[network].width);
-	}
-
-	popup(network);
+  if(network != "email"){
+  	var popup = function(network){
+  		var options = 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,';
+  		window.open(href, '', options+'height='+networks[network].height+',width='+networks[network].width);
+  	}
+  	popup(network);
+    return false;
+  }
+  $link.attr('href',href);
 });
