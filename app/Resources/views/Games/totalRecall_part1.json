@@ -32,8 +32,8 @@
       {
         "id":"002",
        "onend": {
-         "text" : "\nlink 'A' 65 : Qu'est ce que je dois faire ?\nlink 'B' 66 : Je ne veux pas 'baiser la gueulle' à Cohagen, je ne le connais même pas",
-         "textmobile" : "Qu'est ce que je dois faire ? Droite\nGauche Je ne veux pas 'baiser la gueulle' à Cohagen",
+         "text" : "\nlink 'A' 65 : Qu'est ce que je dois faire ?\nlink 'B' 66 : Je ne veux pas 'baiser la gueule' à Cohagen, je ne le connais même pas",
+         "textmobile" : "Qu'est ce que je dois faire ? Droite\nGauche Je ne veux pas 'baiser la gueule' à Cohagen",
          "nextvideos" : { "A" : "003", "_" : "058"} ,
          "nextvideosmobile" : { "right" : "003", "left" : "058"} ,
          "type" : "multichoicebykeypressed"
@@ -54,20 +54,20 @@
          "id":"004",
          "onend": {
            "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal!\nlink 'B' 66 : Sortir le truc de son nez...",
-           "textmobile" : "Tap Toucher doucement pour sortir l'emetteur du nez",
+           "textmobile" : "Tap Toucher doucement pour sortir l'émetteur du nez",
            "nextvideos" : { "B" : "005", "_" : "058"} ,
            "videomobiletoplay" : "005" ,
            "nextvideomobile" : "006",
            "delay" : 500,
            "type" : "playbykey",
-           "textduring" : "\nAppuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez"
+           "textduring" : "\nAppuyez longuement sur link 'B' 66 pour sortir l'émetteur de votre nez"
             }
          },
          {
           "id":"005",
           "onend": {
-            "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
-            "textmobile" : "Tap Toucher doucement pour sortir l'emetteur du nez",
+            "text" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'émetteur de votre nez",
+            "textmobile" : "Tap Toucher doucement pour sortir l'émetteur du nez",
             "nextvideos" : { "B" : "006", "_" : "057"} ,
             "type" : "multichoicebykeypressed"
              }
@@ -76,8 +76,8 @@
             "id":"006",
             "onstart": { "stopvideo" : "005" },
             "onend": {
-             "text" : "C'est quoi ça?\nlink 'A' 65 : Je dois faire quoi Maintenant? Me remettre l'emmetteur dans le nez?\nlink 'B' 66 : C'est quoi ce bordel? Je ne veux pas le savoir je m'en vais!\nlink 'C' 67 : Télévision, dis moi quoi faire!",
-             "textmobile" : "Haut Je dois faire quoi Maintenant ?\nJe vais me remettre l'emmetteur dans le nez ! Droite \nGauche Je ne veux pas le savoir je m'en vais.",
+             "text" : "C'est quoi ça?\nlink 'A' 65 : Je dois faire quoi Maintenant? Me remettre l'émetteur dans le nez?\nlink 'B' 66 : C'est quoi ce bordel? Je ne veux pas le savoir je m'en vais!\nlink 'C' 67 : Télévision, dis moi quoi faire!",
+             "textmobile" : "Haut Je dois faire quoi Maintenant ?\nJe vais me remettre l'émetteur dans le nez ! Droite \nGauche Je ne veux pas le savoir je m'en vais.",
              "nextvideos" : { "A" : "007", "C" : "008", "_" : "056"} ,
              "nextvideosmobile" : { "left" : "056", "right" : "007", "up" : "008"} ,
              "type" : "multichoicebykeypressed"
@@ -87,12 +87,12 @@
              "id":"007",
             "onend": {
               "text" : "\nlink 'A' 65 : J'arrête tout de suite ça fait mal !\nlink 'B' 66 : Sortir le truc...",
-              "textmobile" : "Tap Toucher doucement pour sortir l'emetteur du nez",
+              "textmobile" : "Tap Toucher doucement pour sortir l'émetteur du nez",
               "nextvideos" : { "B" : "005", "_" : "058"} ,
               "delay" : 500,
               "videomobiletoplay" :  "005" ,
               "nextvideomobile" : "006",
-              "textduring" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'emmetteur de votre nez",
+              "textduring" : "\nlink 'B' 66 : Appuyez longuement sur link 'B' 66 pour sortir l'émetteur de votre nez",
               "type" : "playbykey"
                }
             },
@@ -150,7 +150,7 @@
   "gameovers":{
     "idmin" : 56,
     "idmax" : 58,
-     "text" : "\nVous avez perdu !Pour rejouer la dernière séquence clicker ici : <a href='#' class='btn btn-xs btn-default' style='text-decoration:none' onClick='restartOnLastCheckpoint(); return false;'><span class='glyphicon glyphicon-repeat'></span>&nbsp;Rejouer</a>\nOu appuyez sur 'ESPACE'.",
+     "text" : "\nVous avez perdu !Pour rejouer la dernière séquence cliquer ici : <a href='#' class='btn btn-xs btn-default' style='text-decoration:none' onClick='restartOnLastCheckpoint(); return false;'><span class='glyphicon glyphicon-repeat'></span>&nbsp;Rejouer</a>\nOu appuyez sur 'ESPACE'.",
     "textmobile" : "\nVous avez perdu !\nTap Pour rejouer toucher l'écran."
      }
 
