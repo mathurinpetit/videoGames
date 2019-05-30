@@ -50,7 +50,13 @@ class VideoGameController extends Controller
      * @Template()
      */
     public function aProposAction() {
-      return array();
+      $em = $this->getDoctrine()->getManager();
+
+      $games = $em->getRepository('VideoGameBundle:Game')->findBy(
+        array(),
+        array('date' => 'DESC')
+        );
+      return array("games" => $games);
     }
 
     /**
