@@ -12,8 +12,8 @@
               {
                 "id":"001",
                 "onend": {
-                  "text" : "\nBonjour! Vous êtes publicitaire!\nAppuyer sur n'importe quelle touche pour commencer à crééer votre publicité sur le formage ...",
-                  "textmobile" : "Bonjour! Vous êtes publicitaire!\nTap Toucher pour commencer à crééer votre publicité sur le formage ...",
+                  "text" : "\nBonjour! Vous êtes publicitaire!\nAppuyer sur n'importe quelle touche pour commencer à crééer votre publicité sur le fromage ...",
+                  "textmobile" : "Bonjour! Vous êtes publicitaire!\nTap Toucher pour commencer à crééer votre publicité sur le fromage ...",
                   "nextvideos" : { "_" : "007"},
                   "nextvideomobile" : "007" ,
                   "type" : "multichoicebykeypressed"
